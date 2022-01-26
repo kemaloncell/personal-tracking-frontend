@@ -10,6 +10,8 @@ import UserTestList from '@/views/Users/UserTestList'
 import BankList from '@/views/Bank/BankList'
 import BankListDetail from '@/views/Bank/BankListDetail'
 
+//Login
+import Login from '@/views/Auth/Login.vue'
 
 const routes = [
 		{
@@ -42,6 +44,12 @@ const routes = [
 			name: 'bankListDetail',
 			component: BankListDetail
 		},
+		{
+			path: '/login',
+			name: 'login',
+			component: Login
+		},
+
 	]
 const router = new VueRouter({
 	mode: 'history',
