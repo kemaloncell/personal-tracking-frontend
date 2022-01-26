@@ -1,9 +1,9 @@
 <template>
-  <div class="p-grid">
+  <div class="p-grid p-justify-end" style="margin-top: 4rem">
     <div class="p-col-12 p-d-flex p-justify-end">
       <router-link to="user/test"><Button label="Test Kullanıcısı Tanımla"  class="p-button-lg"  /></router-link>
     </div>
-    <div class="p-col-12">
+    <div class="p-col-10">
       <div class="card">
         <h4>Mevcut kullanıcılar </h4>
         <DataTable :value="customer1" :paginator="true" class="p-datatable-customers" :rows="10" dataKey="id" :rowHover="true" :selection.sync="selectedCustomers1"

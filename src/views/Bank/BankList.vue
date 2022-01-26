@@ -1,7 +1,9 @@
 <template>
-  <div>
+  <default-layout>
+  <div slot="content">
     <bank-list/>
   </div>
+  </default-layout>
 </template>
 
 <script>

@@ -1,8 +1,8 @@
  <template>
-
-<div class="p-grid p-fluid dashboard p-justify-center">
-
-	<div class="p-col-12 p-lg-10">
+  <default-layout>
+ <div slot="content">
+  <div class="p-grid p-fluid dashboard p-justify-end" style="margin-top: 4rem">
+	<div class="p-col-10">
 		<div class="card">
 			<h1 style="font-size:16px">Recent Sales</h1>
 			<DataTable :value="products" class="p-datatable-customers" :rows="5" style="margin-bottom: 20px" :paginator="true">
@@ -34,13 +34,14 @@
 		</div>
 	</div>
 
-	<div class="p-col-12 p-lg-10">
+	<div class="p-col-10">
 		<div class="card">
 			<Chart type="line" :data="lineData" />
 		</div>
 	</div>
-
 </div>
+</div>
+  </default-layout>
 </template>
 
 <script>

@@ -1,7 +1,6 @@
 <template>
-  <div class="p-grid">
-    <div class="p-col-12">
-      <div class="card">
+  <div class="p-grid  p-justify-end " style="margin-top: 5rem">
+      <div class="card p-col-10">
         <h4>Mevcut Bankalar Listesi </h4>
         <DataTable :value="customer1" :paginator="true" class="p-datatable-customers" :rows="10" dataKey="id" :rowHover="true" :selection.sync="selectedCustomers1"
                    :filters="filters1" :loading="loading1">
@@ -26,41 +25,46 @@
               {{slotProps.data.name}}
             </template>
           </Column>
+
           <Column header="Country" :sortable="true" sortField="country.name" filterField="country.name">
             <template #body="slotProps">
               <img src="assets/layout/flags/flag_placeholder.png" :alt="slotProps.data.country.name" :class="'flag flag-' + slotProps.data.country.code" width="30" />
               <span style="margin-left: .5em; vertical-align: middle" class="image-text">{{slotProps.data.country.name}}</span>
             </template>
           </Column>
+
           <Column header="Representative" :sortable="true" sortField="representative.name" filterField="representative.name">
             <template #body="slotProps">
               <img :alt="slotProps.data.representative.name" :src="'assets/layout/images/avatar/' + slotProps.data.representative.image" width="32" style="vertical-align: middle" />
               <span style="margin-left: .5em; vertical-align: middle" class="image-text">{{slotProps.data.representative.name}}</span>
             </template>
           </Column>
+
           <Column field="date" header="Date" :sortable="true">
             <template #body="slotProps">
               <span>{{slotProps.data.date}}</span>
             </template>
           </Column>
+
           <Column field="status" header="Status" :sortable="true">
             <template #body="slotProps">
               <span :class="'customer-badge status-' + slotProps.data.status">{{slotProps.data.status}}</span>
             </template>
           </Column>
+
           <Column field="activity" header="Activity" :sortable="true">
             <template #body="slotProps">
               <ProgressBar :value="slotProps.data.activity" :showValue="false" />
             </template>
           </Column>
+
           <Column headerStyle="width: 8rem; text-align: center" bodyStyle="text-align: center; overflow: visible">
             <template #body>
               <router-link to="/bank/detail" type="button"  class="p-button-secondary"><i class="pi pi-cog"  style="font-size: 2rem"></i></router-link>
-
             </template>
           </Column>
         </DataTable>
-      </div>
+
     </div>
 
   </div>
