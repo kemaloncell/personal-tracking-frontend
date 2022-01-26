@@ -1,14 +1,14 @@
 <template>
   <div>
-    <invoice-list />
+    <user-list/>
   </div>
 </template>
 
 <script>
-import InvoiceList from '@/components/invoices/InvoicesList'
+import UserList from "@/components/users/UserList";
 export default {
   components: {
-    InvoiceList
+    UserList
   }
 
 }

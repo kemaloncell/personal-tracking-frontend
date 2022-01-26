@@ -1,14 +1,14 @@
 <template>
   <div>
-    <report-list />
+    <bank-list/>
   </div>
 </template>
 
 <script>
-import ReportList from '@/components/reports/ReportsList'
+import BankList from "@/components/bank/BankList";
 export default {
   components: {
-    ReportList
+    BankList
   }
 
 }

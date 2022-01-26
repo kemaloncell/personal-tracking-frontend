@@ -1,20 +1,14 @@
 import VueRouter from 'vue-router';
 import Dashboard from '@/components/Dashboard.vue';
 
-// Connections
-import ConnectionHome from '@/views/Connections/Home.vue'
+// Users
+import UserList from '@/views/Users/UserList.vue'
+import UserListDetail from '@/views/Users/UserListDetail.vue'
+import UserTestList from '@/views/Users/UserTestList'
 
-// Products
-import InventoryHome from '@/views/Products/Home.vue'
-
-// Finances
-import FinancesHome from '@/views/Finances/Home.vue'
-
-// Invoices
-import InvoicesHome from '@/views/Invoices/Home.vue'
-
-// Reports
-import ReportsHome from '@/views/Reports/Home.vue'
+//Bank
+import BankList from '@/views/Bank/BankList'
+import BankListDetail from '@/views/Bank/BankListDetail'
 
 
 const routes = [
@@ -22,26 +16,31 @@ const routes = [
 			path: '/',
 			name: 'dashboard',
 			component: Dashboard
-		},{
-			path: '/products',
-			name: 'products',
-			component: InventoryHome
-		},{
-			path: '/invoices',
-			name: 'invoices',
-			component: InvoicesHome
-		},{
-			path: '/connections',
-			name: 'connections',
-			component: ConnectionHome
-		},{
-			path: '/finances',
-			name: 'finances',
-			component: FinancesHome
-		},{
-			path: '/reports',
-			name: 'reports',
-			component: ReportsHome
+		},
+		{
+			path: '/user',
+			name: 'user',
+			component: UserList
+		},
+		{
+			path: '/user/detail',
+			name: 'userListDetail',
+			component: UserListDetail
+		},
+		{
+			path: '/user/test',
+			name: 'userTest',
+			component: UserTestList
+		},
+		{
+			path: '/bank',
+			name: 'bankListDetail',
+			component: BankList
+		},
+		{
+			path: '/bank/detail',
+			name: 'bankListDetail',
+			component: BankListDetail
 		},
 	]
 const router = new VueRouter({

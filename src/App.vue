@@ -4,12 +4,6 @@
 
         <transition name="layout-sidebar">
             <div :class="sidebarClass" @click="onSidebarClick" v-show="isSidebarVisible()">
-                <div class="layout-logo">
-                    <router-link to="/">
-
-                    </router-link>
-                </div>
-
                 <AppProfile />
                 <AppMenu :model="menu" @menuitem-click="onMenuItemClick" />
             </div>
@@ -19,8 +13,6 @@
 			<router-view />
 		</div>
 
-		<AppConfig :layoutMode="layoutMode" :layoutColorMode="layoutColorMode" @layout-change="onLayoutChange" @layout-color-change="onLayoutColorChange"/>
-
 		<AppFooter />
 	</div>
 </template>
@@ -29,7 +21,6 @@
 import AppTopBar from './layout/main/Header.vue';
 import AppProfile from './Profile.vue';
 import AppMenu from './layout/main/SideBar.vue';
-import AppConfig from './layout/main/Config.vue';
 import AppFooter from './layout/main/Footer.vue';
 
 export default {
@@ -40,20 +31,16 @@ export default {
             staticMenuInactive: false,
             overlayMenuActive: false,
             mobileMenuActive: false,
-            menu : [
-                {label: 'Anasayfa', icon: 'pi pi-fw pi-home', to: '/'},
-                {label: 'Ürünler', icon: 'pi pi-fw pi-home', to: '/products'},
-                {label: 'Faturalar', icon: 'pi pi-fw pi-home', to: '/invoices'},
-                {label: 'Bağlantılar', icon: 'pi pi-fw pi-home', to: '/connections'},
-                {label: 'Finans', icon: 'pi pi-fw pi-home', to: '/finances'},
-                {label: 'Raporlar', icon: 'pi pi-fw pi-home', to: '/reports'},
-            ]
-        }
-    },
-    watch: {
-        $route() {
-            this.menuActive = false;
-            this.$toast.removeAllGroups();
+          menu : [
+            {label: 'Anasayfa', icon: 'pi pi-fw pi-home', to: '/'},
+            {label: 'Kullanıcı Yönetimi', icon: 'pi pi-fw pi-user', to: '/user'},
+            {
+              label: 'Parametre Yönetimi', icon: 'pi pi-fw pi-reply',
+              items: [
+                {label: 'Banka Bilgileri', icon: 'pi pi-fw pi-money-bill', to: '/bank'},
+              ]
+            },
+          ]
         }
     },
     methods: {
@@ -84,8 +71,6 @@ export default {
             else {
                 this.mobileMenuActive = !this.mobileMenuActive;
             }
-
-            event.preventDefault();
         },
         onSidebarClick() {
             this.menuClick = true;
@@ -96,12 +81,6 @@ export default {
                 this.mobileMenuActive = false;
             }
         },
-		onLayoutChange(layoutMode) {
-			this.layoutMode = layoutMode;
-		},
-		onLayoutColorChange(layoutColorMode) {
-			this.layoutColorMode = layoutColorMode;
-		},
         addClass(element, className) {
             if (element.classList)
                 element.classList.add(className);
@@ -149,9 +128,6 @@ export default {
                 'layout-sidebar-light': this.layoutColorMode === 'light'
             }];
         },
-        logo() {
-            return (this.layoutColorMode === 'dark') ? "assets/layout/images/logo-white.svg" : "assets/layout/images/logo.svg";
-        }
     },
     beforeUpdate() {
         if (this.mobileMenuActive)
@@ -163,7 +139,6 @@ export default {
         'AppTopBar': AppTopBar,
         'AppProfile': AppProfile,
         'AppMenu': AppMenu,
-        'AppConfig': AppConfig,
         'AppFooter': AppFooter,
     }
 }

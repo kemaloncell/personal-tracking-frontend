@@ -44,8 +44,8 @@
 </template>
 
 <script>
-import ProductService from '../service/ProductService';
-import EventService from '../service/EventService';
+
+
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -96,16 +96,7 @@ export default {
 			},
 		}
 	},
-	productService: null,
-	eventService: null,
-	created() {
-		this.productService = new ProductService();
-		this.eventService = new EventService();
-	},
 	mounted() {
-		this.productService.getProductsSmall().then(data => this.products = data);
-		this.eventService.getEvents().then(data => this.events = data);
-
 		let afId = this.$route.query['af_id'];
         if (afId) {
             let today = new Date();
