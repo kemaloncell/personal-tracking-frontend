@@ -1,6 +1,6 @@
 import { BaseService } from '@/api/baseService'
 
-class UserService extends BaseService {
+class BankService extends BaseService {
     constructor() {
         const baseAPIUrl = process.env.VUE_APP_BASE_API
         super(baseAPIUrl + '/finance/common')
@@ -39,6 +39,6 @@ class UserService extends BaseService {
 
 }
 
-const userService = new UserService()
+const bankService = new BankService()
 
-export { userService }
+export { bankService }
