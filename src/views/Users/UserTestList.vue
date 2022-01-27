@@ -9,7 +9,9 @@
 </template>
 <script>
 import UserTestList from '@/components/users/UserTestList'
+import UserListDetail from "@/components/users/UserListDetail";
 export default {
+  mixins: [UserListDetail],
   components: {
     UserTestList
   }

@@ -8,11 +8,14 @@
 
 <script>
 import UserList from "@/components/users/UserList";
+import usersMixins from "@/components/users/mixins/usersMixins";
 export default {
+  mixins: [usersMixins],
   components: {
     UserList
-  }
-
+  },
+created() {
+}
 }
 </script>
 <style scoped lang="scss">

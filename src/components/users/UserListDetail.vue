@@ -101,7 +101,9 @@
 import CustomerService from "@/service/CustomerService";
 import ProductService from '@/service/ProductService';
 
+import usersMixins from "@/components/users/mixins/usersMixins";
 export default {
+  mixins: [usersMixins],
   data() {
     return {
       customer1: null,

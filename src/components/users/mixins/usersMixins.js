@@ -8,35 +8,26 @@ const usersMixin = {
 
     computed: {
         ...mapGetters({
-            submitLoading: 'products/submitLoading',
-            list: 'products/list',
-            listLoading: 'products/loading',
-            singleLoading: 'products/singleLoading',
-            exportLoading: 'products/exportLoading',
-            allStoreList: 'inventories/allStoreList',
-            allCategoryList: 'inventories/allCategoryList'
+            submitLoading: 'users/submitLoading',
+            loading: 'users/loading',
+            list: 'users/list',
+            listLoading: 'users/loading',
+            singleLoading: 'users/singleLoading'
         }),
     },
 
     methods: {
         ...mapActions({
-            create: 'products/create',
-            update: 'products/update',
-            getList: 'products/getList',
-            setPage: 'products/setPage',
-            delete: 'products/delete',
-            getSingle: 'products/getSingle',
-            downloadExcel: 'products/downloadExcel',
-            downloadPDF: 'products/downloadPDF',
-            downloadCSV: 'products/downloadCSV',
-            getAllStoreList: 'inventories/getAllStoreList',
-            getAllCategoryList: 'inventories/getAllCategoryList'
+            createUsers: 'users/create',
+            updateUsers: 'users/update',
+            getListUsers: 'users/getList',
+            setPageUsers: 'users/setPage',
+            deleteUsers: 'users/delete',
+            getUsersSingle: 'users/getSingle',
+            multipleDeleteUsers: 'users/multipleDelete'
         }),
     },
 
-    created() {
-        this.getList()
-    }
 }
 
 export default usersMixin

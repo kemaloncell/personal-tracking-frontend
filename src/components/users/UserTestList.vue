@@ -31,8 +31,9 @@
   </div>
 </template>
 <script>
-
+import usersMixins from "@/components/users/mixins/usersMixins";
 export default {
+  mixins: [usersMixins],
   data() {
     return {
       selectedState: null,
