@@ -8,7 +8,10 @@
 
 <script>
 import BankListDetail from "@/components/bank/BankListDetail";
+import bankMixins from "@/components/bank/mixins/bankMixins";
+
 export default {
+  mixins: [bankMixins],
   components: {
     BankListDetail
   }
