@@ -46,7 +46,6 @@ export default {
 				event.preventDefault();
 				return;
             }
-
             if (!item.to && !item.url) {
                 event.preventDefault();
             }

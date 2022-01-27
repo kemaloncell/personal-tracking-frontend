@@ -19,7 +19,7 @@
 
 <script>
 import AppTopBar from '../layout/main/Header.vue';
-import AppProfile from '../Profile.vue';
+import AppProfile from '../views/Auth/Profile.vue';
 import AppMenu from '../layout/main/SideBar.vue';
 import AppFooter from '../layout/main/Footer.vue';
 

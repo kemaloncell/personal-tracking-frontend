@@ -1,12 +1,11 @@
 <template>
   <div class="p-grid  p-justify-end " style="margin-top: 5rem">
       <div class="card p-col-10">
-        <h4>Mevcut Bankalar Listesi </h4>
         <DataTable :value="customer1" :paginator="true" class="p-datatable-customers" :rows="10" dataKey="id" :rowHover="true" :selection.sync="selectedCustomers1"
                    :filters="filters1" :loading="loading1">
           <template #header>
             <div class="table-header">
-              List of Customers
+              <h4>Mevcut Bankalar Listesi </h4>
               <span class="p-input-icon-left">
                 <i class="pi pi-search" />
                 <InputText v-model="filters1['global']" placeholder="Global Search" />

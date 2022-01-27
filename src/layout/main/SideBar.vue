@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import AppSubmenu from '../../AppSubmenu';
+import AppSubmenu from './SubSideBarMenu';
 
 export default {
 	props: {
