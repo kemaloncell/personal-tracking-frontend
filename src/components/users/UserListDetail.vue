@@ -1,6 +1,6 @@
 <template>
-  <div class="p-grid">
-    <div class="p-col-12">
+  <div class="p-grid main">
+    <div class="p-col-10">
       <div class="card">
         <h4>Mevcut kullanıcı detail</h4>
         <DataTable :value="customer1" :paginator="true" class="p-datatable-customers" :rows="10" dataKey="id" :rowHover="true" :selection.sync="selectedCustomers1"
@@ -59,7 +59,10 @@
             </template>
           </Column>
         </DataTable>
+      </div>
+    </div>
 
+      <div class="p-col-10">
         <div class="card">
           <h4>Mevcut kullanıcı detail</h4>
         <DataTable :value="products" class="p-datatable-customers" :rows="5" style="margin-bottom: 20px" :paginator="true">
@@ -89,10 +92,9 @@
           </Column>
         </DataTable>
       </div>
-      </div>
-    </div>
+     </div>
 
-  </div>
+    </div>
 </template>
 
 <script>
@@ -141,6 +143,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.main{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin: 4rem 15rem 0 0;
+}
 .p-progressbar {
   height: .5rem;
   background-color: #D8DADC;

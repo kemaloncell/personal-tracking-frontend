@@ -1,7 +1,7 @@
  <template>
   <default-layout>
  <div slot="content">
-  <div class="p-grid p-fluid dashboard p-justify-end" style="margin-top: 4rem">
+  <div class="p-grid p-fluid dashboard">
 	<div class="p-col-10">
 		<div class="card">
 			<h1 style="font-size:16px">Recent Sales</h1>
@@ -115,3 +115,11 @@ export default {
 </script>
 
 
+<style scoped lang="scss">
+.dashboard{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin: 4rem 15rem 0 0;
+}
+</style>
