@@ -1,7 +1,9 @@
 <template>
   <default-layout>
   <div class="main" slot="content">
-    <user-list/>
+    <user-list
+        :data="list"
+    />
   </div>
   </default-layout>
 </template>
@@ -14,8 +16,6 @@ export default {
   components: {
     UserList
   },
-created() {
-}
 }
 </script>
 <style scoped lang="scss">

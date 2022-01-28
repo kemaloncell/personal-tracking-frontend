@@ -16,37 +16,39 @@ import Login from '@/views/Auth/Login.vue'
 const routes = [
 		{
 			path: '/',
-			name: 'dashboard',
+			name: 'Dashboard',
 			component: Dashboard
 		},
 		{
 			path: '/user',
-			name: 'user',
-			component: UserList
+			name: 'User',
+			component: UserList,
+			props: true,
 		},
 		{
-			path: '/user/detail',
-			name: 'userListDetail',
-			component: UserListDetail
+			path: '/user/:name/detail',
+			name:'UserDetail',
+			component: UserListDetail,
+			props: true,
 		},
 		{
 			path: '/user/test',
-			name: 'userTest',
+			name: 'UserTest',
 			component: UserTestList
 		},
 		{
 			path: '/bank',
-			name: 'bankListDetail',
+			name: 'BankList',
 			component: BankList
 		},
 		{
 			path: '/bank/detail',
-			name: 'bankListDetail',
+			name: 'BankListDetail',
 			component: BankListDetail
 		},
 		{
 			path: '/login',
-			name: 'login',
+			name: 'Login',
 			component: Login
 		},
 
