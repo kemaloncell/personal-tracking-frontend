@@ -1,7 +1,10 @@
 import { userService } from '@/api/userService'
 
 const state = {
-    list: ['user1'],
+    list: [
+        {name:'Ali',country:'Turkey',owner:'Veli',date:'2015-09-13',status:'New'},
+        {name:'Bilal',country:'Irak',owner:'Veli',date:'2015-09-13',status:'New'},
+    ],
     pageInfo: {
         page: 0,
         size: 10

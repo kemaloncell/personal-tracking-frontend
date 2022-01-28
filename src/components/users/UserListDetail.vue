@@ -3,7 +3,7 @@
     <div class="p-col-10">
       <div class="card">
         <h4>Mevcut kullanıcı detail</h4>
-        <DataTable :value="customer1" :paginator="true" class="p-datatable-customers" :rows="10" dataKey="id" :rowHover="true" :selection.sync="selectedCustomers1"
+        <DataTable :value="[userData]" :paginator="true" class="p-datatable-customers" :rows="10" dataKey="id" :rowHover="true" :selection.sync="selectedCustomers1"
                    :filters="filters1" :loading="loading1">
           <template #header>
             <div class="table-header">
@@ -22,35 +22,28 @@
           </template>
           <Column selectionMode="multiple" headerStyle="width: 3em"></Column>
           <Column field="name" header="Name" :sortable="true">
-            <template #body="slotProps">
-              {{slotProps.data.name}}
+            <template #body>
+              {{userData.name}}
             </template>
           </Column>
           <Column header="Country" :sortable="true" sortField="country.name" filterField="country.name">
-            <template #body="slotProps">
-              <img src="assets/layout/flags/flag_placeholder.png" :alt="slotProps.data.country.name" :class="'flag flag-' + slotProps.data.country.code" width="30" />
-              <span style="margin-left: .5em; vertical-align: middle" class="image-text">{{slotProps.data.country.name}}</span>
+            <template #body>
+              <span style="margin-left: .5em; vertical-align: middle" class="image-text">{{userData.country}}</span>
             </template>
           </Column>
           <Column header="Representative" :sortable="true" sortField="representative.name" filterField="representative.name">
-            <template #body="slotProps">
-              <img :alt="slotProps.data.representative.name" :src="'assets/layout/images/avatar/' + slotProps.data.representative.image" width="32" style="vertical-align: middle" />
-              <span style="margin-left: .5em; vertical-align: middle" class="image-text">{{slotProps.data.representative.name}}</span>
+            <template #body>
+              <span style="margin-left: .5em; vertical-align: middle" class="image-text">{{userData.owner}}</span>
             </template>
           </Column>
           <Column field="date" header="Date" :sortable="true">
-            <template #body="slotProps">
-              <span>{{slotProps.data.date}}</span>
+            <template #body>
+              <span>{{userData.date}}</span>
             </template>
           </Column>
           <Column field="status" header="Status" :sortable="true">
-            <template #body="slotProps">
-              <span :class="'customer-badge status-' + slotProps.data.status">{{slotProps.data.status}}</span>
-            </template>
-          </Column>
-          <Column field="activity" header="Activity" :sortable="true">
-            <template #body="slotProps">
-              <ProgressBar :value="slotProps.data.activity" :showValue="false" />
+            <template #body>
+              <span :class="'customer-badge status-' + userData.status">{{userData.status}}</span>
             </template>
           </Column>
           <Column headerStyle="width: 8rem; text-align: center" bodyStyle="text-align: center; overflow: visible">
@@ -61,40 +54,7 @@
         </DataTable>
       </div>
     </div>
-
-      <div class="p-col-10">
-        <div class="card">
-          <h4>Mevcut kullanıcı detail</h4>
-        <DataTable :value="products" class="p-datatable-customers" :rows="5" style="margin-bottom: 20px" :paginator="true">
-          <Column>
-            <template #header>
-              Logo
-            </template>
-            <template #body="slotProps">
-              <img :src="'assets/layout/images/product/' + slotProps.data.image" :alt="slotProps.data.image" width="50px" />
-            </template>
-          </Column>
-          <Column field="name" header="Name" sortable></Column>
-          <Column field="category" header="Category" sortable></Column>
-          <Column field="price" header="Price" sortable>
-            <template #body="slotProps">
-              {{formatCurrency(slotProps.data.price)}}
-            </template>
-          </Column>
-          <Column>
-            <template #header>
-              View
-            </template>
-            <template #body>
-              <Button icon="pi pi-search" type="button" class="p-button-success p-mr-2 p-mb-1"></Button>
-              <Button icon="pi pi-times" type="button" class="p-button-danger p-mb-1"></Button>
-            </template>
-          </Column>
-        </DataTable>
-      </div>
-     </div>
-
-    </div>
+  </div>
 </template>
 
 <script>
@@ -106,6 +66,8 @@ export default {
   mixins: [usersMixins],
   data() {
     return {
+      userData: null,
+
       customer1: null,
       customer2: null,
       customer3: null,
@@ -124,6 +86,7 @@ export default {
   created() {
     this.customerService = new CustomerService();
     this.productService = new ProductService();
+    this.userData = this.$route.params.data;
   },
   mounted() {
     this.productService.getProductsWithOrdersSmall().then(data => this.products = data);
@@ -137,6 +100,7 @@ export default {
     expandAll() {
       this.expandedRows = this.products.filter(p => p.id);
       this.$toast.add({severity: 'success', summary: 'All Rows Expanded', life: 3000});
+
     },
 
 

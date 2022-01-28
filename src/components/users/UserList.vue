@@ -1,12 +1,13 @@
 <template>
   <div class="p-grid p-justify-end" style="margin-top: 4rem">
     <div class="p-col-12 p-d-flex p-justify-end">
+
       <router-link to="user/test"><Button label="Test Kullanıcısı Tanımla"  class="p-button-lg"  /></router-link>
     </div>
     <div class="p-col-10">
       <div class="card">
         <h4>Mevcut kullanıcılar </h4>
-        <DataTable :value="customer1" :paginator="true" class="p-datatable-customers" :rows="10" dataKey="id" :rowHover="true" :selection.sync="selectedCustomers1"
+        <DataTable :value="data" :paginator="true" class="p-datatable-customers" :rows="10" dataKey="id" :rowHover="true" :selection.sync="selectedCustomers1"
                    :filters="filters1" :loading="loading1">
           <template #header>
             <div class="table-header">
@@ -25,46 +26,39 @@
           </template>
           <Column selectionMode="multiple" headerStyle="width: 3em"></Column>
           <Column field="name" header="Name" :sortable="true">
-            <template #body="slotProps">
-              {{slotProps.data.name}}
+            <template #body="{data}">
+              {{data.name}}
             </template>
           </Column>
           <Column header="Country" :sortable="true" sortField="country.name" filterField="country.name">
-            <template #body="slotProps">
-              <img src="assets/layout/flags/flag_placeholder.png" :alt="slotProps.data.country.name" :class="'flag flag-' + slotProps.data.country.code" width="30" />
-              <span style="margin-left: .5em; vertical-align: middle" class="image-text">{{slotProps.data.country.name}}</span>
+            <template #body="{data}">
+              <span style="margin-left: .5em; vertical-align: middle" class="image-text">{{data.country}}</span>
             </template>
           </Column>
           <Column header="Representative" :sortable="true" sortField="representative.name" filterField="representative.name">
-            <template #body="slotProps">
-              <img :alt="slotProps.data.representative.name" :src="'assets/layout/images/avatar/' + slotProps.data.representative.image" width="32" style="vertical-align: middle" />
-              <span style="margin-left: .5em; vertical-align: middle" class="image-text">{{slotProps.data.representative.name}}</span>
+            <template #body="{data}">
+              <span style="margin-left: .5em; vertical-align: middle" class="image-text">{{data.owner}}</span>
             </template>
           </Column>
           <Column field="date" header="Date" :sortable="true">
-            <template #body="slotProps">
-              <span>{{slotProps.data.date}}</span>
+            <template #body="{data}">
+              <span>{{data.date}}</span>
             </template>
           </Column>
           <Column field="status" header="Status" :sortable="true">
-            <template #body="slotProps">
-              <span :class="'customer-badge status-' + slotProps.data.status">{{slotProps.data.status}}</span>
-            </template>
-          </Column>
-          <Column field="activity" header="Activity" :sortable="true">
-            <template #body="slotProps">
-              <ProgressBar :value="slotProps.data.activity" :showValue="false" />
+            <template #body="{data}">
+              <span :class="'customer-badge status-' + data.status">{{data.status}}</span>
             </template>
           </Column>
           <Column headerStyle="width: 8rem; text-align: center" bodyStyle="text-align: center; overflow: visible">
-            <template #body>
-              <router-link to="/user/detail" type="button"  class="p-button-secondary"><i class="pi pi-cog"  style="font-size: 2rem"></i></router-link>
+            <template #body="{data}">
+             <!-- <router-link :to="{ path: `user/${data.name}/detail`, params: { data }}" type="button"  class="p-button-secondary"><i class="pi pi-cog"  style="font-size: 2rem"></i></router-link>-->
+              <router-link :to="{ name: `UserDetail`, params:{name:data.name.toLowerCase(), data:data }}" type="button"  class="p-button-secondary"><i class="pi pi-cog"  style="font-size: 2rem"></i></router-link>
             </template>
           </Column>
         </DataTable>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -73,6 +67,12 @@ import CustomerService from "@/service/CustomerService";
 import ProductService from '@/service/ProductService';
 
 export default {
+  props: {
+    data: {
+      type: Array,
+      default: () => []
+    },
+    },
   data() {
     return {
       customer1: null,
@@ -93,6 +93,7 @@ export default {
   created() {
     this.customerService = new CustomerService();
     this.productService = new ProductService();
+
   },
   mounted() {
     this.productService.getProductsWithOrdersSmall().then(data => this.products = data);
@@ -107,10 +108,9 @@ export default {
       this.expandedRows = this.products.filter(p => p.id);
       this.$toast.add({severity: 'success', summary: 'All Rows Expanded', life: 3000});
     },
-
-
-  }
+  },
 }
+
 </script>
 
 <style scoped lang="scss">
