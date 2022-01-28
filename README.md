@@ -1,4 +1,3 @@
-# sigma
 
 ## Project setup
 ```
