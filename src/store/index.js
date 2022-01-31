@@ -1,7 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+//auth
+import auth from './modules/auth'
+
+
+//users
 import users from './modules/users'
+//banks
 import bank from  './modules/bank'
 
 Vue.use(Vuex)
@@ -14,5 +20,6 @@ export default new Vuex.Store({
   modules: {
     users,
     bank,
+    auth
   }
 })
