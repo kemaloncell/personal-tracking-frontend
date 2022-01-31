@@ -1,22 +1,21 @@
 <template>
   <default-layout>
   <div class="main" slot="content">
-    <bank-list/>
+    <bank-list
+      :data="list"
+    />
   </div>
   </default-layout>
 </template>
 
 <script>
 import BankList from "@/components/bank/BankList";
-import bankMixins from "@/components/bank/mixins/bankMixins";
+import bankMixins from "../../components/bank/mixins/bankMixins";
 export default {
   mixins: [bankMixins],
   components: {
     BankList
   },
-  created(){
-    console.log(this.list);
-  }
 }
 </script>
 

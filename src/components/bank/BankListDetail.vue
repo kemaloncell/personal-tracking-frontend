@@ -3,11 +3,11 @@
     <div class="p-col-10">
       <div class="card">
         <h4>Mevcut Banka Şubesi</h4>
-        <DataTable :value="customer1" :paginator="true" class="p-datatable-customers" :rows="10" dataKey="id" :rowHover="true" :selection.sync="selectedCustomers1"
+        <DataTable :value="[bankData]" :paginator="true" class="p-datatable-customers" :rows="10" dataKey="id" :rowHover="true" :selection.sync="selectedCustomers1"
                    :filters="filters1" :loading="loading1">
           <template #header>
             <div class="table-header">
-              List of Customers
+              List of Banks
               <span class="p-input-icon-left">
                 <i class="pi pi-search" />
                 <InputText v-model="filters1['global']" placeholder="Global Search" />
@@ -22,34 +22,32 @@
           </template>
           <Column selectionMode="multiple" headerStyle="width: 3em"></Column>
           <Column field="name" header="Name" :sortable="true">
-            <template #body="slotProps">
-              {{slotProps.data.name}}
+            <template #body>
+              {{bankData.name}}
             </template>
           </Column>
           <Column header="Country" :sortable="true" sortField="country.name" filterField="country.name">
-            <template #body="slotProps">
-              <img src="assets/layout/flags/flag_placeholder.png" :alt="slotProps.data.country.name" :class="'flag flag-' + slotProps.data.country.code" width="30" />
-              <span style="margin-left: .5em; vertical-align: middle" class="image-text">{{slotProps.data.country.name}}</span>
+            <template #body>
+              <span style="margin-left: .5em; vertical-align: middle" class="image-text">{{bankData.country}}</span>
             </template>
           </Column>
           <Column header="Representative" :sortable="true" sortField="representative.name" filterField="representative.name">
-            <template #body="slotProps">
-              <img :alt="slotProps.data.representative.name" :src="'assets/layout/images/avatar/' + slotProps.data.representative.image" width="32" style="vertical-align: middle" />
-              <span style="margin-left: .5em; vertical-align: middle" class="image-text">{{slotProps.data.representative.name}}</span>
+            <template #body>
+              <span style="margin-left: .5em; vertical-align: middle" class="image-text">{{bankData.owner}}</span>
             </template>
           </Column>
           <Column field="date" header="Date" :sortable="true">
-            <template #body="slotProps">
-              <span>{{slotProps.data.date}}</span>
+            <template #body>
+              <span>{{bankData.date}}</span>
             </template>
           </Column>
           <Column field="status" header="Status" :sortable="true">
-            <template #body="slotProps">
-              <span :class="'customer-badge status-' + slotProps.data.status">{{slotProps.data.status}}</span>
+            <template #body>
+              <span :class="'customer-badge status-' + bankData.status">{{bankData.status}}</span>
             </template>
           </Column>
           <Column field="activity" header="Activity" :sortable="true">
-            <template #body="slotProps">
+            <template #body>
               <ProgressBar :value="slotProps.data.activity" :showValue="false" />
             </template>
           </Column>
@@ -72,6 +70,7 @@ import ProductService from '@/service/ProductService';
 export default {
   data() {
     return {
+      bankData: null,
       customer1: null,
       customer2: null,
       customer3: null,
@@ -90,6 +89,7 @@ export default {
   created() {
     this.customerService = new CustomerService();
     this.productService = new ProductService();
+    this.bankData = this.$route.params.data;
   },
   mounted() {
     this.productService.getProductsWithOrdersSmall().then(data => this.products = data);

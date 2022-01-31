@@ -1,11 +1,12 @@
 <template>
   <div class="p-grid  p-justify-end " style="margin-top: 5rem">
       <div class="card p-col-10">
-        <DataTable :value="customer1" :paginator="true" class="p-datatable-customers" :rows="10" dataKey="id" :rowHover="true" :selection.sync="selectedCustomers1"
+              <h4>Mevcut Bankalar Listesi </h4>
+        <DataTable :value="data" :paginator="true" class="p-datatable-customers" :rows="10" dataKey="id" :rowHover="true" :selection.sync="selectedCustomers1"
                    :filters="filters1" :loading="loading1">
           <template #header>
             <div class="table-header">
-              <h4>Mevcut Bankalar Listesi </h4>
+              List of Banks
               <span class="p-input-icon-left">
                 <i class="pi pi-search" />
                 <InputText v-model="filters1['global']" placeholder="Global Search" />
@@ -20,40 +21,38 @@
           </template>
           <Column selectionMode="multiple" headerStyle="width: 3em"></Column>
           <Column field="name" header="Name" :sortable="true">
-            <template #body="slotProps">
-              {{slotProps.data.name}}
+            <template #body="{data}">
+              {{data.name}}
             </template>
           </Column>
 
           <Column header="Country" :sortable="true" sortField="country.name" filterField="country.name">
-            <template #body="slotProps">
-              <img src="assets/layout/flags/flag_placeholder.png" :alt="slotProps.data.country.name" :class="'flag flag-' + slotProps.data.country.code" width="30" />
-              <span style="margin-left: .5em; vertical-align: middle" class="image-text">{{slotProps.data.country.name}}</span>
+            <template #body="{data}">
+              <span style="margin-left: .5em; vertical-align: middle" class="image-text">{{data.country}}</span>
             </template>
           </Column>
 
           <Column header="Representative" :sortable="true" sortField="representative.name" filterField="representative.name">
-            <template #body="slotProps">
-              <img :alt="slotProps.data.representative.name" :src="'assets/layout/images/avatar/' + slotProps.data.representative.image" width="32" style="vertical-align: middle" />
-              <span style="margin-left: .5em; vertical-align: middle" class="image-text">{{slotProps.data.representative.name}}</span>
+            <template #body="{data}">
+              <span style="margin-left: .5em; vertical-align: middle" class="image-text">{{data.owner}}</span>
             </template>
           </Column>
 
           <Column field="date" header="Date" :sortable="true">
-            <template #body="slotProps">
-              <span>{{slotProps.data.date}}</span>
+            <template #body="{data}">
+              <span>{{data.date}}</span>
             </template>
           </Column>
 
           <Column field="status" header="Status" :sortable="true">
-            <template #body="slotProps">
-              <span :class="'customer-badge status-' + slotProps.data.status">{{slotProps.data.status}}</span>
+            <template #body="{data}">
+              <span :class="'customer-badge status-' + data.status">{{data.status}}</span>
             </template>
           </Column>
 
           <Column headerStyle="width: 8rem; text-align: center" bodyStyle="text-align: center; overflow: visible">
-            <template #body>
-              <router-link to="/bank/detail" type="button"  class="p-button-secondary"><i class="pi pi-cog"  style="font-size: 2rem"></i></router-link>
+            <template #body="{data}">
+              <router-link :to="{ name: `BankListDetail`, params:{name:data.name.toLowerCase(), data:data }}" type="button" class="p-button-secondary"><i class="pi pi-cog" style="font-size: 2rem"></i></router-link>
             </template>
           </Column>
         </DataTable>
@@ -68,6 +67,12 @@ import CustomerService from "@/service/CustomerService";
 import ProductService from '@/service/ProductService';
 
 export default {
+  props :{
+    data : {
+      type: Array,
+      default: () => []
+    },
+  },
   data() {
     return {
       customer1: null,
