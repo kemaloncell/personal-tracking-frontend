@@ -1,9 +1,9 @@
 {
-	"name": "sigma-vue",
+	"name": "musavir-admin-panel",
 	"version": "2.0.0",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/primefaces/sigma-vue.git"
+		"url": "https://github.com/jackrussell-team/musavir-admin-ui.git"
 	},
 	"license": "MIT",
 	"scripts": {
@@ -29,6 +29,7 @@
 		"chart.js": "2.7.3",
 		"eslint": "^5.16.0",
 		"eslint-plugin-vue": "^5.0.0",
+		"prettier": "2.5.1",
 		"primeflex": "2.0.0-rc.1",
 		"primeicons": "4.0.0",
 		"primevue": "2.0.5",

@@ -1,13 +1,20 @@
-import { BaseService } from '@/api/baseService'
+import {BaseService} from '@/api/baseService'
+import RequestAuthorizationInterceptor from './interceptors/requestAuthorizationInterceptor'
 
 class UserService extends BaseService {
     constructor() {
         const baseAPIUrl = process.env.VUE_APP_BASE_API
         super(baseAPIUrl + '/finance/common')
+        this.authorizationInterceptorId = this.http.interceptors.request.use(
+            RequestAuthorizationInterceptor
+        )
     }
 
-    async getAllList(parameters,data = {}) {
-        const result = await super.post(`/list?page=${parameters.page}&size=${parameters.size}`, data)
+    async getAllList(parameters, data = {}) {
+        const result = await super.post(
+            `/list?page=${parameters.page}&size=${parameters.size}`,
+            data
+        )
         return result
     }
 
@@ -27,18 +34,16 @@ class UserService extends BaseService {
     }
 
     async multipleDelete(idList) {
-        const result = await super.delete(`/multiple`, { data: { id: idList } })
+        const result = await super.delete(`/multiple`, {data: {id: idList}})
         return result
     }
 
-    async update({ data, id }) {
+    async update({data, id}) {
         const result = super.put(`/?id=${id}`, data)
         return result
     }
-
-
 }
 
 const userService = new UserService()
 
-export { userService }
+export {userService}

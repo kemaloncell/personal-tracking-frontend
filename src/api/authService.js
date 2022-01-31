@@ -1,6 +1,5 @@
-import { BaseService } from './baseService'
+import {BaseService} from './baseService'
 import RequestAuthorizationInterceptor from './interceptors/requestAuthorizationInterceptor'
-// import ResponseErrorCheckInterceptor from './interceptors/responseErrorCheckInterceptor'
 
 class UserService extends BaseService {
     constructor() {
@@ -12,11 +11,9 @@ class UserService extends BaseService {
     }
 
     async login(data) {
-
         setTimeout(async () => {
             return await super.post('/login', data)
         }, 1000)
-
     }
 
     async register(data) {
@@ -34,4 +31,4 @@ class UserService extends BaseService {
 
 const userService = new UserService()
 
-export { userService }
+export {userService}
