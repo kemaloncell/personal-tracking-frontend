@@ -1,7 +1,10 @@
 import {bankService} from '@/api/bankService'
 
 const state = {
-    list: ['user1'],
+    list: [
+        {name:'Omer',country:'Turkey',owner:'Veli',date:'2015-09-13',status:'New'},
+        {name:'C10',country:'Cesme',owner:'Veli',date:'2015-09-13',status:'New'},
+    ],
     pageInfo: {
         page: 0,
         size: 10

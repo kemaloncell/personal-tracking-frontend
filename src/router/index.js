@@ -52,14 +52,16 @@ const routes = [
 			path: '/bank',
 			name: 'BankList',
 			component: BankList,
+			props: true,
 			meta: {
 				requiresAuth: true
 			}
 		},
 		{
-			path: '/bank/detail',
+			path: '/bank/:name/detail',
 			name: 'BankListDetail',
 			component: BankListDetail,
+			props: true,
 			meta: {
 				requiresAuth: true
 			}
