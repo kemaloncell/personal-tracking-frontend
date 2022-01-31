@@ -12,7 +12,11 @@ class UserService extends BaseService {
     }
 
     async login(data) {
-        return await super.post('/login', data)
+
+        setTimeout(async () => {
+            return await super.post('/login', data)
+        }, 1000)
+
     }
 
     async register(data) {
