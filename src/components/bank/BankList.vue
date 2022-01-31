@@ -51,12 +51,6 @@
             </template>
           </Column>
 
-          <Column field="activity" header="Activity" :sortable="true">
-            <template #body="slotProps">
-              <ProgressBar :value="slotProps.data.activity" :showValue="false" />
-            </template>
-          </Column>
-
           <Column headerStyle="width: 8rem; text-align: center" bodyStyle="text-align: center; overflow: visible">
             <template #body>
               <router-link to="/bank/detail" type="button"  class="p-button-secondary"><i class="pi pi-cog"  style="font-size: 2rem"></i></router-link>

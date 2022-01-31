@@ -1,5 +1,5 @@
 <template>
-  <div class="p-col-6">
+  <div class="p-col-6 main">
     <Card>
       <template #title>
         <h3 class="p-d-flex p-justify-center">Test Kullanıcı Ekle</h3>
@@ -14,6 +14,7 @@
           <div class="p-field p-col-12 p-md-3">
             <label for="code">Kullanıcı Kod</label>
             <InputText id="code" type="text" />
+
           </div>
           <div class="p-field p-col-12 p-md-4">
             <label for="icon"></label>
@@ -52,3 +53,13 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.main{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin: 4rem 15rem 0 0;
+}
+
+</style>
