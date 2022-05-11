@@ -4,7 +4,7 @@
       <div class="p-grid p-fluid dashboard">
         <div class="p-col-12">
           <div class="card">
-            <h1 style="font-size:16px">Recent Sales</h1>
+            <h1 style="font-size:16px">Payment</h1>
             <DataTable :value="products" class="p-datatable-customers" :rows="5" style="margin-bottom: 20px"
                        :paginator="true">
               <Column>

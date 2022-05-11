@@ -25,6 +25,15 @@ const routes = [
         }
     },
     {
+        path: '/finances/payment',
+        name: 'User',
+        component: UserList,
+        props: true,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
         path: '/user',
         name: 'User',
         component: UserList,

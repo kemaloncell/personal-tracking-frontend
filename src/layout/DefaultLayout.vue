@@ -1,19 +1,19 @@
 <template>
   <div :class="containerClass" @click="onWrapperClick">
-    <AppTopBar @menu-toggle="onMenuToggle" />
+    <AppTopBar @menu-toggle="onMenuToggle"/>
 
     <transition name="layout-sidebar">
       <div :class="sidebarClass" @click="onSidebarClick" v-show="isSidebarVisible()">
-        <AppProfile />
-        <AppMenu :model="menu" @menuitem-click="onMenuItemClick" />
+        <AppProfile/>
+        <AppMenu :model="menu" @menuitem-click="onMenuItemClick"/>
       </div>
     </transition>
 
-    <div>
+    <div class="layout-main">
       <slot class="content-slot" name="content"/>
     </div>
 
-    <AppFooter />
+    <AppFooter/>
   </div>
 </template>
 
@@ -31,9 +31,21 @@ export default {
       staticMenuInactive: false,
       overlayMenuActive: false,
       mobileMenuActive: false,
-      menu : [
+      menu: [
         {label: 'Anasayfa', icon: 'pi pi-fw pi-home', to: '/'},
-        {label: 'Kullanıcı Yönetimi', icon: 'pi pi-fw pi-user', to: '/user'},
+        {
+          label: 'Finans', icon: 'pi pi-fw pi-financial',
+          items: [
+            {label: 'Ödemeler', icon: 'pi pi-fw pi-money-bill', to: '/finances/payment'},
+            {label: 'Bakiye', icon: 'pi pi-fw pi-money-bill', to: '/'},
+            {label: 'Hakediş', icon: 'pi pi-fw pi-money-bill', to: '/'},
+          ]
+        },
+        {label: 'Personal Yönetimi', icon: 'pi pi-fw pi-user', to: '/user'},
+        {label: 'Müşteri Yönetimi', icon: 'pi pi-fw pi-user', to: '/user'},
+        {label: 'Tedarikçiler', icon: 'pi pi-fw pi-user', to: '/user'},
+        {label: 'Saha Yönetimi', icon: 'pi pi-fw pi-user', to: '/user'},
+        {label: 'Vardiya Yönetimi', icon: 'pi pi-fw pi-user', to: '/user'},
         {
           label: 'Parametre Yönetimi', icon: 'pi pi-fw pi-reply',
           items: [
@@ -57,18 +69,16 @@ export default {
 
       if (this.isDesktop()) {
         if (this.layoutMode === 'overlay') {
-          if(this.mobileMenuActive === true) {
+          if (this.mobileMenuActive === true) {
             this.overlayMenuActive = true;
           }
 
           this.overlayMenuActive = !this.overlayMenuActive;
           this.mobileMenuActive = false;
-        }
-        else if (this.layoutMode === 'static') {
+        } else if (this.layoutMode === 'static') {
           this.staticMenuInactive = !this.staticMenuInactive;
         }
-      }
-      else {
+      } else {
         this.mobileMenuActive = !this.mobileMenuActive;
       }
     },
@@ -104,8 +114,7 @@ export default {
           return this.overlayMenuActive;
         else
           return true;
-      }
-      else {
+      } else {
         return true;
       }
     },
@@ -146,4 +155,6 @@ export default {
 
 <style lang="scss">
 @import '../assets/App';
+
+
 </style>

@@ -1,15 +1,11 @@
 <template>
-	<div class="layout-footer">
-		<span class="footer-text">Müşavir Admin Portal</span>
-	</div>
+  <div class="layout-footer">
+    <span class="footer-text">Security Plus</span>
+  </div>
 </template>
 
 <script>
-	export default {
-		name: "AppFooter"
-	}
+export default {
+  name: "AppFooter"
+}
 </script>
-
-<style scoped>
-
-</style>
