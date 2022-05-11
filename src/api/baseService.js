@@ -1,55 +1,63 @@
 import axios from 'axios'
+import RequestAuthorizationInterceptor from './interceptors/requestAuthorizationInterceptor'
 
 class BaseService {
-  constructor(baseURL) {
-    this.http = axios.create({
-      baseURL
-    })
-  }
+    constructor(url) {
+        const nodeEnv = process.env.NODE_ENV
 
-  async get(url, params) {
-    return this.http.get(url, {
-      params
-    })
-  }
+        const base = nodeEnv !== 'development' ? 'https://domain.herokuapp.com/api' : 'http://localhost:3008/api'
+        this.http = axios.create({
+            baseURL: `${base}/${url}`,
+        })
 
-  async post(url, data, config) {
-    return this.http.post(url, data, config)
-  }
+        this.authorizationInterceptorId = this.http.interceptors.request.use(
+            RequestAuthorizationInterceptor,
+        )
+    }
 
-  async postLoginData(url, data) {
-    return this.http.post(url, data)
-  }
+    async get(url, params) {
+        return this.http.get(url, {
+            params
+        })
+    }
 
-  async put(url, data, config) {
-    return this.http.put(url, data, config)
-  }
+    async post(url, data, config) {
+        return this.http.post(url, data, config)
+    }
 
-  async delete(url, config) {
-    return this.http.delete(url, config)
-  }
+    async postLoginData(url, data) {
+        return this.http.post(url, data)
+    }
 
-  async patch(url, config) {
-    return this.http.patch(url, config)
-  }
+    async put(url, data, config) {
+        return this.http.put(url, data, config)
+    }
 
-  async download(url) {
-    return this.http.get(url, {
-      responseType: 'arraybuffer'
-    })
-  }
+    async delete(url, config) {
+        return this.http.delete(url, config)
+    }
 
-  async downloadPost(url, data = {}) {
-    return this.http.post(url, data, {
-      responseType: 'arraybuffer'
-    })
-  }
+    async patch(url, config) {
+        return this.http.patch(url, config)
+    }
 
-  createSortQuery(query) {
-    return query
-      .map((m) => `sort=${m.field},${m.order === 1 ? 'ASC' : 'DESC'}`)
-      .join('&')
-  }
+    async download(url) {
+        return this.http.get(url, {
+            responseType: 'arraybuffer'
+        })
+    }
+
+    async downloadPost(url, data = {}) {
+        return this.http.post(url, data, {
+            responseType: 'arraybuffer'
+        })
+    }
+
+    createSortQuery(query) {
+        return query
+            .map((m) => `sort=${m.field},${m.order === 1 ? 'ASC' : 'DESC'}`)
+            .join('&')
+    }
 }
 
-export { BaseService }
+export {BaseService}

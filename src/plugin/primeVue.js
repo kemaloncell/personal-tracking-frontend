@@ -34,6 +34,7 @@ import Listbox from 'primevue/listbox';
 import MegaMenu from 'primevue/megamenu';
 import Menu from 'primevue/menu';
 import Menubar from 'primevue/menubar';
+import Spinner from 'primevue/progressspinner'
 import Message from 'primevue/message';
 import MultiSelect from 'primevue/multiselect';
 import OrderList from 'primevue/orderlist';
@@ -106,6 +107,7 @@ Vue.component('DataView', DataView);
 Vue.component('DataViewLayoutOptions', DataViewLayoutOptions);
 Vue.component('Dialog', Dialog);
 Vue.component('Dropdown', Dropdown);
+Vue.component('Spinner', Spinner);
 Vue.component('Fieldset', Fieldset);
 Vue.component('FileUpload', FileUpload);
 Vue.component('FullCalendar', FullCalendar);
@@ -149,4 +151,4 @@ Vue.component('Tree', Tree);
 Vue.component('TreeTable', TreeTable);
 Vue.component('TriStateCheckbox', TriStateCheckbox);
 
-Vue.component('default-layout',DefaultLayout)
+Vue.component('default-layout', DefaultLayout)

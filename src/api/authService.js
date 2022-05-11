@@ -1,19 +1,12 @@
 import {BaseService} from './baseService'
-import RequestAuthorizationInterceptor from './interceptors/requestAuthorizationInterceptor'
 
-class UserService extends BaseService {
+class AuthService extends BaseService {
     constructor() {
-        const baseAPIUrl = process.env.VUE_APP_BASE_API
-        super(baseAPIUrl + '/user')
-        this.authorizationInterceptorId = this.http.interceptors.request.use(
-            RequestAuthorizationInterceptor
-        )
+        super('users')
     }
 
     async login(data) {
-        setTimeout(async () => {
-            return await super.post('/login', data)
-        }, 1000)
+        return await super.post('/login', data)
     }
 
     async register(data) {
@@ -29,6 +22,6 @@ class UserService extends BaseService {
     }
 }
 
-const userService = new UserService()
+const authService = new AuthService()
 
-export {userService}
+export {authService}

@@ -1,20 +1,18 @@
 <template>
   <div class="p-grid p-justify-end" style="margin-top: 4rem">
-    <div class="p-col-12 p-d-flex p-justify-end">
-
-      <router-link to="user/test"><Button label="Test Kullanıcısı Tanımla"  class="p-button-lg"  /></router-link>
-    </div>
+    
     <div class="p-col-10">
       <div class="card">
         <h4>Mevcut kullanıcılar </h4>
-        <DataTable :value="data" :paginator="true" class="p-datatable-customers" :rows="10" dataKey="id" :rowHover="true" :selection.sync="selectedCustomers1"
+        <DataTable :value="data" :paginator="true" class="p-datatable-customers" :rows="10" dataKey="id"
+                   :rowHover="true" :selection.sync="selectedCustomers1"
                    :filters="filters1" :loading="loading1">
           <template #header>
             <div class="table-header">
               List of Customers
               <span class="p-input-icon-left">
-                <i class="pi pi-search" />
-                <InputText v-model="filters1['global']" placeholder="Global Search" />
+                <i class="pi pi-search"/>
+                <InputText v-model="filters1['global']" placeholder="Global Search"/>
               </span>
             </div>
           </template>
@@ -27,33 +25,35 @@
           <Column selectionMode="multiple" headerStyle="width: 3em"></Column>
           <Column field="name" header="Name" :sortable="true">
             <template #body="{data}">
-              {{data.name}}
+              {{ data.name }}
             </template>
           </Column>
           <Column header="Country" :sortable="true" sortField="country.name" filterField="country.name">
             <template #body="{data}">
-              <span style="margin-left: .5em; vertical-align: middle" class="image-text">{{data.country}}</span>
+              <span style="margin-left: .5em; vertical-align: middle" class="image-text">{{ data.country }}</span>
             </template>
           </Column>
-          <Column header="Representative" :sortable="true" sortField="representative.name" filterField="representative.name">
+          <Column header="Representative" :sortable="true" sortField="representative.name"
+                  filterField="representative.name">
             <template #body="{data}">
-              <span style="margin-left: .5em; vertical-align: middle" class="image-text">{{data.owner}}</span>
+              <span style="margin-left: .5em; vertical-align: middle" class="image-text">{{ data.owner }}</span>
             </template>
           </Column>
           <Column field="date" header="Date" :sortable="true">
             <template #body="{data}">
-              <span>{{data.date}}</span>
+              <span>{{ data.date }}</span>
             </template>
           </Column>
           <Column field="status" header="Status" :sortable="true">
             <template #body="{data}">
-              <span :class="'customer-badge status-' + data.status">{{data.status}}</span>
+              <span :class="'customer-badge status-' + data.status">{{ data.status }}</span>
             </template>
           </Column>
           <Column headerStyle="width: 8rem; text-align: center" bodyStyle="text-align: center; overflow: visible">
             <template #body="{data}">
-             <!-- <router-link :to="{ path: `user/${data.name}/detail`, params: { data }}" type="button"  class="p-button-secondary"><i class="pi pi-cog"  style="font-size: 2rem"></i></router-link>-->
-              <router-link :to="{ name: `UserDetail`, params:{name:data.name.toLowerCase(), data:data }}" type="button"  class="p-button-secondary"><i class="pi pi-cog"  style="font-size: 2rem"></i></router-link>
+              <!-- <router-link :to="{ path: `user/${data.name}/detail`, params: { data }}" type="button"  class="p-button-secondary"><i class="pi pi-cog"  style="font-size: 2rem"></i></router-link>-->
+              <router-link :to="{ name: `UserDetail`, params:{name:data.name.toLowerCase(), data:data }}" type="button"
+                           class="p-button-secondary"><i class="pi pi-cog" style="font-size: 2rem"></i></router-link>
             </template>
           </Column>
         </DataTable>
@@ -72,7 +72,7 @@ export default {
       type: Array,
       default: () => []
     },
-    },
+  },
   data() {
     return {
       customer1: null,
@@ -132,7 +132,7 @@ export default {
   justify-content: space-between;
 }
 
- .p-datatable.p-datatable-customers {
+.p-datatable.p-datatable-customers {
   .p-datatable-header {
     padding: 1rem;
     text-align: left;
@@ -273,7 +273,7 @@ export default {
 }
 
 @media screen and (max-width: 960px) {
- .p-datatable {
+  .p-datatable {
     &.p-datatable-customers {
       .p-datatable-thead > tr > th,
       .p-datatable-tfoot > tr > td {

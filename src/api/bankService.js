@@ -1,18 +1,14 @@
 import {BaseService} from '@/api/baseService'
-import RequestAuthorizationInterceptor from './interceptors/requestAuthorizationInterceptor'
 
 class BankService extends BaseService {
     constructor() {
         const baseAPIUrl = process.env.VUE_APP_BASE_API
         super(baseAPIUrl + '/finance/common')
-        this.authorizationInterceptorId = this.http.interceptors.request.use(
-            RequestAuthorizationInterceptor
-        )
     }
 
     async getAllList(parameters, data = {}) {
         const result = await super.post(
-            `/list?page=${parameters.page}&size=${parameters.size}`,
+            `/list?page=${parameters.page}&size= ${parameters.size}`,
             data
         )
         return result
