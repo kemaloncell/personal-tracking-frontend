@@ -36,22 +36,16 @@ export default {
         {
           label: 'Finans', icon: 'pi pi-fw pi-reply',
           items: [
-            {label: 'Ödemeler', icon: 'pi pi-fw pi-money-bill', to: '/finances/payment'},
-            {label: 'Bakiye', icon: 'pi pi-fw pi-inbox', to: '/finances/balance'},
+            {label: 'Ödemeler', icon: 'pi pi-fw pi-money-bill', to: '/finances/payments'},
+            {label: 'Bakiye', icon: 'pi pi-fw pi-inbox', to: '/finances/balances'},
             {label: 'Hakediş', icon: 'pi pi-fw pi-ticket', to: '/finances/vesting'},
           ]
         },
-        {label: 'Personal Yönetimi', icon: 'pi pi-fw pi-user-plus', to: '/employee'},
-        {label: 'Müşteri Yönetimi', icon: 'pi pi-fw pi-user-plus', to: '/customer'},
-        {label: 'Tedarikçiler', icon: 'pi pi-fw pi-users', to: '/user'},
-        {label: 'Saha Yönetimi', icon: 'pi pi-fw pi-external-link', to: '/user'},
-        {label: 'Vardiya Yönetimi', icon: 'pi pi-fw pi-table', to: '/user'},
-        {
-          label: 'Parametre Yönetimi', icon: 'pi pi-fw pi-reply',
-          items: [
-            {label: 'Banka Bilgileri', icon: 'pi pi-fw pi-money-bill', to: '/bank'},
-          ]
-        },
+        {label: 'Personal Yönetimi', icon: 'pi pi-fw pi-user-plus', to: '/employees'},
+        {label: 'Müşteri Yönetimi', icon: 'pi pi-fw pi-user-plus', to: '/customers'},
+        {label: 'Tedarikçiler', icon: 'pi pi-fw pi-users', to: '/suppliers'},
+        {label: 'Saha Yönetimi', icon: 'pi pi-fw pi-external-link', to: '/fields'},
+        {label: 'Vardiya Yönetimi', icon: 'pi pi-fw pi-table', to: '/shifts'},
       ]
     }
   },

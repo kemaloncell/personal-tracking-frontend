@@ -1,7 +1,7 @@
 <template>
   <default-layout>
     <div slot="content">
-      <CustomerManagamentList
+      <SupplierList
           :data="list"
       />
     </div>
@@ -9,13 +9,13 @@
 </template>
 
 <script>
-import CustomerManagamentList from "@/components/customerManagament/CustomerManagamentList";
-import customerMixins from "@/components/customerManagament/mixins/customerMixins";
+import SupplierList from "@/components/suppliers/supplierList";
+import supplierMixin from "@/components/suppliers/mixins/supplierMixins";
 
 export default {
-  mixins: [customerMixins],
+  mixins: [supplierMixin],
   components: {
-    CustomerManagamentList,
+    SupplierList,
   },
 }
 </script>

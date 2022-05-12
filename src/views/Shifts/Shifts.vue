@@ -1,21 +1,20 @@
 <template>
   <default-layout>
     <div slot="content">
-      <FieldList
+      <ShiftList
           :data="list"
       />
     </div>
   </default-layout>
 </template>
-
 <script>
-import FieldList from "@/components/fields/fieldList";
-import fieldMixin from "@/components/fields/mixins/fieldMixins";
+import ShiftList from "@/components/shifts/shiftList";
+import shiftMixin from "@/components/shifts/mixins/shiftMixins";
 
 export default {
-  mixins: [fieldMixin],
+  mixins: [shiftMixin],
   components: {
-    FieldList,
+    ShiftList,
   },
 }
 </script>

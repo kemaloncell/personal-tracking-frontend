@@ -1,6 +1,6 @@
 import {mapActions, mapGetters} from 'vuex'
 
-const supplierMixin = {
+const shiftMixin = {
     data() {
         return {}
     },
@@ -29,4 +29,4 @@ const supplierMixin = {
 
 }
 
-export default supplierMixin
+export default shiftMixin

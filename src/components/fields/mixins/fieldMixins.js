@@ -1,6 +1,6 @@
 import {mapActions, mapGetters} from 'vuex'
 
-const employeeMixin = {
+const shiftMixinfieldMixin = {
     data() {
         return {}
     },
@@ -29,4 +29,4 @@ const employeeMixin = {
 
 }
 
-export default employeeMixin
+export default fieldMixin

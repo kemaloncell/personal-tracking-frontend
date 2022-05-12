@@ -1,7 +1,7 @@
 <template>
   <default-layout>
     <div slot="content">
-      <EmployeeManagamentList
+      <EmployeeList
           :data="list"
       />
     </div>
@@ -9,13 +9,13 @@
 </template>
 
 <script>
-import EmployeeManagamentList from "@/components/employeeManagament/employeeManagamentList";
-import employeeMixin from "@/components/employeeManagament/mixins/employeeMixins";
+import EmployeeList from "@/components/employees/employeeList";
+import employeeMixin from "@/components/employees/mixins/employeeMixins";
 
 export default {
   mixins: [employeeMixin],
   components: {
-    EmployeeManagamentList,
+    EmployeeList,
   },
 }
 </script>

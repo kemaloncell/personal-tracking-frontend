@@ -10,10 +10,19 @@ import BalanceList from '@/components/finances/BalanceList.vue'
 import VestingList from '@/components/finances/VestingList.vue'
 
 //Employees
-import EmployeeList from '@/components/employeeManagament/employeeManagamentList.vue'
+import EmployeeList from '@/components/employees/employeeList.vue'
 
 //Customers
-import CustomerList from '@/components/customerManagament/customerManagamentList.vue'
+import CustomerList from '@/components/customers/customerList.vue'
+
+//Suppliers
+import SupplierList from '@/components/suppliers/supplierList.vue'
+
+//Fields
+import FieldList from '@/components/fields/fieldList.vue'
+
+//Shifts
+import ShiftList from '@/components/shifts/shiftList.vue'
 
 // Users
 import UserList from '@/views/Users/UserList.vue'
@@ -37,7 +46,7 @@ const routes = [
         }
     },
     {
-        path: '/finances/payment',
+        path: '/finances/payments',
         name: 'Payment',
         component: PaymentList,
         meta: {
@@ -45,7 +54,7 @@ const routes = [
         }
     },
     {
-        path: '/finances/balance',
+        path: '/finances/balances',
         name: 'Payment',
         component: BalanceList,
         meta: {
@@ -61,7 +70,7 @@ const routes = [
         }
     },
     {
-        path: '/employee',
+        path: '/employees',
         name: 'Employee',
         component: EmployeeList,
         meta: {
@@ -69,9 +78,33 @@ const routes = [
         }
     },
     {
-        path: '/customer',
+        path: '/customers',
         name: 'Customer',
         component: CustomerList,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/suppliers',
+        name: 'Supplier',
+        component: SupplierList,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/fields',
+        name: 'Field',
+        component: FieldList,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/shifts',
+        name: 'Shift',
+        component: ShiftList,
         meta: {
             requiresAuth: true
         }
