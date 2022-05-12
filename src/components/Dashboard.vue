@@ -35,12 +35,7 @@
             </DataTable>
           </div>
         </div>
-
-        <div class="p-col-12">
-          <div class="card">
-            <Chart type="line" :data="lineData"/>
-          </div>
-        </div>
+        
       </div>
     </div>
   </default-layout>

@@ -4,6 +4,9 @@ import store from '../store/modules/auth'
 //Dashboard
 import Dashboard from '@/components/Dashboard.vue';
 
+//Acount
+import Account from '@/components/Auth/account.vue';
+
 //Finances
 import PaymentList from '@/components/finances/PaymentList.vue'
 import BalanceList from '@/components/finances/BalanceList.vue'
@@ -41,6 +44,14 @@ const routes = [
         path: '/',
         name: 'Dashboard',
         component: Dashboard,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/account',
+        name: 'Account',
+        component: Account,
         meta: {
             requiresAuth: true
         }

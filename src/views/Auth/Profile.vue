@@ -10,7 +10,9 @@
     <transition name="layout-submenu-wrapper">
       <ul v-show="expanded">
         <li>
-          <button class="p-link"><i class="pi pi-fw pi-user"></i><span>Account</span></button>
+          <router-link class="p-link" tag="button" :to="{name: 'Account'}"><i
+              class="pi pi-fw pi-user"></i><span>Account</span>
+          </router-link>
         </li>
         <li>
           <button class="p-link"><i class="pi pi-fw pi-inbox"></i><span>Notifications</span><span
