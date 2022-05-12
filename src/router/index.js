@@ -4,9 +4,21 @@ import store from '../store/modules/auth'
 //Dashboard
 import Dashboard from '@/components/Dashboard.vue';
 
+//Finances
+import PaymentList from '@/components/finances/PaymentList.vue'
+import BalanceList from '@/components/finances/BalanceList.vue'
+import VestingList from '@/components/finances/VestingList.vue'
+
+//Employees
+import EmployeeList from '@/components/employeeManagament/employeeManagamentList.vue'
+
+//Customers
+import CustomerList from '@/components/customerManagament/customerManagamentList.vue'
+
 // Users
 import UserList from '@/views/Users/UserList.vue'
 import UserListDetail from '@/views/Users/UserListDetail.vue'
+
 
 //Bank
 import BankList from '@/views/Bank/BankList'
@@ -26,9 +38,40 @@ const routes = [
     },
     {
         path: '/finances/payment',
-        name: 'User',
-        component: UserList,
-        props: true,
+        name: 'Payment',
+        component: PaymentList,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/finances/balance',
+        name: 'Payment',
+        component: BalanceList,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/finances/vesting',
+        name: 'Vesting',
+        component: VestingList,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/employee',
+        name: 'Employee',
+        component: EmployeeList,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/customer',
+        name: 'Customer',
+        component: CustomerList,
         meta: {
             requiresAuth: true
         }

@@ -34,18 +34,18 @@ export default {
       menu: [
         {label: 'Anasayfa', icon: 'pi pi-fw pi-home', to: '/'},
         {
-          label: 'Finans', icon: 'pi pi-fw pi-financial',
+          label: 'Finans', icon: 'pi pi-fw pi-reply',
           items: [
             {label: 'Ödemeler', icon: 'pi pi-fw pi-money-bill', to: '/finances/payment'},
-            {label: 'Bakiye', icon: 'pi pi-fw pi-money-bill', to: '/'},
-            {label: 'Hakediş', icon: 'pi pi-fw pi-money-bill', to: '/'},
+            {label: 'Bakiye', icon: 'pi pi-fw pi-inbox', to: '/finances/balance'},
+            {label: 'Hakediş', icon: 'pi pi-fw pi-ticket', to: '/finances/vesting'},
           ]
         },
-        {label: 'Personal Yönetimi', icon: 'pi pi-fw pi-user', to: '/user'},
-        {label: 'Müşteri Yönetimi', icon: 'pi pi-fw pi-user', to: '/user'},
-        {label: 'Tedarikçiler', icon: 'pi pi-fw pi-user', to: '/user'},
-        {label: 'Saha Yönetimi', icon: 'pi pi-fw pi-user', to: '/user'},
-        {label: 'Vardiya Yönetimi', icon: 'pi pi-fw pi-user', to: '/user'},
+        {label: 'Personal Yönetimi', icon: 'pi pi-fw pi-user-plus', to: '/employee'},
+        {label: 'Müşteri Yönetimi', icon: 'pi pi-fw pi-user-plus', to: '/customer'},
+        {label: 'Tedarikçiler', icon: 'pi pi-fw pi-users', to: '/user'},
+        {label: 'Saha Yönetimi', icon: 'pi pi-fw pi-external-link', to: '/user'},
+        {label: 'Vardiya Yönetimi', icon: 'pi pi-fw pi-table', to: '/user'},
         {
           label: 'Parametre Yönetimi', icon: 'pi pi-fw pi-reply',
           items: [
