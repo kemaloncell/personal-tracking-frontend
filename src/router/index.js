@@ -5,7 +5,7 @@ import store from '../store/modules/auth'
 import Dashboard from '@/components/Dashboard.vue';
 
 //Acount
-import Account from '@/components/Auth/account.vue';
+import Profile from '@/components/Auth/Profile.vue';
 
 //Finances
 import PaymentList from '@/components/finances/PaymentList.vue'
@@ -13,19 +13,19 @@ import BalanceList from '@/components/finances/BalanceList.vue'
 import VestingList from '@/components/finances/VestingList.vue'
 
 //Employees
-import EmployeeList from '@/components/employees/employeeList.vue'
+import EmployeeList from '@/components/employees/EmployeeList.vue'
 
 //Customers
-import CustomerList from '@/components/customers/customerList.vue'
+import CustomerList from '@/components/customers/CustomerList.vue'
 
 //Suppliers
-import SupplierList from '@/components/suppliers/supplierList.vue'
+import SupplierList from '@/components/suppliers/SupplierList.vue'
 
 //Fields
-import FieldList from '@/components/fields/fieldList.vue'
+import FieldList from '@/components/fields/FieldList.vue'
 
 //Shifts
-import ShiftList from '@/components/shifts/shiftList.vue'
+import ShiftList from '@/components/shifts/ShiftList.vue'
 
 // Users
 import UserList from '@/views/Users/UserList.vue'
@@ -37,7 +37,7 @@ import BankList from '@/views/Bank/BankList'
 import BankListDetail from '@/views/Bank/BankListDetail'
 
 //Login
-import Login from '@/views/Auth/Login.vue'
+import Login from '@/components/Auth/Login.vue'
 
 const routes = [
     {
@@ -49,9 +49,9 @@ const routes = [
         }
     },
     {
-        path: '/account',
-        name: 'Account',
-        component: Account,
+        path: '/profile',
+        name: 'Profile',
+        component: Profile,
         meta: {
             requiresAuth: true
         }

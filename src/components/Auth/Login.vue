@@ -54,7 +54,7 @@
         </template>
         <template #footer>
           <div class="p-d-flex p-justify-center mt-5">
-            <Button @click="submit" :disabled="loading" icon="pi pi-check" label="Giriş yap" class="p-button-lg"/>
+            <Button @click="login" :disabled="loading" icon="pi pi-check" label="Giriş yap" class="p-button-lg"/>
             <Button icon="pi pi-times" label="Vazgeç" class="p-button-lg p-button-secondary" style="margin-left: .5em"/>
           </div>
         </template>
@@ -64,61 +64,11 @@
 </template>
 
 <script>
-import {required, email} from 'vuelidate/lib/validators'
-import {mapActions, mapGetters} from "vuex";
+import authMixin from "./mixins/authMixins";
 
 export default {
-  data() {
-    return {
-      email: null,
-      password: null,
-      submitStatus: null,
-      submitted: false,
-      isUserExist: true
-    }
-  },
-  validations: {
-    email: {
-      required,
-      email
-    },
-    password: {
-      required,
-    }
-  },
-
-  computed: {
-    ...mapGetters({
-      loading: 'auth/loading'
-    })
-  },
-
-  methods: {
-    ...mapActions({
-      callLogin: 'auth/callLogin'
-    }),
-
-    async submit() {
-      this.$v.$touch()
-      this.submitted = true
-      if (!this.$v.$invalid) {
-        try {
-          this.submitStatus = true
-          await this.callLogin({
-            email: this.email,
-            password: this.password
-          })
-          this.isUserExist = true
-          this.$router.push('/')
-        } catch {
-          console.error('login err')
-          this.isUserExist = false
-        }
-      }
-    }
-  }
+  mixins: [authMixin],
 }
-
 </script>
 
 <style lang="scss" scoped>

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import SupplierList from "@/components/suppliers/supplierList";
+import SupplierList from "@/components/suppliers/SupplierList";
 import supplierMixin from "@/components/suppliers/mixins/supplierMixins";
 
 export default {

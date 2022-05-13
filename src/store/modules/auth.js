@@ -49,6 +49,20 @@ const actions = {
         commit('SET_USER', null)
 
         localStorage.removeItem('id_token')
+    },
+
+    callChangePassword: async function ({commit}, changePasswordData) {
+        console.log('callChangePassword', changePasswordData)
+        try {
+            commit('SET_LOADING', true)
+            const {data} = await authService.changePassword(changePasswordData)
+            console.log('callChangePassword', data)
+            commit('SET_LOADING', false)
+        } catch (err) {
+            commit('SET_LOADING', false)
+            console.error(err)
+            throw new Error('Change password failed')
+        }
     }
 }
 

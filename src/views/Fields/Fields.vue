@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import FieldList from "@/components/fields/fieldList";
+import FieldList from "@/components/fields/FieldList";
 import fieldMixin from "@/components/fields/mixins/fieldMixins";
 
 export default {

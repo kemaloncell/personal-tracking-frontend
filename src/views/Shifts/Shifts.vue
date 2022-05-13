@@ -8,7 +8,7 @@
   </default-layout>
 </template>
 <script>
-import ShiftList from "@/components/shifts/shiftList";
+import ShiftList from "@/components/shifts/ShiftList";
 import shiftMixin from "@/components/shifts/mixins/shiftMixins";
 
 export default {

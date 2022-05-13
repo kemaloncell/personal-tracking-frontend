@@ -10,7 +10,7 @@
     <transition name="layout-submenu-wrapper">
       <ul v-show="expanded">
         <li>
-          <router-link class="p-link" tag="button" :to="{name: 'Account'}"><i
+          <router-link class="p-link" tag="button" :to="{name: 'Profile'}"><i
               class="pi pi-fw pi-user"></i><span>Account</span>
           </router-link>
         </li>
@@ -28,34 +28,17 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
+import authMixin from '@/components/Auth/mixins/authMixins'
 
 export default {
+  mixins: [authMixin],
   data() {
     return {
-      submitted: false,
       expanded: false
     }
   },
-  computed: {
-    ...mapGetters({
-      loading: 'auth/loading',
-    })
-  },
+
   methods: {
-    ...mapActions({
-      callLogout: 'auth/callLogout'
-    }),
-    async logout() {
-      try {
-        await this.callLogout();
-        this.$router.push('/login')
-      } catch {
-        console.error('logout err')
-      }
-
-
-    },
     onClick(event) {
       this.expanded = !this.expanded;
       event.preventDefault();

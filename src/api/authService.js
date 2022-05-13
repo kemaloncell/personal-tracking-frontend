@@ -13,6 +13,10 @@ class AuthService extends BaseService {
         return await super.post('/signup', data)
     }
 
+    async changePassword(data) {
+        return await super.post('/change-password', data)
+    }
+
     async sendOtp(data) {
         return await super.post('/send/otp', data)
     }
