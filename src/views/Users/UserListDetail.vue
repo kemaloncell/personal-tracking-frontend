@@ -1,9 +1,7 @@
 <template>
-  <default-layout>
-  <div slot="content">
-    <user-list-detail/>
-  </div>
-  </default-layout>
+
+  <user-list-detail/>
+
 </template>
 
 <script>

@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import authMixin from '@/components/Auth/mixins/authMixins'
+import authMixin from '@/components/auth/mixins/authMixins'
 
 export default {
   mixins: [authMixin],

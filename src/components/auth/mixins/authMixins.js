@@ -74,6 +74,10 @@ const authMixin = {
                 console.error('logout err')
             }
         },
+        onUpload() {
+            console.log("'geld")
+            this.$toast.add({severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000});
+        }
     },
 
 }

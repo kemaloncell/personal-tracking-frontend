@@ -1,11 +1,9 @@
 <template>
-  <default-layout>
-    <div slot="content">
-      <PaymentList
-          :data="list"
-      />
-    </div>
-  </default-layout>
+
+  <PaymentList
+      :data="list"
+  />
+
 </template>
 
 <script>

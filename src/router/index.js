@@ -5,7 +5,7 @@ import store from '../store/modules/auth'
 import Dashboard from '@/components/Dashboard.vue';
 
 //Acount
-import Profile from '@/components/Auth/Profile.vue';
+import Profile from '@/components/auth/Profile.vue';
 
 //Finances
 import PaymentList from '@/components/finances/PaymentList.vue'
@@ -37,7 +37,7 @@ import BankList from '@/views/Bank/BankList'
 import BankListDetail from '@/views/Bank/BankListDetail'
 
 //Login
-import Login from '@/components/Auth/Login.vue'
+import Login from '@/components/auth/Login.vue'
 
 const routes = [
     {

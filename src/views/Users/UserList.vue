@@ -1,11 +1,9 @@
 <template>
-  <default-layout>
-    <div slot="content">
-      <user-list
-          :data="list"
-      />
-    </div>
-  </default-layout>
+
+  <user-list
+      :data="list"
+  />
+
 </template>
 
 <script>

@@ -7,7 +7,7 @@
         <div class="fields ">
           <div class="image p-d-flex p-align-center p-mb-3 ">
             <label for="inputtext-right" class="p-mr-3">Profil Resmini değiştir:</label>
-            <FileUpload mode="basic" name="demo[]" url="./upload" accept="image/*"/>
+            <FileUpload @upload="onUpload" mode="basic" name="demo[]" url="./upload" :auto="true" accept="image/*"/>
           </div>
           <div class="p-inputgroup  p-align-center p-col-4">
             <label for="inputtext-right" class="p-mr-3">Şifreni değiştir:</label>
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import authMixin from "@/components/Auth/mixins/authMixins";
+import authMixin from "@/components/auth/mixins/authMixins";
 
 export default {
   mixins: [authMixin],

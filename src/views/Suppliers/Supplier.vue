@@ -1,11 +1,9 @@
 <template>
-  <default-layout>
-    <div slot="content">
-      <SupplierList
-          :data="list"
-      />
-    </div>
-  </default-layout>
+
+  <SupplierList
+      :data="list"
+  />
+
 </template>
 
 <script>

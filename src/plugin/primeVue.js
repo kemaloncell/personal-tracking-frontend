@@ -2,6 +2,10 @@ import Vue from 'vue';
 
 import DefaultLayout from "@/layout/DefaultLayout";
 
+//Jack Russel Components
+import JTable from '@/components/shared/JTable'
+
+
 import AutoComplete from 'primevue/autocomplete';
 import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
@@ -87,6 +91,10 @@ Vue.prototype.$appState = Vue.observable({inputStyle: 'outlined'});
 Vue.prototype.$primevue = Vue.observable({ripple: true});
 
 Vue.config.productionTip = false;
+
+//Jack Russell Components
+Vue.component('j-table', JTable)
+
 
 Vue.component('Accordion', Accordion);
 Vue.component('AccordionTab', AccordionTab);
