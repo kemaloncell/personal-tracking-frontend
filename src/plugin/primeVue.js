@@ -4,7 +4,7 @@ import DefaultLayout from "@/layout/DefaultLayout";
 
 //Jack Russel Components
 import JTable from '@/components/shared/JTable'
-
+import JImageUpload from "@/components/shared/JImageUpload";
 
 import AutoComplete from 'primevue/autocomplete';
 import Accordion from 'primevue/accordion';
@@ -94,6 +94,7 @@ Vue.config.productionTip = false;
 
 //Jack Russell Components
 Vue.component('j-table', JTable)
+Vue.component('j-image-upload', JImageUpload)
 
 
 Vue.component('Accordion', Accordion);

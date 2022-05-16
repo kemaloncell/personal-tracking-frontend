@@ -36,6 +36,7 @@ const authMixin = {
             callLogin: 'auth/callLogin',
             callLogout: 'auth/callLogout',
             callChangePassword: 'auth/callChangePassword',
+            callUploadFile: 'auth/callUploadFile',
         }),
 
         async login() {
@@ -74,12 +75,18 @@ const authMixin = {
                 console.error('logout err')
             }
         },
-        onUpload() {
-            console.log("'geld")
-            this.$toast.add({severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000});
-        }
+        async onUpload(req) {
+            try {
+                if (req[0].file) {
+                    console.log(req[0], 'req')
+                    await this.callUploadFile(req[0].file)
+                    console.log(req[0].headers, 'headers')
+                }
+            } catch {
+                console.error('upload err')
+            }
+        },
     },
-
 }
 
 export default authMixin

@@ -7,7 +7,9 @@
         <div class="fields ">
           <div class="image p-d-flex p-align-center p-mb-3 ">
             <label for="inputtext-right" class="p-mr-3">Profil Resmini değiştir:</label>
-            <FileUpload @upload="onUpload" mode="basic" name="demo[]" url="./upload" :auto="true" accept="image/*"/>
+
+            <j-image-upload @uploadFiles="onUpload($event)"></j-image-upload>
+
           </div>
           <div class="p-inputgroup  p-align-center p-col-4">
             <label for="inputtext-right" class="p-mr-3">Şifreni değiştir:</label>
@@ -28,7 +30,10 @@ import authMixin from "@/components/auth/mixins/authMixins";
 export default {
   mixins: [authMixin],
   name: 'profile',
+
 };
+
+
 </script>
 
 <style>

@@ -52,16 +52,37 @@ const actions = {
     },
 
     callChangePassword: async function ({commit}, changePasswordData) {
-        console.log('callChangePassword', changePasswordData)
         try {
             commit('SET_LOADING', true)
             const {data} = await authService.changePassword(changePasswordData)
-            console.log('callChangePassword', data)
+            return data
             commit('SET_LOADING', false)
         } catch (err) {
             commit('SET_LOADING', false)
             console.error(err)
             throw new Error('Change password failed')
+        }
+    },
+
+    callUploadFile: async function ({commit}, fileData) {
+        try {
+            commit('SET_LOADING', true)
+            const photoForm = new FormData()
+            console.log(fileData, 'fileData')
+            photoForm.append('file', fileData)
+            console.log(photoForm, 'photoForm')
+
+            commit('SET_LOADING', false)
+
+            return await authService.uploadFileRequest({
+                file: photoForm
+            })
+
+
+        } catch (err) {
+            commit('SET_LOADING', false)
+            console.error(err)
+            throw new Error('Upload failed')
         }
     }
 }
