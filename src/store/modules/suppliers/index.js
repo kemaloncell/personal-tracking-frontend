@@ -72,10 +72,12 @@ const actions = {
         }
     },
 
-    delete: async function (_, id) {
+    delete: async function ({commit}, id) {
         try {
+            commit('SET_LOADING', true)
             await supplierService.delete(id)
         } catch (err) {
+            commit('SET_LOADING', false)
             console.error(err)
             throw new Error('Delete connection failed')
         }

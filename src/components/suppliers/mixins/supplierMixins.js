@@ -71,7 +71,29 @@ const supplierMixin = {
                 this.getListSupplier()
                 this.closeModal()
             }
-        }
+        },
+
+        async onDelete(val) {
+            try {
+                await this.deleteSupplier(val.id)
+
+                this.$toast.add({
+                    severity: 'success',
+                    summary: 'Başarılı',
+                    detail: 'Çalışan silme başarılı !',
+                    life: 3000
+                })
+
+                this.getListSupplier()
+            } catch {
+                this.$toast.add({
+                    severity: 'error',
+                    summary: 'Başarısız',
+                    detail: 'Çalışan silme başarısız !',
+                    life: 3000
+                })
+            }
+        },
     },
 
 }

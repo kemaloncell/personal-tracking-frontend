@@ -25,7 +25,7 @@ class SupplierService extends BaseService {
     }
 
     async delete(id) {
-        return super.delete(`/?id=${id}`)
+        return super.delete(`/${id}`)
 
     }
 

@@ -37,6 +37,7 @@
 
       <SupplierList
           :data="list"
+          @onDelete="onDelete"
       />
       <j-modal :visible.sync="displayModal" width="900px">
         <template slot="content">
@@ -101,6 +102,8 @@ export default {
         this.udpateSubmit(data)
       }
     },
+
+
   },
   created() {
     this.getListSupplier()
