@@ -8,9 +8,9 @@ import Dashboard from '@/components/Dashboard.vue';
 import Profile from '@/components/auth/Profile.vue';
 
 //Finances
-import PaymentList from '@/components/finances/PaymentList.vue'
-import BalanceList from '@/components/finances/BalanceList.vue'
-import VestingList from '@/components/finances/VestingList.vue'
+import PaymentList from '@/views/Finances/Payment.vue'
+import BalanceList from '@/views/Finances/Balance.vue'
+import VestingList from '@/views/Finances/Vesting.vue'
 
 //Employees
 import EmployeeList from '@/views/Employees/Employees.vue'

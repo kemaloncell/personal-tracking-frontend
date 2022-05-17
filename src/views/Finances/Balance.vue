@@ -1,9 +1,11 @@
 <template>
-
-  <BalanceList
-      :data="list"
-  />
-
+  <default-layout>
+    <div slot="content">
+      <BalanceList
+          :data="list"
+      />
+    </div>
+  </default-layout>
 </template>
 
 <script>

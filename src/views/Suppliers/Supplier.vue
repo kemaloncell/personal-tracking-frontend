@@ -39,8 +39,15 @@
           :data="list"
       />
       <j-modal :visible.sync="displayModal" width="900px">
-        <template #content>
-          test
+        <template slot="content">
+          <suppliers-form
+              :loading="submitLoading"
+              :singleLoading="singleLoading"
+              :defaultValues="defaultValues"
+              :type="formType"
+              @onSubmit="submit"
+              @close="closeModal"
+          />
         </template>
       </j-modal>
 
@@ -53,14 +60,50 @@
 
 <script>
 
-
+import SuppliersForm from "@/components/suppliers/SuppliersForm";
 import SupplierList from "@/components/suppliers/SupplierList";
 import supplierMixin from "@/components/suppliers/mixins/supplierMixins";
 
 export default {
   mixins: [supplierMixin],
   components: {
+    SuppliersForm,
     SupplierList
   },
+
+  data() {
+    return {
+      displayModal: false,
+      formType: 'CREATE',
+      defaultValues: null,
+    }
+  },
+
+  methods: {
+    openModal() {
+      this.displayModal = true;
+    },
+
+    closeModal() {
+      this.displayModal = false
+      this.defaultValues = null
+      this.formType = 'CREATE'
+
+      this.resetForm()
+    },
+
+    async submit(data, type) {
+      if (this.formType === 'CREATE') {
+        this.createSubmit(data, type)
+      }
+
+      if (this.formType === 'UPDATE') {
+        this.udpateSubmit(data)
+      }
+    },
+  },
+  created() {
+    this.getListSupplier()
+  }
 }
 </script>

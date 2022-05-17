@@ -8,18 +8,22 @@ import auth from './modules/auth'
 //users
 import users from './modules/users'
 //banks
-import bank from  './modules/bank'
+import bank from './modules/bank'
+
+//suppliers
+import supplier from './modules/suppliers'
 
 Vue.use(Vuex)
 
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
-  actions: {},
-  modules: {
-    users,
-    bank,
-    auth
-  }
+    state: {},
+    mutations: {},
+    actions: {},
+    modules: {
+        users,
+        bank,
+        auth,
+        supplier,
+    }
 })
