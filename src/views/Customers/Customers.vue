@@ -1,7 +1,12 @@
 <template>
-  <CustomerList
-      :data="list"
-  />
+  <default-layout>
+    <div slot="content">
+      test
+      <CustomerList
+          :data="list"
+      />
+    </div>
+  </default-layout>
 </template>
 
 <script>

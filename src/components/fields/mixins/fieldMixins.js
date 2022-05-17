@@ -1,6 +1,6 @@
 import {mapActions, mapGetters} from 'vuex'
 
-const shiftMixinfieldMixin = {
+const fieldMixin = {
     data() {
         return {}
     },

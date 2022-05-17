@@ -4,6 +4,7 @@ import DefaultLayout from "@/layout/DefaultLayout";
 
 //Jack Russel Components
 import JTable from '@/components/shared/JTable'
+import JModal from '@/components/shared/JModal'
 import JImageUpload from "@/components/shared/JImageUpload";
 
 import AutoComplete from 'primevue/autocomplete';
@@ -94,6 +95,7 @@ Vue.config.productionTip = false;
 
 //Jack Russell Components
 Vue.component('j-table', JTable)
+Vue.component('j-modal', JModal)
 Vue.component('j-image-upload', JImageUpload)
 
 
@@ -160,4 +162,4 @@ Vue.component('Tree', Tree);
 Vue.component('TreeTable', TreeTable);
 Vue.component('TriStateCheckbox', TriStateCheckbox);
 
-Vue.component('default-layout', DefaultLayout)
+Vue.component('default-layout', DefaultLayout);

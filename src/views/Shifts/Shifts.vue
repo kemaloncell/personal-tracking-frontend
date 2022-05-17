@@ -1,9 +1,12 @@
 <template>
-
-  <ShiftList
-      :data="list"
-  />
-
+  <default-layout>
+    <div slot="content">
+      test
+      <ShiftList
+          :data="list"
+      />
+    </div>
+  </default-layout>
 </template>
 <script>
 import ShiftList from "@/components/shifts/ShiftList";

@@ -1,9 +1,12 @@
 <template>
-
-  <FieldList
-      :data="list"
-  />
-
+  <default-layout>
+    <div slot="content">
+      test
+      <FieldList
+          :data="list"
+      />
+    </div>
+  </default-layout>
 </template>
 
 <script>

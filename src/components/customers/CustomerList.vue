@@ -1,42 +1,39 @@
 <template>
-  <default-layout>
-    <div slot="content">
-      <j-table
-          :value="data"
-          :total="total"
-          :loading="loading"
-          :totalRecords="total"
-          :lazy="true"
-          sortMode="multiple"
-          @onPageChange="onPage"
-          @onDelete="onDeleteYes"
-          @onUpdate="onUpdateClick"
-          @selections="onHandleSelection"
-          @onHandleSort="onHandleSort"
-      >
-        <template slot="columns">
-          <Column field="name" header="Hesap Adı" sortable></Column>
-          <Column field="iban" header="IBAN" sortable>
-            <template #body="{ data }">
-              {{ data.iban ? data.iban : '-' }}
-            </template>
-          </Column>
-          <Column field="currency" header="Para Birimi" sortable>
-            <template #body="{ data }">
-              {{ data.currency ? `${data.currency.name}` : '-' }}
-            </template>
-          </Column>
-          <Column field="balanceAmount" header="Bakiye" sortable>
-            <template #body="{ data }">
-              {{ currency(data.balanceAmount) }}
-              ₺
-            </template>
-          </Column>
+
+  <j-table
+      :value="data"
+      :total="total"
+      :loading="loading"
+      :totalRecords="total"
+      :lazy="true"
+      sortMode="multiple"
+      @onPageChange="onPage"
+      @onDelete="onDeleteYes"
+      @onUpdate="onUpdateClick"
+      @selections="onHandleSelection"
+      @onHandleSort="onHandleSort"
+  >
+    <template slot="columns">
+      <Column field="name" header="Hesap Adı" sortable></Column>
+      <Column field="iban" header="IBAN" sortable>
+        <template #body="{ data }">
+          {{ data.iban ? data.iban : '-' }}
         </template>
-        <template slot="action"></template>
-      </j-table>
-    </div>
-  </default-layout>
+      </Column>
+      <Column field="currency" header="Para Birimi" sortable>
+        <template #body="{ data }">
+          {{ data.currency ? `${data.currency.name}` : '-' }}
+        </template>
+      </Column>
+      <Column field="balanceAmount" header="Bakiye" sortable>
+        <template #body="{ data }">
+          {{ currency(data.balanceAmount) }}
+          ₺
+        </template>
+      </Column>
+    </template>
+    <template slot="action"></template>
+  </j-table>
 </template>
 
 <script>

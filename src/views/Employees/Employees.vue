@@ -1,9 +1,12 @@
 <template>
-
-  <EmployeeList
-      :data="list"
-  />
-
+  <default-layout>
+    <div slot="content">
+      test
+      <EmployeeList
+          :data="list"
+      />
+    </div>
+  </default-layout>
 </template>
 
 <script>

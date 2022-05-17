@@ -13,19 +13,19 @@ import BalanceList from '@/components/finances/BalanceList.vue'
 import VestingList from '@/components/finances/VestingList.vue'
 
 //Employees
-import EmployeeList from '@/components/employees/EmployeeList.vue'
+import EmployeeList from '@/views/Employees/Employees.vue'
 
 //Customers
-import CustomerList from '@/components/customers/CustomerList.vue'
+import CustomerList from '@/views/Customers/Customers.vue'
 
 //Suppliers
-import SupplierList from '@/components/suppliers/SupplierList.vue'
+import SupplierList from '@/views/Suppliers/Supplier.vue'
 
 //Fields
-import FieldList from '@/components/fields/FieldList.vue'
+import FieldList from '@/views/Fields/Fields.vue'
 
 //Shifts
-import ShiftList from '@/components/shifts/ShiftList.vue'
+import ShiftList from '@/views/Shifts/Shifts.vue'
 
 // Users
 import UserList from '@/views/Users/UserList.vue'
@@ -178,7 +178,6 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     const authenticatedUser = store.state.userToken
-    console.log(authenticatedUser, 'authenticatedUser')
     const requiresAuth = to.matched.some((record) => record.meta.requiresAuth)
     if (requiresAuth && !authenticatedUser) next('/login')
     else next()

@@ -18,7 +18,6 @@ class AuthService extends BaseService {
     }
 
     async uploadFileRequest({file}) {
-        console.log(file, 'service')
 
         return await super.patch(`/photo`, file, {
             headers: {

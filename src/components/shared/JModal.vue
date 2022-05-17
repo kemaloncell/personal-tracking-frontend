@@ -1,15 +1,15 @@
 <template>
-  <p-dialog
-    class="j-modal"
-    :style="{ '--width': width }"
-    v-bind="$attrs"
-    :modal="true"
-    :maximizable="true"
+  <Dialog
+      class="j-modal"
+      :style="{ '--width': width }"
+      v-bind="$attrs"
+      :modal="true"
+      :maximizable="true"
   >
     <div class="j-modal-content">
-      <slot name="content" />
+      <slot name="content"/>
     </div>
-  </p-dialog>
+  </Dialog>
 </template>
 
 <script>
@@ -23,9 +23,11 @@ export default {
 <style lang="scss">
 .j-modal {
   background-color: rgba(255, 255, 255, 0.432) !important;
+
   .p-dialog {
     width: var(--width);
   }
+
   &-content {
     padding: 0 30px 50px 30px;
     overflow: scroll;

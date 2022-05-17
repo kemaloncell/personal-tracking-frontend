@@ -78,9 +78,7 @@ const authMixin = {
         async onUpload(req) {
             try {
                 if (req[0].file) {
-                    console.log(req[0], 'req')
                     await this.callUploadFile(req[0].file)
-                    console.log(req[0].headers, 'headers')
                 }
             } catch {
                 console.error('upload err')

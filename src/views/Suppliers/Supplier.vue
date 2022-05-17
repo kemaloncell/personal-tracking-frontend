@@ -1,19 +1,66 @@
 <template>
+  <default-layout>
+    <div slot="content">
 
-  <SupplierList
-      :data="list"
-  />
+      <h2 class="text-center text-2xl font-medium mb-3">Tedarikçiler</h2>
 
+      <div
+          class="flex mb-3 justify-content-between align-items-center mb-3 filters flex-wrap"
+      >
+        <div class="flex align-items-center">
+          <Button @click="openModal" class="p-button-primary add-button"
+          >Ürün Ekle
+          </Button
+          >
+
+          <!-- <SplitButton
+               class="ml-4 decline-button save-menu-button save-button"
+               label="Toplu İşlemler"
+               :model="multipleItems"
+               v-if="selectedItems.length > 0"
+           ></SplitButton>
+           <div class="ml-4">
+             <span class="p-input-icon-left">
+               <i class="pi pi-search"/>
+               <InputText
+                   v-model.trim="searchQuery"
+                   type="text"
+                   placeholder="Ara"
+                   class="pr-6"
+                   @input="callFilter"
+               />
+             </span>
+           </div> -->
+        </div>
+
+      </div>
+
+      <SupplierList
+          :data="list"
+      />
+      <j-modal :visible.sync="displayModal" width="900px">
+        <template #content>
+          test
+        </template>
+      </j-modal>
+
+      <Toast position="top-right"/>
+
+    </div>
+  </default-layout>
 </template>
 
+
 <script>
+
+
 import SupplierList from "@/components/suppliers/SupplierList";
 import supplierMixin from "@/components/suppliers/mixins/supplierMixins";
 
 export default {
   mixins: [supplierMixin],
   components: {
-    SupplierList,
+    SupplierList
   },
 }
 </script>
