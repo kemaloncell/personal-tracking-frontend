@@ -1,7 +1,7 @@
 <template>
   <Dialog
       class="j-modal"
-      :style="{ '--width': width }"
+      :style="{ 'width': width }"
       v-bind="$attrs"
       :modal="true"
       :maximizable="true"
@@ -25,11 +25,11 @@ export default {
   background-color: rgba(255, 255, 255, 0.432) !important;
 
   .p-dialog {
-    width: var(--width);
+    width: var(width);
   }
 
   &-content {
-    padding: 0 30px 50px 30px;
+    padding: 0 30px 150px 30px;
     overflow: scroll;
     margin-top: 25px;
     max-height: 700px;

@@ -2,7 +2,17 @@ import {mapActions, mapGetters} from 'vuex'
 
 const supplierMixin = {
     data() {
-        return {}
+        return {
+            selectedItems: [],
+            formData: {
+                title: null,
+                identityNumber: null,
+                isCorporate: false,
+                taxOfficeId: null,
+                //  address: null,
+                //  phoneNumber: null,
+            }
+        }
     },
 
     computed: {
@@ -92,6 +102,28 @@ const supplierMixin = {
                     detail: 'Çalışan silme başarısız !',
                     life: 3000
                 })
+            }
+        },
+
+        async onUpdate(val) {
+            this.updateId = val.id
+            const item = await this.getSingleSupplier(val.id)
+            this.defaultValues = item
+            this.formType = 'UPDATE'
+            this.displayModal = true
+        },
+
+        onSelection(val) {
+            this.selectedItems = val.map((item) => item.id)
+        },
+        resetForm() {
+            this.formData = {
+                title: null,
+                identityNumber: null,
+                isCorporate: null,
+                taxOffice: null,
+                address: null,
+                phoneNumber: null,
             }
         },
     },

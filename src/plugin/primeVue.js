@@ -6,6 +6,10 @@ import DefaultLayout from "@/layout/DefaultLayout";
 import JTable from '@/components/shared/JTable'
 import JModal from '@/components/shared/JModal'
 import JImageUpload from "@/components/shared/JImageUpload";
+import JInputText from "@/components/shared/JInputText";
+import JInputMask from "@/components/shared/JInputMask";
+import JSubmitButton from "@/components/shared/JSubmitButton";
+import JTaxOffice from "@/components/shared/JTaxOffice";
 
 import AutoComplete from 'primevue/autocomplete';
 import Accordion from 'primevue/accordion';
@@ -96,6 +100,10 @@ Vue.config.productionTip = false;
 //Jack Russell Components
 Vue.component('j-table', JTable)
 Vue.component('j-modal', JModal)
+Vue.component('j-input-text', JInputText)
+Vue.component('j-input-mask', JInputMask)
+Vue.component('j-submitbutton', JSubmitButton)
+Vue.component('j-taxOffice', JTaxOffice)
 Vue.component('j-image-upload', JImageUpload)
 
 

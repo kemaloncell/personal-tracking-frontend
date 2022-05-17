@@ -13,6 +13,9 @@ import bank from './modules/bank'
 //suppliers
 import supplier from './modules/suppliers'
 
+//definitions
+import definitions from './modules/definitions'
+
 Vue.use(Vuex)
 
 
@@ -25,5 +28,6 @@ export default new Vuex.Store({
         bank,
         auth,
         supplier,
+        definitions
     }
 })

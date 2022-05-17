@@ -15,7 +15,8 @@ class SupplierService extends BaseService {
     }
 
     async create(data) {
-        return super.post(`/`, data)
+        console.log(data)
+        return await super.post(`/`, data)
 
     }
 

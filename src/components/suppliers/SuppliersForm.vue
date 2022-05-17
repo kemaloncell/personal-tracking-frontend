@@ -3,12 +3,12 @@
     <h2 class="text-2xl font-bold" style="margin-bottom: 50px">Çalışan</h2>
     <div class="grid mt-5 flex align-items-center">
       <div class="col-2 text-sm pb-0">
-        Adı Soyadı <span class="p-error pb-0">*</span>
+        Hesap Adı <span class="p-error pb-0">*</span>
       </div>
       <div class="col-10 pb-0">
         <j-input-text
             class="w-full p-inputtext-sm"
-            v-model.trim="$v.formData.nameSurname.$model"
+            v-model.trim="$v.formData.title.$model"
             maxLength="128"
         />
       </div>
@@ -16,14 +16,14 @@
       <div class="col-10 col-offset-2 pt-0">
         <span
             class="p-error text-xs mt-1"
-            v-if="submitted && !$v.formData.nameSurname.maxLength"
+            v-if="submitted && !$v.formData.title.maxLength"
         >
           En fazla 128 karakter
         </span>
 
         <span
             class="p-error text-xs mt-1"
-            v-if="submitted && !$v.formData.nameSurname.required"
+            v-if="submitted && !$v.formData.title.required"
         >
           Zorunlu alan.
         </span>
@@ -64,59 +64,21 @@
         </span>
       </div>
 
-      <div class="col-2 text-sm">İkamet Adresi</div>
+      <!--<div class="col-2 text-sm">İkamet Adresi</div>
       <div class="col-10 description-input">
-        <p-textarea
+        <Textarea
             name="adress"
             class="w-full"
             v-model.trim="formData.address"
         />
-      </div>
+      </div> -->
 
-      <div class="col-12 form-dropdown">
+      <!--<div class="col-12 form-dropdown">
         <j-city-district
             @onSelectCity="onSelectCity"
             @onSelectDistrict="onSelectDistrict"
             :defaultCity="formData.city"
             :defaultDistrict="formData.district"
-        />
-      </div>
-
-      <div class="col-2 text-sm">Posta Kodu</div>
-      <div class="col-4">
-        <j-input-text
-            name="postalCode"
-            class="w-full p-inputtext-sm"
-            v-model.trim="formData.postalCode"
-        />
-      </div>
-
-      <div class="col-2 text-sm pb-0">E-Posta</div>
-      <div class="col-4 pb-0">
-        <j-input-text
-            name="email"
-            class="w-full p-inputtext-sm"
-            v-model.trim="formData.email"
-        />
-      </div>
-
-      <div class="col-4 col-offset-8 pt-0 pb-0">
-        <span
-            class="p-error text-xs mt-1"
-            v-if="submitted && !$v.formData.email.email"
-        >
-          Geçersiz E-Posta.
-        </span>
-      </div>
-
-      <div class="col-2 text-sm">Tel No</div>
-      <div class="col-4">
-        <j-input-mask
-            unmask
-            mask="(999) 999-99-99"
-            name="phoneNumber"
-            class="w-full p-inputtext-sm"
-            v-model.trim="formData.phoneNumber"
         />
       </div>
 
@@ -129,76 +91,90 @@
             mask="(999) 999-99-99"
             name="mobileNumber"
             class="w-full p-inputtext-sm"
-            v-model.trim="formData.mobileNumber"
+            v-model.trim="formData.phoneNumber"
         />
+      </div>-->
+
+      <div class="col-2 text-sm pb-0">
+        Vergi Dairesi <span class="p-error">*</span>
+      </div>
+      <div class="col-4 pb-0">
+        <j-taxOffice
+            @onTaxOffice="onTaxOffice"
+            :defaultTaxoffice="formData.taxOfficeId"/>
+      </div>
+      {{ formData.taxOfficeId }}
+
+      <div class="p-field-checkbox p-d-flex align-items-center p-mt-1">
+        <label class=" font-italic font-light text-sm  p-mr-4">Tüzel mi</label>
+        <Checkbox v-model="formData.isCorporate" :binary="true"/>
       </div>
 
       <div class="col-4 col-offset-8 pt-0">
         <span
             class="p-error text-xs mt-1"
-            v-if="submitted && !$v.formData.mobileNumber.required"
+            v-if="submitted && !$v.formData.phoneNumber.required"
         >
           Zorunlu alan.
         </span>
       </div>
 
-      <div class="col-2 text-sm">Açılış Bakiyesi</div>
-      <div class="col-10">
-        <div class="grid flex align-items-center">
-          <div class="col-2">
-            <div class="p-field-checkbox flex align-items-center">
-              <p-checkbox v-model="formData.isBalance" :binary="true"/>
-              <label
-                  v-if="formData.isBalance"
-                  class="ml-2 font-italic font-light text-sm"
-              >Çalışanın</label
-              >
-            </div>
-          </div>
+      <!-- <div class="col-2 text-sm">Açılış Bakiyesi</div>
+       <div class="col-10">
+         <div class="grid flex align-items-center">
+           <div class="col-2">
+             <div class="p-field-checkbox flex align-items-center">
+               <p-checkbox v-model="formData.isBalance" :binary="true"/>
+               <label
+                   v-if="formData.isBalance"
+                   class="ml-2 font-italic font-light text-sm"
+               >Çalışanın</label
+               >
+             </div>
+           </div>
 
-          <template v-if="formData.isBalance">
-            <div class="col-4 flex align-items-center">
-              <j-date
-                  class="w-full p-inputtext-sm"
-                  v-model="formData.balanceDate"
-                  :defaultValue="formData.balanceDate"
-                  :defaultMaxDate="new Date()"
-                  @onSelect="
-                  (balanceDate) => {
-                    formData.balanceDate = balanceDate
-                  }
-                "
-              ></j-date>
-              <!--    @onSelect="onSelectBalanceDate" -->
-              <label class="font-italic font-light text-sm ml-2"
-              >tarihinde</label
-              >
-            </div>
+           <template v-if="formData.isBalance">
+             <div class="col-4 flex align-items-center">
+               <j-date
+                   class="w-full p-inputtext-sm"
+                   v-model="formData.balanceDate"
+                   :defaultValue="formData.balanceDate"
+                   :defaultMaxDate="new Date()"
+                   @onSelect="
+                   (balanceDate) => {
+                     formData.balanceDate = balanceDate
+                   }
+                 "
+               ></j-date>
+               <label class="font-italic font-light text-sm ml-2"
+               >tarihinde</label
+               >
+             </div>
 
-            <div class="col-3 flex align-items-center">
-              <j-input-price
-                  name="balanceAmount"
-                  class="w-full p-inputtext-sm"
-                  @onChangePrice="onChangePrice"
-                  :defaultValue="formData.balanceAmount"
-              />
-            </div>
+             <div class="col-3 flex align-items-center">
+               <j-input-price
+                   name="balanceAmount"
+                   class="w-full p-inputtext-sm"
+                   @onChangePrice="onChangePrice"
+                   :defaultValue="formData.balanceAmount"
+               />
+             </div>
 
-            <div class="col-3 flex align-items-center form-dropdown">
-              <j-dropdown
-                  v-model="formData.balanceType"
-                  :options="balanceTypes"
-                  optionLabel="name"
-                  optionValue="code"
-                  class="w-full"
-              />
-            </div>
-          </template>
-        </div>
-      </div>
+             <div class="col-3 flex align-items-center form-dropdown">
+               <j-dropdown
+                   v-model="formData.balanceType"
+                   :options="balanceTypes"
+                   optionLabel="name"
+                   optionValue="code"
+                   class="w-full"
+               />
+             </div>
+           </template>
+         </div>
+       </div>-->
 
-      <div class="col-2 text-sm">Banka IBAN No</div>
-      <j-ibans @ibanChange="ibanChange" :defaultValue="formData.ibans"/>
+      <!--<div class="col-2 text-sm">Banka IBAN No</div>
+       <j-ibans @ibanChange="ibanChange" :defaultValue="formData.ibans"/> -->
 
       <div
           class="flex justify-content-center w-full mt-5 mb-2 decline-button save-menu-button save-button"
@@ -209,7 +185,7 @@
             @save="submit"
         />
 
-        <p-button
+        <Button
             v-else
             :disabled="loading"
             label="Güncelle"
@@ -218,7 +194,7 @@
             @click="submit"
         />
 
-        <p-button
+        <Button
             :disabled="loading"
             @click="onClose"
             label="Vazgeç"
@@ -230,17 +206,18 @@
 </template>
 
 <script>
+import supplierMixin from "@/components/suppliers/mixins/supplierMixins";
+import globalForm from "@/components/globalMixins/globalForm";
 import {
   maxLength,
   required,
   numeric,
-  email,
   minLength
 } from 'vuelidate/lib/validators'
 
 
 export default {
-
+  mixins: [globalForm, supplierMixin],
   data: () => ({
     submitted: false,
 
@@ -249,7 +226,7 @@ export default {
   validations() {
     const validation = {
       formData: {
-        nameSurname: {
+        title: {
           maxLength: maxLength(128),
           required
         },
@@ -258,12 +235,11 @@ export default {
           numeric,
           minLength: minLength(11)
         },
-        email: {
-          email
-        },
-        mobileNumber: {
-          required
-        }
+        /*phoneNumber: {
+          required,
+          numeric,
+          minLength: minLength(10)
+        } */
       }
     }
 
@@ -272,6 +248,7 @@ export default {
 
   methods: {
     submit(type) {
+      console.log(type)
       if (this.formData.currency) {
         this.formData.currency = this.formData.currency.id
       }
@@ -285,11 +262,11 @@ export default {
 
       this.$emit('onSubmit', this.formData, type)
 
-      if (type === 1) {
-        this.submitted = false
-        this.resetForm()
-        EventBus.$emit('clearIbans')
-      }
+      /*  if (type === 1) {
+          this.submitted = false
+          this.resetForm()
+          EventBus.$emit('clearIbans')
+        } */
     },
 
     onClose() {
@@ -307,7 +284,11 @@ export default {
         this.formData.district = district
       }
     },
-
+    onTaxOffice(taxOffice) {
+      if (taxOffice.id) {
+        this.formData.taxOfficeId = taxOffice.id
+      }
+    },
     onSelectBalanceDate(balanceDate) {
       this.formData.balanceDate = balanceDate
     },

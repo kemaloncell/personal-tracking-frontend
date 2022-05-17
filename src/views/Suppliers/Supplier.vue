@@ -37,9 +37,12 @@
 
       <SupplierList
           :data="list"
+          :loading="loading"
+          @onUpdate="onUpdate"
           @onDelete="onDelete"
+          @onSelection="onSelection"
       />
-      <j-modal :visible.sync="displayModal" width="900px">
+      <j-modal :visible.sync="displayModal" width="800px">
         <template slot="content">
           <suppliers-form
               :loading="submitLoading"
@@ -95,6 +98,7 @@ export default {
 
     async submit(data, type) {
       if (this.formType === 'CREATE') {
+        console.log(data, type, 'gelid')
         this.createSubmit(data, type)
       }
 

@@ -27,7 +27,6 @@
         </template>
       </Column>
     </template>
-    <template slot="action"></template>
   </j-table>
 
 
@@ -69,6 +68,7 @@ export default {
     },
 
     onUpdateClick(id) {
+      console.log(id)
       this.$emit('onUpdate', id)
     },
 
