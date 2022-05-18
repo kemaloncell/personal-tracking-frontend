@@ -39,6 +39,7 @@ export default {
   },
   watch: {
     defaultTaxoffice: function (val) {
+      console.log('defaultTaxoffice', val)
       if (!val) {
         this.selectedTaxOffice = val.name
       }
@@ -52,6 +53,7 @@ export default {
   },
   mounted() {
     this.callTaxOffice()
+
 
     if (this.defaultTaxoffice) {
       this.selectedTaxOffice = this.defaultTaxoffice.name

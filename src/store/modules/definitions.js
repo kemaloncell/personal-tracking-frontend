@@ -27,7 +27,8 @@ const actions = {
     callCityList: async function ({commit}) {
         try {
             const {data} = await definitionsService.getCityList()
-            commit('SET_CITY_LIST', data)
+            console.log(data, 'data')
+            commit('SET_CITY_LIST', data.data)
         } catch (err) {
             console.error(err)
             throw new Error('City list get connection failed')
@@ -37,7 +38,7 @@ const actions = {
     callDistrictList: async function ({commit}, id) {
         try {
             const {data} = await definitionsService.getDistrictList(id)
-            commit('SET_DISTRICT_LIST', data)
+            commit('SET_DISTRICT_LIST', data.data)
         } catch (err) {
             console.error(err)
             throw new Error('District list get connection failed')

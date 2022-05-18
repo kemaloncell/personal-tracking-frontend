@@ -4,16 +4,16 @@
       İl <span v-if="required" class="p-error">*</span>
     </div>
     <div class="col-4 pt-0 pb-0">
-      <p-dropdown
-        v-model="selectedCity"
-        :options="cityList"
-        optionLabel="name"
-        optionValue="id"
-        :filter="true"
-        :showClear="true"
-        class="w-full h-full city-search p-inputtext-sm"
-        @change="setSelectedCity"
-        filterLocale="tr"
+      <Dropdown
+          v-model="selectedCity"
+          :options="cityList"
+          optionLabel="name"
+          optionValue="id"
+          :filter="true"
+          :showClear="true"
+          class="w-full h-full city-search p-inputtext-sm"
+          @change="setSelectedCity"
+          filterLocale="tr"
       />
     </div>
 
@@ -21,23 +21,23 @@
       İlçe <span v-if="required" class="p-error">*</span>
     </div>
     <div class="col-4 pt-0 pb-0">
-      <p-dropdown
-        v-model="selectedDistrict"
-        :options="districtList"
-        optionLabel="name"
-        optionValue="id"
-        :filter="true"
-        :showClear="true"
-        class="w-full h-full city-search p-inputtext-sm"
-        @change="setSelectedDistrict"
-        filterLocale="tr"
+      <Dropdown
+          v-model="selectedDistrict"
+          :options="districtList"
+          optionLabel="name"
+          optionValue="id"
+          :filter="true"
+          :showClear="true"
+          class="w-full h-full city-search p-inputtext-sm"
+          @change="setSelectedDistrict"
+          filterLocale="tr"
       />
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 
 export default {
   computed: {

@@ -10,6 +10,7 @@ import 'vue-file-agent/dist/vue-file-agent.css';
 import router from './router/index';
 import store from './store'
 
+
 Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.use(Vuelidate)

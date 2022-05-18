@@ -9,7 +9,7 @@
       >
         <div class="flex align-items-center">
           <Button @click="openModal" class="p-button-primary add-button"
-          >Ürün Ekle
+          >Tedariçi Ekle
           </Button
           >
 
@@ -80,6 +80,7 @@ export default {
       displayModal: false,
       formType: 'CREATE',
       defaultValues: null,
+      updateId: null,
     }
   },
 

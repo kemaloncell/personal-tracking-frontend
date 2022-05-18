@@ -1,183 +1,314 @@
 <template>
   <form @submit.prevent="submit">
-    <h2 class="text-2xl font-bold" style="margin-bottom: 50px">Çalışan</h2>
+    <h2
+        class="text-2xl font-bold"
+        style="margin-bottom: 50px"
+        v-if="formData.seller.isCorporate === 'TUZEL'"
+    >
+      Şirket
+    </h2>
+    <h2 class="text-2xl font-bold" style="margin-bottom: 50px" v-else>
+      Şahıs
+    </h2>
+    <div class="flex mt-1 justify-content-center">
+      <div class="p-field-radiobutton flex align-items-center form-checkbox">
+        <RadioButton
+            id="tuzel"
+            name="tuzel"
+            value="TUZEL"
+            v-model="formData.seller.isCorporate"
+        />
+        <label class="ml-2 text-sm" for="tuzel">Tüzel Kişi (Şirket)</label>
+      </div>
+
+      <div class="p-field-radiobutton flex align-items-center ml-5">
+        <RadioButton
+            id="gercek"
+            name="gercek"
+            value="GERCEK"
+            v-model="formData.seller.isCorporate"
+        />
+        <label class="ml-2 text-sm" for="gercek"
+        >Gerçek Kişi (Şahıs Firması)</label
+        >
+      </div>
+    </div>
+
+    <!-- / -->
+
     <div class="grid mt-5 flex align-items-center">
       <div class="col-2 text-sm pb-0">
-        Hesap Adı <span class="p-error pb-0">*</span>
+        Firma Ünvanı <span class="p-error">*</span>
       </div>
       <div class="col-10 pb-0">
-        <j-input-text
+        <InputText
             class="w-full p-inputtext-sm"
-            v-model.trim="$v.formData.title.$model"
             maxLength="128"
+            v-model.trim="$v.formData.seller.title.$model"
         />
       </div>
 
       <div class="col-10 col-offset-2 pt-0">
         <span
             class="p-error text-xs mt-1"
-            v-if="submitted && !$v.formData.title.maxLength"
+            v-if="submitted && !$v.formData.seller.title.maxLength"
         >
           En fazla 128 karakter
         </span>
 
         <span
             class="p-error text-xs mt-1"
-            v-if="submitted && !$v.formData.title.required"
+            v-if="submitted && !$v.formData.seller.title.required"
         >
           Zorunlu alan.
         </span>
       </div>
 
       <div class="col-2 text-sm pb-0">
-        TC Kimlik No <span class="p-error">*</span>
+        Vergi Dairesi
+        <span v-if="formData.seller.isCorporate === 'TUZEL'" class="p-error"
+        >*</span
+        >
       </div>
-      <div class="col-10 pb-0">
-        <j-input-text
-            name="identityNumber"
-            class="w-full p-inputtext-sm"
-            v-model.trim="formData.identityNumber"
-            autocomplete="off"
-            maxLength="11"
+      <div class="col-4 pt-0 pb-0">
+        <j-taxOffice
+            @onTaxOffice="onTaxOffice"
+            :defaultTaxoffice="formData.seller.taxOffice"
         />
       </div>
 
-      <div class="col-10 col-offset-2 pt-0">
+      <template v-if="formData.seller.isCorporate === 'TUZEL'">
+        <div class="col-2 text-sm pb-0">
+          Vergi Sicil No <span class="p-error">*</span>
+        </div>
+        <div class="col-4 pb-0">
+          <InputText
+              name="taxRegistrationNumber"
+              class="w-full p-inputtext-sm"
+              v-model.trim="$v.formData.seller.identityNumber.$model"
+              maxLength="10"
+          />
+        </div>
+      </template>
+
+      <template v-else>
+        <div class="col-2 text-sm pb-0">
+          TC Kimlik No <span class="p-error">*</span>
+        </div>
+        <div class="col-4 pb-0">
+          <InputText
+              name="identityNumber"
+              class="w-full p-inputtext-sm"
+              v-model.trim="formData.seller.identityNumber"
+              maxLength="11"
+              autocomplete="off"
+          />
+        </div>
+      </template>
+
+      <div class="col-4 col-offset-2 pt-0">
         <span
             class="p-error text-xs mt-1"
-            v-if="submitted && !$v.formData.identityNumber.required"
+            v-if="
+            formData.seller.isCorporate === 'TUZEL' &&
+            submitted &&
+            !$v.formData.seller.taxOffice.required
+          "
+        >
+          Zorunlu alan.
+        </span>
+      </div>
+
+      <div
+          class="col-4 col-offset-2 pt-0"
+          v-if="formData.seller.isCorporate === 'TUZEL'"
+      >
+        <span
+            class="p-error text-xs mt-1"
+            v-if="submitted && !$v.formData.seller.identityNumber.required"
         >
           Zorunlu alan.
         </span>
         <span
             class="p-error text-xs mt-1"
-            v-if="submitted && !$v.formData.identityNumber.numeric"
+            v-if="submitted && !$v.formData.seller.identityNumber.numeric"
         >
           Lütfen sayı giriniz.
         </span>
 
         <span
             class="p-error text-xs mt-1"
-            v-if="submitted && !$v.formData.identityNumber.minLength"
+            v-if="submitted && !$v.formData.seller.identityNumber.minLength"
+        >
+          En az 10 karakter
+        </span>
+      </div>
+
+      <div class="col-4 col-offset-2 pt-0" v-else>
+        <span
+            class="p-error text-xs mt-1"
+            v-if="submitted && !$v.formData.seller.identityNumber.required"
+        >
+          Zorunlu alan.
+        </span>
+        <span
+            class="p-error text-xs mt-1"
+            v-if="submitted && !$v.formData.seller.identityNumber.numeric"
+        >
+          Lütfen sayı giriniz.
+        </span>
+
+        <span
+            class="p-error text-xs mt-1"
+            v-if="submitted && !$v.formData.seller.identityNumber.minLength"
         >
           En az 11 karakter
         </span>
       </div>
 
-      <!--<div class="col-2 text-sm">İkamet Adresi</div>
+      <!-- / -->
+
+      <div class="col-2 text-sm">Adres</div>
       <div class="col-10 description-input">
         <Textarea
             name="adress"
             class="w-full"
-            v-model.trim="formData.address"
-        />
-      </div> -->
-
-      <!--<div class="col-12 form-dropdown">
-        <j-city-district
-            @onSelectCity="onSelectCity"
-            @onSelectDistrict="onSelectDistrict"
-            :defaultCity="formData.city"
-            :defaultDistrict="formData.district"
+            v-model.trim="$v.formData.address.address.$model"
+            maxLength="512"
         />
       </div>
 
-      <div class="col-2 text-sm pb-0">
-        Mobil Tel <span class="p-error">*</span>
-      </div>
-      <div class="col-4 pb-0">
-        <j-input-mask
-            unmask
-            mask="(999) 999-99-99"
-            name="mobileNumber"
-            class="w-full p-inputtext-sm"
-            v-model.trim="formData.phoneNumber"
-        />
-      </div>-->
-
-      <div class="col-2 text-sm pb-0">
-        Vergi Dairesi <span class="p-error">*</span>
-      </div>
-      <div class="col-4 pb-0">
-        <j-taxOffice
-            @onTaxOffice="onTaxOffice"
-            :defaultTaxoffice="formData.taxOfficeId"/>
-      </div>
-      {{ formData.taxOfficeId }}
-
-      <div class="p-field-checkbox p-d-flex align-items-center p-mt-1">
-        <label class=" font-italic font-light text-sm  p-mr-4">Tüzel mi</label>
-        <Checkbox v-model="formData.isCorporate" :binary="true"/>
-      </div>
-
-      <div class="col-4 col-offset-8 pt-0">
+      <div class="col-10 col-offset-2">
         <span
             class="p-error text-xs mt-1"
-            v-if="submitted && !$v.formData.phoneNumber.required"
+            v-if="submitted && !$v.formData.address.address.maxLength"
+        >
+          En fazla 512 karakter.
+        </span>
+      </div>
+
+      <div class="col-12 form-dropdown pb-0">
+        <j-city-district
+            required
+            @onSelectCity="onSelectCity"
+            @onSelectDistrict="onSelectDistrict"
+            :defaultCity="formData.address.city"
+            :defaultDistrict="formData.address.district"
+            v-model.trim="$v.formData.address.city.$model"
+            @input="$v.formData.address.district.$model"
+        />
+      </div>
+
+      <div class="col-4 col-offset-2 pt-0">
+        <span
+            class="p-error text-xs mt-1"
+            v-if="submitted && !$v.formData.address.city.required"
         >
           Zorunlu alan.
         </span>
       </div>
 
-      <!-- <div class="col-2 text-sm">Açılış Bakiyesi</div>
-       <div class="col-10">
-         <div class="grid flex align-items-center">
-           <div class="col-2">
-             <div class="p-field-checkbox flex align-items-center">
-               <p-checkbox v-model="formData.isBalance" :binary="true"/>
-               <label
-                   v-if="formData.isBalance"
-                   class="ml-2 font-italic font-light text-sm"
-               >Çalışanın</label
-               >
-             </div>
-           </div>
+      <div class="col-4 col-offset-2 pt-0 pb-0">
+        <span
+            class="p-error text-xs mt-1"
+            v-if="submitted && !$v.formData.address.district.required"
+        >
+          Zorunlu alan.
+        </span>
+      </div>
 
-           <template v-if="formData.isBalance">
-             <div class="col-4 flex align-items-center">
-               <j-date
-                   class="w-full p-inputtext-sm"
-                   v-model="formData.balanceDate"
-                   :defaultValue="formData.balanceDate"
-                   :defaultMaxDate="new Date()"
-                   @onSelect="
-                   (balanceDate) => {
-                     formData.balanceDate = balanceDate
-                   }
-                 "
-               ></j-date>
-               <label class="font-italic font-light text-sm ml-2"
-               >tarihinde</label
-               >
-             </div>
+      <div class="col-2 text-sm">Posta Kodu</div>
+      <div class="col-4">
+        <j-input-mask
+            name="postalCode"
+            class="w-full p-inputtext-sm"
+            v-model.trim="formData.address.postalCode"
+            mask="99999"
+        />
+      </div>
 
-             <div class="col-3 flex align-items-center">
-               <j-input-price
-                   name="balanceAmount"
-                   class="w-full p-inputtext-sm"
-                   @onChangePrice="onChangePrice"
-                   :defaultValue="formData.balanceAmount"
-               />
-             </div>
+      <div class="col-2 text-sm">Tel No</div>
+      <div class="col-4">
+        <j-input-mask
+            unmask
+            name="phoneNumber"
+            class="w-full p-inputtext-sm"
+            v-model.trim="formData.address.phone"
+            mask="(999) 999-99-99"
+        />
+      </div>
 
-             <div class="col-3 flex align-items-center form-dropdown">
-               <j-dropdown
-                   v-model="formData.balanceType"
-                   :options="balanceTypes"
-                   optionLabel="name"
-                   optionValue="code"
-                   class="w-full"
-               />
-             </div>
-           </template>
-         </div>
-       </div>-->
+      <div class="col-2 text-sm">Faks No</div>
+      <div class="col-4">
+        <j-input-mask
+            unmask
+            name="faxNumber"
+            class="w-full p-inputtext-sm"
+            v-model.trim="formData.address.faxNumber"
+            mask="(999) 999-99-99"
+        />
+      </div>
 
-      <!--<div class="col-2 text-sm">Banka IBAN No</div>
-       <j-ibans @ibanChange="ibanChange" :defaultValue="formData.ibans"/> -->
+
+      <hr class="w-full"/>
+
+      <div class="col-2 text-sm">Yetkili Kişi</div>
+      <div class="col-10">
+        <InputText
+            name="authorizedPerson"
+            class="w-full p-inputtext-sm"
+            v-model.trim="$v.formData.authPerson.name.$model"
+            maxLength="64"
+        />
+      </div>
+
+      <div class="col-10 col-offset-2 pt-0 pb-0">
+        <span
+            class="p-error text-xs mt-1"
+            v-if="submitted && $v.formData.authPerson.name.letter"
+        >
+          Sayı içermemeli.
+        </span>
+
+        <span
+            class="p-error text-xs mt-1"
+            v-if="submitted && !$v.formData.authPerson.name.maxLength"
+        >
+          En fazla 64 karakter.
+        </span>
+      </div>
+
+      <div class="col-2 text-sm">E-Posta</div>
+      <div class="col-10">
+        <InputText
+            name="authorizedEmail"
+            class="w-full p-inputtext-sm"
+            v-model.trim="$v.formData.authPerson.email.$model"
+        />
+      </div>
+
+      <div class="col-10 col-offset-2 pt-0 pb-0">
+        <span
+            class="p-error text-xs mt-1"
+            v-if="submitted && !$v.formData.authPerson.email"
+        >
+          Geçersiz E-Posta.
+        </span>
+      </div>
+
+      <div class="col-2 text-sm">Mobil Tel</div>
+      <div class="col-10">
+        <j-input-mask
+            unmask
+            name="authorizedPhoneNumber"
+            class="w-full p-inputtext-sm"
+            v-model.trim="formData.authPerson.phone"
+            mask="(999) 999-99-99"
+        />
+      </div>
 
       <div
-          class="flex justify-content-center w-full mt-5 mb-2 decline-button save-menu-button save-button"
+          class="flex justify-content-center w-full mt-5 mb-5 decline-button save-menu-button save-button"
       >
         <j-submitbutton
             v-if="type === 'CREATE'"
@@ -206,52 +337,80 @@
 </template>
 
 <script>
-import supplierMixin from "@/components/suppliers/mixins/supplierMixins";
-import globalForm from "@/components/globalMixins/globalForm";
 import {
   maxLength,
   required,
   numeric,
+  email,
   minLength
 } from 'vuelidate/lib/validators'
-
+import GlobalForm from '@/components/globalMixins/globalForm'
+import SuppliersMixin from './mixins/supplierMixins'
 
 export default {
-  mixins: [globalForm, supplierMixin],
+  mixins: [SuppliersMixin, GlobalForm],
   data: () => ({
     submitted: false,
-
   }),
 
   validations() {
     const validation = {
       formData: {
-        title: {
-          maxLength: maxLength(128),
-          required
+        seller: {
+          title: {
+            maxLength: maxLength(128),
+            required
+          },
         },
-        identityNumber: {
-          required,
-          numeric,
-          minLength: minLength(11)
+        address: {
+          address: {
+            maxLength: maxLength(512)
+          },
+          city: {
+            required
+          },
+
+          district: {
+            required
+          },
         },
-        /*phoneNumber: {
-          required,
-          numeric,
-          minLength: minLength(10)
-        } */
+
+        authPerson: {
+          name: {
+            maxLength: maxLength(64),
+          },
+          email: {
+            email
+          },
+        },
+      }
+    }
+
+    if (this.formData.seller.isCorporate === 'TUZEL') {
+      validation.formData.seller.identityNumber = {
+        required,
+        numeric,
+        minLength: minLength(10)
+      }
+
+      validation.formData.seller.taxOffice = {
+        required
+      }
+    } else {
+      validation.formData.seller.identityNumber = {
+        required,
+        numeric,
+        minLength: minLength(11)
       }
     }
 
     return validation
   },
 
+
   methods: {
     submit(type) {
-      console.log(type)
-      if (this.formData.currency) {
-        this.formData.currency = this.formData.currency.id
-      }
+
 
       this.$v.$touch()
       this.submitted = true
@@ -262,11 +421,6 @@ export default {
 
       this.$emit('onSubmit', this.formData, type)
 
-      /*  if (type === 1) {
-          this.submitted = false
-          this.resetForm()
-          EventBus.$emit('clearIbans')
-        } */
     },
 
     onClose() {
@@ -284,23 +438,23 @@ export default {
         this.formData.district = district
       }
     },
+
     onTaxOffice(taxOffice) {
-      if (taxOffice.id) {
-        this.formData.taxOfficeId = taxOffice.id
+      if (taxOffice) {
+        this.formData.seller.taxOffice = taxOffice
       }
     },
-    onSelectBalanceDate(balanceDate) {
-      this.formData.balanceDate = balanceDate
-    },
 
-    ibanChange(val) {
-      this.formData.ibans = val
-    },
 
-    onChangePrice(val) {
-      this.formData.balanceAmount = val.value
-      this.formData.currency = val.currency
+  },
+
+  watch: {
+    'formData.customerCompanyType': {
+      deep: true,
+      handler() {
+        this.submitted = false
+      }
     }
-  }
+  },
 }
 </script>

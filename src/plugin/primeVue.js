@@ -2,6 +2,11 @@ import Vue from 'vue';
 
 import DefaultLayout from "@/layout/DefaultLayout";
 
+import 'primevue/resources/primevue.min.css'
+import 'primeicons/primeicons.css'
+import 'primeflex/primeflex.css'
+
+
 //Jack Russel Components
 import JTable from '@/components/shared/JTable'
 import JModal from '@/components/shared/JModal'
@@ -87,6 +92,7 @@ import '@fullcalendar/core/main.min.css';
 import '@fullcalendar/daygrid/main.min.css';
 import '@fullcalendar/timegrid/main.min.css';
 import '../assets/layout/layout.scss';
+import JCityDistrict from "@/components/shared/JCityDistrict";
 
 Vue.use(ToastService);
 Vue.directive('tooltip', Tooltip);
@@ -102,6 +108,7 @@ Vue.component('j-table', JTable)
 Vue.component('j-modal', JModal)
 Vue.component('j-input-text', JInputText)
 Vue.component('j-input-mask', JInputMask)
+Vue.component('j-city-district', JCityDistrict)
 Vue.component('j-submitbutton', JSubmitButton)
 Vue.component('j-taxOffice', JTaxOffice)
 Vue.component('j-image-upload', JImageUpload)

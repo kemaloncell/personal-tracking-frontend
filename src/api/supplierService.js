@@ -10,7 +10,7 @@ class SupplierService extends BaseService {
     }
 
     async getById(id) {
-        return await super.get(`?id=${id}`)
+        return await super.get(`/${id}`)
 
     }
 

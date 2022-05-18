@@ -5,13 +5,26 @@ const supplierMixin = {
         return {
             selectedItems: [],
             formData: {
-                title: null,
-                identityNumber: null,
-                isCorporate: false,
-                taxOfficeId: null,
-                //  address: null,
-                //  phoneNumber: null,
-            }
+                address: {
+                    address: null,
+                    postalCode: null,
+                    city: null,
+                    district: null,
+                    phone: null,
+                    faxNumber: null,
+                },
+                seller: {
+                    title: null,
+                    identityNumber: null,
+                    isCorporate: 'TUZEL',
+                    taxOffice: null,
+                },
+                authPerson: {
+                    name: '',
+                    phone: '',
+                    email: '',
+                },
+            },
         }
     },
 
@@ -107,8 +120,9 @@ const supplierMixin = {
 
         async onUpdate(val) {
             this.updateId = val.id
-            const item = await this.getSingleSupplier(val.id)
-            this.defaultValues = item
+            const item = await this.getSingleSupplier(this.updateId)
+            this.defaultValues = item.data
+            this.formData.taxOffice = item.data.TaxOffice
             this.formType = 'UPDATE'
             this.displayModal = true
         },

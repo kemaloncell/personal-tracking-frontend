@@ -43,6 +43,7 @@ export default {
 
   .p-dialog-header {
     padding: 0;
+    display: none !important;
 
     .p-dialog-header-icons {
       display: none;
