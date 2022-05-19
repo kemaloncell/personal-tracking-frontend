@@ -324,13 +324,6 @@
             :loading="loading"
             @click="submit"
         />
-
-        <Button
-            :disabled="loading"
-            @click="onClose"
-            label="Vazgeç"
-            class="p-button-danger ml-3"
-        />
       </div>
     </div>
   </form>

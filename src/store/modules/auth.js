@@ -32,8 +32,7 @@ const actions = {
         try {
             commit('SET_LOADING', true)
             const {data} = await authService.login(loginData)
-            const token = data.tokens.access_token
-
+            const token = data.data.tokens.access_token
             localStorage.setItem('id_token', token)
             commit('SET_TOKEN', token)
             commit('SET_LOADING', false)
