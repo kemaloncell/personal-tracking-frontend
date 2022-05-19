@@ -1,26 +1,14 @@
 import {mapActions, mapGetters} from 'vuex'
-import {email, required} from "vuelidate/lib/validators";
 
 const authMixin = {
     data() {
         return {
-            email: null,
-            password: null,
-            changePassword: null,
             submitStatus: null,
             submitted: false,
             isUserExist: true
         }
     },
-    validations: {
-        email: {
-            required,
-            email
-        },
-        password: {
-            required,
-        }
-    },
+
 
     computed: {
         ...mapGetters({
@@ -39,51 +27,7 @@ const authMixin = {
             callUploadFile: 'auth/callUploadFile',
         }),
 
-        async login() {
-            this.$v.$touch()
-            this.submitted = true
-            if (!this.$v.$invalid) {
-                try {
-                    this.submitStatus = true
-                    await this.callLogin({
-                        email: this.email,
-                        password: this.password
-                    })
-                    this.isUserExist = true
-                    this.$router.push('/')
-                } catch {
-                    console.error('login err')
-                    this.isUserExist = false
-                }
-            }
-        },
 
-        async logout() {
-            try {
-                await this.callLogout();
-                this.$router.push('/login')
-            } catch {
-                console.error('logout err')
-            }
-        },
-        async onChangePasword() {
-            try {
-                await this.callChangePassword({
-                    password: this.changePassword
-                })
-            } catch {
-                console.error('logout err')
-            }
-        },
-        async onUpload(req) {
-            try {
-                if (req[0].file) {
-                    await this.callUploadFile(req[0].file)
-                }
-            } catch {
-                console.error('upload err')
-            }
-        },
     },
 }
 

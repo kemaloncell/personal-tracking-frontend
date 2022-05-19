@@ -38,6 +38,7 @@ import BankListDetail from '@/views/Bank/BankListDetail'
 
 //Login
 import Login from '@/components/auth/Login.vue'
+import ForgotPassword from '@/components/auth/ForgotPassword.vue'
 
 const routes = [
     {
@@ -56,6 +57,23 @@ const routes = [
             requiresAuth: true
         }
     },
+    {
+        path: '/login',
+        name: 'Login',
+        component: Login,
+        meta: {
+            notRequiresAuth: false
+        }
+    },
+    {
+        path: '/forgot-password',
+        name: 'ForgotPassword',
+        component: ForgotPassword,
+        meta: {
+            notRequiresAuth: false
+        }
+    },
+
     {
         path: '/finances/payments',
         name: 'Payment',
@@ -156,15 +174,6 @@ const routes = [
             requiresAuth: true
         }
     },
-    {
-        path: '/login',
-        name: 'Login',
-        component: Login,
-        meta: {
-            notRequiresAuth: false
-        }
-    },
-
 
 ]
 

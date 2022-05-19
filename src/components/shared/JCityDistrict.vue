@@ -70,6 +70,7 @@ export default {
     }),
 
     setSelectedCity() {
+      console.log("selectid", this.selectedCity)
       this.$emit('onSelectCity', this.selectedCity)
 
       setTimeout(() => {

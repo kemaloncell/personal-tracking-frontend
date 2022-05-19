@@ -1,7 +1,6 @@
 <template>
   <default-layout>
     <div slot="content">
-
       <div class="profile">
         <h3>Profil ayarları</h3>
         <div class="fields ">
@@ -30,6 +29,31 @@ import authMixin from "@/components/auth/mixins/authMixins";
 export default {
   mixins: [authMixin],
   name: 'profile',
+  data() {
+    return {
+      changePassword: null,
+    }
+  },
+  methods: {
+    async onChangePasword() {
+      try {
+        await this.callChangePassword({
+          password: this.changePassword
+        })
+      } catch {
+        console.error('logout err')
+      }
+    },
+    async onUpload(req) {
+      try {
+        if (req[0].file) {
+          await this.callUploadFile(req[0].file)
+        }
+      } catch {
+        console.error('upload err')
+      }
+    },
+  }
 
 };
 

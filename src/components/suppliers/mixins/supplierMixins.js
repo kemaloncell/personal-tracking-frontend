@@ -10,8 +10,9 @@ const supplierMixin = {
                     postalCode: null,
                     city: null,
                     district: null,
-                    phone: null,
-                    faxNumber: null,
+                    phone: "5412503509",
+                    phone2: "5412503509",
+                    faxNumber: "5412503509",
                 },
                 seller: {
                     title: null,
@@ -20,9 +21,9 @@ const supplierMixin = {
                     taxOffice: null,
                 },
                 authPerson: {
-                    name: '',
-                    phone: '',
-                    mail: '',
+                    name: null,
+                    phone: "5412503509",
+                    mail: null,
                 },
             },
         }

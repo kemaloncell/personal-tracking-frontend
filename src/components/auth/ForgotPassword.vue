@@ -2,9 +2,9 @@
   <div class="main">
     <div class="container">
       <span class="error animated tada" id="msg"></span>
-      <form name="form1" class="box" method="post" @submit.prevent="login">
+      <form name="form1" class="box">
         <h4>Security<span> Plus</span></h4>
-        <h5>Hesabınıza giriş yapın.</h5>
+        <h5>Email veya telefon numaranızı girin</h5>
 
         <input type="text" name="email" placeholder="Email" v-model.trim="$v.email.$model" autocomplete="off">
         <span
@@ -20,27 +20,29 @@
             Geçersiz E-Posta.
           </span>
 
-
-        <i class="typcn typcn-eye pi pi-eye" :class="{active: isActive }" @click="seePassword()"></i>
-        <input :type="passwordType" name="password" v-model="$v.password.$model"
-               placeholder="Şifreniz"
-               autocomplete="off">
-        <div class="p-inputgroup flex justify-content-center ">
-          <span
-              class="p-error text-center text-xs "
-              v-if="!$v.password.required && submitted"
-          >
-            Parola giriniz.
+        <InputMask
+            mask="(999) 999-99-99"
+            unmask
+            placeholder="Telefon"
+            id="mobileNumberModal"
+            type="text"
+            class="forgot-password-input"
+            v-model.trim="$v.phone.$model"
+        />
+        <span
+            class="p-error text-xs mt-1"
+            v-if="!$v.phone.required && submitted"
+        >
+            Telefon numarası giriniz.
           </span>
-          <span class="p-error text-xs mt-1" v-show="!isUserExist">
-            Girdiğiniz E-posta adresi veya parola geçerli değil.
-          </span>
-        </div>
-        <router-link to="forgot-password" class="forgetpass" tag="a">Şifremi unuttum?</router-link>
 
-        <input type="submit" value="Giriş Yap" class="btn1">
+        <input @click="displayModal=true" type="submit" value="Sonraki Adım" class="btn1">
       </form>
     </div>
+    <forgot-modal
+        :visible.sync="displayModal"
+        :loading="loading"
+    />
     <div class="footer">
       <span>Made with <i class="fa fa-heart pulse"></i> <a href="">By Jack Russell</a></span>
     </div>
@@ -48,58 +50,27 @@
 </template>
 
 <script>
+import forgotModal from "./ForgotModal";
 import authMixin from "./mixins/authMixins";
 import {email, required} from "vuelidate/lib/validators";
 
 export default {
   mixins: [authMixin],
+  components: {
+    forgotModal
+  },
   data() {
     return {
-      email: null,
-      password: null,
-      passwordType: "password",
-      isActive: false,
-      pwd: document.getElementById('pwd'),
+      displayModal: false,
     }
   },
-  methods: {
-    async login() {
-      this.$v.$touch()
-      this.submitted = true
-      if (!this.$v.$invalid) {
-        try {
-          this.submitStatus = true
-          await this.callLogin({
-            email: this.email,
-            password: this.password
-          })
-          this.isUserExist = true
-          this.$router.push('/')
-        } catch {
-          console.error('login err')
-          this.isUserExist = false
-        }
-      }
-    },
-
-    seePassword() {
-      if (this.isActive) {
-        this.isActive = false
-        this.passwordType = 'password'
-
-      } else {
-        this.isActive = true
-        this.passwordType = 'text'
-      }
-    },
-  },
-
+  methods: {},
   validations: {
     email: {
       required,
       email
     },
-    password: {
+    phone: {
       required,
     }
   },
@@ -181,6 +152,22 @@ export default {
 
 }
 
+.forgot-password-input {
+  margin: 20px auto !important;
+  background: #262e49 !important;
+  border: 0 !important;
+  border-radius: 5px !important;
+  padding: 22px 10px !important;
+  width: 320px !important;
+  outline: none !important;
+  color: #d6d6d6 !important;
+  -webkit-transition: all .2s ease-out !important;
+  -moz-transition: all .2s ease-out !important;
+  -ms-transition: all .2s ease-out !important;
+  -o-transition: all .2s ease-out !important;
+  transition: all .2s ease-out !important;
+}
+
 a {
   color: #5c7fda;
   text-decoration: none;
@@ -251,19 +238,6 @@ label span {
   color: #896cec;
   left: -1px;
   width: 13px;
-}
-
-.typcn {
-  position: absolute;
-  left: 335px;
-  top: 277px;
-  color: #3b476b;
-  font-size: 22px;
-  cursor: pointer;
-}
-
-.typcn.active {
-  color: #7f60eb;
 }
 
 .error {

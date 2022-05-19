@@ -227,13 +227,24 @@
         />
       </div>
 
-      <div class="col-2 text-sm">Tel No</div>
+      <div class="col-2 text-sm">Mobil Tel</div>
       <div class="col-4">
         <j-input-mask
             unmask
             name="phoneNumber"
             class="w-full p-inputtext-sm"
-            v-model.trim="formData.address.phone"
+            v-model="$v.formData.address.phone"
+            mask="(999) 999-99-99"
+        />
+      </div>
+
+      <div class="col-2 text-sm">Mobil Tel 2</div>
+      <div class="col-4">
+        <j-input-mask
+            unmask
+            name="phoneNumber"
+            class="w-full p-inputtext-sm"
+            v-model="$v.formData.address.phone2"
             mask="(999) 999-99-99"
         />
       </div>
@@ -244,7 +255,7 @@
             unmask
             name="faxNumber"
             class="w-full p-inputtext-sm"
-            v-model.trim="formData.address.faxNumber"
+            v-model.trim="$v.formData.address.faxNumber"
             mask="(999) 999-99-99"
         />
       </div>
@@ -302,10 +313,12 @@
             unmask
             name="authorizedPhoneNumber"
             class="w-full p-inputtext-sm"
-            v-model.trim="formData.authPerson.phone"
+            v-model="$v.formData.authPerson.phone"
             mask="(999) 999-99-99"
         />
+        {{ $v.formData.authPerson.phone }}
       </div>
+
 
       <div
           class="flex justify-content-center w-full mt-5 mb-5 decline-button save-menu-button save-button"
@@ -315,7 +328,6 @@
             :loading="loading"
             @save="submit"
         />
-
         <Button
             v-else
             :disabled="loading"
@@ -323,6 +335,12 @@
             class="save-primary-button ml-3"
             :loading="loading"
             @click="submit"
+        />
+        <Button
+            :disabled="loading"
+            @click="onClose"
+            label="Vazgeç"
+            class="p-button-danger ml-3"
         />
       </div>
     </div>
@@ -354,6 +372,7 @@ export default {
             maxLength: maxLength(128),
             required
           },
+          identityNumber: {}
         },
         address: {
           address: {
@@ -441,13 +460,13 @@ export default {
 
   },
 
-  watch: {
+  /*watch: {
     'formData.customerCompanyType': {
       deep: true,
       handler() {
         this.submitted = false
       }
     }
-  },
+  }, */
 }
 </script>

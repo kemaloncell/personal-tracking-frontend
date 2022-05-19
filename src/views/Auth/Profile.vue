@@ -43,6 +43,15 @@ export default {
       this.expanded = !this.expanded;
       event.preventDefault();
     },
+    
+    async logout() {
+      try {
+        await this.callLogout();
+        this.$router.push('/login')
+      } catch {
+        console.error('logout err')
+      }
+    },
   },
 }
 </script>
