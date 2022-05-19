@@ -34,6 +34,7 @@ export default {
       callTaxOffice: 'definitions/callTaxOffice'
     }),
     setSelectedTaxOffice() {
+      console.log('setSelectedTaxOffice', this.selectedTaxOffice)
       this.$emit('onTaxOffice', this.selectedTaxOffice)
     }
   },
@@ -61,81 +62,3 @@ export default {
   }
 }
 </script>
-<!---
-<script>
-import { mapActions, mapGetters } from 'vuex'
-import EventBus from '@/plugin/eventBus'
-
-export default {
-  props: {
-    defaultTaxoffice: null
-  },
-
-  data() {
-    return {
-      selectedTaxOffice: null
-    }
-  },
-
-  computed: {
-    ...mapGetters({
-      taxOfficeList: 'definitions/taxOfficeList'
-    }),
-
-    taxOfficeListFormatter() {
-      return this.taxOfficeList.filter((taxOffice) =>
-        taxOffice.type === 'MM'
-          ? (taxOffice.name = taxOffice.name.toUpperCase() + ' MAL MÜDÜRLÜĞÜ')
-          : (taxOffice.name = taxOffice.name.toUpperCase() + ' VERGİ DAİRESİ')
-      )
-    }
-  },
-
-  methods: {
-    ...mapActions({
-      callTaxOffice: 'definitions/callTaxOffice'
-    }),
-
-    setSelectedTaxOffice() {
-      this.$emit('onTaxOffice', this.selectedTaxOffice)
-    },
-
-    typeFormat(val) {
-      if (val.type === 'MM') {
-        val.name = val.name.toUpperCase() + ' MAL MÜDÜRLÜĞÜ'
-        return val
-      } else {
-        val.name = val.name.toUpperCase() + ' VERGİ DAİRESİ'
-        return val
-      }
-    }
-  },
-
-  watch: {
-    defaultTaxoffice(val) {
-      if (val) {
-        this.selectedTaxOffice = this.typeFormat(val)
-      }
-    }
-  },
-
-  created() {
-    if (!this.taxOfficeList.length) {
-      this.callTaxOffice()
-    }
-
-    EventBus.$on('clearTaxOffice', () => {
-      this.selectedTaxOffice = null
-    })
-  },
-
-  mounted() {
-    this.callTaxOffice()
-
-    if (this.defaultTaxoffice) {
-      this.selectedTaxOffice = this.typeFormat(this.defaultTaxoffice)
-    }
-  }
-}
-</script>
--->

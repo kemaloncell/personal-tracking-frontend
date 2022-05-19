@@ -283,14 +283,14 @@
         <InputText
             name="authorizedEmail"
             class="w-full p-inputtext-sm"
-            v-model.trim="$v.formData.authPerson.email.$model"
+            v-model.trim="$v.formData.authPerson.mail.$model"
         />
       </div>
 
       <div class="col-10 col-offset-2 pt-0 pb-0">
         <span
             class="p-error text-xs mt-1"
-            v-if="submitted && !$v.formData.authPerson.email"
+            v-if="submitted && !$v.formData.authPerson.mail"
         >
           Geçersiz E-Posta.
         </span>
@@ -379,7 +379,7 @@ export default {
           name: {
             maxLength: maxLength(64),
           },
-          email: {
+          mail: {
             email
           },
         },
@@ -429,13 +429,13 @@ export default {
 
     onSelectCity(city) {
       if (city) {
-        this.formData.city = city
+        this.formData.address.city = city
       }
     },
 
     onSelectDistrict(district) {
       if (district) {
-        this.formData.district = district
+        this.formData.address.district = district
       }
     },
 

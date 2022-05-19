@@ -22,7 +22,7 @@ const supplierMixin = {
                 authPerson: {
                     name: '',
                     phone: '',
-                    email: '',
+                    mail: '',
                 },
             },
         }
