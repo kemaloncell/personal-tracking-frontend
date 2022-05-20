@@ -70,7 +70,6 @@ export default {
     }),
 
     setSelectedCity() {
-      console.log("selectid", this.selectedCity)
       this.$emit('onSelectCity', this.selectedCity)
 
       setTimeout(() => {
@@ -125,7 +124,7 @@ export default {
       if (typeof val === 'string') {
         this.selectedCity = val
       } else {
-        this.selectedCity = val.id
+        this.selectedCity = val
       }
 
       this.callDistrictList(this.selectedCity)
@@ -140,7 +139,7 @@ export default {
       if (typeof val === 'string') {
         this.selectedDistrict = val
       } else {
-        this.selectedDistrict = val.id
+        this.selectedDistrict = val
       }
     }
   }

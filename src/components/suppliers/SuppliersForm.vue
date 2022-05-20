@@ -32,6 +32,7 @@
         >Gerçek Kişi (Şahıs Firması)</label
         >
       </div>
+      {{ formData.seller.isCorporate }}
     </div>
 
     <!-- / -->
@@ -217,6 +218,28 @@
         </span>
       </div>
 
+      <div class="col-2 text-sm">Mobil Tel</div>
+      <div class="col-4">
+        <j-input-text
+            unmask
+            name="phoneNumber"
+            class="w-full p-inputtext-sm"
+            v-model="formData.address.phone"
+            mask="(999) 999-99-99"
+        />
+      </div>
+
+      <div class="col-2 text-sm">Mobil Tel 2</div>
+      <div class="col-4">
+        <j-input-text
+            unmask
+            name="phoneNumber"
+            class="w-full p-inputtext-sm"
+            v-model="formData.address.phone2"
+            mask="(999) 999-99-99"
+        />
+      </div>
+
       <div class="col-2 text-sm">Posta Kodu</div>
       <div class="col-4">
         <j-input-mask
@@ -227,37 +250,17 @@
         />
       </div>
 
-      <div class="col-2 text-sm">Mobil Tel</div>
-      <div class="col-4">
-        <j-input-mask
-            unmask
-            name="phoneNumber"
-            class="w-full p-inputtext-sm"
-            v-model="$v.formData.address.phone"
-            mask="(999) 999-99-99"
-        />
-      </div>
-
-      <div class="col-2 text-sm">Mobil Tel 2</div>
-      <div class="col-4">
-        <j-input-mask
-            unmask
-            name="phoneNumber"
-            class="w-full p-inputtext-sm"
-            v-model="$v.formData.address.phone2"
-            mask="(999) 999-99-99"
-        />
-      </div>
 
       <div class="col-2 text-sm">Faks No</div>
       <div class="col-4">
-        <j-input-mask
+        <j-input-text
             unmask
             name="faxNumber"
             class="w-full p-inputtext-sm"
-            v-model.trim="$v.formData.address.faxNumber"
+            v-model.trim="formData.address.faxNumber"
             mask="(999) 999-99-99"
         />
+
       </div>
 
 
@@ -309,14 +312,14 @@
 
       <div class="col-2 text-sm">Mobil Tel</div>
       <div class="col-10">
-        <j-input-mask
+        <j-input-text
             unmask
             name="authorizedPhoneNumber"
             class="w-full p-inputtext-sm"
-            v-model="$v.formData.authPerson.phone"
+            v-model.trim="formData.authPerson.phone"
             mask="(999) 999-99-99"
         />
-        {{ $v.formData.authPerson.phone }}
+        {{ formData.authPerson.phone }}
       </div>
 
 
@@ -423,7 +426,6 @@ export default {
   methods: {
     submit(type) {
 
-
       this.$v.$touch()
       this.submitted = true
 
@@ -441,6 +443,7 @@ export default {
 
     onSelectCity(city) {
       if (city) {
+        console.log(city)
         this.formData.address.city = city
       }
     },
@@ -460,13 +463,13 @@ export default {
 
   },
 
-  /*watch: {
-    'formData.customerCompanyType': {
+  /* watch: {
+    'formData.seller.isCorporate': {
       deep: true,
       handler() {
         this.submitted = false
       }
     }
-  }, */
+  },  */
 }
 </script>

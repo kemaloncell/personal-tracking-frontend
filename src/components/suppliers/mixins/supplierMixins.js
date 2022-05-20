@@ -10,19 +10,19 @@ const supplierMixin = {
                     postalCode: null,
                     city: null,
                     district: null,
-                    phone: "5412503509",
-                    phone2: "5412503509",
-                    faxNumber: "5412503509",
+                    phone: "",
+                    phone2: "",
+                    faxNumber: "",
                 },
                 seller: {
                     title: null,
                     identityNumber: null,
-                    isCorporate: 'TUZEL',
+                    isCorporate: null,
                     taxOffice: null,
                 },
                 authPerson: {
                     name: null,
-                    phone: "5412503509",
+                    phone: "",
                     mail: null,
                 },
             },
@@ -123,6 +123,7 @@ const supplierMixin = {
             this.updateId = val.id
             const item = await this.getSingleSupplier(this.updateId)
             this.defaultValues = item.data
+            console.log(item, 'güncelleme')
             this.formData.taxOffice = item.data.TaxOffice
             this.formType = 'UPDATE'
             this.displayModal = true

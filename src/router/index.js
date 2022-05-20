@@ -39,6 +39,7 @@ import BankListDetail from '@/views/Bank/BankListDetail'
 //Login
 import Login from '@/components/auth/Login.vue'
 import ForgotPassword from '@/components/auth/ForgotPassword.vue'
+import ForgotPasswordSecond from '@/components/auth/ForgotPasswordSecond.vue'
 
 const routes = [
     {
@@ -69,6 +70,14 @@ const routes = [
         path: '/forgot-password',
         name: 'ForgotPassword',
         component: ForgotPassword,
+        meta: {
+            notRequiresAuth: false
+        }
+    },
+    {
+        path: '/forgot-password-code',
+        name: 'ForgotPasswordSecond',
+        component: ForgotPasswordSecond,
         meta: {
             notRequiresAuth: false
         }
