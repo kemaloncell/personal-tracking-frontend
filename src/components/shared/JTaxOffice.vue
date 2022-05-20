@@ -40,11 +40,24 @@ export default {
   },
   watch: {
     defaultTaxoffice: function (val) {
-      console.log('defaultTaxoffice', val)
       if (!val) {
-        this.selectedTaxOffice = val.name
+        this.selectedTaxOffice = null
+        return
+      }
+
+      if (typeof val === 'string') {
+        this.selectedTaxOffice = val
+      } else {
+        this.selectedTaxOffice = val
       }
       this.callTaxOffice()
+
+      /*  if (!val) {
+       this.selectedTaxOffice = val.name
+     }*/
+
+      this.callTaxOffice()
+
     }
   },
   created() {
@@ -57,6 +70,7 @@ export default {
 
 
     if (this.defaultTaxoffice) {
+      console.log(this.defaultTaxoffice, 'default tax')
       this.selectedTaxOffice = this.defaultTaxoffice.name
     }
   }

@@ -5,22 +5,21 @@ const supplierMixin = {
         return {
             selectedItems: [],
             formData: {
-                address: {
+                title: null,
+                identityNumber: null,
+                isCorporate: "TUZEL",
+                TaxOffice: null,
+                Address: {
+                    title: "şahıs şirketi",
                     address: null,
                     postalCode: null,
-                    city: null,
-                    district: null,
+                    City: null,
+                    District: null,
                     phone: "",
                     phone2: "",
                     faxNumber: "",
                 },
-                seller: {
-                    title: null,
-                    identityNumber: null,
-                    isCorporate: null,
-                    taxOffice: null,
-                },
-                authPerson: {
+                AuthPerson: {
                     name: null,
                     phone: "",
                     mail: null,

@@ -48,7 +48,6 @@ const actions = {
     callTaxOffice: async function ({commit}) {
         try {
             const {data} = await paymentsService.getTaxOffice()
-
             commit('SET_TAXOFFICE_LIST', data.data)
         } catch (err) {
             console.error(err)

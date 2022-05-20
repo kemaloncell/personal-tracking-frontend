@@ -3,7 +3,7 @@
     <h2
         class="text-2xl font-bold"
         style="margin-bottom: 50px"
-        v-if="formData.seller.isCorporate === 'TUZEL'"
+        v-if="formData.isCorporate === 'TUZEL'"
     >
       Şirket
     </h2>
@@ -16,7 +16,7 @@
             id="tuzel"
             name="tuzel"
             value="TUZEL"
-            v-model="formData.seller.isCorporate"
+            v-model="formData.isCorporate"
         />
         <label class="ml-2 text-sm" for="tuzel">Tüzel Kişi (Şirket)</label>
       </div>
@@ -26,13 +26,12 @@
             id="gercek"
             name="gercek"
             value="GERCEK"
-            v-model="formData.seller.isCorporate"
+            v-model="formData.isCorporate"
         />
         <label class="ml-2 text-sm" for="gercek"
         >Gerçek Kişi (Şahıs Firması)</label
         >
       </div>
-      {{ formData.seller.isCorporate }}
     </div>
 
     <!-- / -->
@@ -45,21 +44,21 @@
         <InputText
             class="w-full p-inputtext-sm"
             maxLength="128"
-            v-model.trim="$v.formData.seller.title.$model"
+            v-model.trim="$v.formData.title.$model"
         />
       </div>
 
       <div class="col-10 col-offset-2 pt-0">
         <span
             class="p-error text-xs mt-1"
-            v-if="submitted && !$v.formData.seller.title.maxLength"
+            v-if="submitted && !$v.formData.title.maxLength"
         >
           En fazla 128 karakter
         </span>
 
         <span
             class="p-error text-xs mt-1"
-            v-if="submitted && !$v.formData.seller.title.required"
+            v-if="submitted && !$v.formData.title.required"
         >
           Zorunlu alan.
         </span>
@@ -67,18 +66,18 @@
 
       <div class="col-2 text-sm pb-0">
         Vergi Dairesi
-        <span v-if="formData.seller.isCorporate === 'TUZEL'" class="p-error"
+        <span v-if="formData.isCorporate === 'TUZEL'" class="p-error"
         >*</span
         >
       </div>
       <div class="col-4 pt-0 pb-0">
         <j-taxOffice
             @onTaxOffice="onTaxOffice"
-            :defaultTaxoffice="formData.seller.taxOffice"
+            :defaultTaxoffice="formData.TaxOffice"
         />
       </div>
 
-      <template v-if="formData.seller.isCorporate === 'TUZEL'">
+      <template v-if="formData.isCorporate === 'TUZEL'">
         <div class="col-2 text-sm pb-0">
           Vergi Sicil No <span class="p-error">*</span>
         </div>
@@ -86,7 +85,7 @@
           <InputText
               name="taxRegistrationNumber"
               class="w-full p-inputtext-sm"
-              v-model.trim="$v.formData.seller.identityNumber.$model"
+              v-model.trim="$v.formData.identityNumber.$model"
               maxLength="10"
           />
         </div>
@@ -100,7 +99,7 @@
           <InputText
               name="identityNumber"
               class="w-full p-inputtext-sm"
-              v-model.trim="formData.seller.identityNumber"
+              v-model.trim="formData.identityNumber"
               maxLength="11"
               autocomplete="off"
           />
@@ -111,9 +110,9 @@
         <span
             class="p-error text-xs mt-1"
             v-if="
-            formData.seller.isCorporate === 'TUZEL' &&
+            formData.isCorporate === 'TUZEL' &&
             submitted &&
-            !$v.formData.seller.taxOffice.required
+            !$v.formData.taxOffice.required
           "
         >
           Zorunlu alan.
@@ -122,24 +121,24 @@
 
       <div
           class="col-4 col-offset-2 pt-0"
-          v-if="formData.seller.isCorporate === 'TUZEL'"
+          v-if="formData.isCorporate === 'TUZEL'"
       >
         <span
             class="p-error text-xs mt-1"
-            v-if="submitted && !$v.formData.seller.identityNumber.required"
+            v-if="submitted && !$v.formData.identityNumber.required"
         >
           Zorunlu alan.
         </span>
         <span
             class="p-error text-xs mt-1"
-            v-if="submitted && !$v.formData.seller.identityNumber.numeric"
+            v-if="submitted && !$v.formData.identityNumber.numeric"
         >
           Lütfen sayı giriniz.
         </span>
 
         <span
             class="p-error text-xs mt-1"
-            v-if="submitted && !$v.formData.seller.identityNumber.minLength"
+            v-if="submitted && !$v.formData.identityNumber.minLength"
         >
           En az 10 karakter
         </span>
@@ -148,20 +147,20 @@
       <div class="col-4 col-offset-2 pt-0" v-else>
         <span
             class="p-error text-xs mt-1"
-            v-if="submitted && !$v.formData.seller.identityNumber.required"
+            v-if="submitted && !$v.formData.identityNumber.required"
         >
           Zorunlu alan.
         </span>
         <span
             class="p-error text-xs mt-1"
-            v-if="submitted && !$v.formData.seller.identityNumber.numeric"
+            v-if="submitted && !$v.formData.identityNumber.numeric"
         >
           Lütfen sayı giriniz.
         </span>
 
         <span
             class="p-error text-xs mt-1"
-            v-if="submitted && !$v.formData.seller.identityNumber.minLength"
+            v-if="submitted && !$v.formData.identityNumber.minLength"
         >
           En az 11 karakter
         </span>
@@ -172,9 +171,9 @@
       <div class="col-2 text-sm">Adres</div>
       <div class="col-10 description-input">
         <Textarea
-            name="adress"
+            name="address"
             class="w-full"
-            v-model.trim="$v.formData.address.address.$model"
+            v-model.trim="$v.formData.Address.address.$model"
             maxLength="512"
         />
       </div>
@@ -182,7 +181,7 @@
       <div class="col-10 col-offset-2">
         <span
             class="p-error text-xs mt-1"
-            v-if="submitted && !$v.formData.address.address.maxLength"
+            v-if="submitted && !$v.formData.Address.address.maxLength"
         >
           En fazla 512 karakter.
         </span>
@@ -193,17 +192,17 @@
             required
             @onSelectCity="onSelectCity"
             @onSelectDistrict="onSelectDistrict"
-            :defaultCity="formData.address.city"
-            :defaultDistrict="formData.address.district"
-            v-model.trim="$v.formData.address.city.$model"
-            @input="$v.formData.address.district.$model"
+            :defaultCity="formData.Address.City"
+            :defaultDistrict="formData.Address.District"
+            v-model.trim="$v.formData.Address.City"
+            @input="$v.formData.Address.District"
         />
       </div>
 
       <div class="col-4 col-offset-2 pt-0">
         <span
             class="p-error text-xs mt-1"
-            v-if="submitted && !$v.formData.address.city.required"
+            v-if="submitted && !$v.formData.Address.City.required"
         >
           Zorunlu alan.
         </span>
@@ -212,7 +211,7 @@
       <div class="col-4 col-offset-2 pt-0 pb-0">
         <span
             class="p-error text-xs mt-1"
-            v-if="submitted && !$v.formData.address.district.required"
+            v-if="submitted && !$v.formData.Address.District.required"
         >
           Zorunlu alan.
         </span>
@@ -224,7 +223,7 @@
             unmask
             name="phoneNumber"
             class="w-full p-inputtext-sm"
-            v-model="formData.address.phone"
+            v-model="formData.Address.phone"
             mask="(999) 999-99-99"
         />
       </div>
@@ -235,7 +234,7 @@
             unmask
             name="phoneNumber"
             class="w-full p-inputtext-sm"
-            v-model="formData.address.phone2"
+            v-model="formData.Address.phone2"
             mask="(999) 999-99-99"
         />
       </div>
@@ -245,7 +244,7 @@
         <j-input-mask
             name="postalCode"
             class="w-full p-inputtext-sm"
-            v-model.trim="formData.address.postalCode"
+            v-model.trim="formData.Address.postalCode"
             mask="99999"
         />
       </div>
@@ -257,7 +256,7 @@
             unmask
             name="faxNumber"
             class="w-full p-inputtext-sm"
-            v-model.trim="formData.address.faxNumber"
+            v-model.trim="formData.Address.faxNumber"
             mask="(999) 999-99-99"
         />
 
@@ -271,7 +270,7 @@
         <InputText
             name="authorizedPerson"
             class="w-full p-inputtext-sm"
-            v-model.trim="$v.formData.authPerson.name.$model"
+            v-model.trim="$v.formData.AuthPerson.name.$model"
             maxLength="64"
         />
       </div>
@@ -279,14 +278,14 @@
       <div class="col-10 col-offset-2 pt-0 pb-0">
         <span
             class="p-error text-xs mt-1"
-            v-if="submitted && $v.formData.authPerson.name.letter"
+            v-if="submitted && $v.formData.AuthPerson.name.letter"
         >
           Sayı içermemeli.
         </span>
 
         <span
             class="p-error text-xs mt-1"
-            v-if="submitted && !$v.formData.authPerson.name.maxLength"
+            v-if="submitted && !$v.formData.AuthPerson.name.maxLength"
         >
           En fazla 64 karakter.
         </span>
@@ -297,14 +296,14 @@
         <InputText
             name="authorizedEmail"
             class="w-full p-inputtext-sm"
-            v-model.trim="$v.formData.authPerson.mail.$model"
+            v-model.trim="$v.formData.AuthPerson.mail.$model"
         />
       </div>
 
       <div class="col-10 col-offset-2 pt-0 pb-0">
         <span
             class="p-error text-xs mt-1"
-            v-if="submitted && !$v.formData.authPerson.mail"
+            v-if="submitted && !$v.formData.AuthPerson.mail"
         >
           Geçersiz E-Posta.
         </span>
@@ -316,10 +315,9 @@
             unmask
             name="authorizedPhoneNumber"
             class="w-full p-inputtext-sm"
-            v-model.trim="formData.authPerson.phone"
+            v-model.trim="formData.AuthPerson.phone"
             mask="(999) 999-99-99"
         />
-        {{ formData.authPerson.phone }}
       </div>
 
 
@@ -370,27 +368,25 @@ export default {
   validations() {
     const validation = {
       formData: {
-        seller: {
-          title: {
-            maxLength: maxLength(128),
-            required
-          },
-          identityNumber: {}
+        title: {
+          maxLength: maxLength(128),
+          required
         },
-        address: {
+
+        Address: {
           address: {
             maxLength: maxLength(512)
           },
-          city: {
+          City: {
             required
           },
 
-          district: {
+          District: {
             required
           },
         },
 
-        authPerson: {
+        AuthPerson: {
           name: {
             maxLength: maxLength(64),
           },
@@ -401,18 +397,18 @@ export default {
       }
     }
 
-    if (this.formData.seller.isCorporate === 'TUZEL') {
-      validation.formData.seller.identityNumber = {
+    if (this.formData.isCorporate === 'TUZEL') {
+      validation.formData.identityNumber = {
         required,
         numeric,
         minLength: minLength(10)
       }
 
-      validation.formData.seller.taxOffice = {
+      validation.formData.TaxOffice = {
         required
       }
     } else {
-      validation.formData.seller.identityNumber = {
+      validation.formData.identityNumber = {
         required,
         numeric,
         minLength: minLength(11)
@@ -444,19 +440,20 @@ export default {
     onSelectCity(city) {
       if (city) {
         console.log(city)
-        this.formData.address.city = city
+        this.formData.Address.City = city
       }
     },
 
     onSelectDistrict(district) {
       if (district) {
-        this.formData.address.district = district
+        this.formData.Address.District = district
       }
     },
 
     onTaxOffice(taxOffice) {
+      console.log(taxOffice, 'tax')
       if (taxOffice) {
-        this.formData.seller.taxOffice = taxOffice
+        this.formData.TaxOffice = taxOffice
       }
     },
 
