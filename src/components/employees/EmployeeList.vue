@@ -16,12 +16,8 @@
     <template slot="columns">
       <Column field="name" header="Adı" sortable></Column>
       <Column field="surname" header="Soyadı" sortable></Column>
+      <Column field="tcNumber" header="Tc No" sortable></Column>
       <Column field="phone" header="Telefon" sortable></Column>
-      <Column header="Durumu" sortable>
-        <template #body="{data}">
-          {{ data.status ? 'Aktif' : 'Pasif' }}
-        </template>
-      </Column>
     </template>
     <template slot="action"></template>
   </j-table>

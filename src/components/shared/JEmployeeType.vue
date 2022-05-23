@@ -48,11 +48,7 @@ export default {
       } else {
         this.selectedEmployeeType = val
       }
-      this.callEmployeeType()
-
-      /*  if (!val) {
-       this.selectedTaxOffice = val.name
-     }*/
+      
 
       this.callEmployeeType()
 

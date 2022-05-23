@@ -1,4 +1,5 @@
 <template>
+
   <Dropdown
       v-model="selectedEducationType"
       :options="educationTypeList"
@@ -7,6 +8,7 @@
       class="w-full h-full city-search p-inputtext-sm"
       @change="setSelectedTEducationType"
   />
+
 </template>
 <script>
 import {mapActions, mapGetters} from 'vuex'
@@ -38,6 +40,7 @@ export default {
   },
   watch: {
     defaultEducation: function (val) {
+      console.log(val, 'val')
       if (!val) {
         this.selectedEmployeeType = null
         return
@@ -48,11 +51,6 @@ export default {
       } else {
         this.selectedEmployeeType = val
       }
-      this.callEducationType()
-
-      /*  if (!val) {
-       this.selectedTaxOffice = val.name
-     }*/
 
       this.callEducationType()
 
@@ -66,8 +64,8 @@ export default {
   mounted() {
     this.callEducationType()
 
-
     if (this.defaultEducation) {
+      console.log('defaultEducation', this.defaultEducation)
       this.selectedEmployeeType = this.defaultEducation.name
     }
   }
