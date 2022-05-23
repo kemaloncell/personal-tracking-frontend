@@ -34,7 +34,6 @@ export default {
       callTaxOffice: 'definitions/callTaxOffice'
     }),
     setSelectedTaxOffice() {
-      console.log('setSelectedTaxOffice', this.selectedTaxOffice)
       this.$emit('onTaxOffice', this.selectedTaxOffice)
     }
   },
@@ -70,7 +69,6 @@ export default {
 
 
     if (this.defaultTaxoffice) {
-      console.log(this.defaultTaxoffice, 'default tax')
       this.selectedTaxOffice = this.defaultTaxoffice.name
     }
   }

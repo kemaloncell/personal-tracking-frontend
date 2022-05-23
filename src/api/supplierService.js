@@ -21,7 +21,7 @@ class SupplierService extends BaseService {
     }
 
     async update({data, id}) {
-        return super.put(`/?id=${id}`, data)
+        return super.patch(`/${id}`, data)
 
     }
 

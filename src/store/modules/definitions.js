@@ -27,7 +27,6 @@ const actions = {
     callCityList: async function ({commit}) {
         try {
             const {data} = await definitionsService.getCityList()
-            console.log(data, 'data')
             commit('SET_CITY_LIST', data.data)
         } catch (err) {
             console.error(err)

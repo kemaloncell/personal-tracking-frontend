@@ -439,7 +439,6 @@ export default {
 
     onSelectCity(city) {
       if (city) {
-        console.log(city)
         this.formData.Address.City = city
       }
     },
@@ -451,7 +450,6 @@ export default {
     },
 
     onTaxOffice(taxOffice) {
-      console.log(taxOffice, 'tax')
       if (taxOffice) {
         this.formData.TaxOffice = taxOffice
       }

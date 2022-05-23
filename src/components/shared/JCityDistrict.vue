@@ -126,8 +126,7 @@ export default {
       } else {
         this.selectedCity = val
       }
-
-      this.callDistrictList(this.selectedCity)
+      // this.callDistrictList(this.selectedCity)
     },
 
     defaultDistrict: function (val) {

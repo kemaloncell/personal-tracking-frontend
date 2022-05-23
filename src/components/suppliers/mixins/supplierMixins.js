@@ -75,6 +75,7 @@ const supplierMixin = {
 
         async udpateSubmit(data) {
             try {
+                console.log(data, 'data', 'id ', this.updateId)
                 await this.updateSupplier({id: this.updateId, data})
 
                 this.$toast.add({
@@ -122,7 +123,6 @@ const supplierMixin = {
             this.updateId = val.id
             const item = await this.getSingleSupplier(this.updateId)
             this.defaultValues = item.data
-            console.log(item, 'güncelleme')
             this.formData.taxOffice = item.data.TaxOffice
             this.formType = 'UPDATE'
             this.displayModal = true
