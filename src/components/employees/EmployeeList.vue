@@ -14,21 +14,12 @@
       @onHandleSort="onHandleSort"
   >
     <template slot="columns">
-      <Column field="name" header="Hesap Adı" sortable></Column>
-      <Column field="iban" header="IBAN" sortable>
-        <template #body="{ data }">
-          {{ data.iban ? data.iban : '-' }}
-        </template>
-      </Column>
-      <Column field="currency" header="Para Birimi" sortable>
-        <template #body="{ data }">
-          {{ data.currency ? `${data.currency.name}` : '-' }}
-        </template>
-      </Column>
-      <Column field="balanceAmount" header="Bakiye" sortable>
-        <template #body="{ data }">
-          {{ currency(data.balanceAmount) }}
-          ₺
+      <Column field="name" header="Adı" sortable></Column>
+      <Column field="surname" header="Soyadı" sortable></Column>
+      <Column field="phone" header="Telefon" sortable></Column>
+      <Column header="Durumu" sortable>
+        <template #body="{data}">
+          {{ data.status ? 'Aktif' : 'Pasif' }}
         </template>
       </Column>
     </template>

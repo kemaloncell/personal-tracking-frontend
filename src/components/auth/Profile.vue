@@ -4,14 +4,14 @@
       <div class="profile">
         <h3>Profil ayarları</h3>
         <div class="fields ">
-          <div class="image p-d-flex p-align-center p-mb-3 ">
-            <label for="inputtext-right" class="p-mr-3">Profil Resmini değiştir:</label>
+          <div class="image flex align-center mb-3 ">
+            <label for="inputtext-right" class="mr-3">Profil Resmini değiştir:</label>
 
             <j-image-upload @uploadFiles="onUpload($event)"></j-image-upload>
 
           </div>
-          <div class="p-inputgroup  p-align-center p-col-4">
-            <label for="inputtext-right" class="p-mr-3">Şifreni değiştir:</label>
+          <div class="p-inputgroup  p-align-center col-4">
+            <label for="inputtext-right" class="mr-3">Şifreni değiştir:</label>
             <InputText v-model="changePassword" placeholder="Keyword"/>
             <Button @click="onChangePasword" icon="pi pi-check" class="p-button-success"/>
           </div>

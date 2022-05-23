@@ -15,6 +15,9 @@ import JInputText from "@/components/shared/JInputText";
 import JInputMask from "@/components/shared/JInputMask";
 import JSubmitButton from "@/components/shared/JSubmitButton";
 import JTaxOffice from "@/components/shared/JTaxOffice";
+import JEmployeeType from "@/components/shared/JEmployeeType";
+import JEducationLevelType from "@/components/shared/JEducationLevelType";
+import JDate from "@/components/shared/JDate";
 
 import AutoComplete from 'primevue/autocomplete';
 import Accordion from 'primevue/accordion';
@@ -112,6 +115,9 @@ Vue.component('j-city-district', JCityDistrict)
 Vue.component('j-submitbutton', JSubmitButton)
 Vue.component('j-taxOffice', JTaxOffice)
 Vue.component('j-image-upload', JImageUpload)
+Vue.component('j-employee-type', JEmployeeType)
+Vue.component('j-education-level-type', JEducationLevelType)
+Vue.component('j-date', JDate)
 
 
 Vue.component('Accordion', Accordion);

@@ -5,7 +5,9 @@ import {paymentsService} from '@/api/paymentsService'
 const state = {
     cityList: [],
     districtList: [],
-    taxOfficeList: []
+    taxOfficeList: [],
+    employeeTypeList: [],
+    educationTypeList: [],
 }
 
 const mutations = {
@@ -19,6 +21,14 @@ const mutations = {
 
     SET_TAXOFFICE_LIST(state, item) {
         state.taxOfficeList = item
+    },
+
+    SET_EMPLOYEETYPE_LIST(state, item) {
+        state.employeeTypeList = item
+    },
+
+    SET_EDUCATIONTYPE_LIST(state, item) {
+        state.educationTypeList = item
     },
 
 }
@@ -53,6 +63,27 @@ const actions = {
             throw new Error('Tax office list get connection failed')
         }
     },
+
+    callEmployeeType: async function ({commit}) {
+        try {
+            const {data} = await definitionsService.getEmployeeTypeList()
+            console.log(data, 'emp')
+            commit('SET_EMPLOYEETYPE_LIST', data.data)
+        } catch (err) {
+            console.error(err)
+            throw new Error('Employee type list get connection failed')
+        }
+    },
+    callEducationType: async function ({commit}) {
+        try {
+            const {data} = await definitionsService.getEducationTypeList()
+            console.log(data, 'emp')
+            commit('SET_EDUCATIONTYPE_LIST', data.data)
+        } catch (err) {
+            console.error(err)
+            throw new Error('Education type list get connection failed')
+        }
+    },
 }
 
 const getters = {
@@ -66,6 +97,13 @@ const getters = {
 
     taxOfficeList: (state) => {
         return state.taxOfficeList
+    },
+
+    employeeTypeList: (state) => {
+        return state.employeeTypeList
+    },
+    educationTypeList: (state) => {
+        return state.educationTypeList
     },
 }
 

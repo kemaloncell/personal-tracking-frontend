@@ -67,6 +67,7 @@ const actions = {
         try {
             commit('SET_LOADING', true)
             const photoForm = new FormData()
+            console.log(fileData)
             photoForm.append('file', fileData)
 
             commit('SET_LOADING', false)
