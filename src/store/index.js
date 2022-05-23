@@ -16,6 +16,9 @@ import supplier from './modules/suppliers'
 //employees
 import employee from './modules/employees'
 
+//employeeDocuments
+import employeeDocument from './modules/employeeDocument'
+
 //definitions
 import definitions from './modules/definitions'
 
@@ -32,6 +35,7 @@ export default new Vuex.Store({
         auth,
         supplier,
         employee,
+        employeeDocument,
         definitions
     }
 })

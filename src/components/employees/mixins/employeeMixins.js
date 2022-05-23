@@ -22,6 +22,7 @@ const employeeMixin = {
             submitLoading: 'employee/submitLoading',
             loading: 'employee/loading',
             list: 'employee/list',
+            documentList: 'employeeDocument/documentList',
             listLoading: 'employee/loading',
             singleLoading: 'employee/singleLoading'
         }),
