@@ -15,6 +15,9 @@ import VestingList from '@/views/Finances/Vesting.vue'
 //Employees
 import EmployeeList from '@/views/Employees/Employees.vue'
 
+//Employees Documents
+import EmployeeDocumentList from '@/views/Employees/EmployeesDocuments.vue'
+
 //Customers
 import CustomerList from '@/views/Customers/Customers.vue'
 
@@ -111,6 +114,15 @@ const routes = [
         path: '/employees',
         name: 'Employee',
         component: EmployeeList,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/employees/:id',
+        name: 'Document',
+        component: EmployeeDocumentList,
+        props: true,
         meta: {
             requiresAuth: true
         }

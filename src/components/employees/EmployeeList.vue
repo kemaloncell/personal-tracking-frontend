@@ -6,6 +6,7 @@
       :loading="loading"
       :totalRecords="total"
       :lazy="true"
+      :documentType="true"
       sortMode="multiple"
       @onPageChange="onPage"
       @onDelete="onDeleteYes"
@@ -18,6 +19,7 @@
       <Column field="surname" header="Soyadı" sortable></Column>
       <Column field="tcNumber" header="Tc No" sortable></Column>
       <Column field="phone" header="Telefon" sortable></Column>
+
     </template>
     <template slot="action"></template>
   </j-table>

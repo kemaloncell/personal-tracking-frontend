@@ -1,4 +1,4 @@
-import {employeeDocumentService} from '@/api/employeeService'
+import {employeeDocumentService} from '@/api/employeeDocumentService'
 
 const state = {
     documentList: [],
@@ -38,7 +38,6 @@ const actions = {
         try {
             commit('SET_LOADING', true)
             const {data} = await employeeDocumentService.getAllList()
-            console.log(data, 'all list')
             commit('SET_LIST', data.data)
         } catch (error) {
             console.log(error);
@@ -50,9 +49,12 @@ const actions = {
 
     getSingle: async function ({commit}, id) {
         try {
+            console.log(id)
+            id = 1
+            console.log(id)
             commit('SET_SINGLE_LOADING', true)
             const {data} = await employeeDocumentService.getById(id)
-            return data
+            commit('SET_LIST', data.data)
         } catch (err) {
             console.error(err)
             throw new Error('Single get connection failed')

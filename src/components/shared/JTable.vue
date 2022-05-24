@@ -31,6 +31,15 @@
     <Column v-if="showAction">
       <template #body="{ data }">
         <div class="flex justify-content-end pr-1">
+
+
+          <router-link v-if="documentType" :to="{ name: `Document`, params:{id:data.id, data:data } }"
+                       type="button"
+                       class="p-button-primary p-button-sm table-update-button mr-2">
+            <i class="pi pi-file-o" style="color:white"></i>
+          </router-link>
+
+
           <Button
               type="button"
               class="p-button-primary p-button-sm table-update-button mr-2"
@@ -64,6 +73,7 @@
       <div>
         <div class="flex justify-content-end mt-3">
           <Button
+
               @click="deleteCancel"
               class="p-button p-button-primary ml-3 p-button-sm"
               style="
@@ -96,7 +106,11 @@ export default {
     selection: {
       default: () => true,
       type: Boolean
-    }
+    },
+    documentType: {
+      default: () => false,
+      type: Boolean
+    },
   },
 
   data() {
@@ -105,7 +119,7 @@ export default {
       page: 0,
       displayModal: false,
       deleteId: null,
-      multiSortMeta: []
+      multiSortMeta: [],
     }
   },
 
@@ -221,4 +235,6 @@ export default {
 .table-update-button {
   background-color: #3f9bfc !important;
 }
+
+
 </style>

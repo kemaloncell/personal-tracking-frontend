@@ -18,6 +18,7 @@ import JTaxOffice from "@/components/shared/JTaxOffice";
 import JEmployeeType from "@/components/shared/JEmployeeType";
 import JEducationLevelType from "@/components/shared/JEducationLevelType";
 import JDate from "@/components/shared/JDate";
+import JEmployeeDocumentType from "@/components/shared/JEmployeeDocumentType";
 
 import AutoComplete from 'primevue/autocomplete';
 import Accordion from 'primevue/accordion';
@@ -118,6 +119,7 @@ Vue.component('j-image-upload', JImageUpload)
 Vue.component('j-employee-type', JEmployeeType)
 Vue.component('j-education-level-type', JEducationLevelType)
 Vue.component('j-date', JDate)
+Vue.component('j-employee-document-type', JEmployeeDocumentType)
 
 
 Vue.component('Accordion', Accordion);

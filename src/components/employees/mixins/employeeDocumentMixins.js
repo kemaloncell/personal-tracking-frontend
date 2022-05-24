@@ -1,46 +1,47 @@
 import {mapActions, mapGetters} from 'vuex'
 
-const employeeMixin = {
+const employeeDocumentMixin = {
     data() {
         return {
             selectedItems: [],
             formData: {
-                name: null,
-                surname: null,
-                phone: null,
-                birthDate: null,
-                tcNumber: null,
-                EducationLevel: null,
-                EmployeeType: null,
-                status: 1,
+                employeeId: this.$route.params.id,
+                EmployeeDocumentType: null,
+                file: null,
+                detail: null,
+                issueDate: null,
+                expiryDate: null,
+                valid: null,
             },
         }
     },
 
     computed: {
         ...mapGetters({
-            submitLoading: 'employee/submitLoading',
-            loading: 'employee/loading',
-            list: 'employee/list',
-            listLoading: 'employee/loading',
-            singleLoading: 'employee/singleLoading'
+            submitLoading: 'employeeDocument/submitLoading',
+            loading: 'employeeDocument/loading',
+            list: 'employeeDocument/list',
+            documentList: 'employeeDocument/documentList',
+            listLoading: 'employeeDocument/loading',
+            singleLoading: 'employeeDocument/singleLoading'
         }),
     },
 
     methods: {
         ...mapActions({
-            createEmployee: 'employee/create',
-            updateEmployee: 'employee/update',
-            getListEmployee: 'employee/getList',
-            setPageEmployee: 'employee/setPage',
-            deleteEmployee: 'employee/delete',
-            getEmployeeSingle: 'employee/getSingle',
+            createEmployeeDocument: 'employeeDocument/create',
+            updateEmployeeDocument: 'employeeDocument/update',
+            getListEmployeeDocument: 'employeeDocument/getList',
+            getEmployeeDocumentSingle: 'employeeDocument/getSingle',
+            setPageEmployeeDocument: 'employeeDocument/setPage',
+            deleteEmployeeDocument: 'employeeDocument/delete',
+            getEmployeeSingle: 'employeeDocument/getSingle',
         }),
 
 
         async createSubmit(data, type) {
             try {
-                await this.createEmployee(data)
+                await this.createEmployeeDocument(data)
 
                 this.$toast.add({
                     severity: 'success',
@@ -60,14 +61,14 @@ const employeeMixin = {
                     this.closeModal()
                 }
 
-                this.getListEmployee()
+                this.getListEmployeeDocument()
             }
         },
 
         async udpateSubmit(data) {
             try {
                 console.log(data, 'data', 'id ', this.updateId)
-                await this.updateEmployee({id: this.updateId, data})
+                await this.updateEmployeeDocument({id: this.updateId, data})
 
                 this.$toast.add({
                     severity: 'success',
@@ -83,14 +84,14 @@ const employeeMixin = {
                     life: 3000
                 })
             } finally {
-                this.getListEmployee()
+                this.getListEmployeeDocument()
                 this.closeModal()
             }
         },
 
         async onDelete(val) {
             try {
-                await this.deleteEmployee(val.id)
+                await this.deleteEmployeeDocument(val.id)
 
                 this.$toast.add({
                     severity: 'success',
@@ -99,7 +100,7 @@ const employeeMixin = {
                     life: 3000
                 })
 
-                this.getListEmployee()
+                this.getListEmployeeDocument()
             } catch {
                 this.$toast.add({
                     severity: 'error',
@@ -136,4 +137,4 @@ const employeeMixin = {
 
 }
 
-export default employeeMixin
+export default employeeDocumentMixin

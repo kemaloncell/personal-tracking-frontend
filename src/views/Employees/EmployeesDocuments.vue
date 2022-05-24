@@ -2,39 +2,21 @@
   <default-layout>
     <div slot="content">
 
-      <h2 class="text-center text-2xl font-medium mb-3">Çalışanlar</h2>
+      <h2 class="text-center text-2xl font-medium mb-3">Çalışan Dökümanları</h2>
+
       <div
           class="flex mb-3 justify-content-between align-items-center mb-3 filters flex-wrap"
       >
         <div class="flex align-items-center">
           <Button @click="openModal" class="p-button-primary add-button"
-          >Çalışan Ekle
+          >Döküman Ekle
           </Button
           >
 
-          <!-- <SplitButton
-               class="ml-4 decline-button save-menu-button save-button"
-               label="Toplu İşlemler"
-               :model="multipleItems"
-               v-if="selectedItems.length > 0"
-           ></SplitButton>
-           <div class="ml-4">
-             <span class="p-input-icon-left">
-               <i class="pi pi-search"/>
-               <InputText
-                   v-model.trim="searchQuery"
-                   type="text"
-                   placeholder="Ara"
-                   class="pr-6"
-                   @input="callFilter"
-               />
-             </span>
-           </div> -->
         </div>
       </div>
-
-      <EmployeeList
-          :data="list"
+      <EmployeeDocumentList
+          :data="documentList"
           :loading="loading"
           @onUpdate="onUpdate"
           @onDelete="onDelete"
@@ -43,7 +25,7 @@
 
       <j-modal :visible.sync="displayModal" width="800px">
         <template slot="content">
-          <employees-form
+          <employee-document-form
               :loading="submitLoading"
               :singleLoading="singleLoading"
               :defaultValues="defaultValues"
@@ -53,7 +35,6 @@
           />
         </template>
       </j-modal>
-
       <Toast position="top-right"/>
 
     </div>
@@ -61,15 +42,15 @@
 </template>
 
 <script>
-import EmployeeList from "@/components/employees/EmployeeList";
-import EmployeesForm from "@/components/employees/EmployeeForm";
-import employeeMixin from "@/components/employees/mixins/employeeMixins";
+import employeeDocumentMixins from "@/components/employees/mixins/employeeDocumentMixins";
+import EmployeeDocumentList from "@/components/employees/EmployeeDocumentList";
+import EmployeeDocumentForm from "@/components/employees/EmployeeDocumentForm";
 
 export default {
-  mixins: [employeeMixin],
+  mixins: [employeeDocumentMixins],
   components: {
-    EmployeeList,
-    EmployeesForm
+    EmployeeDocumentList,
+    EmployeeDocumentForm
   },
   data() {
     return {
@@ -108,7 +89,9 @@ export default {
   },
 
   created() {
-    this.getListEmployee()
+    const userId = this.$route.params.id
+    console.log(userId, 'user')
+    this.getEmployeeDocumentSingle(userId)
   }
 }
 </script>

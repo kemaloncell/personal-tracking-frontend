@@ -14,6 +14,17 @@
       @onHandleSort="onHandleSort"
   >
     <template slot="columns">
+      <Column field="EmployeeDocumentType.name" header="Döküman Tipi" sortable></Column>
+      <Column header="Düzenlenme Tarihi" sortable>
+        <template #body="{ data }">
+          {{ data.issueDate.split('T')[0] }}
+        </template>
+      </Column>
+      <Column header="Son Kullanma Tarihi" sortable>
+        <template #body="{ data }">
+          {{ data.expiryDate.split('T')[0] }}
+        </template>
+      </Column>
       <Column field="detail" header="Detay" sortable></Column>
     </template>
     <template slot="action"></template>
@@ -24,7 +35,8 @@
 <script>
 export default {
   data: () => ({
-    displayModal: false
+    displayModal: false,
+    userData: {},
   }),
 
   props: {
@@ -68,7 +80,7 @@ export default {
     onHandleSort(val) {
       this.$emit('onSort', val)
     }
-  }
+  },
 }
 </script>
 

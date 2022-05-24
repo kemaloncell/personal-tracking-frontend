@@ -5,87 +5,54 @@
     </h2>
     <div class="grid mt-5 flex align-items-center">
 
-      <div class="col-2 text-sm">Adı</div>
+      <div class="col-2 text-sm">Doküman Tipi</div>
+      <div class="col-4 pt-0 pb-0">
+        <j-employee-document-type
+            @onEmployeeDocument="onEmployeeDocument"
+            :defaultEmployeeDocument="formData.EmployeeDocumentType"
+        />
+        
+      </div>
+
+      <div class="col-2 text-sm">Atif/Pasif</div>
       <div class="col-4">
-        <j-input-text
-            unmask
-            name="name"
-            class="w-full p-inputtext-sm"
-            v-model="formData.name"
-            mask="(999) 999-99-99"
-        />
-      </div>
-
-      <div class="col-2 text-sm">Soyadı</div>
-      <div class="col-4">
-        <j-input-text
-            unmask
-            name="surname"
-            class="w-full p-inputtext-sm"
-            v-model="formData.surname"
-            mask="(999) 999-99-99"
-        />
+        <checkbox
+            v-model="formData.valid"
+            :true-value="true"
+            :false-value="false"
+        ></checkbox>
       </div>
 
 
-      <div class="col-2 text-sm pb-0">
-        TC Kimlik No <span class="p-error">*</span>
-      </div>
-      <div class="col-4 pb-0">
-        <InputText
-            name="identityNumber"
-            class="w-full p-inputtext-sm"
-            v-model.trim="formData.tcNumber"
-            maxLength="11"
-            autocomplete="off"
-        />
-      </div>
-
-
-      <div class="col-2 text-sm">Mobil Tel</div>
-      <div class="col-4">
-        <j-input-text
-            unmask
-            name="phoneNumber"
-            class="w-full p-inputtext-sm"
-            v-model="formData.phone"
-            mask="(999) 999-99-99"
-        />
-
-      </div>
-      <div class="col-2 text-sm">Doğum Tarihi</div>
+      <div class="col-2 text-sm">Düzenleme Tarihi</div>
       <div class="col-4">
         <j-date
             class="w-full p-inputtext-sm"
-            v-model="formData.birthDate"
-            :defaultValue="formData.birthDate"
+            v-model="formData.issueDate"
+            :defaultValue="formData.issueDate"
             @onSelect="
-                (birthDate) => {
-                  formData.birthDate = birthDate
+                (issueDate) => {
+                  formData.issueDate = issueDate
                 }
               "
         ></j-date>
 
       </div>
 
-      <hr class="w-full"/>
+      <div class="col-2 text-sm">Geçerlilik Tarihi</div>
+      <div class="col-4">
+        <j-date
+            class="w-full p-inputtext-sm"
+            v-model="formData.expiryDate"
+            :defaultValue="formData.expiryDate"
+            @onSelect="
+                (expiryDate) => {
+                  formData.expiryDate = expiryDate
+                }
+              "
+        ></j-date>
 
-      <div class="col-2 text-sm">Kullanıcı Tipi</div>
-      <div class="col-4 pt-0 pb-0">
-        <j-employee-type
-            @onEmployeeType="onEmployeeType"
-            :defaultEmployee="formData.EmployeeType"
-        />
       </div>
-
-      <div class="col-2 text-sm">Eğitim Durumu</div>
-      <div class="col-4 pt-0 pb-0">
-        <j-education-level-type
-            @onEducationType="onEducationType"
-            :defaultEducation="formData.EducationLevel"
-        />
-      </div>
-
 
       <div
           class="flex justify-content-center w-full mt-5 mb-5 decline-button save-menu-button save-button"
@@ -120,11 +87,11 @@ import {
   required,
 } from 'vuelidate/lib/validators'
 import GlobalForm from '@/components/globalMixins/globalForm'
-import employeeMixin from './mixins/employeeMixins'
+import employeeDocumentMixins from './mixins/employeeDocumentMixins'
 
 
 export default {
-  mixins: [employeeMixin, GlobalForm],
+  mixins: [employeeDocumentMixins, GlobalForm],
   data: () => ({
     submitted: false,
   }),
@@ -165,9 +132,9 @@ export default {
       this.$emit('close')
     },
 
-    onEmployeeType(type) {
+    onEmployeeDocument(type) {
       if (type) {
-        this.formData.EmployeeType = type
+        this.formData.EmployeeDocumentType = type
       }
     },
 

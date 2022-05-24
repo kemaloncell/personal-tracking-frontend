@@ -8,6 +8,7 @@ const state = {
     taxOfficeList: [],
     employeeTypeList: [],
     educationTypeList: [],
+    employeeDocumentList: [],
 }
 
 const mutations = {
@@ -31,6 +32,10 @@ const mutations = {
         state.educationTypeList = item
     },
 
+    SET_EMPLOYEE_DOCUMENT_LIST(state, item) {
+        state.employeeDocumentList = item
+    },
+
 }
 
 const actions = {
@@ -47,7 +52,7 @@ const actions = {
     callDistrictList: async function ({commit}, id) {
         try {
             const {data} = await definitionsService.getDistrictList(id)
-            commit('SET_DISTRICT_LIST', data.data)
+            commit('SET_EMPLOYEE_DOCUMENT_LIST', data.data)
         } catch (err) {
             console.error(err)
             throw new Error('District list get connection failed')
@@ -67,7 +72,6 @@ const actions = {
     callEmployeeType: async function ({commit}) {
         try {
             const {data} = await definitionsService.getEmployeeTypeList()
-            console.log(data, 'emp')
             commit('SET_EMPLOYEETYPE_LIST', data.data)
         } catch (err) {
             console.error(err)
@@ -77,8 +81,18 @@ const actions = {
     callEducationType: async function ({commit}) {
         try {
             const {data} = await definitionsService.getEducationTypeList()
-            console.log(data, 'emp')
             commit('SET_EDUCATIONTYPE_LIST', data.data)
+        } catch (err) {
+            console.error(err)
+            throw new Error('Education type list get connection failed')
+        }
+    },
+
+    callEmployeeDocumentList: async function ({commit}) {
+        try {
+            const {data} = await definitionsService.getEmployeeDocumentList()
+            console.log(data, 'document')
+            commit('SET_EMPLOYEE_DOCUMENT_LIST', data.data)
         } catch (err) {
             console.error(err)
             throw new Error('Education type list get connection failed')
@@ -104,6 +118,9 @@ const getters = {
     },
     educationTypeList: (state) => {
         return state.educationTypeList
+    },
+    employeeDocumentList: (state) => {
+        return state.employeeDocumentList
     },
 }
 
