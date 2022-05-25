@@ -2,7 +2,7 @@ import {BaseService} from '@/api/baseService'
 
 class EmployeeDocumentService extends BaseService {
     constructor() {
-        super('employee')
+        super('employee/documents')
     }
 
     async getAllList() {
@@ -10,9 +10,7 @@ class EmployeeDocumentService extends BaseService {
     }
 
     async getById(id) {
-        console.log(id, 'servi')
-        return await super.get(`/documents/${id}`)
-
+        return await super.get(`/${id}`)
     }
 
     async create(data) {

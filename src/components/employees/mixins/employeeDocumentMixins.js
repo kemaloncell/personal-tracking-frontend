@@ -4,6 +4,7 @@ const employeeDocumentMixin = {
     data() {
         return {
             selectedItems: [],
+            fileRecordsForUpload: [],
             formData: {
                 employeeId: this.$route.params.id,
                 EmployeeDocumentType: null,
