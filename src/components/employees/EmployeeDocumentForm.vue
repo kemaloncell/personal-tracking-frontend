@@ -14,7 +14,7 @@
 
       </div>
 
-      <div class="col-2 text-sm">Belgeler Geçerlimi?</div>
+      <div class="col-2 text-sm">Belgeler Geçerli mi?</div>
       <div class="col-4">
         <Checkbox
             v-model="formData.valid"
@@ -50,7 +50,16 @@
                 }
               "
         ></j-date>
+      </div>
 
+      <div class="col-2 text-sm">Detay</div>
+      <div class="col-10 description-input">
+        <Textarea
+            name="address"
+            class="w-full"
+            v-model="formData.detail"
+            maxLength="512"
+        />
       </div>
 
       <hr class="w-full"/>
@@ -135,13 +144,15 @@ export default {
   methods: {
     submit(type) {
 
-      this.$v.$touch()
-      this.submitted = true
+      /*  this.$v.$touch()
+           this.submitted = true
 
-      if (this.$v.$invalid) {
-        return
-      }
+         if (this.$v.$invalid) {
+           return
+         }
+   */
 
+      this.formData.file = this.file
       this.$emit('onSubmit', this.formData, type)
 
     },

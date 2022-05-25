@@ -5,10 +5,10 @@ const employeeDocumentMixin = {
         return {
             selectedItems: [],
             fileRecordsForUpload: [],
+            file: null,
             formData: {
                 employeeId: this.$route.params.id,
                 EmployeeDocumentType: null,
-                file: null,
                 detail: null,
                 issueDate: null,
                 expiryDate: null,
@@ -37,10 +37,12 @@ const employeeDocumentMixin = {
             setPageEmployeeDocument: 'employeeDocument/setPage',
             deleteEmployeeDocument: 'employeeDocument/delete',
             getEmployeeSingle: 'employeeDocument/getSingle',
+            uploadFiles: 'employeeDocument/uploadFile',
         }),
 
 
         async createSubmit(data, type) {
+            delete data.file
             try {
                 await this.createEmployeeDocument(data)
 
@@ -67,8 +69,8 @@ const employeeDocumentMixin = {
         },
 
         async udpateSubmit(data) {
+            delete data.file
             try {
-                console.log(data, 'data', 'id ', this.updateId)
                 await this.updateEmployeeDocument({id: this.updateId, data})
 
                 this.$toast.add({
@@ -124,15 +126,24 @@ const employeeDocumentMixin = {
         onSelection(val) {
             this.selectedItems = val.map((item) => item.id)
         },
-        resetForm() {
-            this.formData = {
-                name: null,
-                identityNumber: null,
-                surname: null,
-                phone: null,
-                birthDate: null,
-                status: null,
+
+
+        async fileSubmit(req, type) {
+            if (req.file.file) {
+                await this.uploadFile(req.file.file)
             }
+
+            if (this.formType === 'CREATE') {
+                this.createSubmit(req, type)
+            } else {
+                this.udpateSubmit(req)
+            }
+        },
+
+
+        resetForm() {
+            this.formData = {}
+            this.file = null
         },
     },
 

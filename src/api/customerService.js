@@ -1,8 +1,8 @@
 import {BaseService} from '@/api/baseService'
 
-class EmployeeDocumentService extends BaseService {
+class CustomerService extends BaseService {
     constructor() {
-        super('employee/documents')
+        super('companies')
     }
 
     async getAllList() {
@@ -11,6 +11,7 @@ class EmployeeDocumentService extends BaseService {
 
     async getById(id) {
         return await super.get(`/${id}`)
+
     }
 
     async create(data) {
@@ -29,16 +30,6 @@ class EmployeeDocumentService extends BaseService {
 
     }
 
-    async uploadFileRequest({file}) {
-
-        return await super.patch(`/photo`, file, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        })
-
-    }
-
     async multipleDelete(idList) {
         const result = await super.delete(`/multiple`, {data: {id: idList}})
         return result
@@ -47,6 +38,6 @@ class EmployeeDocumentService extends BaseService {
 
 }
 
-const employeeDocumentService = new EmployeeDocumentService()
+const customerService = new CustomerService()
 
-export {employeeDocumentService}
+export {customerService}

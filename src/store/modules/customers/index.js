@@ -1,8 +1,7 @@
-import {employeeDocumentService} from '@/api/employeeDocumentService'
-import {authService} from "@/api/authService";
+import {supplierService} from '@/api/supplierService'
 
 const state = {
-    documentList: [],
+    list: [],
     pageInfo: {
         page: 0,
         size: 10
@@ -14,7 +13,7 @@ const state = {
 
 const mutations = {
     SET_LIST(state, data) {
-        state.documentList = data
+        state.list = data
     },
 
     SET_LOADING(state, isLoading) {
@@ -38,7 +37,8 @@ const actions = {
     getList: async function ({commit}) {
         try {
             commit('SET_LOADING', true)
-            const {data} = await employeeDocumentService.getAllList()
+            const {data} = await supplierService.getAllList()
+            console.log(data, 'all list')
             commit('SET_LIST', data.data)
         } catch (error) {
             console.log(error);
@@ -50,12 +50,9 @@ const actions = {
 
     getSingle: async function ({commit}, id) {
         try {
-            console.log(id)
-            id = 1
-            console.log(id)
             commit('SET_SINGLE_LOADING', true)
-            const {data} = await employeeDocumentService.getById(id)
-            commit('SET_LIST', data.data)
+            const {data} = await supplierService.getById(id)
+            return data
         } catch (err) {
             console.error(err)
             throw new Error('Single get connection failed')
@@ -67,17 +64,7 @@ const actions = {
     create: async function ({commit}, data) {
         try {
             commit('SET_SUBMIT_LOADING', true)
-            const dataForm = new FormData()
-            console.log(data, 'data sotre')
-            dataForm.append('employeeId', data.employeeId)
-            dataForm.append('file', data.file.file)
-            dataForm.append('EmployeeDocumentType', data.EmployeeDocumentType)
-            dataForm.append('detail', data.detail)
-            dataForm.append('issueDate', data.issueDate)
-            dataForm.append('expiryDate', data.expiryDate)
-            dataForm.append('valid', data.valid)
-            console.log(dataForm, 'dataForm')
-            await employeeDocumentService.create(dataForm)
+            await supplierService.create(data)
         } catch (err) {
             console.error(err)
             throw new Error('Create connection failed')
@@ -89,7 +76,7 @@ const actions = {
     delete: async function ({commit}, id) {
         try {
             commit('SET_LOADING', true)
-            await employeeDocumentService.delete(id)
+            await supplierService.delete(id)
         } catch (err) {
             commit('SET_LOADING', false)
             console.error(err)
@@ -100,7 +87,7 @@ const actions = {
     update: async function ({commit}, {data, id}) {
         try {
             commit('SET_SUBMIT_LOADING', true)
-            await employeeDocumentService.update({data, id})
+            await supplierService.update({data, id})
         } catch (err) {
             console.error(err)
             throw new Error('Create connection failed')
@@ -109,29 +96,6 @@ const actions = {
         }
     },
 
-
-    uploadFile: async function ({commit}, fileData) {
-        try {
-            commit('SET_LOADING', true)
-            const photoForm = new FormData()
-            console.log(fileData)
-            photoForm.append('file', fileData)
-
-            commit('SET_LOADING', false)
-
-            return await employeeDocumentService.uploadFileRequest({
-                file: photoForm
-            })
-
-
-        } catch (err) {
-            commit('SET_LOADING', false)
-            console.error(err)
-            throw new Error('Upload failed')
-        }
-    },
-
-
     setPage: async function ({commit, dispatch}, parameters) {
         commit('SET_PAGE_INFO', parameters)
         dispatch('getList')
@@ -139,7 +103,7 @@ const actions = {
 
     multipleDelete: async function (_, idList) {
         try {
-            await employeeDocumentService.multipleDelete(idList)
+            await bankService.multipleDelete(idList)
         } catch (err) {
             console.error(err)
             throw new Error('Multiple Delete inventories failed')
@@ -148,8 +112,8 @@ const actions = {
 }
 
 const getters = {
-    documentList: (state) => {
-        return state.documentList
+    list: (state) => {
+        return state.list
     },
 
     loading: (state) => {

@@ -95,7 +95,6 @@ export default {
 
     async submit(data, type) {
       if (this.formType === 'CREATE') {
-        console.log(data, type, 'gelid')
         this.createSubmit(data, type)
       }
 
