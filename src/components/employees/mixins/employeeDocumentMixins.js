@@ -64,7 +64,7 @@ const employeeDocumentMixin = {
                     this.closeModal()
                 }
 
-                this.getListEmployeeDocument()
+                this.getListEmployeeDocument(data.employeeId)
             }
         },
 
@@ -87,7 +87,7 @@ const employeeDocumentMixin = {
                     life: 3000
                 })
             } finally {
-                this.getListEmployeeDocument()
+                this.getListEmployeeDocument(data.employeeId)
                 this.closeModal()
             }
         },
