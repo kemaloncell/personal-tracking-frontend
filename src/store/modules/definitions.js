@@ -52,7 +52,7 @@ const actions = {
     callDistrictList: async function ({commit}, id) {
         try {
             const {data} = await definitionsService.getDistrictList(id)
-            commit('SET_EMPLOYEE_DOCUMENT_LIST', data.data)
+            commit('SET_DISTRICT_LIST', data.data)
         } catch (err) {
             console.error(err)
             throw new Error('District list get connection failed')
