@@ -50,7 +50,6 @@ const actions = {
 
     getSingle: async function ({commit}, id) {
         try {
-            console.log(id, 'storedaki get singleya gelen id');
             commit('SET_SINGLE_LOADING', true)
             const {data} = await employeeDocumentService.getById(id)
             commit('SET_LIST', data.data)

@@ -1,7 +1,7 @@
 <template>
 
   <Dropdown
-      v-model="selectedEmployeeDocument"
+      v-model="selectedEmployeeType"
       :options="employeeDocumentList"
       optionLabel="name"
       :showClear="true"
@@ -22,7 +22,7 @@ export default {
   },
   data() {
     return {
-      selectedEmployeeDocument: null
+      selectedEmployeeType: null
     }
   },
   computed: {
@@ -35,7 +35,7 @@ export default {
       callEmployeeDocumentList: 'definitions/callEmployeeDocumentList'
     }),
     setSelectedEmployeeDocument() {
-      this.$emit('onEmployeeDocument', this.selectedEmployeeDocument)
+      this.$emit('onEmployeeDocument', this.selectedEmployeeType)
     }
   },
   watch: {
@@ -63,7 +63,7 @@ export default {
   mounted() {
     this.callEmployeeDocumentList()
     if (this.defaultEmployeeDocument) {
-      this.selectedEmployeeType = this.defaultEmployeeDocument.name
+      this.selectedEmployeeType = this.defaultEmployeeDocument
     }
   }
 }

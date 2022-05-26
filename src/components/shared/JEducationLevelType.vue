@@ -40,7 +40,6 @@ export default {
   },
   watch: {
     defaultEducation: function (val) {
-      console.log(val, 'val')
       if (!val) {
         this.selectedEducationType = null
         return
@@ -65,7 +64,6 @@ export default {
     this.callEducationType()
 
     if (this.defaultEducation) {
-      console.log('defaultEducation', this.defaultEducation)
       this.selectedEmployeeType = this.defaultEducation
     }
   }

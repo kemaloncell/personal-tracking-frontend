@@ -109,10 +109,6 @@
 </template>
 
 <script>
-import {
-  maxLength,
-  required,
-} from 'vuelidate/lib/validators'
 import GlobalForm from '@/components/globalMixins/globalForm'
 import employeeDocumentMixins from './mixins/employeeDocumentMixins'
 
@@ -122,23 +118,6 @@ export default {
   data: () => ({
     submitted: false,
   }),
-
-  validations() {
-    const validation = {
-      formData: {
-        name: {
-          maxLength: maxLength(128),
-          required
-        },
-        surname: {
-          maxLength: maxLength(128),
-          required
-        },
-      }
-    }
-
-    return validation
-  },
 
 
   methods: {
@@ -162,6 +141,7 @@ export default {
 
     onEmployeeDocument(type) {
       if (type) {
+        console.log(type, 'type')
         this.formData.EmployeeDocumentType = type
       }
     },

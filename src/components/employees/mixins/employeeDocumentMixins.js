@@ -116,11 +116,9 @@ const employeeDocumentMixin = {
         },
 
         async onUpdate(val) {
-            console.log(val.EmployeeDocumentType.id, 'valsd')
+            console.log(val, 'valsd')
             this.docTypeId = val.EmployeeDocumentType.id
-            const item = await this.getEmployeeSingle(this.docTypeId)
-            this.defaultValues = item.data
-            this.formData.taxOffice = item.data.TaxOffice
+            this.defaultValues = val
             this.formType = 'UPDATE'
             this.displayModal = true
         },
