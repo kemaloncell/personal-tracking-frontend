@@ -68,7 +68,7 @@
             ref="vueFileAgent"
             :deletable="true"
             :meta="true"
-            :accept="'image/*,zip,rar,pdf'"
+            :accept="'image/*'"
             :maxSize="'30.0MB'"
             :maxFiles="1"
             :helpText="'Lütfen bir dosya seçiniz.'"
@@ -151,7 +151,7 @@ export default {
            return
          }
    */
-      
+
       this.$emit('onSubmit', this.formData, type)
 
     },

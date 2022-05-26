@@ -132,6 +132,7 @@ const employeeDocumentMixin = {
 
         async fileSubmit(req, type) {
             if (req.file) {
+                console.log(req.file, 'req mixed')
                 await this.uploadFile(req.file)
             }
             if (this.formType === 'CREATE') {

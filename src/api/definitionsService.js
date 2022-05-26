@@ -18,13 +18,10 @@ class DefinitionsService extends BaseService {
         return await super.get(`/employee/document-types`)
     }
 
-    async uploadFileRequest(file) {
-        console.log(file, 'geldi file defination')
-        return await super.post(`/files`, file, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        })
+    async uploadFileRequest(file, config) {
+        console.log(file, 'son yol api kısmında data')
+        console.log(config, 'son yol api kısmında config')
+        return await super.post(`/files`, file, config)
 
     }
 

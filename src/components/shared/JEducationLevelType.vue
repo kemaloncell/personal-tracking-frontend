@@ -42,14 +42,14 @@ export default {
     defaultEducation: function (val) {
       console.log(val, 'val')
       if (!val) {
-        this.selectedEmployeeType = null
+        this.selectedEducationType = null
         return
       }
 
       if (typeof val === 'string') {
-        this.selectedEmployeeType = val
+        this.selectedEducationType = val
       } else {
-        this.selectedEmployeeType = val
+        this.selectedEducationType = val
       }
 
       this.callEducationType()
@@ -66,7 +66,7 @@ export default {
 
     if (this.defaultEducation) {
       console.log('defaultEducation', this.defaultEducation)
-      this.selectedEmployeeType = this.defaultEducation.name
+      this.selectedEmployeeType = this.defaultEducation
     }
   }
 }
