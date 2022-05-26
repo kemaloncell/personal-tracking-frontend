@@ -57,7 +57,7 @@ export default {
       displayModal: false,
       formType: 'CREATE',
       defaultValues: null,
-      updateId: null,
+      docTypeId: null,
     }
   },
 
@@ -100,7 +100,6 @@ export default {
 
   created() {
     const userId = this.$route.params.id
-    console.log(userId, 'user')
     this.getEmployeeDocumentSingle(userId)
   }
 }

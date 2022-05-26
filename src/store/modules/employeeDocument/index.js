@@ -50,7 +50,7 @@ const actions = {
 
     getSingle: async function ({commit}, id) {
         try {
-            console.log(id, 'idsi');
+            console.log(id, 'storedaki get singleya gelen id');
             commit('SET_SINGLE_LOADING', true)
             const {data} = await employeeDocumentService.getById(id)
             commit('SET_LIST', data.data)
@@ -101,16 +101,17 @@ const actions = {
 
     uploadFile: async function ({commit}, fileData) {
         try {
+            console.log(fileData, 'sotra gelen fileData');
             commit('SET_LOADING', true)
-            const photoForm = new FormData()
-            console.log(fileData, 'definationa istek atan kısım ')
-            //photoForm.append('file', fileData.file)
-            photoForm['file'] = fileData.file
-
+            let photoForm = new FormData()
+            console.log(photoForm, 'photoform ')
+            //photoForm.append['file'] = fileData
+            photoForm.append('file', fileData)
+            // photoForm['file'] = fileData
+            console.log(photoForm, 'after pohto form')
             commit('SET_LOADING', false)
 
             return await definitionsService.uploadFileRequest(photoForm)
-
 
         } catch (err) {
             commit('SET_LOADING', false)

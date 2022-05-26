@@ -13,6 +13,7 @@ const employeeDocumentMixin = {
                 issueDate: null,
                 expiryDate: null,
                 valid: null,
+                documentPath: null,
             },
         }
     },
@@ -71,7 +72,7 @@ const employeeDocumentMixin = {
         async udpateSubmit(data) {
             delete data.file
             try {
-                await this.updateEmployeeDocument({id: this.updateId, data})
+                await this.updateEmployeeDocument({id: this.docTypeId, data})
 
                 this.$toast.add({
                     severity: 'success',
@@ -115,8 +116,9 @@ const employeeDocumentMixin = {
         },
 
         async onUpdate(val) {
-            this.updateId = val.id
-            const item = await this.getEmployeeSingle(this.updateId)
+            console.log(val.EmployeeDocumentType.id, 'valsd')
+            this.docTypeId = val.EmployeeDocumentType.id
+            const item = await this.getEmployeeSingle(this.docTypeId)
             this.defaultValues = item.data
             this.formData.taxOffice = item.data.TaxOffice
             this.formType = 'UPDATE'

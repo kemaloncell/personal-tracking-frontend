@@ -85,7 +85,7 @@ export default {
 
   },
   created() {
-    this.getListSupplier()
+    this.getListCustomer()
   }
 }
 </script>

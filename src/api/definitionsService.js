@@ -20,7 +20,7 @@ class DefinitionsService extends BaseService {
 
     async uploadFileRequest(file) {
         console.log(file, 'geldi file defination')
-        return await super.post(`/files`, {file}, {
+        return await super.post(`/files`, file, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }

@@ -45,7 +45,7 @@ const customerMixin = {
             getListCustomer: 'customer/getList',
             setPageCustomer: 'customer/setPage',
             deleteCustomer: 'customer/delete',
-            getCustomerSingle: 'customer/getSingle',
+            getSingleCustomer: 'customer/getSingle',
             multipleDeleteCustomer: 'customer/multipleDelete'
         }),
         async createSubmit(data, type) {
@@ -70,14 +70,14 @@ const customerMixin = {
                     this.closeModal()
                 }
 
-                this.getListSupplier()
+                this.getListCustomer()
             }
         },
 
         async udpateSubmit(data) {
             try {
                 console.log(data, 'data', 'id ', this.updateId)
-                await this.updateSupplier({id: this.updateId, data})
+                await this.updateCustomer({id: this.updateId, data})
 
                 this.$toast.add({
                     severity: 'success',
@@ -93,14 +93,14 @@ const customerMixin = {
                     life: 3000
                 })
             } finally {
-                this.getListSupplier()
+                this.getListCustomer()
                 this.closeModal()
             }
         },
 
         async onDelete(val) {
             try {
-                await this.deleteSupplier(val.id)
+                await this.deleteCustomer(val.id)
 
                 this.$toast.add({
                     severity: 'success',
@@ -109,7 +109,7 @@ const customerMixin = {
                     life: 3000
                 })
 
-                this.getListSupplier()
+                this.getListCustomer()
             } catch {
                 this.$toast.add({
                     severity: 'error',
@@ -122,7 +122,7 @@ const customerMixin = {
 
         async onUpdate(val) {
             this.updateId = val.id
-            const item = await this.getSingleSupplier(this.updateId)
+            const item = await this.getSingleCustomer(this.updateId)
             this.defaultValues = item.data
             this.formData.taxOffice = item.data.TaxOffice
             this.formType = 'UPDATE'
