@@ -50,9 +50,7 @@ const actions = {
 
     getSingle: async function ({commit}, id) {
         try {
-            console.log(id)
-            id = 1
-            console.log(id)
+            console.log(id, 'idsi');
             commit('SET_SINGLE_LOADING', true)
             const {data} = await employeeDocumentService.getById(id)
             commit('SET_LIST', data.data)
@@ -80,6 +78,7 @@ const actions = {
         try {
             commit('SET_LOADING', true)
             await employeeDocumentService.delete(id)
+            commit('SET_LOADING', false)
         } catch (err) {
             commit('SET_LOADING', false)
             console.error(err)

@@ -32,7 +32,7 @@ const employeeDocumentMixin = {
         ...mapActions({
             createEmployeeDocument: 'employeeDocument/create',
             updateEmployeeDocument: 'employeeDocument/update',
-            getListEmployeeDocument: 'employeeDocument/getList',
+            getListEmployeeDocument: 'employeeDocument/getSingle',
             getEmployeeDocumentSingle: 'employeeDocument/getSingle',
             setPageEmployeeDocument: 'employeeDocument/setPage',
             deleteEmployeeDocument: 'employeeDocument/delete',
@@ -103,7 +103,7 @@ const employeeDocumentMixin = {
                     life: 3000
                 })
 
-                this.getListEmployeeDocument()
+                this.getListEmployeeDocument(val.employeeId)
             } catch {
                 this.$toast.add({
                     severity: 'error',

@@ -14,7 +14,11 @@
       @onHandleSort="onHandleSort"
   >
     <template slot="columns">
-      <Column field="EmployeeDocumentType.name" header="Döküman Tipi" sortable></Column>
+      <Column header="Döküman Tipi" sortable>
+        <template #body="{ data }">
+          {{ data.EmployeeDocumentType.name ? data.EmployeeDocumentType.name : '-' }}
+        </template>
+      </Column>
       <Column header="Düzenlenme Tarihi" sortable>
         <template #body="{ data }">
           {{ data.issueDate.split('T')[0] }}
