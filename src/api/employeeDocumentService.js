@@ -29,15 +29,6 @@ class EmployeeDocumentService extends BaseService {
 
     }
 
-    async uploadFileRequest({file}) {
-
-        return await super.patch(`/photo`, file, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        })
-
-    }
 
     async multipleDelete(idList) {
         const result = await super.delete(`/multiple`, {data: {id: idList}})

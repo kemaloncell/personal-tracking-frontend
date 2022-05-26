@@ -40,7 +40,6 @@ export default {
   },
   watch: {
     defaultEmployeeDocument: function (val) {
-      console.log(val, 'val')
       if (!val) {
         this.selectedEmployeeType = null
         return

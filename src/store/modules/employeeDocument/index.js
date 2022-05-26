@@ -1,5 +1,5 @@
 import {employeeDocumentService} from '@/api/employeeDocumentService'
-import {authService} from "@/api/authService";
+import {definitionsService} from "@/api/definitionsService";
 
 const state = {
     documentList: [],
@@ -67,17 +67,7 @@ const actions = {
     create: async function ({commit}, data) {
         try {
             commit('SET_SUBMIT_LOADING', true)
-            const dataForm = new FormData()
-            console.log(data, 'data sotre')
-            dataForm.append('employeeId', data.employeeId)
-            dataForm.append('file', data.file.file)
-            dataForm.append('EmployeeDocumentType', data.EmployeeDocumentType)
-            dataForm.append('detail', data.detail)
-            dataForm.append('issueDate', data.issueDate)
-            dataForm.append('expiryDate', data.expiryDate)
-            dataForm.append('valid', data.valid)
-            console.log(dataForm, 'dataForm')
-            await employeeDocumentService.create(dataForm)
+            await employeeDocumentService.create(data)
         } catch (err) {
             console.error(err)
             throw new Error('Create connection failed')
@@ -114,14 +104,13 @@ const actions = {
         try {
             commit('SET_LOADING', true)
             const photoForm = new FormData()
-            console.log(fileData)
-            photoForm.append('file', fileData)
+            console.log(fileData, 'definationa istek atan kısım ')
+            //photoForm.append('file', fileData.file)
+            photoForm['file'] = fileData.file
 
             commit('SET_LOADING', false)
 
-            return await employeeDocumentService.uploadFileRequest({
-                file: photoForm
-            })
+            return await definitionsService.uploadFileRequest(photoForm)
 
 
         } catch (err) {

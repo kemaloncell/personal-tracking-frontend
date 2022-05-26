@@ -101,7 +101,7 @@ export default {
 
         this.callDistrictList(this.defaultCity.id)
         this.selectedDistrict = this.defaultDistrict.id
-
+        console.log(this.selectedDistrict, 'dis')
         this.$emit('onSelectDistrict', this.selectedDistrict)
         this.$emit('onSelectCity', this.selectedCity)
       }
@@ -136,6 +136,7 @@ export default {
       }
 
       if (typeof val === 'string') {
+        console.log(val, 'district')
         this.selectedDistrict = val
       } else {
         this.selectedDistrict = val

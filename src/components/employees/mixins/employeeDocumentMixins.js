@@ -5,8 +5,8 @@ const employeeDocumentMixin = {
         return {
             selectedItems: [],
             fileRecordsForUpload: [],
-            file: null,
             formData: {
+                file: null,
                 employeeId: this.$route.params.id,
                 EmployeeDocumentType: null,
                 detail: null,
@@ -37,7 +37,7 @@ const employeeDocumentMixin = {
             setPageEmployeeDocument: 'employeeDocument/setPage',
             deleteEmployeeDocument: 'employeeDocument/delete',
             getEmployeeSingle: 'employeeDocument/getSingle',
-            uploadFiles: 'employeeDocument/uploadFile',
+            uploadFile: 'employeeDocument/uploadFile',
         }),
 
 
@@ -129,10 +129,9 @@ const employeeDocumentMixin = {
 
 
         async fileSubmit(req, type) {
-            if (req.file.file) {
-                await this.uploadFile(req.file.file)
+            if (req.file) {
+                await this.uploadFile(req.file)
             }
-
             if (this.formType === 'CREATE') {
                 this.createSubmit(req, type)
             } else {

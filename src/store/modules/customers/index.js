@@ -1,4 +1,4 @@
-import {supplierService} from '@/api/supplierService'
+import {customerService} from '@/api/customerService'
 
 const state = {
     list: [],
@@ -37,7 +37,7 @@ const actions = {
     getList: async function ({commit}) {
         try {
             commit('SET_LOADING', true)
-            const {data} = await supplierService.getAllList()
+            const {data} = await customerService.getAllList()
             console.log(data, 'all list')
             commit('SET_LIST', data.data)
         } catch (error) {
@@ -51,7 +51,7 @@ const actions = {
     getSingle: async function ({commit}, id) {
         try {
             commit('SET_SINGLE_LOADING', true)
-            const {data} = await supplierService.getById(id)
+            const {data} = await customerService.getById(id)
             return data
         } catch (err) {
             console.error(err)
@@ -64,7 +64,7 @@ const actions = {
     create: async function ({commit}, data) {
         try {
             commit('SET_SUBMIT_LOADING', true)
-            await supplierService.create(data)
+            await customerService.create(data)
         } catch (err) {
             console.error(err)
             throw new Error('Create connection failed')
@@ -76,7 +76,7 @@ const actions = {
     delete: async function ({commit}, id) {
         try {
             commit('SET_LOADING', true)
-            await supplierService.delete(id)
+            await customerService.delete(id)
         } catch (err) {
             commit('SET_LOADING', false)
             console.error(err)
@@ -87,7 +87,7 @@ const actions = {
     update: async function ({commit}, {data, id}) {
         try {
             commit('SET_SUBMIT_LOADING', true)
-            await supplierService.update({data, id})
+            await customerService.update({data, id})
         } catch (err) {
             console.error(err)
             throw new Error('Create connection failed')
@@ -103,7 +103,7 @@ const actions = {
 
     multipleDelete: async function (_, idList) {
         try {
-            await bankService.multipleDelete(idList)
+            await customerService.multipleDelete(idList)
         } catch (err) {
             console.error(err)
             throw new Error('Multiple Delete inventories failed')

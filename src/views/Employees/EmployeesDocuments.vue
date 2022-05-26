@@ -79,27 +79,20 @@ export default {
 
 
       if (this.formType === 'CREATE') {
-        this.createSubmit(data, type)
+        if (data.file) {
+          this.fileSubmit(data, type)
+        } else {
+          await this.createSubmit(data, type)
+        }
       }
 
       if (this.formType === 'UPDATE') {
-        this.udpateSubmit(data)
+        if (data.file) {
+          this.fileSubmit(data)
+        } else {
+          await this.udpateSubmit(data)
+        }
       }
-      /* if (this.formType === 'CREATE') {
-         if (data.file.file) {
-           this.fileSubmit(data, type)
-         } else {
-           await this.createSubmit(data, type)
-         }
-       }
-
-       if (this.formType === 'UPDATE') {
-         if (data.file.file) {
-           this.fileSubmit(data)
-         } else {
-           await this.udpateSubmit(data)
-         }
-       } */
     },
 
 

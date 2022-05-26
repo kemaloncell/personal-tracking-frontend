@@ -18,6 +18,16 @@ class DefinitionsService extends BaseService {
         return await super.get(`/employee/document-types`)
     }
 
+    async uploadFileRequest(file) {
+        console.log(file, 'geldi file defination')
+        return await super.post(`/files`, {file}, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+
+    }
+
     async getAddress(typeId, id) {
         return await super.get(`/location/address/${typeId}/${id}`)
     }

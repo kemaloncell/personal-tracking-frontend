@@ -13,6 +13,9 @@ import bank from './modules/bank'
 //suppliers
 import supplier from './modules/suppliers'
 
+//customer
+import customer from './modules/customers'
+
 //employees
 import employee from './modules/employees'
 
@@ -35,6 +38,7 @@ export default new Vuex.Store({
         auth,
         supplier,
         employee,
+        customer,
         employeeDocument,
         definitions
     }

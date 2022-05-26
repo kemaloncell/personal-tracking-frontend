@@ -151,8 +151,7 @@ export default {
            return
          }
    */
-
-      this.formData.file = this.file
+      
       this.$emit('onSubmit', this.formData, type)
 
     },
