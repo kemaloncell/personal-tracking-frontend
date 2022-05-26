@@ -19,6 +19,10 @@
 
       <CustomerList
           :data="list"
+          :loading="loading"
+          @onUpdate="onUpdate"
+          @onDelete="onDelete"
+          @onSelection="onSelection"
       />
       <j-modal :visible.sync="displayModal" width="800px">
         <template slot="content">
