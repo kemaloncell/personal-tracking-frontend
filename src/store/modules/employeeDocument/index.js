@@ -100,16 +100,9 @@ const actions = {
 
     uploadFile: async function ({commit}, fileData) {
         try {
-            console.log(fileData, ' storeda  fileData');
-            commit('SET_LOADING', true)
             const config = {headers: {'Content-Type': 'multipart/form-data'}};
             let photoForm = new FormData()
-            console.log(photoForm, 'photoform ')
-            photoForm.append.file = fileData
-            //photoForm.append('file', fileData[0].file)
-            //photoForm.append('file', fileData)
-            // photoForm['file'] = fileData
-            console.log(photoForm, 'after pohto form')
+            photoForm.append('file', fileData.file)
             commit('SET_LOADING', false)
 
             return await definitionsService.uploadFileRequest(photoForm, config)

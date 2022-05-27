@@ -13,7 +13,7 @@ const employeeDocumentMixin = {
                 issueDate: null,
                 expiryDate: null,
                 valid: null,
-                documentPath: null,
+                documentPath: 'test',
             },
         }
     },
@@ -71,8 +71,10 @@ const employeeDocumentMixin = {
 
         async udpateSubmit(data) {
             delete data.file
+            console.log(data, 'data')
+            console.log(this.docTypeId, 'docTypeId')
             try {
-                await this.updateEmployeeDocument({id: this.docTypeId, data})
+                await this.updateEmployeeDocument({id: data.EmployeeDocumentType.id, data})
 
                 this.$toast.add({
                     severity: 'success',
