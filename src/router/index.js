@@ -30,15 +30,6 @@ import FieldList from '@/views/Fields/Fields.vue'
 //Shifts
 import ShiftList from '@/views/Shifts/Shifts.vue'
 
-// Users
-import UserList from '@/views/Users/UserList.vue'
-import UserListDetail from '@/views/Users/UserListDetail.vue'
-
-
-//Bank
-import BankList from '@/views/Bank/BankList'
-import BankListDetail from '@/views/Bank/BankListDetail'
-
 //Login
 import Login from '@/components/auth/Login.vue'
 import ForgotPassword from '@/components/auth/ForgotPassword.vue'
@@ -155,42 +146,6 @@ const routes = [
         path: '/shifts',
         name: 'Shift',
         component: ShiftList,
-        meta: {
-            requiresAuth: true
-        }
-    },
-    {
-        path: '/user',
-        name: 'User',
-        component: UserList,
-        props: true,
-        meta: {
-            requiresAuth: true
-        }
-    },
-    {
-        path: '/user/:name/detail',
-        name: 'UserDetail',
-        component: UserListDetail,
-        props: true,
-        meta: {
-            requiresAuth: true
-        }
-    },
-    {
-        path: '/bank',
-        name: 'BankList',
-        component: BankList,
-        props: true,
-        meta: {
-            requiresAuth: true
-        }
-    },
-    {
-        path: '/bank/:name/detail',
-        name: 'BankListDetail',
-        component: BankListDetail,
-        props: true,
         meta: {
             requiresAuth: true
         }

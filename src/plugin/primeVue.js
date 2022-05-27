@@ -11,7 +11,6 @@ import 'primeflex/primeflex.css'
 import JTable from '@/components/shared/JTable'
 import JModal from '@/components/shared/JModal'
 import JImageUpload from "@/components/shared/JImageUpload";
-import JFileUpload from "@/components/shared/JFileUpload";
 import JInputText from "@/components/shared/JInputText";
 import JInputMask from "@/components/shared/JInputMask";
 import JSubmitButton from "@/components/shared/JSubmitButton";
@@ -118,7 +117,6 @@ Vue.component('j-city-district', JCityDistrict)
 Vue.component('j-submitbutton', JSubmitButton)
 Vue.component('j-taxOffice', JTaxOffice)
 Vue.component('j-image-upload', JImageUpload)
-Vue.component('j-file-upload', JFileUpload)
 Vue.component('j-employee-type', JEmployeeType)
 Vue.component('j-education-level-type', JEducationLevelType)
 Vue.component('j-date', JDate)

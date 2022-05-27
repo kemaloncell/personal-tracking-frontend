@@ -19,8 +19,6 @@ class DefinitionsService extends BaseService {
     }
 
     async uploadFileRequest(file, config) {
-        console.log(file, 'son yol api kısmında data')
-        console.log(config, 'son yol api kısmında config')
         return await super.post(`/files`, file, config)
 
     }

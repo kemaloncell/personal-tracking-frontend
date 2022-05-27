@@ -141,7 +141,6 @@ export default {
 
     onEmployeeDocument(type) {
       if (type) {
-        console.log(type, 'type')
         this.formData.EmployeeDocumentType = type
       }
     },

@@ -78,7 +78,6 @@ export default {
 
 
       if (this.formType === 'CREATE') {
-        console.log(data, 'vue daki ham gelen ')
         if (data.file) {
           this.fileSubmit(data, type)
         } else {
