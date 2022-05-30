@@ -5,7 +5,8 @@
       <form name="form1" class="box" @submit.prevent="goForgotModalThird">
         <i @click="goForgotPassword" class="pi pi-arrow-left arrow"></i>
         <h4>Security<span> Plus</span></h4>
-        <h5>Telefon numaranıza gelen kodu giriniz.</h5>
+        <h5>Yeni şifrenizi giriniz. Şifreniz en az 8 karakter en fazla 16 karakter
+          uzunluğunda olmalı ve büyük harf küçük harf ve rakam içermelidir..</h5>
 
         <i class="typcn typcn-eye pi pi-eye" :class="{active: isActive }" @click="seePassword()"></i>
         <input :type="passwordType" name="password" v-model="code"
@@ -37,7 +38,8 @@ export default {
   },
   methods: {
     goForgotModalThird() {
-      this.$router.push('/new-password')
+      alert('t4e')
+
     },
 
     seePassword() {

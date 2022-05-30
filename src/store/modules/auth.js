@@ -4,6 +4,7 @@ import {authService} from '@/api/authService'
 const state = {
     userData: null,
     userDataLoading: null,
+    otpCode: null,
     userToken: localStorage.getItem('id_token'),
     loading: false
 }
@@ -15,6 +16,10 @@ const mutations = {
 
     SET_USER: function (state, data) {
         state.userData = data
+    },
+
+    SET_OTP_CODE: function (state, data) {
+        state.otpCode = data
     },
 
     SET_LOADING: function (state, isLoading) {
@@ -50,8 +55,53 @@ const actions = {
         localStorage.removeItem('id_token')
     },
 
+    callForgotPassword: async function ({commit}, changePasswordData) {
+        try {
+            console.log(changePasswordData, 'changePasswordData')
+            //send tel no
+            commit('SET_LOADING', true)
+            const {data} = await authService.forgotPassword(changePasswordData)
+            console.log(data, 'otp data')
+            this.otpCode = data.data
+            commit('SET_OTP_CODE', data.data)
+            commit('SET_LOADING', false)
+        } catch (err) {
+            commit('SET_LOADING', false)
+            console.error(err)
+            throw new Error('Forgot password failed')
+        }
+    },
+
+    callSendOtp: async function ({commit}, otpData) {
+        try {
+            commit('SET_LOADING', true)
+            const result = await authService.sendOtp(otpData)
+            commit('SET_LOADING', false)
+
+            return result
+        } catch (err) {
+            commit('SET_LOADING', false)
+            console.error(err)
+            throw new Error('Send OTP failed')
+        }
+    },
+
+    callValidateOtp: async function ({commit}, otpData) {
+        try {
+            commit('SET_LOADING', true)
+            await authService.validateOtp(otpData, this.otpCode)
+            commit('SET_LOADING', false)
+        } catch (err) {
+            commit('SET_LOADING', false)
+            console.error(err)
+            throw new Error('Validate OTP failed')
+        }
+    },
+
+
     callChangePassword: async function ({commit}, changePasswordData) {
         try {
+            //email ile
             commit('SET_LOADING', true)
             const {data} = await authService.changePassword(changePasswordData)
             return data
@@ -100,6 +150,10 @@ const getters = {
 
     userToken: (state) => {
         return state.userToken
+    },
+
+    otpCode: (state) => {
+        return state.otpCode
     }
 }
 

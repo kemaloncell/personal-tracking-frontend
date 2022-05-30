@@ -16,6 +16,7 @@ const authMixin = {
             userDataLoading: 'auth/userDataLoading',
             userData: 'auth/userData',
             userToken: 'auth/userToken',
+            otpCode: 'auth/otpCode',
         }),
     },
 
@@ -23,7 +24,10 @@ const authMixin = {
         ...mapActions({
             callLogin: 'auth/callLogin',
             callLogout: 'auth/callLogout',
-            callChangePassword: 'auth/callChangePassword',
+            callChangePassword: 'auth/callChangePassword', // email
+            callForgotPassword: 'auth/callForgotPassword',// phone
+            callSendOtp: 'auth/callSendOtp',
+            callValidateOtp: 'auth/callValidateOtp',
             callUploadFile: 'auth/callUploadFile',
         }),
 

@@ -30,10 +30,11 @@ import FieldList from '@/views/Fields/Fields.vue'
 //Shifts
 import ShiftList from '@/views/Shifts/Shifts.vue'
 
-//Login
+//Auth
 import Login from '@/components/auth/Login.vue'
 import ForgotPassword from '@/components/auth/ForgotPassword.vue'
 import ForgotPasswordSecond from '@/components/auth/ForgotPasswordSecond.vue'
+import ForgotPasswordThird from '@/components/auth/ForgotPasswordThird.vue'
 
 const routes = [
     {
@@ -72,6 +73,14 @@ const routes = [
         path: '/forgot-password-code',
         name: 'ForgotPasswordSecond',
         component: ForgotPasswordSecond,
+        meta: {
+            notRequiresAuth: false
+        }
+    },
+    {
+        path: '/new-password',
+        name: 'ForgotPasswordThird',
+        component: ForgotPasswordThird,
         meta: {
             notRequiresAuth: false
         }

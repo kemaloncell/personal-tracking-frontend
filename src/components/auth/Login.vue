@@ -53,6 +53,17 @@ import {email, required} from "vuelidate/lib/validators";
 
 export default {
   mixins: [authMixin],
+
+  validations: {
+    email: {
+      required,
+      email
+    },
+    password: {
+      required,
+    }
+  },
+  
   data() {
     return {
       email: null,
@@ -91,16 +102,6 @@ export default {
         this.passwordType = 'text'
       }
     },
-  },
-
-  validations: {
-    email: {
-      required,
-      email
-    },
-    password: {
-      required,
-    }
   },
 
 }

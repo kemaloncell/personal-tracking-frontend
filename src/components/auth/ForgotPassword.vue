@@ -21,7 +21,7 @@
                Geçersiz E-Posta.
              </span> -->
 
-        <InputMask
+        <InputText
             mask="(999) 999-99-99"
             unmask
             placeholder="Telefon"
@@ -44,35 +44,129 @@
     <div class="footer">
       <span>Made with <i class="fa fa-heart pulse"></i> <a href="">By Jack Russell</a></span>
     </div>
+
+
+    <otp-modal
+        :code="code"
+        :visible.sync="displayOtpModal"
+        :loading="loading"
+        :timer="timer"
+        @onSubmit="onSubmitOtpModal"
+        @onClose="onCloseOtp"
+        @reSendCode="reSendCode"
+    />
   </div>
 </template>
 
 <script>
 import authMixin from "./mixins/authMixins";
-import {email, required} from "vuelidate/lib/validators";
+import {required} from "vuelidate/lib/validators";
+import otpModal from "@/components/auth/OtpModal";
 
 export default {
   mixins: [authMixin],
+  components: {
+    otpModal
+  },
+  validations: {
+    phone: {
+      required,
+    }
+  },
+
   data() {
     return {
       displayModal: false,
+      phone: null,
+      displayOtpModal: false,
+      code: null,
+      countDownTime: 180,
+      timerId: null,
+      otpDataCode: null,
     }
   },
   methods: {
+
     goLogin() {
       this.$router.push('/login')
     },
-    goForgotSecond() {
-      this.$router.push('/forgot-password-code')
-    }
-  },
-  validations: {
-    email: {
-      required,
-      email
+
+    async goForgotSecond() {
+      this.$v.$touch();
+      this.submitted = true
+      if (!this.$v.$invalid) {
+        try {
+          this.submitStatus = true
+          await this.callForgotPassword({
+            email: this.phone,
+          })
+          this.isUserExist = true
+
+          this.openOTPModal()
+        } catch {
+          console.error('forgot password err')
+          this.isUserExist = false
+        }
+      }
     },
-    phone: {
-      required,
+
+    async onSubmitOtpModal(code) {
+      console.log(code, 'onsubmite gelen code')
+      try {
+        await this.callValidateOtp(code)
+        clearTimeout(this.timerId)
+        // this.$router.push({name: 'Home'})
+      } catch {
+        console.error('err')
+      }
+    },
+
+    countDownTimer() {
+      if (this.countDownTime > 0) {
+        this.timerId = setTimeout(() => {
+          this.countDownTime -= 1
+          this.countDownTimer()
+        }, 1000)
+      } else {
+        clearTimeout(this.timerId)
+      }
+    },
+
+    async reSendCode() {
+      try {
+        this.countDownTime = 180
+        // clear the previous timeout and start new one
+        clearTimeout(this.timerId)
+        this.timerId = setTimeout(() => {
+          this.countDownTime -= 1
+          this.countDownTimer()
+        }, 1000)
+
+        const result = await this.callSendOtp({
+          email: this.email,
+          phoneNumber: this.phoneNumber
+        })
+        this.code = result.data
+      } catch (e) {
+        console.log('reSendCode Error', e)
+      }
+    },
+
+    openOTPModal() {
+      this.displayOtpModal = true
+    },
+
+    onCloseOtp() {
+      this.displayOtpModal = false
+      clearTimeout(this.timerId)
+      this.countDownTime = 180
+    },
+
+  },
+
+  computed: {
+    timer() {
+      return this.countDownTime
     }
   },
 
