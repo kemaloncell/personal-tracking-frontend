@@ -18,10 +18,6 @@ const mutations = {
         state.userData = data
     },
 
-    SET_OTP_CODE: function (state, data) {
-        state.otpCode = data
-    },
-
     SET_LOADING: function (state, isLoading) {
         state.loading = isLoading
     },
@@ -63,7 +59,6 @@ const actions = {
             const {data} = await authService.forgotPassword(changePasswordData)
             console.log(data, 'otp data')
             this.otpCode = data.data
-            commit('SET_OTP_CODE', data.data)
             commit('SET_LOADING', false)
         } catch (err) {
             commit('SET_LOADING', false)
@@ -89,7 +84,8 @@ const actions = {
     callValidateOtp: async function ({commit}, otpData) {
         try {
             commit('SET_LOADING', true)
-            await authService.validateOtp(otpData, this.otpCode)
+            console.log(otpData, 'otpData store')
+            await authService.validateOtp({code: otpData}, this.otpCode)
             commit('SET_LOADING', false)
         } catch (err) {
             commit('SET_LOADING', false)
@@ -152,9 +148,6 @@ const getters = {
         return state.userToken
     },
 
-    otpCode: (state) => {
-        return state.otpCode
-    }
 }
 
 export default {

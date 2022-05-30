@@ -62,9 +62,11 @@
 </template>
 
 <script>
+import authMixins from "@/components/auth/mixins/authMixins";
 import {required} from 'vuelidate/lib/validators'
 
 export default {
+  mixins: [authMixins],
   data: () => ({
     codePhone: null,
     submitted: false,
@@ -78,11 +80,6 @@ export default {
   },
 
   props: {
-    code: {
-      type: Number,
-      default: null
-    },
-
     loading: {
       type: Boolean,
       default: false
@@ -93,26 +90,26 @@ export default {
     }
   },
 
-  watch: {
-    code() {
-      this.codePhone = this.code
-    }
-  },
-
-  mounted() {
-    this.codePhone = this.code
-  },
 
   methods: {
-    submit() {
+    async submit() {
       this.$v.$touch()
       this.submitted = true
 
       if (!this.$v.$invalid) {
-        this.$emit('onSubmit', this.code)
         this.codeResent = false
+        try {
+          await this.callValidateOtp(this.codePhone)
+          clearTimeout(this.timerId)
+          // this.$router.push({name: 'Home'})
+        } catch {
+          console.error('err')
+        }
+
       }
     },
+
+
     reSendCode() {
       this.$emit('reSendCode')
       this.codeResent = true

@@ -40,14 +40,7 @@ class AuthService extends BaseService {
         })
 
     }
-
-    async sendOtp(data) {
-        return await super.post('/send/otp', data)
-    }
-
-    async validateOtp(data) {
-        return await super.post('/validate/otp', data)
-    }
+    
 }
 
 const authService = new AuthService()

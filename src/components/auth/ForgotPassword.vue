@@ -51,7 +51,6 @@
         :visible.sync="displayOtpModal"
         :loading="loading"
         :timer="timer"
-        @onSubmit="onSubmitOtpModal"
         @onClose="onCloseOtp"
         @reSendCode="reSendCode"
     />
@@ -82,14 +81,9 @@ export default {
       code: null,
       countDownTime: 180,
       timerId: null,
-      otpDataCode: null,
     }
   },
   methods: {
-
-    goLogin() {
-      this.$router.push('/login')
-    },
 
     async goForgotSecond() {
       this.$v.$touch();
@@ -101,7 +95,6 @@ export default {
             email: this.phone,
           })
           this.isUserExist = true
-
           this.openOTPModal()
         } catch {
           console.error('forgot password err')
@@ -110,16 +103,6 @@ export default {
       }
     },
 
-    async onSubmitOtpModal(code) {
-      console.log(code, 'onsubmite gelen code')
-      try {
-        await this.callValidateOtp(code)
-        clearTimeout(this.timerId)
-        // this.$router.push({name: 'Home'})
-      } catch {
-        console.error('err')
-      }
-    },
 
     countDownTimer() {
       if (this.countDownTime > 0) {
@@ -162,6 +145,10 @@ export default {
       this.countDownTime = 180
     },
 
+
+    goLogin() {
+      this.$router.push('/login')
+    },
   },
 
   computed: {
