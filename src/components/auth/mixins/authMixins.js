@@ -5,7 +5,9 @@ const authMixin = {
         return {
             submitStatus: null,
             submitted: false,
-            isUserExist: true
+            isUserExist: true,
+            displayOtpModal: false,
+
         }
     },
 

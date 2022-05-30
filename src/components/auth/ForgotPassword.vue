@@ -47,12 +47,9 @@
 
 
     <otp-modal
-        :code="code"
         :visible.sync="displayOtpModal"
         :loading="loading"
-        :timer="timer"
-        @onClose="onCloseOtp"
-        @reSendCode="reSendCode"
+        :startTimer="startTimer"
     />
   </div>
 </template>
@@ -77,10 +74,7 @@ export default {
     return {
       displayModal: false,
       phone: null,
-      displayOtpModal: false,
-      code: null,
-      countDownTime: 180,
-      timerId: null,
+      startTimer: null,
     }
   },
   methods: {
@@ -96,6 +90,7 @@ export default {
           })
           this.isUserExist = true
           this.openOTPModal()
+
         } catch {
           console.error('forgot password err')
           this.isUserExist = false
@@ -104,45 +99,9 @@ export default {
     },
 
 
-    countDownTimer() {
-      if (this.countDownTime > 0) {
-        this.timerId = setTimeout(() => {
-          this.countDownTime -= 1
-          this.countDownTimer()
-        }, 1000)
-      } else {
-        clearTimeout(this.timerId)
-      }
-    },
-
-    async reSendCode() {
-      try {
-        this.countDownTime = 180
-        // clear the previous timeout and start new one
-        clearTimeout(this.timerId)
-        this.timerId = setTimeout(() => {
-          this.countDownTime -= 1
-          this.countDownTimer()
-        }, 1000)
-
-        const result = await this.callSendOtp({
-          email: this.email,
-          phoneNumber: this.phoneNumber
-        })
-        this.code = result.data
-      } catch (e) {
-        console.log('reSendCode Error', e)
-      }
-    },
-
     openOTPModal() {
+      this.startTimer = true
       this.displayOtpModal = true
-    },
-
-    onCloseOtp() {
-      this.displayOtpModal = false
-      clearTimeout(this.timerId)
-      this.countDownTime = 180
     },
 
 
@@ -150,13 +109,6 @@ export default {
       this.$router.push('/login')
     },
   },
-
-  computed: {
-    timer() {
-      return this.countDownTime
-    }
-  },
-
 }
 </script>
 

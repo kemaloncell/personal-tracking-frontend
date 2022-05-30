@@ -1,6 +1,6 @@
 <template>
   <Dialog class="otp-modal" v-bind="$attrs" :modal="true">
-    <div class="flex justify-content-between cursor-pointer mb-3">
+    <div class="flex justify-content-end cursor-pointer mb-3">
       <i @click="close" class="pi pi-times"></i>
     </div>
     <h1 class="text-2xl text-center font-bold">Kaydınızı Tamamlayın</h1>
@@ -69,8 +69,11 @@ export default {
   mixins: [authMixins],
   data: () => ({
     codePhone: null,
-    submitted: false,
-    codeResent: false
+    codeResent: false,
+    countDownTime: 180,
+    timerId: null,
+    startTimer: false,
+
   }),
 
   validations: {
@@ -85,9 +88,10 @@ export default {
       default: false
     },
 
-    timer: {
-      type: Number
-    }
+    startTimer: {
+      type: Boolean,
+      default: false
+    },
   },
 
 
@@ -110,17 +114,62 @@ export default {
     },
 
 
-    reSendCode() {
-      this.$emit('reSendCode')
+    countDownTimer() {
+      console.log("")
+      if (this.countDownTime > 0) {
+        this.timerId = setTimeout(() => {
+          this.countDownTime -= 1
+          this.countDownTimer()
+        }, 1000)
+        console.log(this.countDownTime, 'this.countDownTime')
+      } else {
+        clearTimeout(this.timerId)
+      }
+    },
+
+    async reSendCode() {
       this.codeResent = true
+      try {
+        this.countDownTime = 180
+        // clear the previous timeout and start new one
+        clearTimeout(this.timerId)
+        this.timerId = setTimeout(() => {
+          this.countDownTime -= 1
+          this.countDownTimer()
+        }, 1000)
+
+        const result = await this.callSendOtp({
+          email: this.email,
+          phoneNumber: this.phoneNumber
+        })
+        this.codePhone = result.data
+      } catch (e) {
+        console.log('reSendCode Error', e)
+      }
     },
 
     close() {
-      this.$emit('onClose')
+      this.displayOtpModal = false
+      clearTimeout(this.timerId)
+      this.countDownTime = 180
       this.codeResent = false
     },
+  },
 
-  }
+  computed: {
+    timer() {
+      console.log('timer', this.countDownTime)
+      return this.countDownTime
+    }
+  },
+
+  watch: {
+    startTimer: function (val) {
+      if (val) {
+        this.countDownTimer()
+      }
+    }
+  },
 }
 </script>
 
