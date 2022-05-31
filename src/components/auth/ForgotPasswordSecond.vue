@@ -6,9 +6,15 @@
         <i @click="goForgotPassword" class="pi pi-arrow-left arrow"></i>
         <h4>Security<span> Plus</span></h4>
         <h5>Telefon numaranıza gelen kodu giriniz.</h5>
+        <!--<h5>Yeni şifrenizi giriniz. Şifreniz en az 8 karakter en fazla 16 karakter
+          uzunluğunda olmalı ve büyük harf küçük harf ve rakam içermelidir..</h5> -->
 
         <i class="typcn typcn-eye pi pi-eye" :class="{active: isActive }" @click="seePassword()"></i>
-        <input :type="passwordType" name="password" v-model="code"
+        <input :type="passwordType" name="password" v-model="password"
+               placeholder="Yeni şifrenizi giriniz"
+               autocomplete="off">
+
+        <input type="text" name="password" v-model="code"
                placeholder="Kodu giriniz"
                autocomplete="off">
 
@@ -24,17 +30,23 @@
 
 <script>
 import authMixin from "./mixins/authMixins";
+import {mapGetters} from "vuex";
 
 export default {
   mixins: [authMixin],
   data() {
     return {
-      code: null,
+      password: null,
       passwordType: "password",
       isActive: false,
-
+      code: null
     }
   },
+
+  mounted() {
+    this.code = this.otpCode
+  },
+
   methods: {
     goForgotModalThird() {
       this.$router.push('/new-password')
@@ -55,7 +67,6 @@ export default {
 
     }
   },
-
 
 }
 </script>

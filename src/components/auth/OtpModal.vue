@@ -45,12 +45,12 @@
         >KAYDI TAMAMLA
         </Button
         >
-        <Button
-            @click="reSendCode"
-            class=" w-full flex justify-content-center text-sm p-button-link"
-        >Kodu tekrar gönder
-        </Button
-        >
+        <!-- <Button
+             @click="reSendCode"
+             class=" w-full flex justify-content-center text-sm p-button-link"
+         >Kodu tekrar gönder
+         </Button
+         > -->
       </div>
       <Spinner
           v-if="loading"
@@ -72,7 +72,6 @@ export default {
     codeResent: false,
     countDownTime: 180,
     timerId: null,
-    startTimer: false,
 
   }),
 
@@ -105,7 +104,7 @@ export default {
         try {
           await this.callValidateOtp(this.codePhone)
           clearTimeout(this.timerId)
-          // this.$router.push({name: 'Home'})
+          this.$router.push({name: 'ForgotPasswordSecond'})
         } catch {
           console.error('err')
         }
@@ -115,38 +114,36 @@ export default {
 
 
     countDownTimer() {
-      console.log("")
       if (this.countDownTime > 0) {
         this.timerId = setTimeout(() => {
           this.countDownTime -= 1
           this.countDownTimer()
         }, 1000)
-        console.log(this.countDownTime, 'this.countDownTime')
       } else {
         clearTimeout(this.timerId)
       }
     },
 
-    async reSendCode() {
-      this.codeResent = true
-      try {
-        this.countDownTime = 180
-        // clear the previous timeout and start new one
-        clearTimeout(this.timerId)
-        this.timerId = setTimeout(() => {
-          this.countDownTime -= 1
-          this.countDownTimer()
-        }, 1000)
+    /* async reSendCode() {
+       this.codeResent = true
+       try {
+         this.countDownTime = 180
+         // clear the previous timeout and start new one
+         clearTimeout(this.timerId)
+         this.timerId = setTimeout(() => {
+           this.countDownTime -= 1
+           this.countDownTimer()
+         }, 1000)
 
-        const result = await this.callSendOtp({
-          email: this.email,
-          phoneNumber: this.phoneNumber
-        })
-        this.codePhone = result.data
-      } catch (e) {
-        console.log('reSendCode Error', e)
-      }
-    },
+         const result = await this.callSendOtp({
+           email: this.email,
+           phoneNumber: this.phoneNumber
+         })
+         this.codePhone = result.data
+       } catch (e) {
+         console.log('reSendCode Error', e)
+       }
+     }, */
 
     close() {
       this.displayOtpModal = false
@@ -158,7 +155,6 @@ export default {
 
   computed: {
     timer() {
-      console.log('timer', this.countDownTime)
       return this.countDownTime
     }
   },

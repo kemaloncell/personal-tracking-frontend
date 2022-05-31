@@ -4,6 +4,7 @@ import {authService} from '@/api/authService'
 const state = {
     userData: null,
     userDataLoading: null,
+    otpValidationCode: null,
     otpCode: null,
     userToken: localStorage.getItem('id_token'),
     loading: false
@@ -20,6 +21,10 @@ const mutations = {
 
     SET_LOADING: function (state, isLoading) {
         state.loading = isLoading
+    },
+
+    SET_OTP_CODE: function (state, otpCode) {
+        state.otpCode = otpCode
     },
 
     SET_USER_DATA_LOADING: function (state, isLoading) {
@@ -57,8 +62,7 @@ const actions = {
             //send tel no
             commit('SET_LOADING', true)
             const {data} = await authService.forgotPassword(changePasswordData)
-            console.log(data, 'otp data')
-            this.otpCode = data.data
+            this.otpValidationCode = data.data
             commit('SET_LOADING', false)
         } catch (err) {
             commit('SET_LOADING', false)
@@ -72,7 +76,6 @@ const actions = {
             commit('SET_LOADING', true)
             const result = await authService.sendOtp(otpData)
             commit('SET_LOADING', false)
-
             return result
         } catch (err) {
             commit('SET_LOADING', false)
@@ -84,8 +87,9 @@ const actions = {
     callValidateOtp: async function ({commit}, otpData) {
         try {
             commit('SET_LOADING', true)
-            console.log(otpData, 'otpData store')
-            await authService.validateOtp({code: otpData}, this.otpCode)
+            //this.otpCode = otpData
+            commit('SET_OTP_CODE', otpData)
+            await authService.validateOtp({code: otpData}, this.otpValidationCode)
             commit('SET_LOADING', false)
         } catch (err) {
             commit('SET_LOADING', false)
@@ -147,6 +151,11 @@ const getters = {
     userToken: (state) => {
         return state.userToken
     },
+
+    otpCode: (state) => {
+        return state.otpCode
+    },
+
 
 }
 

@@ -7,7 +7,6 @@ const authMixin = {
             submitted: false,
             isUserExist: true,
             displayOtpModal: false,
-
         }
     },
 
