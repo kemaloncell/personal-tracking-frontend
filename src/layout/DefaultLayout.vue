@@ -1,6 +1,6 @@
 <template>
   <div :class="containerClass" @click="onWrapperClick">
-    <AppTopBar @menu-toggle="onMenuToggle"/>
+    <AppTopBar @menu-toggle="onMenuToggle" @notification-panel="onNotificationPanel"/>
 
     <transition name="layout-sidebar">
       <div :class="sidebarClass" @click="onSidebarClick" v-show="isSidebarVisible()">
@@ -24,6 +24,12 @@ import AppMenu from './main/SideBar.vue';
 import AppFooter from './main/Footer.vue';
 
 export default {
+  components: {
+    'AppTopBar': AppTopBar,
+    'AppProfile': AppProfile,
+    'AppMenu': AppMenu,
+    'AppFooter': AppFooter,
+  },
   data() {
     return {
       layoutMode: 'static',
@@ -50,6 +56,8 @@ export default {
     }
   },
   methods: {
+
+
     onWrapperClick() {
       if (!this.menuClick) {
         this.overlayMenuActive = false;
@@ -76,6 +84,7 @@ export default {
         this.mobileMenuActive = !this.mobileMenuActive;
       }
     },
+
     onSidebarClick() {
       this.menuClick = true;
     },
@@ -138,12 +147,7 @@ export default {
     else
       this.removeClass(document.body, 'body-overflow-hidden');
   },
-  components: {
-    'AppTopBar': AppTopBar,
-    'AppProfile': AppProfile,
-    'AppMenu': AppMenu,
-    'AppFooter': AppFooter,
-  }
+
 }
 </script>
 
