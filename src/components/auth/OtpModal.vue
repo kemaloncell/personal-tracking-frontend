@@ -112,7 +112,6 @@ export default {
       }
     },
 
-
     countDownTimer() {
       if (this.countDownTime > 0) {
         this.timerId = setTimeout(() => {

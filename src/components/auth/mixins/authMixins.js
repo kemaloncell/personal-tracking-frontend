@@ -27,7 +27,7 @@ const authMixin = {
             callLogout: 'auth/callLogout',
             callChangePassword: 'auth/callChangePassword', // email
             callForgotPassword: 'auth/callForgotPassword',// phone
-            callSendOtp: 'auth/callSendOtp',
+            sendForgotPasswordCode: 'auth/sendForgotPasswordCode',// phone
             callValidateOtp: 'auth/callValidateOtp',
             callUploadFile: 'auth/callUploadFile',
         }),

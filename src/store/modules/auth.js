@@ -71,18 +71,21 @@ const actions = {
         }
     },
 
-    callSendOtp: async function ({commit}, otpData) {
+    sendForgotPasswordCode: async function ({commit}, changePasswordData) {
         try {
+            console.log(changePasswordData, 'changePasswordData')
+            //send tel no
             commit('SET_LOADING', true)
-            const result = await authService.sendOtp(otpData)
+            const {data} = await authService.sendForgotPasswordCode(changePasswordData, this.otpValidationCode)
+            this.otpValidationCode = data.data
             commit('SET_LOADING', false)
-            return result
         } catch (err) {
             commit('SET_LOADING', false)
             console.error(err)
-            throw new Error('Send OTP failed')
+            throw new Error('Forgot password failed')
         }
     },
+
 
     callValidateOtp: async function ({commit}, otpData) {
         try {

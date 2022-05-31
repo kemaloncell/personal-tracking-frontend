@@ -14,15 +14,14 @@ class AuthService extends BaseService {
     }
 
     async forgotPassword(data) {
-        return await super.post('/forgot-password', data)
+        return await super.post(`/forgot-password`, data)
     }
 
-    async sendOtp(data) {
-        return await super.post('/send/otp', data)
+    async sendForgotPasswordCode(data, id) {
+        return await super.put(`/forgot-password/${id}`, data)
     }
 
     async validateOtp(data, id) {
-        console.log(data, id, 'service')
         return await super.post(`/validate-password/${id}`, data)
     }
 
@@ -40,7 +39,7 @@ class AuthService extends BaseService {
         })
 
     }
-    
+
 }
 
 const authService = new AuthService()

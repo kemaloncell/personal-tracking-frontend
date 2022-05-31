@@ -2,12 +2,10 @@
   <div class="main">
     <div class="container">
       <span class="error animated tada" id="msg"></span>
-      <form name="form1" class="box" @submit.prevent="goForgotModalThird">
+      <form name="form1" class="box" @submit.prevent="submit">
         <i @click="goForgotPassword" class="pi pi-arrow-left arrow"></i>
         <h4>Security<span> Plus</span></h4>
-        <h5>Telefon numaranıza gelen kodu giriniz.</h5>
-        <!--<h5>Yeni şifrenizi giriniz. Şifreniz en az 8 karakter en fazla 16 karakter
-          uzunluğunda olmalı ve büyük harf küçük harf ve rakam içermelidir..</h5> -->
+        <h5>Yeni şifrenizi giriniz.</h5>
 
         <i class="typcn typcn-eye pi pi-eye" :class="{active: isActive }" @click="seePassword()"></i>
         <input :type="passwordType" name="password" v-model="password"
@@ -18,7 +16,7 @@
                placeholder="Kodu giriniz"
                autocomplete="off">
 
-        <input type="submit" value="Sonraki Adım" class="btn1">
+        <input type="submit" value="Kaydet" class="btn1">
       </form>
     </div>
 
@@ -30,7 +28,6 @@
 
 <script>
 import authMixin from "./mixins/authMixins";
-import {mapGetters} from "vuex";
 
 export default {
   mixins: [authMixin],
@@ -48,8 +45,24 @@ export default {
   },
 
   methods: {
-    goForgotModalThird() {
-      this.$router.push('/new-password')
+    async submit() {
+      //this.$v.$touch();
+      this.submitted = true
+      //if (!this.$v.$invalid) {
+      try {
+        this.submitStatus = true
+        await this.sendForgotPasswordCode({
+          password: this.password,
+          code: this.code,
+        })
+        this.isUserExist = true
+        this.$router.push('/login')
+
+      } catch {
+        console.error('forgot password err')
+        this.isUserExist = false
+      }
+      // }
     },
 
     seePassword() {
@@ -73,7 +86,7 @@ export default {
 
 <style scoped>
 .container {
-  height: 450px;
+  height: 500px;
 }
 
 .arrow {
