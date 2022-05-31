@@ -17,33 +17,41 @@
     <OverlayPanel ref="op" appendTo="body" :showCloseIcon="true" id="overlay_panel" style="width: 450px">
       <DataTable :value="products" :selection.sync="selectedProduct" selectionMode="single" :paginator="true" :rows="5"
                  @row-select="onProductSelect">
-        <Column field="name" header="Name" sortable></Column>
-        <Column header="Image">
-          <template #body="slotProps">
-            <img :src="'demo/images/product/' + slotProps.data.image" :alt="slotProps.data.image"
-                 class="product-image"/>
-          </template>
-        </Column>
-        <Column field="price" header="Price" sortable>
-          <template #body="slotProps">
-            {{ formatCurrency(slotProps.data.price) }}
-          </template>
-        </Column>
+        <Column field="name" sortable>asdasd</Column>
+        <Column field="name" sortable>asdasd</Column>
       </DataTable>
     </OverlayPanel>
   </div>
 </template>
 
 <script>
+import {mapActions, mapGetters} from "vuex";
+
 export default {
   name: 'Notification',
   data() {
     return {}
   },
+
+  computed: {
+    ...mapGetters({
+      loading: 'notifications/loading',
+    }),
+  },
+
   methods: {
+    ...mapActions({
+      getSingle: 'notifications/getSingle',
+
+    }),
+
     onNotificationPanel(event) {
       this.$refs.op.toggle(event);
     },
+  },
+
+  created() {
+    this.getSingle();
   }
 }
 </script>

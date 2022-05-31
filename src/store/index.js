@@ -19,6 +19,9 @@ import employeeDocument from './modules/employeeDocument'
 //definitions
 import definitions from './modules/definitions'
 
+//notifications
+import notifications from './modules/notifications'
+
 Vue.use(Vuex)
 
 
@@ -32,6 +35,7 @@ export default new Vuex.Store({
         employee,
         customer,
         employeeDocument,
-        definitions
+        definitions,
+        notifications
     }
 })
