@@ -41,6 +41,7 @@
 
 
           <Button
+              v-if="!isVisibleUpdateButton"
               type="button"
               class="p-button-primary p-button-sm table-update-button mr-2"
               @click="() => onUpdateClick(data)"
@@ -108,6 +109,10 @@ export default {
       type: Boolean
     },
     documentType: {
+      default: () => false,
+      type: Boolean
+    },
+    isVisibleUpdateButton: {
       default: () => false,
       type: Boolean
     },

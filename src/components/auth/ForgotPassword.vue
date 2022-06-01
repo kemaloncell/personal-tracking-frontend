@@ -21,10 +21,9 @@
                Geçersiz E-Posta.
              </span> -->
 
-        <InputText
+        <InputMask
             mask="(999) 999-99-99"
-            unmask
-            placeholder="Telefon"
+            placeholder="(555) 999-99-99"
             id="mobileNumberModal"
             type="text"
             class="forgot-password-input"

@@ -14,10 +14,10 @@
               class="pi pi-fw pi-user"></i><span>Account</span>
           </router-link>
         </li>
-        <li>
-          <button class="p-link"><i class="pi pi-fw pi-inbox"></i><span>Notifications</span><span
-              class="menuitem-badge">2</span></button>
-        </li>
+        <!-- <li>
+           <button class="p-link"><i class="pi pi-fw pi-inbox"></i><span>Notifications</span><span
+               class="menuitem-badge">2</span></button>
+         </li> -->
         <li>
           <button @click="logout" class="p-link"><i class="pi pi-fw pi-power-off"></i><span>Logout</span></button>
         </li>
@@ -43,7 +43,7 @@ export default {
       this.expanded = !this.expanded;
       event.preventDefault();
     },
-    
+
     async logout() {
       try {
         await this.callLogout();

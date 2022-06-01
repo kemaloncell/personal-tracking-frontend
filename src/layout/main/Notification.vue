@@ -15,11 +15,21 @@
     </button>
 
     <OverlayPanel ref="op" appendTo="body" :showCloseIcon="true" id="overlay_panel" style="width: 450px">
-      <DataTable :value="products" :selection.sync="selectedProduct" selectionMode="single" :paginator="true" :rows="5"
-                 @row-select="onProductSelect">
-        <Column field="name" sortable>asdasd</Column>
-        <Column field="name" sortable>asdasd</Column>
-      </DataTable>
+      <j-table
+          :value="list"
+          :total="total"
+          :loading="loading"
+          :totalRecords="total"
+          :isVisibleUpdateButton="true"
+          :lazy="true"
+          @onPageChange="onPage"
+          @onDelete="onDeleteYes"
+
+      >
+        <template slot="columns">
+          <Column field="NotificationType.name" header="Bildirimler"></Column>
+        </template>
+      </j-table>
     </OverlayPanel>
   </div>
 </template>
@@ -29,29 +39,61 @@ import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: 'Notification',
-  data() {
-    return {}
+  data: () => ({
+    displayModal: false
+  }),
+
+
+  props: {
+    data: {
+      type: Array,
+      default: () => []
+    },
+
+    loading: {
+      type: Boolean,
+      default: () => false
+    },
+
+    total: {
+      type: Number,
+      default: () => 0
+    }
   },
 
   computed: {
     ...mapGetters({
       loading: 'notifications/loading',
+      list: 'notifications/list',
     }),
   },
 
   methods: {
     ...mapActions({
-      getSingle: 'notifications/getSingle',
+      getList: 'notifications/getList',
 
     }),
 
     onNotificationPanel(event) {
       this.$refs.op.toggle(event);
     },
+
+    onPage(params) {
+      const {
+        page: {page, rows: size}
+      } = params
+
+      this.$emit('onPageChange', {page, size})
+    },
+
+    onDeleteYes(id) {
+      this.$emit('onDelete', id)
+    },
+
   },
 
   created() {
-    this.getSingle();
+    this.getList();
   }
 }
 </script>
