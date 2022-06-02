@@ -22,6 +22,7 @@ import AppTopBar from './main/Header.vue';
 import AppProfile from '../views/Auth/Profile.vue';
 import AppMenu from './main/SideBar.vue';
 import AppFooter from './main/Footer.vue';
+import {mapActions} from 'vuex'
 
 export default {
   components: {
@@ -56,7 +57,9 @@ export default {
     }
   },
   methods: {
-
+    ...mapActions({
+      callMe: 'auth/callMe'
+    }),
 
     onWrapperClick() {
       if (!this.menuClick) {
@@ -147,7 +150,10 @@ export default {
     else
       this.removeClass(document.body, 'body-overflow-hidden');
   },
-
+  
+  created() {
+    this.callMe()
+  }
 }
 </script>
 

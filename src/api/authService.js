@@ -5,6 +5,10 @@ class AuthService extends BaseService {
         super('users')
     }
 
+    async me() {
+        return await super.get('/me')
+    }
+
     async login(data) {
         return await super.post('/login', data)
     }

@@ -33,6 +33,21 @@ const mutations = {
 }
 
 const actions = {
+    callMe: async function ({state, commit}) {
+        try {
+            if (!state.userData) {
+                commit('SET_USER_DATA_LOADING', true)
+                const {data} = await authService.me()
+                commit('SET_USER', data)
+                commit('SET_USER_DATA_LOADING', false)
+            }
+        } catch (err) {
+            commit('SET_USER_DATA_LOADING', false)
+            console.error(err)
+            throw new Error('Me failed')
+        }
+    },
+
 
     callLogin: async function ({commit}, loginData) {
         try {
