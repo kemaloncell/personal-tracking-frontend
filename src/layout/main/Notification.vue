@@ -23,7 +23,7 @@
           :isVisibleUpdateButton="true"
           :lazy="true"
           @onPageChange="onPage"
-          @onDelete="onDeleteYes"
+          @onDelete="onDelete"
 
       >
         <template slot="columns">
@@ -71,6 +71,7 @@ export default {
   methods: {
     ...mapActions({
       getList: 'notifications/getList',
+      deleteNotifications: 'notifications/delete',
 
     }),
 
@@ -86,8 +87,27 @@ export default {
       this.$emit('onPageChange', {page, size})
     },
 
-    onDeleteYes(id) {
-      this.$emit('onDelete', id)
+    async onDelete(val) {
+      console.log(val.id, 'feş')
+      try {
+        await this.deleteNotifications(val.id)
+
+        this.$toast.add({
+          severity: 'success',
+          summary: 'Başarılı',
+          detail: 'Bildirim silme başarılı !',
+          life: 3000
+        })
+
+        this.getList()
+      } catch {
+        this.$toast.add({
+          severity: 'error',
+          summary: 'Başarısız',
+          detail: 'Bildirim silme başarısız !',
+          life: 3000
+        })
+      }
     },
 
   },

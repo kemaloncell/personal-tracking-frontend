@@ -54,14 +54,14 @@ const supplierMixin = {
                 this.$toast.add({
                     severity: 'success',
                     summary: 'Başarılı',
-                    detail: 'Çalışan ekleme başarılı !',
+                    detail: 'Tedarikçi ekleme başarılı !',
                     life: 3000
                 })
             } catch {
                 this.$toast.add({
                     severity: 'error',
                     summary: 'Başarısız',
-                    detail: 'Çalışan ekleme başarısız !',
+                    detail: 'Tedarikçi ekleme başarısız !',
                     life: 3000
                 })
             } finally {
