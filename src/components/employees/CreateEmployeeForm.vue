@@ -51,6 +51,7 @@
       <div class="col-4 pt-0 pb-0">
         <j-role-type
             @onRoleType="onRoleType"
+            :defaultRole="registerForm.Roles"
         />
       </div>
 
@@ -121,11 +122,14 @@ export default {
 
     onRoleType(type) {
       if (type) {
-        console.log(type, 'type')
-        this.formData.Roles = type
+        this.registerForm.Roles = type
       }
     },
   },
 
+  mounted() {
+    this.registerForm.name = this.formData.name
+    this.registerForm.phone = this.formData.phone
+  }
 }
 </script>

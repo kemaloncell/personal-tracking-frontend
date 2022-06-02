@@ -1,6 +1,6 @@
 <template>
   <div :class="containerClass" @click="onWrapperClick">
-    <AppTopBar @menu-toggle="onMenuToggle" @notification-panel="onNotificationPanel"/>
+    <AppTopBar @menu-toggle="onMenuToggle"/>
 
     <transition name="layout-sidebar">
       <div :class="sidebarClass" @click="onSidebarClick" v-show="isSidebarVisible()">
@@ -150,7 +150,7 @@ export default {
     else
       this.removeClass(document.body, 'body-overflow-hidden');
   },
-  
+
   created() {
     this.callMe()
   }
