@@ -10,7 +10,7 @@
         <j-input-text
             name="name"
             class="w-full p-inputtext-sm"
-            v-model="formData.name"
+            v-model="registerForm.name"
         />
       </div>
 
@@ -19,7 +19,7 @@
         <j-input-text
             name="surname"
             class="w-full p-inputtext-sm"
-            v-model="formData.email"
+            v-model="registerForm.email"
         />
       </div>
 
@@ -28,7 +28,7 @@
         <j-input-text
             name="Passoword"
             class="w-full p-inputtext-sm"
-            v-model="formData.password"
+            v-model="registerForm.password"
 
         />
 
@@ -40,18 +40,17 @@
             unmask
             name="phoneNumber"
             class="w-full p-inputtext-sm"
-            v-model="formData.phone"
+            v-model="registerForm.phone"
             mask="(999) 999-99-99"
         />
 
       </div>
-      
+
 
       <div class="col-2 text-sm">Role</div>
       <div class="col-4 pt-0 pb-0">
         <j-role-type
             @onRoleType="onRoleType"
-            :defaultRole="formData.Role"
         />
       </div>
 
@@ -91,12 +90,12 @@ export default {
   mixins: [GlobalForm],
   data: () => ({
     submitted: false,
-    formData: {
+    registerForm: {
       name: null,
-      surname: null,
+      email: null,
       password: null,
       phone: null,
-      Role: null,
+      Roles: null,
     },
   }),
 
@@ -111,7 +110,7 @@ export default {
          }
    */
 
-      this.$emit('onSubmit', this.formData, type)
+      this.$emit('onSubmit', this.registerForm, type)
 
     },
 
@@ -122,7 +121,8 @@ export default {
 
     onRoleType(type) {
       if (type) {
-        this.formData.Role = type
+        console.log(type, 'type')
+        this.formData.Roles = type
       }
     },
   },

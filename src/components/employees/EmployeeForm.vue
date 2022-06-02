@@ -156,6 +156,7 @@ export default {
     submitted: false,
     displayModal: false,
     formType: 'CREATE',
+    accountType: true,
     defaultValues: null,
   }),
 
@@ -212,7 +213,6 @@ export default {
 
     // MODAL PRPOPERTY
     openModal() {
-      console.log('openModal')
       this.displayModal = true;
     },
 
@@ -226,11 +226,7 @@ export default {
 
     async accountSubmit(data, type) {
       if (this.formType === 'CREATE') {
-        this.createSubmit(data, type)
-      }
-
-      if (this.formType === 'UPDATE') {
-        this.udpateSubmit(data)
+        this.createSubmit(data, type, this.accountType)
       }
     },
 

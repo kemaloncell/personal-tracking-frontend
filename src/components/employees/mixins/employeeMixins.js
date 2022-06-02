@@ -30,6 +30,7 @@ const employeeMixin = {
 
     methods: {
         ...mapActions({
+            callRegister: 'auth/callRegister',
             createEmployee: 'employee/create',
             updateEmployee: 'employee/update',
             getListEmployee: 'employee/getList',
@@ -39,9 +40,10 @@ const employeeMixin = {
         }),
 
 
-        async createSubmit(data, type) {
+        async createSubmit(data, type, accountType) {
+
             try {
-                await this.createEmployee(data)
+                accountType ? await this.callRegister(data) : await this.createEmployee(data)
 
                 this.$toast.add({
                     severity: 'success',
@@ -60,9 +62,9 @@ const employeeMixin = {
                 if (type === 0) {
                     this.closeModal()
                 }
-
                 this.getListEmployee()
             }
+
         },
 
         async udpateSubmit(data) {

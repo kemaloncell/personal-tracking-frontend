@@ -3,7 +3,7 @@
   <Dropdown
       v-model="selectedRoleType"
       :options="roleList"
-      optionLabel="UserType.name"
+      optionLabel="name"
       :showClear="true"
       class="w-full h-full city-search p-inputtext-sm"
       @change="setSelectedRoleType"
@@ -36,6 +36,7 @@ export default {
     }),
 
     setSelectedRoleType() {
+      console.log('setSelectedRoleType', this.selectedRoleType)
       this.$emit('onRoleType', this.selectedRoleType)
     }
   },

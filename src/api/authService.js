@@ -14,7 +14,7 @@ class AuthService extends BaseService {
     }
 
     async register(data) {
-        return await super.post('/signup', data)
+        return await super.post('/register', data)
     }
 
     async forgotPassword(data) {
