@@ -4,6 +4,7 @@ const employeeMixin = {
     data() {
         return {
             selectedItems: [],
+            email: null,
             formData: {
                 name: null,
                 surname: null,

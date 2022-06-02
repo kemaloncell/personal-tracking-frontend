@@ -45,16 +45,6 @@ export default {
 
 
   props: {
-    data: {
-      type: Array,
-      default: () => []
-    },
-
-    loading: {
-      type: Boolean,
-      default: () => false
-    },
-
     total: {
       type: Number,
       default: () => 0

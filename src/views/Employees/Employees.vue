@@ -12,24 +12,6 @@
           </Button
           >
 
-          <!-- <SplitButton
-               class="ml-4 decline-button save-menu-button save-button"
-               label="Toplu İşlemler"
-               :model="multipleItems"
-               v-if="selectedItems.length > 0"
-           ></SplitButton>
-           <div class="ml-4">
-             <span class="p-input-icon-left">
-               <i class="pi pi-search"/>
-               <InputText
-                   v-model.trim="searchQuery"
-                   type="text"
-                   placeholder="Ara"
-                   class="pr-6"
-                   @input="callFilter"
-               />
-             </span>
-           </div> -->
         </div>
       </div>
 

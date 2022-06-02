@@ -18,9 +18,12 @@ class DefinitionsService extends BaseService {
         return await super.get(`/employee/document-types`)
     }
 
+    async getRoleList() {
+        return await super.get(`/roles`)
+    }
+
     async uploadFileRequest(file, config) {
         return await super.post(`/files`, file, config)
-
     }
 
     async getCityList() {

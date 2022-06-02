@@ -1,4 +1,5 @@
 import {authService} from '@/api/authService'
+import {definitionsService} from "@/api/definitionsService";
 //import { meService } from '@/api/meService'
 
 const state = {
@@ -6,8 +7,10 @@ const state = {
     userDataLoading: null,
     otpValidationCode: null,
     otpCode: null,
+    imageUrl: null,
     userToken: localStorage.getItem('id_token'),
     loading: false
+
 }
 
 const mutations = {
@@ -29,6 +32,10 @@ const mutations = {
 
     SET_USER_DATA_LOADING: function (state, isLoading) {
         state.userDataLoading = isLoading
+    },
+
+    SET_IMAGE_URL: function (state, imageUrl) {
+        state.imageUrl = imageUrl
     }
 }
 
@@ -105,7 +112,6 @@ const actions = {
     callValidateOtp: async function ({commit}, otpData) {
         try {
             commit('SET_LOADING', true)
-            //this.otpCode = otpData
             commit('SET_OTP_CODE', otpData)
             await authService.validateOtp({code: otpData}, this.otpValidationCode)
             commit('SET_LOADING', false)
@@ -133,17 +139,13 @@ const actions = {
 
     callUploadFile: async function ({commit}, fileData) {
         try {
-            commit('SET_LOADING', true)
-            const photoForm = new FormData()
-            console.log(fileData, 'file data in store')
+            const config = {headers: {'Content-Type': 'multipart/form-data'}};
+            let photoForm = new FormData()
             photoForm.append('file', fileData)
 
+            const {data} = await definitionsService.uploadFileRequest(photoForm, config)
+            commit("SET_IMAGE_URL", data.data)
             commit('SET_LOADING', false)
-
-            return await authService.uploadFileRequest({
-                file: photoForm
-            })
-
 
         } catch (err) {
             commit('SET_LOADING', false)
@@ -172,6 +174,11 @@ const getters = {
 
     otpCode: (state) => {
         return state.otpCode
+    },
+
+    imageUrl: (state) => {
+        console.log(state.imageUrl, 'gfet')
+        return state.imageUrl
     },
 
 

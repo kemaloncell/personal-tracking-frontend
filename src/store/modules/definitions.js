@@ -9,6 +9,7 @@ const state = {
     employeeTypeList: [],
     educationTypeList: [],
     employeeDocumentList: [],
+    roleList: [],
 }
 
 const mutations = {
@@ -34,6 +35,10 @@ const mutations = {
 
     SET_EMPLOYEE_DOCUMENT_LIST(state, item) {
         state.employeeDocumentList = item
+    },
+
+    SET_ROLE_LIST(state, item) {
+        state.role = item
     },
 
 }
@@ -91,11 +96,21 @@ const actions = {
     callEmployeeDocumentList: async function ({commit}) {
         try {
             const {data} = await definitionsService.getEmployeeDocumentList()
-            console.log(data, 'document')
             commit('SET_EMPLOYEE_DOCUMENT_LIST', data.data)
         } catch (err) {
             console.error(err)
             throw new Error('Education type list get connection failed')
+        }
+    },
+
+    callRoleList: async function ({commit}) {
+        try {
+            const {data} = await definitionsService.getRoleList()
+            console.log(data, 'roles')
+            commit('SET_ROLE_LIST', data.data)
+        } catch (err) {
+            console.error(err)
+            throw new Error('Role type list get connection failed')
         }
     },
 }
@@ -121,6 +136,10 @@ const getters = {
     },
     employeeDocumentList: (state) => {
         return state.employeeDocumentList
+    },
+
+    roleList: (state) => {
+        return state.roleList
     },
 }
 

@@ -1,7 +1,7 @@
 <template>
   <div class="layout-profile">
     <div>
-      <img src="assets/layout/images/profile.png" alt=""/>
+      <img :src="userImage" alt="user_image_fail"/>
     </div>
     <button class="p-link layout-profile-link" @click="onClick">
       <span class="username">{{ userName }}</span>
@@ -57,6 +57,7 @@ export default {
   computed: {
     ...mapGetters({
       userData: 'auth/userData',
+      imageUrl: 'auth/imageUrl',
     }),
 
     userName() {
@@ -65,9 +66,19 @@ export default {
       } else {
         return '-'
       }
-    }
+    },
+
+    userImage() {
+      if (this.imageUrl) {
+        console.log(this.imageUrl, 'com')
+        return `https://jr-securityplus.s3.amazonaws.com/${this.imageUrl}`
+      } else {
+        return 'assets/layout/images/profile.png'
+      }
+    },
+
   },
-  
+
 
 }
 

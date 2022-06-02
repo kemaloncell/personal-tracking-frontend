@@ -34,16 +34,6 @@ class AuthService extends BaseService {
         return await super.post('/change-password', data)
     }
 
-    async uploadFileRequest({file}) {
-
-        return await super.patch(`/photo`, file, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        })
-
-    }
-
 }
 
 const authService = new AuthService()

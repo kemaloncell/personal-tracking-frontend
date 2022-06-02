@@ -13,8 +13,6 @@
       <Notification/>
 
     </div>
-
-
   </div>
 </template>
 <script>
