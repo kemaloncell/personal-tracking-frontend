@@ -4,7 +4,7 @@
       <img src="assets/layout/images/profile.png" alt=""/>
     </div>
     <button class="p-link layout-profile-link" @click="onClick">
-      <span class="username">Claire Williams</span>
+      <span class="username">{{ userName }}</span>
       <i class="pi pi-fw pi-cog"></i>
     </button>
     <transition name="layout-submenu-wrapper">
@@ -29,6 +29,7 @@
 
 <script>
 import authMixin from '@/components/auth/mixins/authMixins'
+import {mapGetters} from "vuex";
 
 export default {
   mixins: [authMixin],
@@ -53,7 +54,24 @@ export default {
       }
     },
   },
+  computed: {
+    ...mapGetters({
+      userData: 'auth/userData',
+    }),
+
+    userName() {
+      if (this.userData) {
+        return this.userData.data.name
+      } else {
+        return '-'
+      }
+    }
+  },
+  
+
 }
+
+
 </script>
 
 <style scoped>
