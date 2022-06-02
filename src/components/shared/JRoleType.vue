@@ -34,6 +34,7 @@ export default {
     ...mapActions({
       callRoleList: 'definitions/callRoleList'
     }),
+
     setSelectedRoleType() {
       this.$emit('onRoleType', this.selectedRoleType)
     }

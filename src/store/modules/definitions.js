@@ -38,7 +38,7 @@ const mutations = {
     },
 
     SET_ROLE_LIST(state, item) {
-        state.role = item
+        state.roleList = item
     },
 
 }

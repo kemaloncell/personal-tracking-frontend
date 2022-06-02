@@ -23,6 +23,16 @@
         />
       </div>
 
+      <div class="col-2 text-sm">Şifre</div>
+      <div class="col-4">
+        <j-input-text
+            name="Passoword"
+            class="w-full p-inputtext-sm"
+            v-model="formData.password"
+
+        />
+
+      </div>
 
       <div class="col-2 text-sm">Mobil Tel</div>
       <div class="col-4">
@@ -35,10 +45,11 @@
         />
 
       </div>
+      
 
       <div class="col-2 text-sm">Role</div>
       <div class="col-4 pt-0 pb-0">
-        <j-education-level-type
+        <j-role-type
             @onRoleType="onRoleType"
             :defaultRole="formData.Role"
         />

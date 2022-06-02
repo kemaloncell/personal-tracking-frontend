@@ -132,7 +132,7 @@
             :singleLoading="singleLoading"
             :defaultValues="defaultValues"
             :type="formType"
-            @onSubmit="submit"
+            @onSubmit="accountSubmit"
             @close="closeModal"
         />
       </template>
@@ -222,6 +222,16 @@ export default {
       this.formType = 'CREATE'
 
       this.resetForm()
+    },
+
+    async accountSubmit(data, type) {
+      if (this.formType === 'CREATE') {
+        this.createSubmit(data, type)
+      }
+
+      if (this.formType === 'UPDATE') {
+        this.udpateSubmit(data)
+      }
     },
 
   },

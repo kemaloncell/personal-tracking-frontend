@@ -71,6 +71,21 @@ const actions = {
         }
     },
 
+    callRegister: async function ({commit}, loginData) {
+        try {
+            commit('SET_LOADING', true)
+            const {data} = await authService.login(loginData)
+            const token = data.data.tokens.access_token
+            localStorage.setItem('id_token', token)
+            commit('SET_TOKEN', token)
+            commit('SET_LOADING', false)
+        } catch (err) {
+            commit('SET_LOADING', false)
+            console.error(err)
+            throw new Error('Login failed')
+        }
+    },
+
     callLogout: async function ({commit}) {
         commit('SET_TOKEN', null)
         commit('SET_USER', null)

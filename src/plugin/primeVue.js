@@ -20,6 +20,7 @@ import JEducationLevelType from "@/components/shared/JEducationLevelType";
 import JDate from "@/components/shared/JDate";
 import JEmployeeDocumentType from "@/components/shared/JEmployeeDocumentType";
 import JCityDistrict from "@/components/shared/JCityDistrict";
+import JRoleType from "@/components/shared/JRoleType";
 
 
 import AutoComplete from 'primevue/autocomplete';
@@ -121,6 +122,7 @@ Vue.component('j-employee-type', JEmployeeType)
 Vue.component('j-education-level-type', JEducationLevelType)
 Vue.component('j-date', JDate)
 Vue.component('j-employee-document-type', JEmployeeDocumentType)
+Vue.component('j-role-type', JRoleType)
 
 
 Vue.component('Accordion', Accordion);
