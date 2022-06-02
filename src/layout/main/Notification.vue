@@ -3,7 +3,7 @@
     <button class="p-link" aria:haspopup="true" aria-controls="overlay_panel" @click="onNotificationPanel">
       <span class="layout-topbar-item-text">Events</span>
       <span class="layout-topbar-icon pi pi-calendar"></span>
-      <span class="layout-topbar-badge">5</span>
+      <span class="layout-topbar-badge">{{ listCount }}</span>
     </button>
     <button class="p-link">
       <span class="layout-topbar-item-text">Settings</span>
@@ -66,6 +66,10 @@ export default {
       loading: 'notifications/loading',
       list: 'notifications/list',
     }),
+
+    listCount() {
+      return this.list.length;
+    }
   },
 
   methods: {
@@ -88,7 +92,6 @@ export default {
     },
 
     async onDelete(val) {
-      console.log(val.id, 'feş')
       try {
         await this.deleteNotifications(val.id)
 
