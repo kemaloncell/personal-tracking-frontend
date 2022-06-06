@@ -21,6 +21,9 @@ import EmployeeDocumentList from '@/views/Employees/EmployeesDocuments.vue'
 //Customers
 import CustomerList from '@/views/Customers/Customers.vue'
 
+//Demands
+import DemandsList from '@/views/Demands/Demands.vue'
+
 //Suppliers
 import SupplierList from '@/views/Suppliers/Supplier.vue'
 
@@ -113,6 +116,15 @@ const routes = [
         path: '/employees/:id',
         name: 'Document',
         component: EmployeeDocumentList,
+        props: true,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/demands',
+        name: 'Demands',
+        component: DemandsList,
         props: true,
         meta: {
             requiresAuth: true

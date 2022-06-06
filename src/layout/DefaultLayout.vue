@@ -49,6 +49,7 @@ export default {
           ]
         },
         {label: 'Personal Yönetimi', icon: 'pi pi-fw pi-user-plus', to: '/employees'},
+        {label: 'İzin Talep', icon: 'pi pi-fw pi-folder', to: '/demands'},
         {label: 'Müşteri Yönetimi', icon: 'pi pi-fw pi-user-plus', to: '/customers'},
         {label: 'Tedarikçiler', icon: 'pi pi-fw pi-users', to: '/suppliers'},
         {label: 'Saha Yönetimi', icon: 'pi pi-fw pi-external-link', to: '/fields'},
