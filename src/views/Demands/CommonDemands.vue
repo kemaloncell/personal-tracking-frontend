@@ -2,7 +2,7 @@
   <default-layout>
     <div slot="content">
 
-      <h2 class="text-center text-2xl font-medium mb-3">İzin / Talep</h2>
+      <h2 class="text-center text-2xl font-medium mb-3">Ortak İzin / Talep</h2>
 
       <div
           class="flex mb-3 justify-content-between align-items-center mb-3 filters flex-wrap"
@@ -17,7 +17,7 @@
 
       </div>
 
-      <DemandList
+      <CommonDemandList
           :data="list"
           :loading="loading"
           @onUpdate="onUpdate"
@@ -45,12 +45,12 @@
 <script>
 import CustomerForm from "@/components/customers/CustomerForm";
 import customerMixin from "@/components/customers/mixins/customerMixins";
-import DemandList from "@/components/demands/DemandList";
+import CommonDemandList from "@/components/demands/CommonDemandList";
 
 export default {
   mixins: [customerMixin],
   components: {
-    DemandList,
+    CommonDemandList,
     CustomerForm
   },
   data() {

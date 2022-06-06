@@ -23,6 +23,8 @@ import CustomerList from '@/views/Customers/Customers.vue'
 
 //Demands
 import DemandsList from '@/views/Demands/Demands.vue'
+import CommonDemandsList from '@/views/Demands/CommonDemands.vue'
+import AdvanceDemands from '@/views/Demands/AdvanceDemands.vue'
 
 //Suppliers
 import SupplierList from '@/views/Suppliers/Supplier.vue'
@@ -37,6 +39,7 @@ import ShiftList from '@/views/Shifts/Shifts.vue'
 import Login from '@/components/auth/Login.vue'
 import ForgotPassword from '@/components/auth/ForgotPassword.vue'
 import ForgotPasswordSecond from '@/components/auth/ForgotPasswordSecond.vue'
+import CommonDemandList from "@/components/demands/CommonDemandList";
 
 const routes = [
     {
@@ -105,6 +108,33 @@ const routes = [
         }
     },
     {
+        path: '/demands/offdays',
+        name: 'Demands',
+        component: DemandsList,
+        props: true,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/demands/common-offdays',
+        name: 'CommonDemands',
+        component: CommonDemandsList,
+        props: true,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/demands/advance',
+        name: 'AdvanceDemands',
+        component: AdvanceDemands,
+        props: true,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
         path: '/employees',
         name: 'Employee',
         component: EmployeeList,
@@ -116,15 +146,6 @@ const routes = [
         path: '/employees/:id',
         name: 'Document',
         component: EmployeeDocumentList,
-        props: true,
-        meta: {
-            requiresAuth: true
-        }
-    },
-    {
-        path: '/demands',
-        name: 'Demands',
-        component: DemandsList,
         props: true,
         meta: {
             requiresAuth: true

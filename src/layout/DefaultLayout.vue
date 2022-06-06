@@ -41,15 +41,22 @@ export default {
       menu: [
         {label: 'Anasayfa', icon: 'pi pi-fw pi-home', to: '/'},
         {
-          label: 'Finans', icon: 'pi pi-fw pi-reply',
+          label: 'Finans', icon: 'pi pi-fw pi-money-bill',
           items: [
             {label: 'Ödemeler', icon: 'pi pi-fw pi-money-bill', to: '/finances/payments'},
             {label: 'Bakiye', icon: 'pi pi-fw pi-inbox', to: '/finances/balances'},
             {label: 'Hakediş', icon: 'pi pi-fw pi-ticket', to: '/finances/vesting'},
           ]
         },
+        {
+          label: 'İzin Talep', icon: 'pi pi-fw pi-th-large',
+          items: [
+            {label: 'İzin Günleri', icon: 'pi pi-fw pi-folder', to: '/demands/offdays'},
+            {label: 'Ortak İzin Günleri', icon: 'pi pi-fw pi-folder-open', to: '/demands/common-offdays'},
+            {label: 'Avans Talebi', icon: 'pi pi-fw pi-envelope', to: '/demands/advance'},
+          ]
+        },
         {label: 'Personal Yönetimi', icon: 'pi pi-fw pi-user-plus', to: '/employees'},
-        {label: 'İzin Talep', icon: 'pi pi-fw pi-folder', to: '/demands'},
         {label: 'Müşteri Yönetimi', icon: 'pi pi-fw pi-user-plus', to: '/customers'},
         {label: 'Tedarikçiler', icon: 'pi pi-fw pi-users', to: '/suppliers'},
         {label: 'Saha Yönetimi', icon: 'pi pi-fw pi-external-link', to: '/fields'},
