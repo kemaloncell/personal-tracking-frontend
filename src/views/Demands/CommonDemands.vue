@@ -17,7 +17,7 @@
 
       </div>
 
-      <CommonDemandList
+      <CommonDemandsList
           :data="list"
           :loading="loading"
           @onUpdate="onUpdate"
@@ -26,7 +26,7 @@
       />
       <j-modal :visible.sync="displayModal" width="800px">
         <template slot="content">
-          <customer-form
+          <common-demands-form
               :loading="submitLoading"
               :singleLoading="singleLoading"
               :defaultValues="defaultValues"
@@ -43,15 +43,15 @@
 </template>
 
 <script>
-import CustomerForm from "@/components/customers/CustomerForm";
-import customerMixin from "@/components/customers/mixins/customerMixins";
-import CommonDemandList from "@/components/demands/CommonDemandList";
+import commonDemandsMixins from "@/components/demands/mixins/commonDemandsMixins";
+import CommonDemandsList from "@/components/demands/CommonDemandsList";
+import CommonDemandsForm from "@/components/demands/CommonDemandsForm";
 
 export default {
-  mixins: [customerMixin],
+  mixins: [commonDemandsMixins],
   components: {
-    CommonDemandList,
-    CustomerForm
+    CommonDemandsForm,
+    CommonDemandsList,
   },
   data() {
     return {
@@ -89,7 +89,7 @@ export default {
 
   },
   created() {
-    this.getListCustomer()
+    this.getListCommonDemands()
   }
 }
 </script>

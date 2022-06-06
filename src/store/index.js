@@ -22,6 +22,9 @@ import definitions from './modules/definitions'
 //notifications
 import notifications from './modules/notifications'
 
+//demands
+import commonDemands from './modules/demands/commonDemands'
+
 Vue.use(Vuex)
 
 
@@ -36,6 +39,7 @@ export default new Vuex.Store({
         customer,
         employeeDocument,
         definitions,
-        notifications
+        notifications,
+        commonDemands
     }
 })

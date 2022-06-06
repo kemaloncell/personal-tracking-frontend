@@ -100,7 +100,9 @@ export default {
       this.menuClick = true;
     },
     onMenuItemClick(event) {
+      console.log(event, "event")
       if (event.item && !event.item.items) {
+        
         this.overlayMenuActive = false;
         this.mobileMenuActive = false;
       }

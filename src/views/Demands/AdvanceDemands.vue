@@ -17,7 +17,7 @@
 
       </div>
 
-      <CommonDemandList
+      <AdvanceDemandsList
           :data="list"
           :loading="loading"
           @onUpdate="onUpdate"
@@ -45,12 +45,12 @@
 <script>
 import CustomerForm from "@/components/customers/CustomerForm";
 import customerMixin from "@/components/customers/mixins/customerMixins";
-import CommonDemandList from "@/components/demands/CommonDemandList";
+import AdvanceDemandsList from "@/components/demands/AdvanceDemandsList";
 
 export default {
   mixins: [customerMixin],
   components: {
-    CommonDemandList,
+    AdvanceDemandsList,
     CustomerForm
   },
   data() {
