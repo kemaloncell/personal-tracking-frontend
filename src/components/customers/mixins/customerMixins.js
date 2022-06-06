@@ -46,11 +46,12 @@ const customerMixin = {
             setPageCustomer: 'customer/setPage',
             deleteCustomer: 'customer/delete',
             getSingleCustomer: 'customer/getSingle',
-            multipleDeleteCustomer: 'customer/multipleDelete'
+            multipleDeleteCustomer: 'customer/multipleDelete',
+            callRegister: 'auth/callRegister',
         }),
-        async createSubmit(data, type) {
+        async createSubmit(data, type, accountType) {
             try {
-                await this.createCustomer(data)
+                accountType ? await this.callRegister(data) : await this.createCustomer(data)
 
                 this.$toast.add({
                     severity: 'success',

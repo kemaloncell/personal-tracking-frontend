@@ -1,18 +1,19 @@
 <template>
   <div>
     <form @submit.prevent="submit">
-      <div class="flex justify-content-between">
+      <div class="flex justify-content-between mt-1">
         <h2 class="text-2xl font-bold" style="margin-bottom: 20px">
           Çalışan
         </h2>
 
         <Button
-            v-tooltip.top="'Kullanıcı için hesap oluşturmak için tıklayın'"
+            v-tooltip.top="'Personala hesap oluşturmak için tıklayın'"
             v-if="formData.id"
             :disabled="loading"
             @click="openModal"
             label="Hesap Oluştur"
             icon="pi pi-user"
+            style="height: 2rem; width:6rem; font-size :.7rem; padding:.6rem;"
             class="p-button-sm p-button-rounded p-button-info p-button-outlined"
         />
       </div>
@@ -130,7 +131,6 @@
         <create-employee-form
             :loading="submitLoading"
             :singleLoading="singleLoading"
-            :defaultValues="defaultValues"
             :type="formType"
             @onSubmit="accountSubmit"
             @close="closeModal"
@@ -157,7 +157,6 @@ export default {
     displayModal: false,
     formType: 'CREATE',
     accountType: true,
-    defaultValues: null,
   }),
 
 
@@ -218,10 +217,9 @@ export default {
 
     closeModal() {
       this.displayModal = false
-      this.defaultValues = null
       this.formType = 'CREATE'
 
-      this.resetForm()
+      //this.resetForm()
     },
 
     async accountSubmit(data, type) {

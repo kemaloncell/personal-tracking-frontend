@@ -93,7 +93,6 @@ const actions = {
 
     callForgotPassword: async function ({commit}, changePasswordData) {
         try {
-            console.log(changePasswordData, 'changePasswordData')
             //send tel no
             commit('SET_LOADING', true)
             const {data} = await authService.forgotPassword(changePasswordData)
@@ -108,7 +107,6 @@ const actions = {
 
     sendForgotPasswordCode: async function ({commit}, changePasswordData) {
         try {
-            console.log(changePasswordData, 'changePasswordData')
             //send tel no
             commit('SET_LOADING', true)
             const {data} = await authService.sendForgotPasswordCode(changePasswordData, this.otpValidationCode)
@@ -190,7 +188,6 @@ const getters = {
     },
 
     imageUrl: (state) => {
-        console.log(state.imageUrl, 'gfet')
         return state.imageUrl
     },
 
