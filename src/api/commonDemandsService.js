@@ -15,7 +15,6 @@ class CommonDemandsService extends BaseService {
     }
 
     async create(data) {
-        console.log(data)
         return await super.post(`/`, data)
 
     }
@@ -26,6 +25,7 @@ class CommonDemandsService extends BaseService {
     }
 
     async delete(id) {
+        console.log("del", id)
         return super.delete(`/${id}`)
 
     }

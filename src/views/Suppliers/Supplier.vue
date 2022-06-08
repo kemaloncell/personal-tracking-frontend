@@ -8,7 +8,7 @@
           class="flex mb-3 justify-content-between align-items-center mb-3 filters flex-wrap"
       >
         <div class="flex align-items-center">
-          <Button @click="openModal" class="p-button-primary add-button"
+          <Button @click="openModal" class="commonDemandsServiceimary add-button"
           >Tedariçi Ekle
           </Button
           >

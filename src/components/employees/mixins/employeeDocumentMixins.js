@@ -118,7 +118,6 @@ const employeeDocumentMixin = {
         },
 
         async onUpdate(val) {
-            console.log(val, 'valsd')
             this.docTypeId = val.EmployeeDocumentType.id
             this.defaultValues = val
             this.formType = 'UPDATE'

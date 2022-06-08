@@ -6,24 +6,9 @@ const commonDemandsMixins = {
             selectedItems: [],
             formData: {
                 title: null,
-                identityNumber: null,
-                isCorporate: "TUZEL",
-                TaxOffice: null,
-                Address: {
-                    title: "şahıs şirketi",
-                    address: null,
-                    postalCode: null,
-                    City: null,
-                    District: null,
-                    phone: "",
-                    phone2: "",
-                    faxNumber: "",
-                },
-                AuthPerson: {
-                    name: null,
-                    phone: "",
-                    mail: null,
-                },
+                description: null,
+                documentPath: null,
+                isDemand: null,
             },
         }
     },
@@ -75,7 +60,6 @@ const commonDemandsMixins = {
 
         async udpateSubmit(data) {
             try {
-                console.log(data, 'data', 'id ', this.updateId)
                 await this.updateCommonDemands({id: this.updateId, data})
 
                 this.$toast.add({
@@ -120,10 +104,7 @@ const commonDemandsMixins = {
         },
 
         async onUpdate(val) {
-            this.updateId = val.id
-            const item = await this.getSingleCommonDemands(this.updateId)
-            this.defaultValues = item.data
-            this.formData.taxOffice = item.data.TaxOffice
+            this.defaultValues = val
             this.formType = 'UPDATE'
             this.displayModal = true
         },

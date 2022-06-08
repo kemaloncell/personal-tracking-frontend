@@ -6,6 +6,7 @@
       :loading="loading"
       :totalRecords="total"
       :lazy="true"
+      :isMessage="true"
       sortMode="multiple"
       @onPageChange="onPage"
       @onDelete="onDeleteYes"

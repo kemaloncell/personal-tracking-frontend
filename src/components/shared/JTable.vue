@@ -41,6 +41,16 @@
 
 
           <Button
+              v-if="isMessage"
+              type="button"
+              class=" p-button-sm table-message-button mr-2"
+              @click="() => onMessageClick(data)"
+          >
+            <i class="pi pi-envelope"></i>
+
+          </Button>
+
+          <Button
               v-if="!isVisibleUpdateButton"
               type="button"
               class="p-button-primary p-button-sm table-update-button mr-2"
@@ -48,6 +58,7 @@
           >
             <img alt="logo" src="../../assets/icons/update.svg"/>
           </Button>
+
           <Button
               type="button"
               class="p-button-danger table-delete-button"
@@ -112,6 +123,10 @@ export default {
       default: () => false,
       type: Boolean
     },
+    isMessage: {
+      default: () => false,
+      type: Boolean
+    },
     isVisibleUpdateButton: {
       default: () => false,
       type: Boolean
@@ -147,6 +162,11 @@ export default {
 
     onUpdateClick(id) {
       this.$emit('onUpdate', id)
+    },
+
+    onMessageClick(id) {
+      console.log(id)
+      this.$emit('onMessage', id)
     },
 
     onDeleteClick(id) {
@@ -218,6 +238,7 @@ export default {
   background-color: rgba(255, 255, 255, 0.432) !important;
 }
 
+.table-message-button,
 .table-update-button,
 .table-delete-button {
   width: 26px !important;
@@ -239,6 +260,10 @@ export default {
 
 .table-update-button {
   background-color: #3f9bfc !important;
+}
+
+.table-message-button {
+  background-color: #22a22d !important;
 }
 
 
