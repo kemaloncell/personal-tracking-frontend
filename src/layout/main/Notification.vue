@@ -3,7 +3,7 @@
     <button class="p-link" aria:haspopup="true" aria-controls="overlay_panel" @click="onNotificationPanel">
       <span class="layout-topbar-item-text">Events</span>
       <span class="layout-topbar-icon pi pi-calendar"></span>
-      <span class="layout-topbar-badge">{{ listCount }}</span>
+      <span v-if="listCount" class="layout-topbar-badge">{{ listCount }}</span>
     </button>
     <button class="p-link">
       <span class="layout-topbar-item-text">Settings</span>

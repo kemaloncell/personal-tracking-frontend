@@ -444,6 +444,7 @@ export default {
     },
 
     onSelectDistrict(district) {
+      console.log(district, 'on selecrt dist')
       if (district) {
         this.formData.Address.District = district
       }

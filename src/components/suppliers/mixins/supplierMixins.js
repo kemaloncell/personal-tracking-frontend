@@ -99,6 +99,8 @@ const supplierMixin = {
 
         async onDelete(val) {
             try {
+                console.log(val, 'cus')
+
                 await this.deleteSupplier(val.id)
 
                 this.$toast.add({
