@@ -161,7 +161,6 @@ export default {
     },
 
     onMessageClick(id) {
-      console.log(id)
       this.$emit('onMessage', id)
     },
 

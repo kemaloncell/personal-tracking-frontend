@@ -1,28 +1,21 @@
 <template>
 
   <j-table
-      :value="list"
+      :value="data"
       :total="total"
       :loading="loading"
       :totalRecords="total"
       :lazy="true"
-      :isMessage="true"
+      :isVisibleUpdateButton="true"
       sortMode="multiple"
       @onPageChange="onPage"
       @onDelete="onDeleteYes"
-      @onUpdate="onUpdateClick"
-      @onMessage="onMessageClick"
-      @selections="onHandleSelection"
-      @onHandleSort="onHandleSort"
+
   >
     <template slot="columns">
-      <Column field="User.name" header="Adı" sortable></Column>
-      <Column field="title" header="Başlık" sortable></Column>
-      <Column field="description" header="Açıklama" sortable></Column>
-      <Column header="Şikayet/Talep" sortable>
-        <template #body="{ data }">
-          {{ data.isDemand ? 'Talep' : 'Şikayet' }}
-        </template>
+      <Column field="description" header="Mesaj"></Column>
+      <Column header="İmage">
+        asd
       </Column>
 
     </template>
@@ -32,7 +25,6 @@
 </template>
 
 <script>
-import commonDemandsMessageMixins from "./mixins/commonDemandsMessageMixins";
 
 export default {
   mixins: ["commonDemandsMessageMixins"],
@@ -70,27 +62,7 @@ export default {
       this.$emit('onDelete', id)
     },
 
-    onUpdateClick(id) {
-      this.$emit('onUpdate', id)
-    },
-
-    onMessageClick(id) {
-      this.$emit('onMessage', id)
-    },
-
-    onHandleSelection(val) {
-      this.$emit('onSelection', val)
-    },
-
-    onHandleSort(val) {
-      this.$emit('onSort', val)
-    }
   },
-
-  created() {
-    console.log(this.getList)
-    this.getList()
-  }
 }
 </script>
 

@@ -1,4 +1,4 @@
-import {demandsMessageService} from '@/api/demandsMessageService'
+import {commonDemandsMessageService} from '@/api/commonDemandsMessageService'
 
 const state = {
     list: [],
@@ -34,11 +34,10 @@ const mutations = {
 }
 
 const actions = {
-    getList: async function ({commit}) {
+    getList: async function ({commit}, id) {
         try {
             commit('SET_LOADING', true)
-            const {data} = await demandsMessageService.getAllList()
-            console.log("data", data)
+            const {data} = await commonDemandsMessageService.getAllList(id)
             commit('SET_LIST', data.data)
         } catch (error) {
             console.log(error);
@@ -51,7 +50,7 @@ const actions = {
     create: async function ({commit}, data) {
         try {
             commit('SET_SUBMIT_LOADING', true)
-            await demandsMessageService.create(data)
+            await commonDemandsMessageService.create(data)
         } catch (err) {
             console.error(err)
             throw new Error('Create connection failed')
@@ -63,7 +62,7 @@ const actions = {
     delete: async function ({commit}, id) {
         try {
             commit('SET_LOADING', true)
-            await demandsMessageService.delete(id)
+            await commonDemandsMessageService.delete(id)
         } catch (err) {
             commit('SET_LOADING', false)
             console.error(err)

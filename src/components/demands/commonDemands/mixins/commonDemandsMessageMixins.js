@@ -7,6 +7,7 @@ const commonDemandsMessageMixins = {
                 description: null,
                 demandId: null,
                 documentPath: null,
+                messageId: null
             },
         }
     },

@@ -20,7 +20,6 @@
       <CommonDemandsList
           :data="list"
           :loading="loading"
-          @onMessage="onMessage"
           @onUpdate="onUpdate"
           @onDelete="onDelete"
           @onSelection="onSelection"

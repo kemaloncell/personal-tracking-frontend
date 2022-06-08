@@ -2,22 +2,20 @@
   <div>
     <form @submit.prevent="submit">
       <h2 class="text-2xl font-bold" style="margin-bottom: 50px">
-        Çalışan
+        Mesaj
       </h2>
       <div class="grid mt-5 flex align-items-center">
 
-        <div class="col-2 text-sm">Açıklama</div>
-        <div class="col-4">
-          <j-input-text
-              unmask
-              name="description"
-              class="w-full p-inputtext-sm"
-              v-model="formData.description"
-          />
-
+        <div class="col-2 text-sm">Açıklama:</div>
+        <div class="col-10 description-input">
+        <Textarea
+            name="address"
+            class="w-full"
+            v-model.trim="formData.description"
+            maxLength="512"
+        />
         </div>
-
-        <hr class="w-full"/>
+        
         <div class="col-12">
           <VueFileAgent
               ref="vueFileAgent"
@@ -40,18 +38,10 @@
             class="flex justify-content-center w-full mt-5 mb-5 decline-button save-menu-button save-button"
         >
           <j-submitbutton
-              v-if="type === 'CREATE'"
-              :loading="loading"
-              @save="submit"
-          />
-          <Button
-              v-else
-              :disabled="loading"
-              label="Güncelle"
-              class="save-primary-button ml-3"
               :loading="loading"
               @click="submit"
           />
+
           <Button
               :disabled="loading"
               @click="onClose"
@@ -62,6 +52,7 @@
       </div>
     </form>
 
+    <hr/>
     <commonDemandsMessageList
         :data="list"
         :loading="loading"
@@ -119,6 +110,7 @@ export default {
       }
     },
   },
+
 
 }
 </script>

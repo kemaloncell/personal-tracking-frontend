@@ -1,12 +1,12 @@
 import {BaseService} from '@/api/baseService'
 
-class DemandsMessageService extends BaseService {
+class CommonDemandsMessageService extends BaseService {
     constructor() {
         super('demand-message')
     }
 
-    async getAllList() {
-        return await super.get('/')
+    async getAllList(id) {
+        return await super.get(`/${id}`)
     }
 
 
@@ -24,6 +24,6 @@ class DemandsMessageService extends BaseService {
 
 }
 
-const demandsMessageService = new DemandsMessageService()
+const commonDemandsMessageService = new CommonDemandsMessageService()
 
-export {demandsMessageService}
+export {commonDemandsMessageService}

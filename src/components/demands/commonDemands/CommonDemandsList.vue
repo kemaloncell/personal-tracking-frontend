@@ -35,8 +35,7 @@
             :loading="submitLoading"
             :singleLoading="singleLoading"
             :defaultValues="defaultValues"
-            :type="formType"
-            @onSubmit="submit"
+            @onSubmit="commonMessageSubmit"
             @close="closeModal"
         />
       </template>
@@ -56,7 +55,7 @@ export default {
     commonDemandsMessageForm
   },
   data: () => ({
-    displayModal: false
+    displayModal: false,
   }),
 
   props: {
@@ -77,6 +76,25 @@ export default {
   },
 
   methods: {
+    async commonMessageSubmit(data, type) {
+      this.createSubmit(data, type)
+
+    },
+
+    async onMessage(val) {
+      this.getListCommonDemandsMessage(val.id)
+      this.formType = 'MESSAGE'
+      this.displayModal = true
+    },
+
+    closeModal() {
+      this.displayModal = false
+      this.defaultValues = null
+      this.formType = 'CREATE'
+
+      // this.resetForm()
+    },
+
     onPage(params) {
       const {
         page: {page, rows: size}
@@ -93,11 +111,6 @@ export default {
       this.$emit('onUpdate', id)
     },
 
-    async onMessage(val) {
-      this.defaultValues = val
-      this.formType = 'MESSAGE'
-      this.displayModal = true
-    },
 
     onHandleSelection(val) {
       this.$emit('onSelection', val)
@@ -106,7 +119,9 @@ export default {
     onHandleSort(val) {
       this.$emit('onSort', val)
     }
-  }
+  },
+
+
 }
 </script>
 

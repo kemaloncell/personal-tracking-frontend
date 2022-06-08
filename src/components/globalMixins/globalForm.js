@@ -1,35 +1,33 @@
 const globalFormProps = {
-  props: {
-    loading: {
-      type: Boolean,
-      default: () => false
+    props: {
+
+
+        type: {
+            type: String,
+            default: () => 'CREATE'
+        },
+
+        defaultValues: {
+            type: Object,
+            default: () => {
+            }
+        }
     },
 
-    type: {
-      type: String,
-      default: () => 'CREATE'
+    watch: {
+        defaultValues(val) {
+            if (val) {
+                console.log(val)
+                this.formData = val
+            }
+        }
     },
 
-    defaultValues: {
-      type: Object,
-      default: () => {}
+    mounted() {
+        if (this.defaultValues) {
+            this.formData = this.defaultValues
+        }
     }
-  },
-
-  watch: {
-    defaultValues(val) {
-      if (val) {
-        console.log(val)
-        this.formData = val
-      }
-    }
-  },
-
-  mounted() {
-    if (this.defaultValues) {
-      this.formData = this.defaultValues
-    }
-  }
 }
 
 export default globalFormProps
