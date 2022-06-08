@@ -1,4 +1,4 @@
-import {demandsService} from '@/api/supplierService'
+import {demandsService} from '@/api/demandsService'
 
 const state = {
     list: [],

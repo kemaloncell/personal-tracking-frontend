@@ -24,6 +24,7 @@ import notifications from './modules/notifications'
 
 //demands
 import commonDemands from './modules/demands/commonDemands'
+import commonDemandsMessage from './modules/demands/commonDemands/commonDemandsMessage'
 
 Vue.use(Vuex)
 
@@ -40,6 +41,7 @@ export default new Vuex.Store({
         employeeDocument,
         definitions,
         notifications,
-        commonDemands
+        commonDemands,
+        commonDemandsMessage
     }
 })

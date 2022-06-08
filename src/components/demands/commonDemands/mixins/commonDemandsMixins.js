@@ -103,11 +103,6 @@ const commonDemandsMixins = {
             }
         },
 
-        async onMessage(val) {
-            this.defaultValues = val
-            this.formType = 'MESSAGE'
-            this.displayModal = true
-        },
 
         async onUpdate(val) {
             this.defaultValues = val

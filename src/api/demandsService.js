@@ -1,6 +1,6 @@
 import {BaseService} from '@/api/baseService'
 
-class SupplierService extends BaseService {
+class DemandsService extends BaseService {
     constructor() {
         super('demands')
     }
@@ -38,6 +38,6 @@ class SupplierService extends BaseService {
 
 }
 
-const supplierService = new SupplierService()
+const demandsService = new DemandsService()
 
-export {supplierService}
+export {demandsService}

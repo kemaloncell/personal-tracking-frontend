@@ -1,38 +1,60 @@
 <template>
+  <div>
+    <j-table
+        :value="data"
+        :total="total"
+        :loading="loading"
+        :totalRecords="total"
+        :lazy="true"
+        :isMessage="true"
+        sortMode="multiple"
+        @onPageChange="onPage"
+        @onDelete="onDeleteYes"
+        @onUpdate="onUpdateClick"
+        @onMessage="onMessage"
+        @selections="onHandleSelection"
+        @onHandleSort="onHandleSort"
+    >
+      <template slot="columns">
+        <Column field="User.name" header="Adı" sortable></Column>
+        <Column field="title" header="Başlık" sortable></Column>
+        <Column field="description" header="Açıklama" sortable></Column>
+        <Column header="Şikayet/Talep" sortable>
+          <template #body="{ data }">
+            {{ data.isDemand ? 'Talep' : 'Şikayet' }}
+          </template>
+        </Column>
 
-  <j-table
-      :value="data"
-      :total="total"
-      :loading="loading"
-      :totalRecords="total"
-      :lazy="true"
-      :isMessage="true"
-      sortMode="multiple"
-      @onPageChange="onPage"
-      @onDelete="onDeleteYes"
-      @onUpdate="onUpdateClick"
-      @onMessage="onMessageClick"
-      @selections="onHandleSelection"
-      @onHandleSort="onHandleSort"
-  >
-    <template slot="columns">
-      <Column field="User.name" header="Adı" sortable></Column>
-      <Column field="title" header="Başlık" sortable></Column>
-      <Column field="description" header="Açıklama" sortable></Column>
-      <Column header="Şikayet/Talep" sortable>
-        <template #body="{ data }">
-          {{ data.isDemand ? 'Talep' : 'Şikayet' }}
-        </template>
-      </Column>
+      </template>
+      <template slot="action"></template>
+    </j-table>
 
-    </template>
-    <template slot="action"></template>
-  </j-table>
+    <j-modal :visible.sync="displayModal" width="800px">
+      <template slot="content">
+        <commonDemandsMessageForm
+            :loading="submitLoading"
+            :singleLoading="singleLoading"
+            :defaultValues="defaultValues"
+            :type="formType"
+            @onSubmit="submit"
+            @close="closeModal"
+        />
+      </template>
+    </j-modal>
 
+  </div>
 </template>
 
 <script>
+import commonDemandsMessageMixins from './mixins/commonDemandsMessageMixins'
+import GlobalForm from "@/components/globalMixins/globalForm";
+import commonDemandsMessageForm from "./CommonDemandsMessageForm";
+
 export default {
+  mixins: [commonDemandsMessageMixins, GlobalForm],
+  components: {
+    commonDemandsMessageForm
+  },
   data: () => ({
     displayModal: false
   }),
@@ -71,8 +93,10 @@ export default {
       this.$emit('onUpdate', id)
     },
 
-    onMessageClick(id) {
-      this.$emit('onMessage', id)
+    async onMessage(val) {
+      this.defaultValues = val
+      this.formType = 'MESSAGE'
+      this.displayModal = true
     },
 
     onHandleSelection(val) {
