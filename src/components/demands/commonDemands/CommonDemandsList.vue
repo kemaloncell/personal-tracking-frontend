@@ -11,6 +11,7 @@
       @onPageChange="onPage"
       @onDelete="onDeleteYes"
       @onUpdate="onUpdateClick"
+      @onMessage="onMessageClick"
       @selections="onHandleSelection"
       @onHandleSort="onHandleSort"
   >
@@ -68,6 +69,10 @@ export default {
 
     onUpdateClick(id) {
       this.$emit('onUpdate', id)
+    },
+
+    onMessageClick(id) {
+      this.$emit('onMessage', id)
     },
 
     onHandleSelection(val) {

@@ -39,7 +39,7 @@ import ShiftList from '@/views/Shifts/Shifts.vue'
 import Login from '@/components/auth/Login.vue'
 import ForgotPassword from '@/components/auth/ForgotPassword.vue'
 import ForgotPasswordSecond from '@/components/auth/ForgotPasswordSecond.vue'
-import CommonDemandList from "@/components/demands/CommonDemandsList";
+import CommonDemandList from "@/components/demands/commonDemands/CommonDemandsList.vue";
 
 const routes = [
     {

@@ -21,8 +21,7 @@
                Geçersiz E-Posta.
              </span> -->
 
-        <InputMask
-            mask="(999) 999-99-99"
+        <InputText
             placeholder="(555) 999-99-99"
             id="mobileNumberModal"
             type="text"

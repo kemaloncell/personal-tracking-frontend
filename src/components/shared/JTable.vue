@@ -160,13 +160,13 @@ export default {
       this.$emit('onPageChange', {page: page, size: 10})
     },
 
-    onUpdateClick(id) {
-      this.$emit('onUpdate', id)
-    },
-
     onMessageClick(id) {
       console.log(id)
       this.$emit('onMessage', id)
+    },
+
+    onUpdateClick(id) {
+      this.$emit('onUpdate', id)
     },
 
     onDeleteClick(id) {

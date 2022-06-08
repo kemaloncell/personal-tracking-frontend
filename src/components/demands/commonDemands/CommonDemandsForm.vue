@@ -114,7 +114,7 @@ export default {
     onClose() {
       this.$emit('close')
     },
-    
+
 
     onBeforeDelete: function (fileRecord) {
       var i = this.fileRecordsForUpload.indexOf(fileRecord);

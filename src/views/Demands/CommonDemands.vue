@@ -20,6 +20,7 @@
       <CommonDemandsList
           :data="list"
           :loading="loading"
+          @onMessage="onMessage"
           @onUpdate="onUpdate"
           @onDelete="onDelete"
           @onSelection="onSelection"
@@ -43,9 +44,9 @@
 </template>
 
 <script>
-import commonDemandsMixins from "@/components/demands/mixins/commonDemandsMixins";
-import CommonDemandsList from "@/components/demands/CommonDemandsList";
-import CommonDemandsForm from "@/components/demands/CommonDemandsForm";
+import commonDemandsMixins from "@/components/demands/commonDemands/mixins/commonDemandsMixins";
+import CommonDemandsList from "@/components/demands/commonDemands/CommonDemandsList";
+import CommonDemandsForm from "@/components/demands/commonDemands/CommonDemandsForm";
 
 export default {
   mixins: [commonDemandsMixins],

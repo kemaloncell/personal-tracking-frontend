@@ -13,7 +13,7 @@ const employeeDocumentMixin = {
                 issueDate: null,
                 expiryDate: null,
                 valid: null,
-                documentPath: '',
+                documentPath: 'document.pdf',
             },
         }
     },
