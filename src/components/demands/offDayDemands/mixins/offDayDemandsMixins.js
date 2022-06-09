@@ -1,6 +1,6 @@
 import {mapActions, mapGetters} from 'vuex'
 
-const commonDemandsMixins = {
+const offDayDemandsMixins = {
     data() {
         return {
             selectedItems: [],
@@ -15,26 +15,26 @@ const commonDemandsMixins = {
 
     computed: {
         ...mapGetters({
-            submitLoading: 'commonDemands/submitLoading',
-            loading: 'commonDemands/loading',
-            list: 'commonDemands/list',
-            listLoading: 'commonDemands/loading',
-            singleLoading: 'commonDemands/singleLoading'
+            submitLoading: 'offDayDemands/submitLoading',
+            loading: 'offDayDemands/loading',
+            list: 'offDayDemands/list',
+            listLoading: 'offDayDemands/loading',
+            singleLoading: 'offDayDemands/singleLoading'
         }),
     },
 
     methods: {
         ...mapActions({
-            createCommonDemands: 'commonDemands/create',
-            updateCommonDemands: 'commonDemands/update',
-            getListCommonDemands: 'commonDemands/getList',
-            getSingleCommonDemands: 'commonDemands/getSingle',
-            deleteCommonDemands: 'commonDemands/delete',
+            createOffDayDemands: 'offDayDemands/create',
+            updateOffDayDemands: 'offDayDemands/update',
+            getListOffDayDemands: 'offDayDemands/getList',
+            getSingleOffDayDemands: 'offDayDemands/getSingle',
+            deleteOffDayDemands: 'offDayDemands/delete',
         }),
 
         async createSubmit(data, type) {
             try {
-                await this.createCommonDemands(data)
+                await this.createOffDayDemands(data)
 
                 this.$toast.add({
                     severity: 'success',
@@ -54,13 +54,13 @@ const commonDemandsMixins = {
                     this.closeModal()
                 }
 
-                this.getListCommonDemands()
+                this.getListOffDayDemands()
             }
         },
 
         async udpateSubmit(data) {
             try {
-                await this.updateCommonDemands({id: this.updateId, data})
+                await this.updateOffDayDemands({id: this.updateId, data})
 
                 this.$toast.add({
                     severity: 'success',
@@ -76,14 +76,14 @@ const commonDemandsMixins = {
                     life: 3000
                 })
             } finally {
-                this.getListCommonDemands()
+                this.getListOffDayDemands()
                 this.closeModal()
             }
         },
 
         async onDelete(val) {
             try {
-                await this.deleteCommonDemands(val.id)
+                await this.deleteOffDayDemands(val.id)
 
                 this.$toast.add({
                     severity: 'success',
@@ -92,7 +92,7 @@ const commonDemandsMixins = {
                     life: 3000
                 })
 
-                this.getListCommonDemands()
+                this.getListOffDayDemands()
             } catch {
                 this.$toast.add({
                     severity: 'error',
@@ -121,28 +121,13 @@ const commonDemandsMixins = {
         resetForm() {
             this.formData = {
                 title: null,
-                identityNumber: null,
-                isCorporate: null,
-                TaxOffice: null,
-                Address: {
-                    title: null,
-                    address: null,
-                    postalCode: null,
-                    City: null,
-                    District: null,
-                    phone: "",
-                    phone2: "",
-                    faxNumber: "",
-                },
-                AuthPerson: {
-                    name: null,
-                    phone: "",
-                    mail: null,
-                },
+                description: null,
+                documentPath: null,
+                isDemand: null,
             }
         },
     },
 
 }
 
-export default commonDemandsMixins
+export default offDayDemandsMixins

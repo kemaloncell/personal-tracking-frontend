@@ -1,4 +1,4 @@
-import {demandsService} from '@/api/demandsService'
+import {offDayDemandsService} from '@/api/offDayDemandsService'
 
 const state = {
     list: [],
@@ -37,7 +37,7 @@ const actions = {
     getList: async function ({commit}) {
         try {
             commit('SET_LOADING', true)
-            const {data} = await demandsService.getAllList()
+            const {data} = await offDayDemandsService.getAllList()
             console.log(data, 'all list')
             commit('SET_LIST', data.data)
         } catch (error) {
@@ -51,7 +51,7 @@ const actions = {
     getSingle: async function ({commit}, id) {
         try {
             commit('SET_SINGLE_LOADING', true)
-            const {data} = await demandsService.getById(id)
+            const {data} = await offDayDemandsService.getById(id)
             return data
         } catch (err) {
             console.error(err)
@@ -64,7 +64,7 @@ const actions = {
     create: async function ({commit}, data) {
         try {
             commit('SET_SUBMIT_LOADING', true)
-            await demandsService.create(data)
+            await offDayDemandsService.create(data)
         } catch (err) {
             console.error(err)
             throw new Error('Create connection failed')
@@ -76,7 +76,7 @@ const actions = {
     delete: async function ({commit}, id) {
         try {
             commit('SET_LOADING', true)
-            await demandsService.delete(id)
+            await offDayDemandsService.delete(id)
         } catch (err) {
             commit('SET_LOADING', false)
             console.error(err)
@@ -87,7 +87,7 @@ const actions = {
     update: async function ({commit}, {data, id}) {
         try {
             commit('SET_SUBMIT_LOADING', true)
-            await demandsService.update({data, id})
+            await offDayDemandsService.update({data, id})
         } catch (err) {
             console.error(err)
             throw new Error('Create connection failed')

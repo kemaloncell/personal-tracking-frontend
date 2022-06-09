@@ -22,7 +22,7 @@ import EmployeeDocumentList from '@/views/Employees/EmployeesDocuments.vue'
 import CustomerList from '@/views/Customers/Customers.vue'
 
 //Demands
-import DemandsList from '@/views/Demands/Demands.vue'
+import DemandsList from '@/views/Demands/OffDayDemands.vue'
 import CommonDemandsList from '@/views/Demands/CommonDemands.vue'
 import AdvanceDemands from '@/views/Demands/AdvanceDemands.vue'
 
@@ -108,7 +108,7 @@ const routes = [
         }
     },
     {
-        path: '/demands/offdays',
+        path: '/OffDayDemands/offdays',
         name: 'Demands',
         component: DemandsList,
         props: true,
@@ -117,7 +117,7 @@ const routes = [
         }
     },
     {
-        path: '/demands/common-offdays',
+        path: '/OffDayDemands/common-offdays',
         name: 'CommonDemands',
         component: CommonDemandsList,
         props: true,
@@ -126,7 +126,7 @@ const routes = [
         }
     },
     {
-        path: '/demands/advance',
+        path: '/OffDayDemands/advance',
         name: 'AdvanceDemands',
         component: AdvanceDemands,
         props: true,

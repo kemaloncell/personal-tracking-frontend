@@ -51,9 +51,9 @@ export default {
         {
           label: 'İzin Talep', icon: 'pi pi-fw pi-th-large',
           items: [
-            {label: 'İzin Günleri', icon: 'pi pi-fw pi-folder', to: '/demands/offdays'},
-            {label: 'Ortak İzin Günleri', icon: 'pi pi-fw pi-folder-open', to: '/demands/common-offdays'},
-            {label: 'Avans Talebi', icon: 'pi pi-fw pi-envelope', to: '/demands/advance'},
+            {label: 'İzin Günleri', icon: 'pi pi-fw pi-folder', to: '/OffDayDemands/offdays'},
+            {label: 'Ortak İzin Günleri', icon: 'pi pi-fw pi-folder-open', to: '/OffDayDemands/common-offdays'},
+            {label: 'Avans Talebi', icon: 'pi pi-fw pi-envelope', to: '/OffDayDemands/advance'},
           ]
         },
         {label: 'Personal Yönetimi', icon: 'pi pi-fw pi-user-plus', to: '/employees'},
@@ -102,7 +102,7 @@ export default {
     onMenuItemClick(event) {
       console.log(event, "event")
       if (event.item && !event.item.items) {
-        
+
         this.overlayMenuActive = false;
         this.mobileMenuActive = false;
       }

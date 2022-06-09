@@ -1,8 +1,8 @@
 import {BaseService} from '@/api/baseService'
 
-class DemandsService extends BaseService {
+class OffDayDemandsService extends BaseService {
     constructor() {
-        super('demands')
+        super('demand')
     }
 
     async getAllList() {
@@ -15,7 +15,6 @@ class DemandsService extends BaseService {
     }
 
     async create(data) {
-        console.log(data)
         return await super.post(`/`, data)
 
     }
@@ -26,18 +25,14 @@ class DemandsService extends BaseService {
     }
 
     async delete(id) {
+        console.log("del", id)
         return super.delete(`/${id}`)
 
-    }
-
-    async multipleDelete(idList) {
-        const result = await super.delete(`/multiple`, {data: {id: idList}})
-        return result
     }
 
 
 }
 
-const demandsService = new DemandsService()
+const offDayDemandsService = new OffDayDemandsService()
 
-export {demandsService}
+export {offDayDemandsService}

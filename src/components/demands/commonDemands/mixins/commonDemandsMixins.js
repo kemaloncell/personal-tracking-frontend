@@ -116,24 +116,9 @@ const commonDemandsMixins = {
         resetForm() {
             this.formData = {
                 title: null,
-                identityNumber: null,
-                isCorporate: null,
-                TaxOffice: null,
-                Address: {
-                    title: null,
-                    address: null,
-                    postalCode: null,
-                    City: null,
-                    District: null,
-                    phone: "",
-                    phone2: "",
-                    faxNumber: "",
-                },
-                AuthPerson: {
-                    name: null,
-                    phone: "",
-                    mail: null,
-                },
+                description: null,
+                documentPath: null,
+                isDemand: null,
             }
         },
     },

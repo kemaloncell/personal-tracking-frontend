@@ -26,7 +26,7 @@
       />
       <j-modal :visible.sync="displayModal" width="800px">
         <template slot="content">
-          <customer-form
+          <OffDayDemandsForm
               :loading="submitLoading"
               :singleLoading="singleLoading"
               :defaultValues="defaultValues"
@@ -43,15 +43,15 @@
 </template>
 
 <script>
-import CustomerForm from "@/components/customers/CustomerForm";
-import customerMixin from "@/components/customers/mixins/customerMixins";
-import DemandsList from "@/components/demands/DemandsList";
+import offDayDemandsMixins from "@/components/demands/offDayDemands/mixins/offDayDemandsMixins";
+import DemandsList from "@/components/demands/offDayDemands/DemandsList";
+import OffDayDemandsForm from "@/components/demands/offDayDemands/OffDayDemandsForm";
 
 export default {
-  mixins: [customerMixin],
+  mixins: [offDayDemandsMixins],
   components: {
     DemandsList,
-    CustomerForm
+    OffDayDemandsForm
   },
   data() {
     return {
