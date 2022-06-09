@@ -26,7 +26,7 @@
       />
       <j-modal :visible.sync="displayModal" width="800px">
         <template slot="content">
-          <customer-form
+          <AdvanceDemandsForm
               :loading="submitLoading"
               :singleLoading="singleLoading"
               :defaultValues="defaultValues"
@@ -43,15 +43,15 @@
 </template>
 
 <script>
-import CustomerForm from "@/components/customers/CustomerForm";
-import customerMixin from "@/components/customers/mixins/customerMixins";
-import AdvanceDemandsList from "@/components/demands/AdvanceDemandsList";
+import AdvanceDemandsForm from "@/components/demands/advanceDemands/AdvanceDemandsForm";
+import advanceDemandsMixins from "@/components/demands/advanceDemands/mixins/advanceDemandsMixins";
+import AdvanceDemandsList from "@/components/demands/advanceDemands/AdvanceDemandsList";
 
 export default {
-  mixins: [customerMixin],
+  mixins: [advanceDemandsMixins],
   components: {
     AdvanceDemandsList,
-    CustomerForm
+    AdvanceDemandsForm
   },
   data() {
     return {
@@ -89,7 +89,7 @@ export default {
 
   },
   created() {
-    this.getListCustomer()
+    this.getListAdvanceDemands()
   }
 }
 </script>

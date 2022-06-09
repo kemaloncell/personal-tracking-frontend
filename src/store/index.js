@@ -23,6 +23,7 @@ import definitions from './modules/definitions'
 import notifications from './modules/notifications'
 
 //Demands
+import advanceDemands from './modules/demands/advanceDemands'
 import offDayDemands from './modules/demands/OffDayDemands'
 import commonDemands from './modules/demands/commonDemands'
 import commonDemandsMessage from './modules/demands/commonDemands/commonDemandsMessage'
@@ -44,6 +45,7 @@ export default new Vuex.Store({
         notifications,
         commonDemands,
         commonDemandsMessage,
-        offDayDemands
+        offDayDemands,
+        advanceDemands
     }
 })

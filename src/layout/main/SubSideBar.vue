@@ -50,7 +50,6 @@ export default {
   },
   methods: {
     onMenuItemClick(event, item, index) {
-      console.log(index, 'ite');
       if (item.disabled) {
         event.preventDefault();
         return;
@@ -66,7 +65,6 @@ export default {
 
       this.activeIndex = index === this.activeIndex ? null : index;
 
-      console.log(this.activeIndex, 'activeIndex');
 
       this.$emit('menuitem-click', {
         originalEvent: event,
