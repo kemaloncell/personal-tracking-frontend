@@ -6,7 +6,6 @@
       :loading="loading"
       :totalRecords="total"
       :lazy="true"
-      :documentType="true"
       sortMode="multiple"
       @onPageChange="onPage"
       @onDelete="onDeleteYes"
@@ -15,11 +14,9 @@
       @onHandleSort="onHandleSort"
   >
     <template slot="columns">
-      <Column field="name" header="Adı" sortable></Column>
-      <Column field="surname" header="Soyadı" sortable></Column>
-      <Column field="tcNumber" header="Tc No" sortable></Column>
-      <Column field="phone" header="Telefon" sortable></Column>
-
+      <Column field="User.name" header="Adı" sortable></Column>
+      <Column field="title" header="Başlık" sortable></Column>
+      <Column field="description" header="Açıklama" sortable></Column>
     </template>
     <template slot="action"></template>
   </j-table>
