@@ -10,7 +10,7 @@
             v-tooltip.top="'Personala hesap oluşturmak için tıklayın'"
             v-if="formData.id"
             :disabled="loading"
-            @click="openModal"
+            @click="openModal(formData.id)"
             label="Hesap Oluştur"
             icon="pi pi-user"
             style="height: 2rem; width:6rem; font-size :.7rem; padding:.6rem;"
@@ -132,6 +132,7 @@
             :loading="submitLoading"
             :singleLoading="singleLoading"
             :type="formType"
+            :employeeDetailId="detailId"
             @onSubmit="accountSubmit"
             @close="closeModal"
         />
@@ -157,6 +158,7 @@ export default {
     displayModal: false,
     formType: 'CREATE',
     accountType: true,
+    detailId: null,
   }),
 
 
@@ -211,7 +213,10 @@ export default {
 
 
     // MODAL PRPOPERTY
-    openModal() {
+    openModal(id) {
+      console.log(id, 'i')
+      this.detailId = id
+      console.log(this.detailId, 'i2')
       this.displayModal = true;
     },
 

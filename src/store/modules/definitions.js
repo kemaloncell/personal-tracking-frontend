@@ -106,7 +106,6 @@ const actions = {
     callRoleList: async function ({commit}) {
         try {
             const {data} = await definitionsService.getRoleList()
-            console.log(data, 'roles')
             commit('SET_ROLE_LIST', data.data)
         } catch (err) {
             console.error(err)

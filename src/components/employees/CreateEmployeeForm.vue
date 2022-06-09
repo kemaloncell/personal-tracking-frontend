@@ -97,8 +97,21 @@ export default {
       password: null,
       phone: null,
       Roles: null,
+      detailId: null,
     },
   }),
+
+  props: {
+    employeeDetailId: {
+      type: Number,
+    },
+  },
+
+  watch: {
+    employeeDetailId(val) {
+      console.log(val, 'val')
+    },
+  },
 
   methods: {
     submit(type) {

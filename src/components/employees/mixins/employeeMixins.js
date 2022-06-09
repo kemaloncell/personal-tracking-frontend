@@ -135,7 +135,6 @@ const employeeMixin = {
             }
         },
     },
-
 }
 
 export default employeeMixin

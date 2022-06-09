@@ -1,7 +1,7 @@
 <template>
   <div class="layout-profile">
     <div>
-      <img :src="userImage" alt="user_image_fail"/>
+      <img :src="userImage"/>
     </div>
     <button class="p-link layout-profile-link" @click="onClick">
       <span class="username">{{ userName }}</span>

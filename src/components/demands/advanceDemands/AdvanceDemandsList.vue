@@ -15,10 +15,19 @@
       @onHandleSort="onHandleSort"
   >
     <template slot="columns">
-      <Column field="name" header="Adı" sortable></Column>
-      <Column field="surname" header="Soyadı" sortable></Column>
-      <Column field="tcNumber" header="Tc No" sortable></Column>
-      <Column field="phone" header="Telefon" sortable></Column>
+      <!-- <Column field="name" header="Adı" sortable>
+         <template #body="{ data }">
+           {{ data.Employee.name ? data.Employee.name : '------' }}
+         </template>
+       </Column> -->
+      <Column header="Talep Tarihi" sortable>
+        <template #body="{ data }">
+          {{ data.demandDate.split('T')[0] }}
+        </template>
+      </Column>
+      <Column field="detail" header="Detay" sortable></Column>
+      <Column field="reason" header="Sebeb" sortable></Column>
+      <Column field="requestStatus" header="Durum" sortable></Column>
 
     </template>
     <template slot="action"></template>
