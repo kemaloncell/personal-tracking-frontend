@@ -2,15 +2,18 @@
   <form @submit.prevent="submit">
     <h2 class="text-2xl font-bold" style="margin-bottom: 50px">
       {{ category.name }}
-      {{ filteredDocument }}
     </h2>
     <div class="grid col-8 mt-5 flex align-items-center">
 
       <div class="col-2 text-sm">Doküman Tipi</div>
       <div class="col-4 pt-0 pb-0">
-        <j-employee-document-type
-            @onEmployeeDocument="onEmployeeDocument"
-            :defaultEmployeeDocument="formData.EmployeeDocumentType"
+        <Dropdown
+            v-model="formData.EmployeeDocumentType"
+            :options="filteredDocumentType"
+            optionLabel="name"
+            :showClear="true"
+            class="w-full h-full city-search p-inputtext-sm"
+            @change="setSelectedEmployeeDocument"
         />
 
       </div>
@@ -132,9 +135,15 @@ export default {
     },
   },
 
+  computed: {
+    filteredDocumentType: function () {
+      return this.documentList.filter(document => document.EmployeeDocumentCategory.id === this.category.id)
+    },
+  },
+
 
   methods: {
-    
+
     submit(type) {
 
       /*  this.$v.$touch()

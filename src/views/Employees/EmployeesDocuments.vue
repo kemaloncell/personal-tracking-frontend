@@ -7,11 +7,10 @@
         <TabView>
           <TabPanel v-for="category in categoryList" :key="category.id" :header="category.name">
 
+            <!-- {{ documentList.filter(document => document.EmployeeDocumentCategory.id === category.id) }} -->
 
-            {{ documentList.filter(document => document.EmployeeDocumentCategory.id === category.id) }}
-
-            <!--  <employee-document-tab-page
-                  :documentList="documentList" :category="category"/> -->
+            <employee-document-tab-page
+                :documentList="documentList" :category="category"/>
           </TabPanel>
         </TabView>
       </div>
