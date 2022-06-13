@@ -6,13 +6,14 @@ const employeeDocumentMixin = {
             selectedItems: [],
             fileRecordsForUpload: [],
             formData: {
-                file: null,
                 employeeId: this.$route.params.id,
-                EmployeeDocumentType: null,
-                detail: null,
+                name: null,
+                isDocumentRequired: null,
                 issueDate: null,
                 expiryDate: null,
-                valid: null,
+                file: null,
+                EmployeeDocumentType: null,
+                detail: null,
                 documentPath: 'document.pdf',
             },
         }
@@ -23,6 +24,7 @@ const employeeDocumentMixin = {
             submitLoading: 'employeeDocument/submitLoading',
             loading: 'employeeDocument/loading',
             list: 'employeeDocument/list',
+            categoryList: 'employeeDocument/categoryList',
             documentList: 'employeeDocument/documentList',
             listLoading: 'employeeDocument/loading',
             singleLoading: 'employeeDocument/singleLoading'
@@ -33,7 +35,8 @@ const employeeDocumentMixin = {
         ...mapActions({
             createEmployeeDocument: 'employeeDocument/create',
             updateEmployeeDocument: 'employeeDocument/update',
-            getListEmployeeDocument: 'employeeDocument/getSingle',
+            getAllCategoryList: 'employeeDocument/getAllCategoryList',
+            getAllDocTypeList: 'employeeDocument/getAllDocTypeList',
             getEmployeeDocumentSingle: 'employeeDocument/getSingle',
             setPageEmployeeDocument: 'employeeDocument/setPage',
             deleteEmployeeDocument: 'employeeDocument/delete',

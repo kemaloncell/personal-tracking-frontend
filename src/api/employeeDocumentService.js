@@ -2,7 +2,15 @@ import {BaseService} from '@/api/baseService'
 
 class EmployeeDocumentService extends BaseService {
     constructor() {
-        super('employee/documents')
+        super('employee')
+    }
+
+    async getAllCategoryList() {
+        return await super.get('/document-cateogories')
+    }
+
+    async getAllDocTypeList() {
+        return await super.get('/document-types')
     }
 
     async getAllList() {

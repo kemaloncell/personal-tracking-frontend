@@ -3,6 +3,7 @@ import {definitionsService} from "@/api/definitionsService";
 
 const state = {
     documentList: [],
+    categoryList: [],
     pageInfo: {
         page: 0,
         size: 10
@@ -13,8 +14,12 @@ const state = {
 }
 
 const mutations = {
-    SET_LIST(state, data) {
+    SET_DOC_LIST(state, data) {
         state.documentList = data
+    },
+
+    SET_CATEGORY_LIST(state, data) {
+        state.categoryList = data
     },
 
     SET_LOADING(state, isLoading) {
@@ -35,11 +40,12 @@ const mutations = {
 }
 
 const actions = {
-    getList: async function ({commit}) {
+    getAllCategoryList: async function ({commit}) {
         try {
             commit('SET_LOADING', true)
-            const {data} = await employeeDocumentService.getAllList()
-            commit('SET_LIST', data.data)
+            const {data} = await employeeDocumentService.getAllCategoryList()
+            commit('SET_CATEGORY_LIST', data.data)
+            console.log(data.data, 'categoryList')
         } catch (error) {
             console.log(error);
             throw new Error('List connection failed')
@@ -47,6 +53,21 @@ const actions = {
             commit('SET_LOADING', false)
         }
     },
+
+    getAllDocTypeList: async function ({commit}) {
+        try {
+            commit('SET_LOADING', true)
+            const {data} = await employeeDocumentService.getAllDocTypeList()
+            commit('SET_DOC_LIST', data.data)
+            console.log(data.data, 'getAllDocTypeList')
+        } catch (error) {
+            console.log(error);
+            throw new Error('List connection failed')
+        } finally {
+            commit('SET_LOADING', false)
+        }
+    },
+
 
     getSingle: async function ({commit}, id) {
         try {
@@ -131,6 +152,12 @@ const actions = {
 }
 
 const getters = {
+
+    categoryList: (state) => {
+        return state.categoryList
+    },
+
+
     documentList: (state) => {
         return state.documentList
     },
