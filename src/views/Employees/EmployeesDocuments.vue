@@ -40,7 +40,7 @@
         </template>
       </j-modal>
       <EmployeeDocumentList
-          :data="documentList"
+          :data="employeeDocumentList"
           :loading="loading"
           @onUpdate="onUpdate"
           @onDelete="onDelete"
@@ -113,7 +113,7 @@ export default {
 
   created() {
     const userId = this.$route.params.id
-    this.getEmployeeDocumentSingle(userId)
+    this.getAllEmployeeDocList(userId)
     this.getAllCategoryList()
     this.getAllDocTypeList()
   }

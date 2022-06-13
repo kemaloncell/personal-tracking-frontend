@@ -26,6 +26,7 @@ const employeeDocumentMixin = {
             list: 'employeeDocument/list',
             categoryList: 'employeeDocument/categoryList',
             documentList: 'employeeDocument/documentList',
+            employeeDocumentList: 'employeeDocument/employeeDocumentList',
             listLoading: 'employeeDocument/loading',
             singleLoading: 'employeeDocument/singleLoading'
         }),
@@ -37,8 +38,7 @@ const employeeDocumentMixin = {
             updateEmployeeDocument: 'employeeDocument/update',
             getAllCategoryList: 'employeeDocument/getAllCategoryList',
             getAllDocTypeList: 'employeeDocument/getAllDocTypeList',
-            getEmployeeDocumentSingle: 'employeeDocument/getSingle',
-            setPageEmployeeDocument: 'employeeDocument/setPage',
+            getAllEmployeeDocList: 'employeeDocument/getAllEmployeeDocList',
             deleteEmployeeDocument: 'employeeDocument/delete',
             getEmployeeSingle: 'employeeDocument/getSingle',
             uploadFile: 'employeeDocument/uploadFile',

@@ -21,6 +21,10 @@ class EmployeeDocumentService extends BaseService {
         return await super.get(`/${id}`)
     }
 
+    async getAllEmployeeDocList(id) {
+        return await super.get(`/documents/${id}`)
+    }
+
     async create(data) {
         console.log(data)
         return await super.post(`/`, data)

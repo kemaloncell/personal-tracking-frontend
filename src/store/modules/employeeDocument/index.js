@@ -2,6 +2,7 @@ import {employeeDocumentService} from '@/api/employeeDocumentService'
 import {definitionsService} from "@/api/definitionsService";
 
 const state = {
+    employeeDocumentList: [],
     documentList: [],
     categoryList: [],
     pageInfo: {
@@ -14,6 +15,10 @@ const state = {
 }
 
 const mutations = {
+    SET_EMPLOYEE_DOCUMENT_LIST(state, data) {
+        state.employeeDocumentList = data
+    },
+
     SET_DOC_LIST(state, data) {
         state.documentList = data
     },
@@ -45,7 +50,6 @@ const actions = {
             commit('SET_LOADING', true)
             const {data} = await employeeDocumentService.getAllCategoryList()
             commit('SET_CATEGORY_LIST', data.data)
-            console.log(data.data, 'categoryList')
         } catch (error) {
             console.log(error);
             throw new Error('List connection failed')
@@ -59,7 +63,6 @@ const actions = {
             commit('SET_LOADING', true)
             const {data} = await employeeDocumentService.getAllDocTypeList()
             commit('SET_DOC_LIST', data.data)
-            console.log(data.data, 'getAllDocTypeList')
         } catch (error) {
             console.log(error);
             throw new Error('List connection failed')
@@ -69,10 +72,25 @@ const actions = {
     },
 
 
+    getAllEmployeeDocList: async function ({commit}, id) {
+        try {
+            commit('SET_SINGLE_LOADING', true)
+            const {data} = await employeeDocumentService.getAllEmployeeDocList(id)
+            console.log(data.data, 'employeelist')
+            commit('SET_EMPLOYEE_DOCUMENT_LIST', data.data)
+        } catch (err) {
+            console.error(err)
+            throw new Error('Single get connection failed')
+        } finally {
+            commit('SET_SINGLE_LOADING', false)
+        }
+    },
+
     getSingle: async function ({commit}, id) {
         try {
             commit('SET_SINGLE_LOADING', true)
             const {data} = await employeeDocumentService.getById(id)
+            console.log(data.data, 'employeelist')
             commit('SET_LIST', data.data)
         } catch (err) {
             console.error(err)
@@ -155,6 +173,11 @@ const getters = {
 
     categoryList: (state) => {
         return state.categoryList
+    },
+
+
+    employeeDocumentList: (state) => {
+        return state.employeeDocumentList
     },
 
 
