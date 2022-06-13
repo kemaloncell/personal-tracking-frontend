@@ -7,8 +7,6 @@ const employeeDocumentMixin = {
             fileRecordsForUpload: [],
             formData: {
                 employeeId: this.$route.params.id,
-                name: null,
-                isDocumentRequired: null,
                 issueDate: null,
                 expiryDate: null,
                 file: null,

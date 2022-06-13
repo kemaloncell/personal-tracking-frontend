@@ -6,7 +6,7 @@ class EmployeeDocumentService extends BaseService {
     }
 
     async getAllCategoryList() {
-        return await super.get('/document-cateogories')
+        return await super.get('/document-categories')
     }
 
     async getAllDocTypeList() {
@@ -27,7 +27,7 @@ class EmployeeDocumentService extends BaseService {
 
     async create(data) {
         console.log(data)
-        return await super.post(`/`, data)
+        return await super.post(`/documents`, data)
 
     }
 

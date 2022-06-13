@@ -76,7 +76,6 @@ const actions = {
         try {
             commit('SET_SINGLE_LOADING', true)
             const {data} = await employeeDocumentService.getAllEmployeeDocList(id)
-            console.log(data.data, 'employeelist')
             commit('SET_EMPLOYEE_DOCUMENT_LIST', data.data)
         } catch (err) {
             console.error(err)

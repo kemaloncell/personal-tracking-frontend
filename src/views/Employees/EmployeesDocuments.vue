@@ -10,7 +10,14 @@
             <!-- {{ documentList.filter(document => document.EmployeeDocumentCategory.id === category.id) }} -->
 
             <employee-document-tab-page
-                :documentList="documentList" :category="category"/>
+                :documentList="documentList"
+                :category="category"
+                :loading="submitLoading"
+                :singleLoading="singleLoading"
+                :defaultValues="defaultValues"
+                :type="formType"
+                @onSubmit="submit"
+            />
           </TabPanel>
         </TabView>
       </div>

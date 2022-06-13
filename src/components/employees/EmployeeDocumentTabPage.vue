@@ -13,9 +13,7 @@
             optionLabel="name"
             :showClear="true"
             class="w-full h-full city-search p-inputtext-sm"
-            @change="setSelectedEmployeeDocument"
         />
-
       </div>
 
       <div class="col-2 text-sm">Belgeler Geçerli mi?</div>
@@ -130,8 +128,8 @@ export default {
     },
 
     documentList: {
-      type: Object,
-      default: () => ({}),
+      type: Array,
+      default: () => ([]),
     },
   },
 
