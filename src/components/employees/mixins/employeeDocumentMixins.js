@@ -66,7 +66,7 @@ const employeeDocumentMixin = {
                     this.closeModal()
                 }
 
-                this.getListEmployeeDocument(data.employeeId)
+                this.getAllEmployeeDocList(data.employeeId)
             }
         },
 
@@ -91,7 +91,7 @@ const employeeDocumentMixin = {
                     life: 3000
                 })
             } finally {
-                this.getListEmployeeDocument(data.employeeId)
+                this.getAllEmployeeDocList(data.employeeId)
                 this.closeModal()
             }
         },
@@ -107,7 +107,7 @@ const employeeDocumentMixin = {
                     life: 3000
                 })
 
-                this.getListEmployeeDocument(val.employeeId)
+                this.getAllEmployeeDocList(val.employeeId)
             } catch {
                 this.$toast.add({
                     severity: 'error',

@@ -37,7 +37,7 @@ class EmployeeDocumentService extends BaseService {
     }
 
     async delete(id) {
-        return super.delete(`/${id}`)
+        return super.delete(`documents/${id}`)
 
     }
 

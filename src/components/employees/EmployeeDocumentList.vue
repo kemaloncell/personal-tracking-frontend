@@ -75,6 +75,7 @@ export default {
     },
 
     onUpdateClick(id) {
+      console.log(id, 'id')
       this.$emit('onUpdate', id)
     },
 
