@@ -119,7 +119,10 @@ const employeeDocumentMixin = {
         },
 
         async onUpdate(val) {
-            this.docTypeId = val.EmployeeDocumentType.id
+            console.log(val, 'val geldi')
+            // const filteredCategory = this.categoryList.find(item => item.id === val.EmployeeDocumentType.categoryId)
+            //console.log(filteredCategory, 'filteredCategory')
+            //val.EmployeeDocumentType.EmployeeDocumentCategory = filteredCategory
             this.defaultValues = val
             this.formType = 'UPDATE'
             this.displayModal = true

@@ -2,7 +2,7 @@
 
   <Dropdown
       v-model="selectedEmployeeType"
-      :options="employeeDocumentList"
+      :options="filteredDocumentType"
       optionLabel="name"
       :showClear="true"
       class="w-full h-full city-search p-inputtext-sm"
@@ -18,7 +18,13 @@ export default {
     defaultEmployeeDocument: {
       type: Object,
       default: () => ({})
-    }
+    },
+
+    category: {
+      type: Object,
+      default: () => ({})
+    },
+
   },
   data() {
     return {
@@ -27,12 +33,23 @@ export default {
   },
   computed: {
     ...mapGetters({
-      employeeDocumentList: 'definitions/employeeDocumentList'
-    })
+      documentList: 'employeeDocument/documentList',
+    }),
+
+    filteredDocumentType: function () {
+      return this.documentList.filter(document => document.EmployeeDocumentCategory.id === this.category.id)
+    },
+
+    defaultEmployeeDocument2: function () {
+      console.log(this.defaultEmployeeDocument, 'defaultEmployeeDocument compoted')
+      // return this.defaultEmployeeDocument.filter(document => document.EmployeeDocumentCategory.id === this.category.id)
+      return this.defaultEmployeeDocument.EmployeeDocumentCategory.categoryId === this.category.id
+    }
+
   },
   methods: {
     ...mapActions({
-      callEmployeeDocumentList: 'definitions/callEmployeeDocumentList'
+      getAllDocTypeList: 'employeeDocument/getAllDocTypeList',
     }),
     setSelectedEmployeeDocument() {
       this.$emit('onEmployeeDocument', this.selectedEmployeeType)
@@ -51,18 +68,20 @@ export default {
         this.selectedEmployeeType = val
       }
 
-      this.callEmployeeDocumentList()
+      this.getAllDocTypeList()
 
     }
   },
   created() {
-    if (!this.employeeDocumentList.length) {
-      this.callEmployeeDocumentList()
+    if (!this.documentList.length) {
+      console.log('getAllDocTypeList')
+      this.getAllDocTypeList()
     }
   },
   mounted() {
-    this.callEmployeeDocumentList()
+    this.getAllDocTypeList()
     if (this.defaultEmployeeDocument) {
+      console.log(this.defaultEmployeeDocument, 'defaultEmployeeDocument')
       this.selectedEmployeeType = this.defaultEmployeeDocument
     }
   }

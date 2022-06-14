@@ -10,7 +10,7 @@
             <!-- {{ documentList.filter(document => document.EmployeeDocumentCategory.id === category.id) }} -->
 
             <employee-document-tab-page
-                :documentList="documentList"
+
                 :category="category"
                 :loading="submitLoading"
                 :singleLoading="singleLoading"
@@ -34,7 +34,8 @@
 
         </div>
       </div> -->
-      <j-modal :visible.sync="displayModal" width="800px">
+
+      <!--<j-modal :visible.sync="displayModal" width="800px">
         <template slot="content">
           <employee-document-form
               :loading="submitLoading"
@@ -45,7 +46,8 @@
               @close="closeModal"
           />
         </template>
-      </j-modal>
+      </j-modal> -->
+
       <EmployeeDocumentList
           :data="employeeDocumentList"
           :loading="loading"
@@ -63,14 +65,12 @@
 <script>
 import employeeDocumentMixins from "@/components/employees/mixins/employeeDocumentMixins";
 import EmployeeDocumentList from "@/components/employees/EmployeeDocumentList";
-import EmployeeDocumentForm from "@/components/employees/EmployeeDocumentForm";
 import EmployeeDocumentTabPage from "@/components/employees/EmployeeDocumentTabPage";
 
 export default {
   mixins: [employeeDocumentMixins],
   components: {
     EmployeeDocumentList,
-    EmployeeDocumentForm,
     EmployeeDocumentTabPage
   },
   data() {
@@ -115,10 +115,16 @@ export default {
       }
     },
 
+    c() {
+      this.categoryList = this.categoryList.filter(category => {
+        console.log(category)
+      })
+    }
   },
 
 
   created() {
+
     const userId = this.$route.params.id
     this.getAllEmployeeDocList(userId)
     this.getAllCategoryList()

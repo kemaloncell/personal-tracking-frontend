@@ -7,13 +7,12 @@
 
       <div class="col-2 text-sm">Doküman Tipi</div>
       <div class="col-4 pt-0 pb-0">
-        <Dropdown
-            v-model="formData.EmployeeDocumentType"
-            :options="filteredDocumentType"
-            optionLabel="name"
-            :showClear="true"
-            class="w-full h-full city-search p-inputtext-sm"
+        <j-employee-document-type
+            @onEmployeeDocument="onEmployeeDocument"
+            :defaultEmployeeDocument="formData.EmployeeDocumentType"
+            :category="category"
         />
+
       </div>
 
       <div class="col-2 text-sm">Belgeler Geçerli mi?</div>
@@ -127,16 +126,7 @@ export default {
       default: () => ({}),
     },
 
-    documentList: {
-      type: Array,
-      default: () => ([]),
-    },
-  },
 
-  computed: {
-    filteredDocumentType: function () {
-      return this.documentList.filter(document => document.EmployeeDocumentCategory.id === this.category.id)
-    },
   },
 
 
@@ -161,6 +151,7 @@ export default {
     },
 
     onEmployeeDocument(type) {
+      console.log(type, 'type vak')
       if (type) {
         this.formData.EmployeeDocumentType = type
       }
