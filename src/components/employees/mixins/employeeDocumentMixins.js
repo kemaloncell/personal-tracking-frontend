@@ -73,9 +73,8 @@ const employeeDocumentMixin = {
         async udpateSubmit(data) {
             delete data.file
             console.log(data, 'data')
-            console.log(this.docTypeId, 'docTypeId')
             try {
-                await this.updateEmployeeDocument({id: data.EmployeeDocumentType.id, data})
+                await this.updateEmployeeDocument({id: data.id, data})
 
                 this.$toast.add({
                     severity: 'success',
@@ -120,9 +119,6 @@ const employeeDocumentMixin = {
 
         async onUpdate(val) {
             console.log(val, 'val geldi')
-            // const filteredCategory = this.categoryList.find(item => item.id === val.EmployeeDocumentType.categoryId)
-            //console.log(filteredCategory, 'filteredCategory')
-            //val.EmployeeDocumentType.EmployeeDocumentCategory = filteredCategory
             this.defaultValues = val
             this.formType = 'UPDATE'
             this.displayModal = true

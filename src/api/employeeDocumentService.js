@@ -32,7 +32,7 @@ class EmployeeDocumentService extends BaseService {
     }
 
     async update({data, id}) {
-        return super.patch(`/${id}`, data)
+        return super.patch(`documents/${id}`, data)
 
     }
 
