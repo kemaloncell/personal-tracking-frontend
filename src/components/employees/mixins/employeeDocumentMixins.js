@@ -12,7 +12,7 @@ const employeeDocumentMixin = {
                 file: null,
                 EmployeeDocumentType: null,
                 detail: null,
-                documentPath: 'document.pdf',
+                documentPath: 'https://jr-securityplus.s3.amazonaws.com/1655295830766-1654160230724-resim.jpeg',
             },
         }
     },

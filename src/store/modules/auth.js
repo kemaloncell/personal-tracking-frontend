@@ -155,6 +155,7 @@ const actions = {
             photoForm.append('file', fileData)
 
             const {data} = await definitionsService.uploadFileRequest(photoForm, config)
+            console.log(data, 'data image')
             commit("SET_IMAGE_URL", data.data)
             commit('SET_LOADING', false)
 
@@ -188,6 +189,7 @@ const getters = {
     },
 
     imageUrl: (state) => {
+        console.log(state.imageUrl, 'imageUrl getter')
         return state.imageUrl
     },
 

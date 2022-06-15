@@ -9,6 +9,7 @@ const offDayDemandsMixins = {
                 description: null,
                 documentPath: null,
                 isDemand: null,
+                Employee: null,
             },
         }
     },

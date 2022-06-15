@@ -38,7 +38,7 @@ const actions = {
         try {
             commit('SET_LOADING', true)
             const {data} = await employeeService.getAllList()
-            console.log(data, 'all list')
+            console.log(data, 'all list 2')
             commit('SET_LIST', data.data)
         } catch (error) {
             console.log(error);

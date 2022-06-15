@@ -35,6 +35,8 @@ export default {
     }
   },
   methods: {
+
+
     async onChangePasword() {
       try {
         await this.callChangePassword({
@@ -46,7 +48,6 @@ export default {
     },
     async onUpload(req) {
       try {
-        console.log(req)
         if (req[0].file) {
           await this.callUploadFile(req[0].file)
         }

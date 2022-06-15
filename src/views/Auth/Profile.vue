@@ -29,17 +29,19 @@
 
 <script>
 import authMixin from '@/components/auth/mixins/authMixins'
-import {mapGetters} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   mixins: [authMixin],
   data() {
     return {
-      expanded: false
+      expanded: false,
+      imagePath: "https://jr-securityplus.s3.amazonaws.com/",
     }
   },
 
   methods: {
+
     onClick(event) {
       this.expanded = !this.expanded;
       event.preventDefault();
@@ -71,7 +73,7 @@ export default {
     userImage() {
       if (this.imageUrl) {
         console.log(this.imageUrl, 'com')
-        return `https://jr-securityplus.s3.amazonaws.com/${this.imageUrl}`
+        return `${this.imagePath}${this.imageUrl}`
       } else {
         return 'assets/layout/images/profile.png'
       }

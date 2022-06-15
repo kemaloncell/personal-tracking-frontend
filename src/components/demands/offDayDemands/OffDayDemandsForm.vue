@@ -5,6 +5,14 @@
     </h2>
     <div class="grid mt-5 flex align-items-center">
 
+      <div class="col-2 text-sm">Çalışan</div>
+      <div class="col-4 pt-0 pb-0">
+        <j-employees
+            @onEmployee="onEmployee"
+            :defaultEmployee="formData.Employee"
+        />
+      </div>
+
       <div class="col-2 text-sm">Başlık</div>
       <div class="col-4">
         <j-input-text
@@ -115,6 +123,11 @@ export default {
       this.$emit('close')
     },
 
+    onEmployee(employee) {
+      if (employee) {
+        this.formData.Employee = employee
+      }
+    },
 
     onBeforeDelete: function (fileRecord) {
       var i = this.fileRecordsForUpload.indexOf(fileRecord);
