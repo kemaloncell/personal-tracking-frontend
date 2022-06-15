@@ -3,7 +3,7 @@
     <h2 class="text-2xl font-bold" style="margin-bottom: 50px">
       {{ category.name }}
     </h2>
-    <div class="grid col-6 mt-5 flex align-items-center">
+    <div class="grid col-12 mt-5 flex justify-content-end align-items-center">
 
       <div class="col-2 text-sm">Doküman Tipi</div>
       <div class="col-4 pt-0 pb-0">

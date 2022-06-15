@@ -1,10 +1,10 @@
 <template>
   <default-layout>
     <div slot="content">
-      <h2 class="text-center text-2xl font-medium mb-3">Çalışan Dökümanları</h2>
+      <i @click="goEmployee" class="pi pi-arrow-left font-bold" style="font-size: 1.3rem"></i>
+      <h2 class="text-center text-2xl font-medium ">Çalışan Dökümanları</h2>
       <div class="card">
-        <h5 class="">Döküman Ekle</h5>
-        <TabView>
+        <TabView style="margin-left: 15rem; width: 70%">
           <TabPanel
               v-for="category in categoryList" :key="category.id" :header="category.name"
               v-if="filteredListData2 ? filteredListData2.id === category.id: true"
@@ -24,19 +24,16 @@
 
       </div>
 
-      <div class="py-2">
+      <EmployeeDocumentList
+          :data="employeeDocumentList"
+          :loading="loading"
+          @onUpdate="onUpdate"
+          @onDelete="onDelete"
+          @onSelection="onSelection"
+      />
 
-        <EmployeeDocumentList
-            :data="employeeDocumentList"
-            :loading="loading"
-            @onUpdate="onUpdate"
-            @onDelete="onDelete"
-            @onSelection="onSelection"
-        />
+      <Toast position="top-right"/>
 
-        <Toast position="top-right"/>
-
-      </div>
     </div>
   </default-layout>
 </template>
@@ -102,6 +99,9 @@ export default {
       }
     },
 
+    goEmployee() {
+      this.$router.push({name: 'Employee'})
+    },
   },
 
 
