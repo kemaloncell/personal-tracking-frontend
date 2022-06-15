@@ -23,6 +23,7 @@ class DefinitionsService extends BaseService {
     }
 
     async uploadFileRequest(file, config) {
+        console.log(file, 'geldi file')
         return await super.post(`/files`, file, config)
     }
 

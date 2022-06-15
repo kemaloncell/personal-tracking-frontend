@@ -72,7 +72,6 @@ const employeeDocumentMixin = {
 
         async udpateSubmit(data) {
             delete data.file
-            console.log(data, 'data')
             try {
                 await this.updateEmployeeDocument({id: data.id, data})
 
@@ -121,7 +120,6 @@ const employeeDocumentMixin = {
             console.log(val, 'val geldi')
             this.defaultValues = val
             this.formType = 'UPDATE'
-            this.displayModal = true
         },
 
         onSelection(val) {

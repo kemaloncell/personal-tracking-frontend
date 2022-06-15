@@ -3,7 +3,7 @@
     <h2 class="text-2xl font-bold" style="margin-bottom: 50px">
       {{ category.name }}
     </h2>
-    <div class="grid col-8 mt-5 flex align-items-center">
+    <div class="grid col-6 mt-5 flex align-items-center">
 
       <div class="col-2 text-sm">Doküman Tipi</div>
       <div class="col-4 pt-0 pb-0">
@@ -12,7 +12,6 @@
             :defaultEmployeeDocument="formData.EmployeeDocumentType"
             :category="category"
         />
-
       </div>
 
       <div class="col-2 text-sm">Belgeler Geçerli mi?</div>
@@ -22,8 +21,6 @@
             :binary="true"
         ></Checkbox>
       </div>
-
-
       <div class="col-2 text-sm">Düzenleme Tarihi</div>
       <div class="col-4">
         <j-date
@@ -107,6 +104,7 @@
       </div>
     </div>
   </form>
+
 </template>
 
 <script>
@@ -125,10 +123,7 @@ export default {
       type: Object,
       default: () => ({}),
     },
-
-
   },
-
 
   methods: {
 

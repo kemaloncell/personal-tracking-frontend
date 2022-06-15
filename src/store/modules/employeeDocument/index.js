@@ -1,5 +1,6 @@
 import {employeeDocumentService} from '@/api/employeeDocumentService'
 import {definitionsService} from "@/api/definitionsService";
+import employeeDocumentList from "@/components/employees/EmployeeDocumentList";
 
 const state = {
     employeeDocumentList: [],
@@ -76,7 +77,7 @@ const actions = {
         try {
             commit('SET_SINGLE_LOADING', true)
             const {data} = await employeeDocumentService.getAllEmployeeDocList(id)
-
+            console.log(data, 'datasss')
             commit('SET_EMPLOYEE_DOCUMENT_LIST', data.data)
         } catch (err) {
             console.error(err)
@@ -139,10 +140,13 @@ const actions = {
 
     uploadFile: async function ({commit}, fileData) {
         try {
+            console.log(fileData, 'fileData index')
             const config = {headers: {'Content-Type': 'multipart/form-data'}};
             let photoForm = new FormData()
             photoForm.append('file', fileData.file)
             commit('SET_LOADING', false)
+
+            console.log(photoForm, 'photoForm')
 
             return await definitionsService.uploadFileRequest(photoForm, config)
 

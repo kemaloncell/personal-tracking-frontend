@@ -5,59 +5,38 @@
       <div class="card">
         <h5 class="">Döküman Ekle</h5>
         <TabView>
-          <TabPanel v-for="category in categoryList" :key="category.id" :header="category.name">
-
-            <!-- {{ documentList.filter(document => document.EmployeeDocumentCategory.id === category.id) }} -->
-
+          <TabPanel
+              v-for="category in categoryList" :key="category.id" :header="category.name"
+              v-if="filteredListData2 ? filteredListData2.id === category.id: true"
+          >
             <employee-document-tab-page
-
                 :category="category"
                 :loading="submitLoading"
                 :singleLoading="singleLoading"
                 :defaultValues="defaultValues"
                 :type="formType"
                 @onSubmit="submit"
+
             />
+
           </TabPanel>
         </TabView>
+
       </div>
 
+      <div class="py-2">
 
-      <!--<div
-          class="flex mb-3 justify-content-between align-items-center mb-3 filters flex-wrap"
-      >
-        <div class="flex align-items-center">
-          <Button @click="openModal" class="p-button-primary add-button"
-          >Döküman Ekle
-          </Button
-          >
+        <EmployeeDocumentList
+            :data="employeeDocumentList"
+            :loading="loading"
+            @onUpdate="onUpdate"
+            @onDelete="onDelete"
+            @onSelection="onSelection"
+        />
 
-        </div>
-      </div> -->
+        <Toast position="top-right"/>
 
-      <!--<j-modal :visible.sync="displayModal" width="800px">
-        <template slot="content">
-          <employee-document-form
-              :loading="submitLoading"
-              :singleLoading="singleLoading"
-              :defaultValues="defaultValues"
-              :type="formType"
-              @onSubmit="submit"
-              @close="closeModal"
-          />
-        </template>
-      </j-modal> -->
-
-      <EmployeeDocumentList
-          :data="employeeDocumentList"
-          :loading="loading"
-          @onUpdate="onUpdate"
-          @onDelete="onDelete"
-          @onSelection="onSelection"
-      />
-
-      <Toast position="top-right"/>
-
+      </div>
     </div>
   </default-layout>
 </template>
@@ -78,8 +57,17 @@ export default {
       displayModal: false,
       formType: 'CREATE',
       defaultValues: null,
-      docTypeId: null,
     }
+  },
+
+  computed: {
+    filteredListData2() {
+      return this.categoryList.find(item => {
+        if (this.defaultValues != null) {
+          return (item.id === this.defaultValues.EmployeeDocumentType.EmployeeDocumentCategory.id)
+        }
+      })
+    },
   },
 
   methods: {
@@ -96,7 +84,6 @@ export default {
     },
 
     async submit(data, type) {
-
 
       if (this.formType === 'CREATE') {
         if (data.file) {
@@ -115,16 +102,10 @@ export default {
       }
     },
 
-    c() {
-      this.categoryList = this.categoryList.filter(category => {
-        console.log(category)
-      })
-    }
   },
 
 
   created() {
-
     const userId = this.$route.params.id
     this.getAllEmployeeDocList(userId)
     this.getAllCategoryList()

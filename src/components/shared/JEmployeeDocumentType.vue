@@ -40,12 +40,6 @@ export default {
       return this.documentList.filter(document => document.EmployeeDocumentCategory.id === this.category.id)
     },
 
-    defaultEmployeeDocument2: function () {
-      console.log(this.defaultEmployeeDocument, 'defaultEmployeeDocument compoted')
-      // return this.defaultEmployeeDocument.filter(document => document.EmployeeDocumentCategory.id === this.category.id)
-      return this.defaultEmployeeDocument.EmployeeDocumentCategory.categoryId === this.category.id
-    }
-
   },
   methods: {
     ...mapActions({
@@ -74,14 +68,12 @@ export default {
   },
   created() {
     if (!this.documentList.length) {
-      console.log('getAllDocTypeList')
       this.getAllDocTypeList()
     }
   },
   mounted() {
     this.getAllDocTypeList()
     if (this.defaultEmployeeDocument) {
-      console.log(this.defaultEmployeeDocument, 'defaultEmployeeDocument')
       this.selectedEmployeeType = this.defaultEmployeeDocument
     }
   }

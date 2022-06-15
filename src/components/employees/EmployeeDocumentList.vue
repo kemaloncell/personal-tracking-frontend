@@ -14,8 +14,17 @@
       @onHandleSort="onHandleSort"
   >
     <template slot="columns">
+      <Column header="Kategori" sortable>
+        <template #body="{ data }">
+          {{
+            data.EmployeeDocumentType.EmployeeDocumentCategory.name ? data.EmployeeDocumentType.EmployeeDocumentCategory.name : '-'
+          }}
+        </template>
+      </Column>
+
       <Column header="Döküman Tipi" sortable>
         <template #body="{ data }">
+          {{ data.EmployeeDocumentType.EmployeeDocumentCategory.id }}
           {{ data.EmployeeDocumentType.name ? data.EmployeeDocumentType.name : '-' }}
         </template>
       </Column>
@@ -49,6 +58,7 @@ export default {
       type: Array,
       default: () => []
     },
+    
 
     loading: {
       type: Boolean,
@@ -60,6 +70,7 @@ export default {
       default: () => 0
     }
   },
+
 
   methods: {
     onPage(params) {
