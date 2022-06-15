@@ -10,6 +10,10 @@ class DefinitionsService extends BaseService {
         return await super.get(`/employee/types`)
     }
 
+    async getEmployeeList() {
+        return await super.get(`/employees?isBasic=1`)
+    }
+
     async getEducationTypeList() {
         return await super.get(`/variables/education-levels`)
     }

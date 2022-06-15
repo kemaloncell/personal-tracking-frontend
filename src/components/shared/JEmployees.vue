@@ -25,12 +25,12 @@ export default {
   },
   computed: {
     ...mapGetters({
-      employeeList: 'employee/list'
+      employeeList: 'definitions/employeeList'
     }),
   },
   methods: {
     ...mapActions({
-      callEmployee: 'employee/getList'
+      callEmployee: 'definitions/callEmployee'
     }),
     setSelectedTEmployee() {
       this.$emit('onEmployeeType', this.selectedEmployee)

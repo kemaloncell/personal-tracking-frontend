@@ -5,10 +5,12 @@ const offDayDemandsMixins = {
         return {
             selectedItems: [],
             formData: {
-                title: null,
-                description: null,
-                documentPath: null,
-                isDemand: null,
+                beginDate: null,
+                endDate: null,
+                reason: null,
+                detail: null,
+                requestStatus: null,
+                offDayPeriod: null,
                 Employee: null,
             },
         }

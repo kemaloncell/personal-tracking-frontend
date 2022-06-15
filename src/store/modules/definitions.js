@@ -6,6 +6,7 @@ const state = {
     cityList: [],
     districtList: [],
     taxOfficeList: [],
+    employeeList: [],
     employeeTypeList: [],
     educationTypeList: [],
     employeeDocumentList: [],
@@ -23,6 +24,10 @@ const mutations = {
 
     SET_TAXOFFICE_LIST(state, item) {
         state.taxOfficeList = item
+    },
+
+    SET_EMPLOYEE_LIST(state, item) {
+        state.employeeList = item
     },
 
     SET_EMPLOYEETYPE_LIST(state, item) {
@@ -71,6 +76,16 @@ const actions = {
         } catch (err) {
             console.error(err)
             throw new Error('Tax office list get connection failed')
+        }
+    },
+
+    callEmployee: async function ({commit}) {
+        try {
+            const {data} = await definitionsService.getEmployeeList()
+            commit('SET_EMPLOYEE_LIST', data.data)
+        } catch (err) {
+            console.error(err)
+            throw new Error('Employee type list get connection failed')
         }
     },
 
@@ -125,6 +140,10 @@ const getters = {
 
     taxOfficeList: (state) => {
         return state.taxOfficeList
+    },
+
+    employeeList: (state) => {
+        return state.employeeList
     },
 
     employeeTypeList: (state) => {
