@@ -28,6 +28,7 @@ import AdvanceDemands from '@/views/Demands/AdvanceDemands.vue'
 
 //Suppliers
 import SupplierList from '@/views/Suppliers/Supplier.vue'
+import SuppliersForm from '@/components/suppliers/SuppliersForm.vue'
 
 //Fields
 import FieldList from '@/views/Fields/Fields.vue'
@@ -163,6 +164,15 @@ const routes = [
         path: '/suppliers',
         name: 'Supplier',
         component: SupplierList,
+        meta: {
+            requiresAuth: true
+        }
+    },
+
+    {
+        path: '/suppliers/:id',
+        name: 'SupplierDetail',
+        component: SuppliersForm,
         meta: {
             requiresAuth: true
         }

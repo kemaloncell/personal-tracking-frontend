@@ -2,6 +2,7 @@
   <default-layout>
     <div slot="content">
 
+
       <h2 class="text-center text-2xl font-medium mb-3">Tedarikçiler</h2>
 
       <div
@@ -12,25 +13,6 @@
           >Tedariçi Ekle
           </Button
           >
-
-          <!-- <SplitButton
-               class="ml-4 decline-button save-menu-button save-button"
-               label="Toplu İşlemler"
-               :model="multipleItems"
-               v-if="selectedItems.length > 0"
-           ></SplitButton>
-           <div class="ml-4">
-             <span class="p-input-icon-left">
-               <i class="pi pi-search"/>
-               <InputText
-                   v-model.trim="searchQuery"
-                   type="text"
-                   placeholder="Ara"
-                   class="pr-6"
-                   @input="callFilter"
-               />
-             </span>
-           </div> -->
         </div>
 
       </div>
@@ -42,7 +24,8 @@
           @onDelete="onDelete"
           @onSelection="onSelection"
       />
-      <j-modal :visible.sync="displayModal" width="800px">
+      
+      <!--<j-modal :visible.sync="displayModal" width="800px">
         <template slot="content">
           <suppliers-form
               :loading="submitLoading"
@@ -53,7 +36,7 @@
               @close="closeModal"
           />
         </template>
-      </j-modal>
+      </j-modal> -->
 
       <Toast position="top-right"/>
 
@@ -72,7 +55,7 @@ export default {
   mixins: [supplierMixin],
   components: {
     SuppliersForm,
-    SupplierList
+    SupplierList,
   },
 
   data() {
@@ -98,6 +81,8 @@ export default {
     },
 
     async submit(data, type) {
+
+      console.log(data, 'geldi')
       if (this.formType === 'CREATE') {
         console.log(data, type, 'gelid')
         this.createSubmit(data, type)
@@ -112,6 +97,7 @@ export default {
   },
   created() {
     this.getListSupplier()
+    console.log(this.defaultValues, 'defaultValues')
   }
 }
 </script>
