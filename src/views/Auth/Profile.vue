@@ -3,27 +3,27 @@
     <div>
       <img :src="userImage"/>
     </div>
-    <button class="p-link layout-profile-link" @click="onClick">
-      <span class="username">{{ userName }}</span>
-      <i class="pi pi-fw pi-cog"></i>
-    </button>
+    <span class="username text-white">{{ userName }}</span>
+    <br>
+    <span class="username text-white">{{ userRole }}</span>
 
-    <transition name="layout-submenu-wrapper">
+
+    <!--<transition name="layout-submenu-wrapper">
       <ul v-show="expanded">
         <li>
           <router-link class="p-link" tag="button" :to="{name: 'Profile'}"><i
               class="pi pi-fw pi-user"></i><span>Account</span>
           </router-link>
         </li>
-        <!-- <li>
+     <li>
            <button class="p-link"><i class="pi pi-fw pi-inbox"></i><span>Notifications</span><span
                class="menuitem-badge">2</span></button>
-         </li> -->
+         </li>
         <li>
           <button @click="logout" class="p-link"><i class="pi pi-fw pi-power-off"></i><span>Logout</span></button>
         </li>
       </ul>
-    </transition>
+    </transition> -->
 
   </div>
 </template>
@@ -43,7 +43,7 @@ export default {
 
   methods: {
 
-    onClick(event) {
+    /*onClick(event) {
       this.expanded = !this.expanded;
       event.preventDefault();
     },
@@ -55,7 +55,7 @@ export default {
       } catch {
         console.error('logout err')
       }
-    },
+    }, */
   },
   computed: {
     ...mapGetters({
@@ -66,6 +66,14 @@ export default {
     userName() {
       if (this.userData) {
         return this.userData.data.name
+      } else {
+        return '-'
+      }
+    },
+
+    userRole() {
+      if (this.userData) {
+        return this.userData.data.Role.name
       } else {
         return '-'
       }
