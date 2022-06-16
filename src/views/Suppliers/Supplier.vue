@@ -9,7 +9,7 @@
           class="flex mb-3 justify-content-between align-items-center mb-3 filters flex-wrap"
       >
         <div class="flex align-items-center">
-          <Button @click="openModal" class="commonDemandsServiceimary add-button"
+          <Button @click="goCreatePage" class="commonDemandsServiceimary add-button"
           >Tedariçi Ekle
           </Button
           >
@@ -24,7 +24,7 @@
           @onDelete="onDelete"
           @onSelection="onSelection"
       />
-      
+
       <!--<j-modal :visible.sync="displayModal" width="800px">
         <template slot="content">
           <suppliers-form
@@ -68,8 +68,8 @@ export default {
   },
 
   methods: {
-    openModal() {
-      this.displayModal = true;
+    goCreatePage() {
+      this.$router.push({name: 'SupplierDetail', params: {type: 'CREATE'}})
     },
 
     closeModal() {
@@ -80,7 +80,7 @@ export default {
       this.resetForm()
     },
 
-    async submit(data, type) {
+    /*async submit(data, type) {
 
       console.log(data, 'geldi')
       if (this.formType === 'CREATE') {
@@ -91,7 +91,7 @@ export default {
       if (this.formType === 'UPDATE') {
         this.udpateSubmit(data)
       }
-    },
+    }, */
 
 
   },

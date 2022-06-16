@@ -47,7 +47,8 @@ const supplierMixin = {
             deleteSupplier: 'supplier/delete',
         }),
 
-        async createSubmit(data, type) {
+        async createSubmit(data) {
+            console.log(data, 'data')
             try {
                 await this.createSupplier(data)
 
@@ -65,18 +66,20 @@ const supplierMixin = {
                     life: 3000
                 })
             } finally {
-                if (type === 0) {
+                /*if (type === 0) {
                     this.closeModal()
                 }
 
-                this.getListSupplier()
+                this.getListSupplier() */
+                await this.$router.push({name: 'Supplier'})
+
             }
         },
 
         async udpateSubmit(data) {
+            console.log(data, 'data')
             try {
-                console.log(data, 'data', 'id ', this.updateId)
-                await this.updateSupplier({id: this.updateId, data})
+                await this.updateSupplier({id: data.id, data})
 
                 this.$toast.add({
                     severity: 'success',
@@ -92,15 +95,12 @@ const supplierMixin = {
                     life: 3000
                 })
             } finally {
-                this.getListSupplier()
-                this.closeModal()
+                await this.$router.push({name: 'Supplier'})
             }
         },
 
         async onDelete(val) {
             try {
-                console.log(val, 'cus')
-
                 await this.deleteSupplier(val.id)
 
                 this.$toast.add({
@@ -110,7 +110,8 @@ const supplierMixin = {
                     life: 3000
                 })
 
-                this.getListSupplier()
+                await this.$router.push({name: 'Supplier'})
+
             } catch {
                 this.$toast.add({
                     severity: 'error',

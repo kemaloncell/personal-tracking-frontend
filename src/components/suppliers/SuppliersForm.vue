@@ -329,7 +329,7 @@
           <j-submitbutton
               v-if="type === 'CREATE'"
               :loading="loading"
-              @save="submit"
+              @save="submit('CREATE')"
           />
           <Button
               v-else
@@ -337,7 +337,7 @@
               label="Güncelle"
               class="save-primary-button ml-3"
               :loading="loading"
-              @click="submit"
+              @click="submit('UPDATE')"
           />
           <Button
               :disabled="loading"
@@ -424,8 +424,7 @@ export default {
 
 
   methods: {
-    submit(type) {
-
+    async submit(type) {
       this.$v.$touch()
       this.submitted = true
 
@@ -433,9 +432,26 @@ export default {
         return
       }
 
-      this.$emit('onSubmit', this.formData, type)
+      if (this.type === 'CREATE') {
+        this.createSubmit(this.formData, type)
+      }
 
+      if (this.type === 'UPDATE') {
+        this.udpateSubmit(this.formData)
+      }
     },
+    /* submit(type) {
+
+       this.$v.$touch()
+       this.submitted = true
+
+       if (this.$v.$invalid) {
+         return
+       }
+
+       this.$emit('onSubmit', this.formData, type)
+
+     }, */
 
     onClose() {
       this.$emit('close')
