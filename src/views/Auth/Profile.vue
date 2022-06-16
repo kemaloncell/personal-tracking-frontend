@@ -7,6 +7,7 @@
       <span class="username">{{ userName }}</span>
       <i class="pi pi-fw pi-cog"></i>
     </button>
+
     <transition name="layout-submenu-wrapper">
       <ul v-show="expanded">
         <li>
@@ -29,7 +30,7 @@
 
 <script>
 import authMixin from '@/components/auth/mixins/authMixins'
-import {mapActions, mapGetters} from "vuex";
+import {mapGetters} from "vuex";
 
 export default {
   mixins: [authMixin],

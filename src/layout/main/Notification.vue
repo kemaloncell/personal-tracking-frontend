@@ -5,16 +5,32 @@
       <span class="layout-topbar-icon pi pi-calendar"></span>
       <span v-if="listCount" class="layout-topbar-badge">{{ listCount }}</span>
     </button>
-    <button class="p-link">
+
+    <!--<button class="p-link">
       <span class="layout-topbar-item-text">Settings</span>
       <span class="layout-topbar-icon pi pi-cog"></span>
-    </button>
-    <button class="p-link">
+    </button> -->
+
+
+    <button class="p-link" aria:haspopup="true" aria-controls="overlay_panel" @click="onUserSettings">
       <span class="layout-topbar-item-text">User</span>
       <span class="layout-topbar-icon pi pi-user"></span>
     </button>
 
-    <OverlayPanel ref="op" appendTo="body" :showCloseIcon="true" id="overlay_panel" style="width: 450px">
+    <OverlayPanel ref="userSettingins" appendTo="body" :showCloseIcon="true" id="overlay_panel" style="width: 150px">
+      <router-link class="p-button-text" tag="Button" :to="{name: 'Profile'}"><i
+          class="pi pi-fw pi-user mr-1"></i><span>Account</span>
+      </router-link>
+      <!-- <li>
+         <button class="p-link"><i class="pi pi-fw pi-inbox"></i><span>Notifications</span><span
+             class="menuitem-badge">2</span></button>
+       </li> -->
+      <Button @click="logout" class="p-button-text"><i
+          class="pi pi-fw pi-power-off mr-1"></i><span>Logout</span></Button>
+    </OverlayPanel>
+
+
+    <OverlayPanel ref="notification" appendTo="body" :showCloseIcon="true" id="overlay_panel" style="width: 450px">
       <j-table
           :value="list"
           :total="total"
@@ -35,14 +51,15 @@
 </template>
 
 <script>
+import authMixin from '@/components/auth/mixins/authMixins'
 import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: 'Notification',
+  mixins: [authMixin],
   data: () => ({
     displayModal: false
   }),
-
 
   props: {
     total: {
@@ -57,6 +74,7 @@ export default {
       list: 'notifications/list',
     }),
 
+
     listCount() {
       return this.list.length;
     }
@@ -69,8 +87,22 @@ export default {
 
     }),
 
+
+    async logout() {
+      try {
+        await this.callLogout();
+        this.$router.push('/login')
+      } catch {
+        console.error('logout err')
+      }
+    },
+
+    onUserSettings(event) {
+      this.$refs.userSettingins.toggle(event);
+    },
+
     onNotificationPanel(event) {
-      this.$refs.op.toggle(event);
+      this.$refs.notification.toggle(event);
     },
 
     onPage(params) {
