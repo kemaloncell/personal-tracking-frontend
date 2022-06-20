@@ -45,6 +45,9 @@ import ForgotPassword from '@/components/auth/ForgotPassword.vue'
 import ForgotPasswordSecond from '@/components/auth/ForgotPasswordSecond.vue'
 //import CommonDemandList from "@/components/demands/commonDemands/CommonDemandsList.vue";
 
+//Add User
+import AddUser from '@/components/global/AddUser.vue'
+
 const routes = [
     {
         path: '/',
@@ -70,6 +73,16 @@ const routes = [
             notRequiresAuth: false
         }
     },
+    {
+        path: '/add-user/:id',
+        name: 'AddUser',
+        component: AddUser,
+        props: true,
+        meta: {
+            notRequiresAuth: false
+        }
+    },
+
     {
         path: '/forgot-password',
         name: 'ForgotPassword',

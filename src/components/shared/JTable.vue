@@ -39,6 +39,12 @@
             <i class="pi pi-file-o" style="color:white"></i>
           </router-link>
 
+          <router-link v-if="addUser" :to="{ name: `AddUser`, params:{id:data.id, data:data } }"
+                       type="button"
+                       class="p-button-sm table-message-button mr-2" style="border-radius: 4px">
+            <i class="pi pi-user-plus" style="color:white"></i>
+          </router-link>
+
 
           <Button
               v-if="isMessage"
@@ -120,6 +126,11 @@ export default {
       type: Boolean
     },
     documentType: {
+      default: () => false,
+      type: Boolean
+    },
+
+    addUser: {
       default: () => false,
       type: Boolean
     },
