@@ -25,19 +25,6 @@
           @onSelection="onSelection"
       />
 
-      <!--<j-modal :visible.sync="displayModal" width="800px">
-        <template slot="content">
-          <suppliers-form
-              :loading="submitLoading"
-              :singleLoading="singleLoading"
-              :defaultValues="defaultValues"
-              :type="formType"
-              @onSubmit="submit"
-              @close="closeModal"
-          />
-        </template>
-      </j-modal> -->
-
       <Toast position="top-right"/>
 
     </div>
@@ -59,7 +46,6 @@ export default {
   data() {
     return {
       displayModal: false,
-      defaultValues: null,
       updateId: null,
     }
   },
@@ -72,37 +58,11 @@ export default {
     async onUpdate(val) {
       this.updateId = val.id
       const item = await this.getSingleSupplier(this.updateId)
-      // this.defaultValues = item.data
       this.formData = item.data
       this.formData.taxOffice = item.data.TaxOffice
-      //  this.formType = 'UPDATE'
       await this.$router.push({name: 'SupplierUpdate', params: {id: val.id, data: item.data, type: 'UPDATE'}})
-      // this.displayModal = true
 
     },
-
-    /*closeModal() {
-     this.displayModal = false
-      this.defaultValues = null
-      this.formType = 'CREATE'
-
-      this.resetForm()
-    },*/
-
-    /*async submit(data, type) {
-
-      console.log(data, 'geldi')
-      if (this.formType === 'CREATE') {
-        console.log(data, type, 'gelid')
-        this.createSubmit(data, type)
-      }
-
-      if (this.formType === 'UPDATE') {
-        this.udpateSubmit(data)
-      }
-    }, */
-
-
   },
   created() {
     this.getListSupplier()

@@ -20,6 +20,8 @@ import EmployeeDocumentList from '@/views/Employees/EmployeesDocuments.vue'
 
 //Customers
 import CustomerList from '@/views/Customers/Customers.vue'
+import CustomerCreate from '@/components/customers/CustomerForm.vue'
+import CustomerUpdate from '@/components/customers/CustomerForm.vue'
 
 //Demands
 import DemandsList from '@/views/Demands/OffDayDemands.vue'
@@ -41,7 +43,7 @@ import ShiftList from '@/views/Shifts/Shifts.vue'
 import Login from '@/components/auth/Login.vue'
 import ForgotPassword from '@/components/auth/ForgotPassword.vue'
 import ForgotPasswordSecond from '@/components/auth/ForgotPasswordSecond.vue'
-import CommonDemandList from "@/components/demands/commonDemands/CommonDemandsList.vue";
+//import CommonDemandList from "@/components/demands/commonDemands/CommonDemandsList.vue";
 
 const routes = [
     {
@@ -157,6 +159,26 @@ const routes = [
         path: '/customers',
         name: 'Customer',
         component: CustomerList,
+        meta: {
+            requiresAuth: true
+        }
+    },
+
+    {
+        path: '/customer',
+        name: 'CustomerCreate',
+        component: CustomerCreate,
+        props: true,
+        meta: {
+            requiresAuth: true
+        }
+    },
+
+    {
+        path: '/customers/:id',
+        name: 'CustomerUpdate',
+        component: CustomerUpdate,
+        props: true,
         meta: {
             requiresAuth: true
         }

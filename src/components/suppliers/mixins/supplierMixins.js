@@ -76,7 +76,6 @@ const supplierMixin = {
         },
 
         async udpateSubmit(data) {
-            console.log(data, 'data')
             try {
                 await this.updateSupplier({id: data.id, data})
 

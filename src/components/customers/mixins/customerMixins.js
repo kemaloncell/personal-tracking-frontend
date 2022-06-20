@@ -49,7 +49,7 @@ const customerMixin = {
             multipleDeleteCustomer: 'customer/multipleDelete',
             callRegister: 'auth/callRegister',
         }),
-        async createSubmit(data, type, accountType) {
+        async createSubmit(data, accountType) {
             try {
                 accountType ? await this.callRegister(data) : await this.createCustomer(data)
 
@@ -67,17 +67,12 @@ const customerMixin = {
                     life: 3000
                 })
             } finally {
-                if (type === 0) {
-                    this.closeModal()
-                }
-
-                this.getListCustomer()
+                await this.$router.push({name: 'Customer'})
             }
         },
 
         async udpateSubmit(data) {
             try {
-                console.log(data, 'data', 'id ', this.updateId)
                 await this.updateCustomer({id: this.updateId, data})
 
                 this.$toast.add({
@@ -94,8 +89,7 @@ const customerMixin = {
                     life: 3000
                 })
             } finally {
-                this.getListCustomer()
-                this.closeModal()
+                await this.$router.push({name: 'Customer'})
             }
         },
 
@@ -110,7 +104,7 @@ const customerMixin = {
                     life: 3000
                 })
 
-                this.getListCustomer()
+                await this.$router.push({name: 'Customer'})
             } catch {
                 this.$toast.add({
                     severity: 'error',
@@ -121,14 +115,6 @@ const customerMixin = {
             }
         },
 
-        async onUpdate(val) {
-            this.updateId = val.id
-            const item = await this.getSingleCustomer(this.updateId)
-            this.defaultValues = item.data
-            this.formData.taxOffice = item.data.TaxOffice
-            this.formType = 'UPDATE'
-            this.displayModal = true
-        },
 
         onSelection(val) {
             this.selectedItems = val.map((item) => item.id)
@@ -137,10 +123,10 @@ const customerMixin = {
             this.formData = {
                 title: null,
                 identityNumber: null,
-                isCorporate: null,
+                isCorporate: "TUZEL",
                 TaxOffice: null,
                 Address: {
-                    title: null,
+                    title: "şahıs şirketi",
                     address: null,
                     postalCode: null,
                     City: null,

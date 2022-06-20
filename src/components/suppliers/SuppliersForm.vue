@@ -443,22 +443,9 @@ export default {
         this.udpateSubmit(this.formData)
       }
     },
-    /* submit(type) {
-
-       this.$v.$touch()
-       this.submitted = true
-
-       if (this.$v.$invalid) {
-         return
-       }
-
-       this.$emit('onSubmit', this.formData, type)
-
-     }, */
 
     onClose() {
-      this.$router.push({name: 'Supplier'});
-      //  this.$emit('close')
+      this.$router.push({name: 'Customer'});
     },
 
     onSelectCity(city) {
