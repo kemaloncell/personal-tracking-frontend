@@ -73,7 +73,7 @@ const customerMixin = {
 
         async udpateSubmit(data) {
             try {
-                await this.updateCustomer({id: this.updateId, data})
+                await this.updateCustomer({id: data.id, data})
 
                 this.$toast.add({
                     severity: 'success',

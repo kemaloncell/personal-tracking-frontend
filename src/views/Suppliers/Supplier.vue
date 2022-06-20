@@ -45,7 +45,6 @@ export default {
 
   data() {
     return {
-      displayModal: false,
       updateId: null,
     }
   },

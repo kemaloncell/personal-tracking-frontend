@@ -512,16 +512,18 @@ export default {
       }
     },
 
-
-    mounted() {
-      if (this.type === 'CREATE') {
-        this.resetForm()
-      } else {
-        this.type = this.$route.params.type
-        this.formData = this.$route.params.data
-      }
-    }
   },
+  
+  mounted() {
+    console.log(this.$route.params.data, 'formData')
+
+    if (this.type === 'CREATE') {
+      this.resetForm()
+    } else {
+      this.type = this.$route.params.type
+      this.formData = this.$route.params.data
+    }
+  }
 
 
 }
