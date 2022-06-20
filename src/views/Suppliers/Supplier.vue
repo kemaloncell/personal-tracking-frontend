@@ -9,7 +9,7 @@
           class="flex mb-3 justify-content-between align-items-center mb-3 filters flex-wrap"
       >
         <div class="flex align-items-center">
-          <Button @click="goCreatePage" class="commonDemandsServiceimary add-button"
+          <Button @click="goCreatePage" class=" add-button"
           >Tedariçi Ekle
           </Button
           >
@@ -47,21 +47,18 @@
 
 <script>
 
-import SuppliersForm from "@/components/suppliers/SuppliersForm";
 import SupplierList from "@/components/suppliers/SupplierList";
 import supplierMixin from "@/components/suppliers/mixins/supplierMixins";
 
 export default {
   mixins: [supplierMixin],
   components: {
-    SuppliersForm,
     SupplierList,
   },
 
   data() {
     return {
       displayModal: false,
-      formType: 'CREATE',
       defaultValues: null,
       updateId: null,
     }
@@ -69,16 +66,28 @@ export default {
 
   methods: {
     goCreatePage() {
-      this.$router.push({name: 'SupplierDetail', params: {type: 'CREATE'}})
+      this.$router.push({name: 'SupplierCreate', params: {type: 'CREATE'}});
     },
 
-    closeModal() {
-      this.displayModal = false
+    async onUpdate(val) {
+      this.updateId = val.id
+      const item = await this.getSingleSupplier(this.updateId)
+      // this.defaultValues = item.data
+      this.formData = item.data
+      this.formData.taxOffice = item.data.TaxOffice
+      //  this.formType = 'UPDATE'
+      await this.$router.push({name: 'SupplierUpdate', params: {id: val.id, data: item.data, type: 'UPDATE'}})
+      // this.displayModal = true
+
+    },
+
+    /*closeModal() {
+     this.displayModal = false
       this.defaultValues = null
       this.formType = 'CREATE'
 
       this.resetForm()
-    },
+    },*/
 
     /*async submit(data, type) {
 
@@ -97,7 +106,6 @@ export default {
   },
   created() {
     this.getListSupplier()
-    console.log(this.defaultValues, 'defaultValues')
   }
 }
 </script>

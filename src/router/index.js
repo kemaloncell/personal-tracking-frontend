@@ -28,7 +28,8 @@ import AdvanceDemands from '@/views/Demands/AdvanceDemands.vue'
 
 //Suppliers
 import SupplierList from '@/views/Suppliers/Supplier.vue'
-import SuppliersForm from '@/components/suppliers/SuppliersForm.vue'
+import SupplierCreate from '@/components/suppliers/SuppliersForm.vue'
+import SupplierUpdate from '@/components/suppliers/SuppliersForm.vue'
 
 //Fields
 import FieldList from '@/views/Fields/Fields.vue'
@@ -168,11 +169,21 @@ const routes = [
             requiresAuth: true
         }
     },
+    {
+        path: '/supplier',
+        name: 'SupplierCreate',
+        component: SupplierCreate,
+        props: true,
+        meta: {
+            requiresAuth: true
+        }
+    },
 
     {
         path: '/suppliers/:id',
-        name: 'SupplierDetail',
-        component: SuppliersForm,
+        name: 'SupplierUpdate',
+        component: SupplierUpdate,
+        props: true,
         meta: {
             requiresAuth: true
         }

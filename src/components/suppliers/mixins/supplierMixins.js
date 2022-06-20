@@ -48,7 +48,6 @@ const supplierMixin = {
         }),
 
         async createSubmit(data) {
-            console.log(data, 'data')
             try {
                 await this.createSupplier(data)
 
@@ -122,17 +121,6 @@ const supplierMixin = {
             }
         },
 
-        async onUpdate(val) {
-
-            this.updateId = val.id
-            const item = await this.getSingleSupplier(this.updateId)
-            // this.defaultValues = item.data
-            this.formData = item.data
-            this.formData.taxOffice = item.data.TaxOffice
-            //  this.formType = 'UPDATE'
-            await this.$router.push({name: 'SupplierDetail', params: {id: val.id, data: item.data, type: 'UPDATE'}})
-            // this.displayModal = true
-        },
 
         onSelection(val) {
             this.selectedItems = val.map((item) => item.id)
@@ -141,10 +129,10 @@ const supplierMixin = {
             this.formData = {
                 title: null,
                 identityNumber: null,
-                isCorporate: null,
+                isCorporate: "TUZEL",
                 TaxOffice: null,
                 Address: {
-                    title: null,
+                    title: "şahıs şirketi",
                     address: null,
                     postalCode: null,
                     City: null,
