@@ -62,17 +62,8 @@
               class="flex justify-content-center w-full mt-5 mb-5 decline-button save-menu-button save-button"
           >
             <j-submitbutton
-                v-if="type === 'CREATE'"
                 :loading="loading"
                 @save="submit"
-            />
-            <Button
-                v-else
-                :disabled="loading"
-                label="Güncelle"
-                class="save-primary-button ml-3"
-                :loading="loading"
-                @click="submit"
             />
             <Button
                 :disabled="loading"
@@ -89,6 +80,7 @@
 
 <script>
 import GlobalForm from '@/components/globalMixins/globalForm'
+import {mapActions} from "vuex";
 
 
 export default {
@@ -118,22 +110,61 @@ export default {
   },
 
   methods: {
-    submit(type) {
+    ...mapActions({
+      createCustomer: 'customer/create',
+      createEmployee: 'employee/create',
+      callRegister: 'auth/callRegister',
+    }),
 
-      /*  this.$v.$touch()
-           this.submitted = true
+    async submit() {
 
-         if (this.$v.$invalid) {
-           return
+      /* this.$router.beforeEach((to, from, next) => {
+         if (to.path === 'customer') {
+           try {
+             await this.createCustomer(this.registerForm)
+             this.$toast.add({
+               severity: 'success',
+               summary: 'Başarılı',
+               detail: 'Müşteri ekleme başarılı !',
+               life: 3000
+             })
+           } catch {
+             this.$toast.add({
+               severity: 'error',
+               summary: 'Başarısız',
+               detail: 'Müşteri ekleme başarısız !',
+               life: 3000
+             })
+           } finally {
+             this.$router.push({name: 'Customer'})
+           }
+
+         } else if (to.path === '/employee') {
+           try {
+             await this.createEmployee(this.registerForm)
+             this.$toast.add({
+               severity: 'success',
+               summary: 'Başarılı',
+               detail: 'Çalışan ekleme başarılı !',
+               life: 3000
+             })
+           } catch {
+             this.$toast.add({
+               severity: 'error',
+               summary: 'Başarısız',
+               detail: 'Çalışan ekleme başarısız !',
+               life: 3000
+             })
+           } finally {
+             this.$router.push({name: 'Employee'})
+           }
          }
-   */
-
-      this.$emit('onSubmit', this.registerForm, type)
+       }) */
 
     },
 
     onClose() {
-      this.$emit('close')
+      this.$router.push(this.$router.history._startLocation)
     },
 
 

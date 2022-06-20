@@ -39,8 +39,9 @@
             <i class="pi pi-file-o" style="color:white"></i>
           </router-link>
 
-          <router-link v-if="addUser" :to="{ name: `AddUser`, params:{id:data.id, data:data } }"
+          <router-link v-if="addUser" :to="{ name: `AddCustomer`, params:{id:data.id, data:data } }"
                        type="button"
+                       v-tooltip.top="'Hesap oluşturmak için tıklayın'"
                        class="p-button-sm table-message-button mr-2" style="border-radius: 4px">
             <i class="pi pi-user-plus" style="color:white"></i>
           </router-link>

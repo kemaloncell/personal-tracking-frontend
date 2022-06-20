@@ -13,16 +13,6 @@
           <h2 class="text-2xl font-bold" style="margin-bottom: 50px" v-else>
             Şahıs
           </h2>
-          <Button
-              v-tooltip.top="'Müşteriye hesap oluşturmak için tıklayın'"
-              v-if="formData.id"
-              :disabled="loading"
-              @click="openModal"
-              label="Hesap Oluştur"
-              icon="pi pi-user"
-              style="height: 2rem; width:6rem; font-size :.7rem; padding:.6rem;"
-              class="p-button-sm p-button-rounded p-button-info p-button-outlined"
-          />
         </div>
         <div class="flex mt-1 justify-content-center">
           <div class="p-field-radiobutton flex align-items-center form-checkbox">
@@ -360,17 +350,6 @@
           </div>
         </div>
       </form>
-      <j-modal :visible.sync="displayModal" width="800px">
-        <template slot="content">
-          <create-customer-form
-              :loading="submitLoading"
-              :singleLoading="singleLoading"
-              :type="formType"
-              @onSubmit="accountSubmit"
-              @close="closeModal"
-          />
-        </template>
-      </j-modal>
     </div>
   </default-layout>
 </template>
@@ -384,13 +363,9 @@ import {
 } from 'vuelidate/lib/validators'
 import GlobalForm from '@/components/globalMixins/globalForm'
 import CustomerMixin from './mixins/customerMixins'
-import createCustomerForm from "@/components/customers/CreateCustomerForm";
 
 export default {
   mixins: [CustomerMixin, GlobalForm],
-  components: {
-    createCustomerForm
-  },
   data: () => ({
     submitted: false,
     accountType: true,
@@ -491,24 +466,6 @@ export default {
     onTaxOffice(taxOffice) {
       if (taxOffice) {
         this.formData.TaxOffice = taxOffice
-      }
-    },
-
-
-    // MODAL PRPOPERTY
-    openModal() {
-      this.displayModal = true;
-    },
-
-    closeModal() {
-      this.displayModal = false
-      this.formType = 'CREATE'
-
-    },
-
-    async accountSubmit(data, type) {
-      if (this.formType === 'CREATE') {
-        this.createSubmit(data, type, this.accountType)
       }
     },
 

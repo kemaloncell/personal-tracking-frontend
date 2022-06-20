@@ -22,6 +22,7 @@ import EmployeeDocumentList from '@/views/Employees/EmployeesDocuments.vue'
 import CustomerList from '@/views/Customers/Customers.vue'
 import CustomerCreate from '@/components/customers/CustomerForm.vue'
 import CustomerUpdate from '@/components/customers/CustomerForm.vue'
+import AddCustomer from '@/components/customers/CreateCustomerForm.vue'
 
 //Demands
 import DemandsList from '@/views/Demands/OffDayDemands.vue'
@@ -45,8 +46,6 @@ import ForgotPassword from '@/components/auth/ForgotPassword.vue'
 import ForgotPasswordSecond from '@/components/auth/ForgotPasswordSecond.vue'
 //import CommonDemandList from "@/components/demands/commonDemands/CommonDemandsList.vue";
 
-//Add User
-import AddUser from '@/components/global/AddUser.vue'
 
 const routes = [
     {
@@ -69,15 +68,6 @@ const routes = [
         path: '/login',
         name: 'Login',
         component: Login,
-        meta: {
-            notRequiresAuth: false
-        }
-    },
-    {
-        path: '/add-user/:id',
-        name: 'AddUser',
-        component: AddUser,
-        props: true,
         meta: {
             notRequiresAuth: false
         }
@@ -194,6 +184,15 @@ const routes = [
         props: true,
         meta: {
             requiresAuth: true
+        }
+    },
+    {
+        path: '/add-customer/:id',
+        name: 'AddCustomer',
+        component: AddCustomer,
+        props: true,
+        meta: {
+            notRequiresAuth: false
         }
     },
     {
