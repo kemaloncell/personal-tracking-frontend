@@ -103,8 +103,7 @@ const customerMixin = {
                     detail: 'Çalışan silme başarılı !',
                     life: 3000
                 })
-
-                await this.$router.push({name: 'Customer'})
+                this.getListCustomer()
             } catch {
                 this.$toast.add({
                     severity: 'error',
@@ -112,6 +111,8 @@ const customerMixin = {
                     detail: 'Çalışan silme başarısız !',
                     life: 3000
                 })
+            } finally {
+                await this.$router.push({name: 'Customer'})
             }
         },
 
