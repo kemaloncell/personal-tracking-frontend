@@ -41,7 +41,6 @@ const employeeMixin = {
 
 
         async createSubmit(data, accountType) {
-            console.log(data, 'gldi')
 
             try {
                 accountType ? await this.callRegister(data) : await this.createEmployee(data)
@@ -60,15 +59,13 @@ const employeeMixin = {
                     life: 3000
                 })
             } finally {
-                if (type === 0) {
-                    this.closeModal()
-                }
                 await this.$router.push({name: 'Employee'})
             }
 
         },
 
         async udpateSubmit(data) {
+            console.log(data, 'datas')
             try {
                 await this.updateEmployee({id: data.id, data})
 

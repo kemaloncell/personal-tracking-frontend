@@ -221,9 +221,7 @@ export default {
 
     // MODAL PRPOPERTY
     openModal(id) {
-      console.log(id, 'i')
       this.detailId = id
-      console.log(this.detailId, 'i2')
       this.displayModal = true;
     },
 
