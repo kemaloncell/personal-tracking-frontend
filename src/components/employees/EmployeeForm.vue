@@ -192,11 +192,11 @@ export default {
         return
       }
 
-      if (this.formType === 'CREATE') {
+      if (this.type === 'CREATE') {
         this.createSubmit(this.formData)
       }
 
-      if (this.formType === 'UPDATE') {
+      if (this.type === 'UPDATE') {
         this.udpateSubmit(this.formData)
       }
     },

@@ -41,6 +41,7 @@ const employeeMixin = {
 
 
         async createSubmit(data, accountType) {
+            console.log(data, 'gldi')
 
             try {
                 accountType ? await this.callRegister(data) : await this.createEmployee(data)
@@ -69,7 +70,7 @@ const employeeMixin = {
 
         async udpateSubmit(data) {
             try {
-                await this.updateEmployee({id: this.updateId, data})
+                await this.updateEmployee({id: data.id, data})
 
                 this.$toast.add({
                     severity: 'success',
@@ -119,11 +120,11 @@ const employeeMixin = {
         resetForm() {
             this.formData = {
                 name: null,
-                identityNumber: null,
+                tcNumber: null,
                 surname: null,
                 phone: null,
                 birthDate: null,
-                status: null,
+                status: 1,
             }
         },
     },
