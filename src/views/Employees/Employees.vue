@@ -7,7 +7,7 @@
           class="flex mb-3 justify-content-between align-items-center mb-3 filters flex-wrap"
       >
         <div class="flex align-items-center">
-          <Button @click="openModal" class="p-button-primary add-button"
+          <Button @click="goCreatePage" class="p-button-primary add-button"
           >Çalışan Ekle
           </Button
           >
@@ -23,19 +23,6 @@
           @onSelection="onSelection"
       />
 
-      <j-modal :visible.sync="displayModal" width="800px">
-        <template slot="content">
-          <employees-form
-              :loading="submitLoading"
-              :singleLoading="singleLoading"
-              :defaultValues="defaultValues"
-              :type="formType"
-              @onSubmit="submit"
-              @close="closeModal"
-          />
-        </template>
-      </j-modal>
-
       <Toast position="top-right"/>
 
     </div>
@@ -44,45 +31,31 @@
 
 <script>
 import EmployeeList from "@/components/employees/EmployeeList";
-import EmployeesForm from "@/components/employees/EmployeeForm";
 import employeeMixin from "@/components/employees/mixins/employeeMixins";
 
 export default {
   mixins: [employeeMixin],
   components: {
     EmployeeList,
-    EmployeesForm
   },
   data() {
     return {
-      displayModal: false,
-      formType: 'CREATE',
-      defaultValues: null,
       updateId: null,
     }
   },
 
   methods: {
-    openModal() {
-      this.displayModal = true;
+    goCreatePage() {
+      this.$router.push({name: 'EmployeeCreate', params: {type: 'CREATE'}});
     },
 
-    closeModal() {
-      this.displayModal = false
-      this.defaultValues = null
-      this.formType = 'CREATE'
+    async onUpdate(val) {
+      this.updateId = val.id
+      const item = await this.getEmployeeSingle(this.updateId)
+      this.formData = item.data
+      this.formData.taxOffice = item.data.TaxOffice
+      await this.$router.push({name: 'EmployeeUpdate', params: {id: val.id, data: item.data, type: 'UPDATE'}})
 
-      this.resetForm()
-    },
-
-    async submit(data, type) {
-      if (this.formType === 'CREATE') {
-        this.createSubmit(data, type)
-      }
-
-      if (this.formType === 'UPDATE') {
-        this.udpateSubmit(data)
-      }
     },
 
 

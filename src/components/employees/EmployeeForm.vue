@@ -1,144 +1,146 @@
 <template>
-  <div>
-    <form @submit.prevent="submit">
-      <div class="flex justify-content-between mt-1">
-        <h2 class="text-2xl font-bold" style="margin-bottom: 20px">
-          Çalışan
-        </h2>
+  <default-layout>
+    <div slot="content">
+      <form @submit.prevent="submit">
+        <div class="flex justify-content-between mt-1">
+          <h2 class="text-2xl font-bold" style="margin-bottom: 20px">
+            Çalışan
+          </h2>
 
-        <Button
-            v-tooltip.top="'Personala hesap oluşturmak için tıklayın'"
-            v-if="formData.id"
-            :disabled="loading"
-            @click="openModal(formData.id)"
-            label="Hesap Oluştur"
-            icon="pi pi-user"
-            style="height: 2rem; width:6rem; font-size :.7rem; padding:.6rem;"
-            class="p-button-sm p-button-rounded p-button-info p-button-outlined"
-        />
-      </div>
-      <div class="grid mt-5 flex align-items-center">
-
-        <div class="col-2 text-sm">Adı</div>
-        <div class="col-4">
-          <j-input-text
-              unmask
-              name="name"
-              class="w-full p-inputtext-sm"
-              v-model="formData.name"
-              mask="(999) 999-99-99"
+          <Button
+              v-tooltip.top="'Personala hesap oluşturmak için tıklayın'"
+              v-if="formData.id"
+              :disabled="loading"
+              @click="openModal(formData.id)"
+              label="Hesap Oluştur"
+              icon="pi pi-user"
+              style="height: 2rem; width:6rem; font-size :.7rem; padding:.6rem;"
+              class="p-button-sm p-button-rounded p-button-info p-button-outlined"
           />
         </div>
+        <div class="grid mt-5 flex align-items-center">
 
-        <div class="col-2 text-sm">Soyadı</div>
-        <div class="col-4">
-          <j-input-text
-              unmask
-              name="surname"
-              class="w-full p-inputtext-sm"
-              v-model="formData.surname"
-              mask="(999) 999-99-99"
-          />
-        </div>
+          <div class="col-2 text-sm">Adı</div>
+          <div class="col-4">
+            <j-input-text
+                unmask
+                name="name"
+                class="w-full p-inputtext-sm"
+                v-model="formData.name"
+                mask="(999) 999-99-99"
+            />
+          </div>
 
-
-        <div class="col-2 text-sm pb-0">
-          TC Kimlik No <span class="p-error">*</span>
-        </div>
-        <div class="col-4 pb-0">
-          <InputText
-              name="identityNumber"
-              class="w-full p-inputtext-sm"
-              v-model.trim="formData.tcNumber"
-              maxLength="11"
-              autocomplete="off"
-          />
-        </div>
+          <div class="col-2 text-sm">Soyadı</div>
+          <div class="col-4">
+            <j-input-text
+                unmask
+                name="surname"
+                class="w-full p-inputtext-sm"
+                v-model="formData.surname"
+                mask="(999) 999-99-99"
+            />
+          </div>
 
 
-        <div class="col-2 text-sm">Mobil Tel</div>
-        <div class="col-4">
-          <j-input-text
-              unmask
-              name="phoneNumber"
-              class="w-full p-inputtext-sm"
-              v-model="formData.phone"
-              mask="(999) 999-99-99"
-          />
+          <div class="col-2 text-sm pb-0">
+            TC Kimlik No <span class="p-error">*</span>
+          </div>
+          <div class="col-4 pb-0">
+            <InputText
+                name="identityNumber"
+                class="w-full p-inputtext-sm"
+                v-model.trim="formData.tcNumber"
+                maxLength="11"
+                autocomplete="off"
+            />
+          </div>
 
-        </div>
-        <div class="col-2 text-sm">Doğum Tarihi</div>
-        <div class="col-4">
-          <j-date
-              class="w-full p-inputtext-sm"
-              v-model="formData.birthDate"
-              :defaultValue="formData.birthDate"
-              @onSelect="
+
+          <div class="col-2 text-sm">Mobil Tel</div>
+          <div class="col-4">
+            <j-input-text
+                unmask
+                name="phoneNumber"
+                class="w-full p-inputtext-sm"
+                v-model="formData.phone"
+                mask="(999) 999-99-99"
+            />
+
+          </div>
+          <div class="col-2 text-sm">Doğum Tarihi</div>
+          <div class="col-4">
+            <j-date
+                class="w-full p-inputtext-sm"
+                v-model="formData.birthDate"
+                :defaultValue="formData.birthDate"
+                @onSelect="
                 (birthDate) => {
                   formData.birthDate = birthDate
                 }
               "
-          ></j-date>
+            ></j-date>
 
+          </div>
+
+          <hr class="w-full"/>
+
+          <div class="col-2 text-sm">Kullanıcı Tipi</div>
+          <div class="col-4 pt-0 pb-0">
+            <j-employee-type
+                @onEmployeeType="onEmployeeType"
+                :defaultEmployee="formData.EmployeeType"
+            />
+          </div>
+
+          <div class="col-2 text-sm">Eğitim Durumu</div>
+          <div class="col-4 pt-0 pb-0">
+            <j-education-level-type
+                @onEducationType="onEducationType"
+                :defaultEducation="formData.EducationLevel"
+            />
+          </div>
+
+
+          <div
+              class="flex justify-content-center w-full mt-5 mb-5 decline-button save-menu-button save-button"
+          >
+            <j-submitbutton
+                v-if="type === 'CREATE'"
+                :loading="loading"
+                @save="submit"
+            />
+            <Button
+                v-else
+                :disabled="loading"
+                label="Güncelle"
+                class="save-primary-button ml-3"
+                :loading="loading"
+                @click="submit"
+            />
+            <Button
+                :disabled="loading"
+                @click="onClose"
+                label="Vazgeç"
+                class="p-button-danger ml-3"
+            />
+          </div>
         </div>
-
-        <hr class="w-full"/>
-
-        <div class="col-2 text-sm">Kullanıcı Tipi</div>
-        <div class="col-4 pt-0 pb-0">
-          <j-employee-type
-              @onEmployeeType="onEmployeeType"
-              :defaultEmployee="formData.EmployeeType"
+      </form>
+      <j-modal :visible.sync="displayModal" width="800px">
+        <template slot="content">
+          <create-employee-form
+              :loading="submitLoading"
+              :singleLoading="singleLoading"
+              :type="formType"
+              :employeeDetailId="detailId"
+              @onSubmit="accountSubmit"
+              @close="closeModal"
           />
-        </div>
-
-        <div class="col-2 text-sm">Eğitim Durumu</div>
-        <div class="col-4 pt-0 pb-0">
-          <j-education-level-type
-              @onEducationType="onEducationType"
-              :defaultEducation="formData.EducationLevel"
-          />
-        </div>
-
-
-        <div
-            class="flex justify-content-center w-full mt-5 mb-5 decline-button save-menu-button save-button"
-        >
-          <j-submitbutton
-              v-if="type === 'CREATE'"
-              :loading="loading"
-              @save="submit"
-          />
-          <Button
-              v-else
-              :disabled="loading"
-              label="Güncelle"
-              class="save-primary-button ml-3"
-              :loading="loading"
-              @click="submit"
-          />
-          <Button
-              :disabled="loading"
-              @click="onClose"
-              label="Vazgeç"
-              class="p-button-danger ml-3"
-          />
-        </div>
-      </div>
-    </form>
-    <j-modal :visible.sync="displayModal" width="800px">
-      <template slot="content">
-        <create-employee-form
-            :loading="submitLoading"
-            :singleLoading="singleLoading"
-            :type="formType"
-            :employeeDetailId="detailId"
-            @onSubmit="accountSubmit"
-            @close="closeModal"
-        />
-      </template>
-    </j-modal>
-  </div>
+        </template>
+      </j-modal>
+    </div>
+  </default-layout>
 </template>
 
 <script>
@@ -181,7 +183,7 @@ export default {
 
 
   methods: {
-    submit(type) {
+    async submit() {
 
       this.$v.$touch()
       this.submitted = true
@@ -190,13 +192,18 @@ export default {
         return
       }
 
-      this.$emit('onSubmit', this.formData, type)
+      if (this.formType === 'CREATE') {
+        this.createSubmit(this.formData)
+      }
 
+      if (this.formType === 'UPDATE') {
+        this.udpateSubmit(this.formData)
+      }
     },
 
 
     onClose() {
-      this.$emit('close')
+      this.$router.push({name: 'Employee'});
     },
 
     onEmployeeType(type) {
@@ -234,6 +241,16 @@ export default {
     },
 
   },
+
+  mounted() {
+
+    if (this.type === 'CREATE') {
+      this.resetForm()
+    } else {
+      this.type = this.$route.params.type
+      this.formData = this.$route.params.data
+    }
+  }
 
 }
 </script>

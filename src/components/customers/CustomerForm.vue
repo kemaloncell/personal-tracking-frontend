@@ -472,7 +472,6 @@ export default {
   },
 
   mounted() {
-    console.log(this.$route.params.data, 'formData')
 
     if (this.type === 'CREATE') {
       this.resetForm()

@@ -40,7 +40,7 @@ const employeeMixin = {
         }),
 
 
-        async createSubmit(data, type, accountType) {
+        async createSubmit(data, accountType) {
 
             try {
                 accountType ? await this.callRegister(data) : await this.createEmployee(data)
@@ -62,7 +62,7 @@ const employeeMixin = {
                 if (type === 0) {
                     this.closeModal()
                 }
-                this.getListEmployee()
+                await this.$router.push({name: 'Employee'})
             }
 
         },
@@ -85,8 +85,7 @@ const employeeMixin = {
                     life: 3000
                 })
             } finally {
-                this.getListEmployee()
-                this.closeModal()
+                await this.$router.push({name: 'Employee'})
             }
         },
 
@@ -109,16 +108,9 @@ const employeeMixin = {
                     detail: 'Çalışan silme başarısız !',
                     life: 3000
                 })
+            } finally {
+                await this.$router.push({name: 'Employee'})
             }
-        },
-
-        async onUpdate(val) {
-            this.updateId = val.id
-            const item = await this.getEmployeeSingle(this.updateId)
-            this.defaultValues = item.data
-            this.formData.taxOffice = item.data.TaxOffice
-            this.formType = 'UPDATE'
-            this.displayModal = true
         },
 
         onSelection(val) {

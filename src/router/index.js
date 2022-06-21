@@ -14,6 +14,8 @@ import VestingList from '@/views/Finances/Vesting.vue'
 
 //Employees
 import EmployeeList from '@/views/Employees/Employees.vue'
+import EmployeeCreate from '@/components/employees/EmployeeForm.vue'
+import EmployeeUpdate from '@/components/employees/EmployeeForm.vue'
 
 //Employees Documents
 import EmployeeDocumentList from '@/views/Employees/EmployeesDocuments.vue'
@@ -150,7 +152,25 @@ const routes = [
         }
     },
     {
+        path: '/employee',
+        name: 'EmployeeCreate',
+        component: EmployeeCreate,
+        props: true,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
         path: '/employees/:id',
+        name: 'EmployeeUpdate',
+        component: EmployeeUpdate,
+        props: true,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/employees/document/:id',
         name: 'Document',
         component: EmployeeDocumentList,
         props: true,
