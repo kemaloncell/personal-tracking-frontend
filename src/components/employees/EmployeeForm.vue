@@ -10,6 +10,7 @@
             name="name"
             class="w-full p-inputtext-sm"
             v-model="formData.name"
+
             mask="(999) 999-99-99"
         />
       </div>
@@ -120,11 +121,9 @@ import {
 } from 'vuelidate/lib/validators'
 import GlobalForm from '@/components/globalMixins/globalForm'
 import employeeMixin from './mixins/employeeMixins'
-import CreateEmployeeForm from "@/components/employees/CreateEmployeeForm";
 
 export default {
-  components: {CreateEmployeeForm},
-  mixins: [employeeMixin, GlobalForm, CreateEmployeeForm],
+  mixins: [employeeMixin, GlobalForm],
   data: () => ({
     submitted: false,
     displayModal: false,
@@ -188,6 +187,24 @@ export default {
       }
     },
 
+
+    // MODAL PRPOPERTY
+    openModal(id) {
+      console.log(id, 'i')
+      this.detailId = id
+      console.log(this.detailId, 'i2')
+      this.displayModal = true;
+    },
+    closeModal() {
+      this.displayModal = false
+      this.formType = 'CREATE'
+      //this.resetForm()
+    },
+    async accountSubmit(data, type) {
+      if (this.formType === 'CREATE') {
+        this.createSubmit(data, type, this.accountType)
+      }
+    },
 
   },
 

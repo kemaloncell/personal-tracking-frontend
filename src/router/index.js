@@ -161,15 +161,6 @@ const routes = [
         }
     },
     {
-        path: '/employees/:id',
-        name: 'EmployeeUpdate',
-        component: EmployeeUpdate,
-        props: true,
-        meta: {
-            requiresAuth: true
-        }
-    },
-    {
         path: '/employees/document/:id',
         name: 'Document',
         component: EmployeeDocumentList,

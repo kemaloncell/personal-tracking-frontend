@@ -7,7 +7,6 @@
       :totalRecords="total"
       :lazy="true"
       :documentType="true"
-      :addEmployee="true"
       sortMode="multiple"
       @onPageChange="onPage"
       @onDelete="onDeleteYes"

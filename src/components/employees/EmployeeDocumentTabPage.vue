@@ -1,8 +1,5 @@
 <template>
   <form @submit.prevent="submit">
-    <h2 class="text-2xl font-bold" style="margin-bottom: 50px">
-      {{ category.name }}
-    </h2>
     <div class="grid col-12 mt-5 flex justify-content-end align-items-center">
 
       <div class="col-2 text-sm">Doküman Tipi</div>
@@ -142,7 +139,7 @@ export default {
     },
 
     onClose() {
-      this.$emit('close')
+      window.location.reload()
     },
 
     onEmployeeDocument(type) {

@@ -40,14 +40,6 @@
             <i class="pi pi-user-plus" style="color:white"></i>
           </router-link>
 
-          <router-link v-if="addEmployee" :to="{ name: `addEmployee`, params:{id:data.id, data:data } }"
-                       type="button"
-                       v-tooltip.top="'Personale hesap oluşturmak için tıklayın'"
-                       class="p-button-sm table-message-button mr-2" style="border-radius: 4px">
-            <i class="pi pi-user-plus" style="color:white"></i>
-          </router-link>
-
-
           <router-link v-if="documentType" :to="{ name: `Document`, params:{id:data.id, data:data } }"
                        type="button"
                        v-tooltip.top="'Personal dökümanları için tıklayın'"
@@ -143,11 +135,7 @@ export default {
       default: () => false,
       type: Boolean
     },
-
-    addEmployee: {
-      default: () => false,
-      type: Boolean
-    },
+    
     isMessage: {
       default: () => false,
       type: Boolean

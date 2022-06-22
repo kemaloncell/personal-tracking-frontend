@@ -117,7 +117,7 @@ const employeeDocumentMixin = {
         },
 
         async onUpdate(val) {
-            console.log(val, 'val geldi')
+            this.displayTab = false
             this.defaultValues = val
             this.formType = 'UPDATE'
         },

@@ -85,48 +85,32 @@
 
 <script>
 import GlobalForm from '@/components/globalMixins/globalForm'
-
+import employeeMixin from "@/components/employees/mixins/employeeMixins";
 
 export default {
-  mixins: [GlobalForm],
-  data: () => ({
-    submitted: false,
-    registerForm: {
-      name: null,
-      email: null,
-      password: null,
-      phone: null,
-      Roles: null,
-      detailId: null,
-
-    },
-  }),
-
-  props: {
-    employeeDetailId: {
-      type: Number,
-    },
-  },
-
-  watch: {
-    employeeDetailId(val) {
-      console.log(val, 'val')
-    },
+  mixins: [GlobalForm, employeeMixin],
+  data() {
+    return {
+      submitted: false,
+      accountType: true,
+      registerForm: {
+        name: null,
+        email: null,
+        password: null,
+        phone: null,
+        Roles: null,
+        detailId: this.$route.params.id,
+      },
+    }
   },
 
   methods: {
-    submit(type) {
+    async submit() {
 
-      /*  this.$v.$touch()
-           this.submitted = true
-
-         if (this.$v.$invalid) {
-           return
-         }
-   */
-
-      this.$emit('onSubmit', this.registerForm, type)
-
+      if (this.type === 'CREATE') {
+        await this.createSubmit(this.registerForm, this.accountType)
+        await this.$router.push({name: 'Employee'});
+      }
     },
 
     onClose() {
@@ -140,14 +124,5 @@ export default {
       }
     },
   },
-
-  mounted() {
-    if (this.registerForm.name) {
-      this.registerForm.name = this.formData.name
-    }
-    if (this.registerForm.phone) {
-      this.registerForm.phone = this.formData.phone
-    }
-  }
 }
 </script>

@@ -41,7 +41,7 @@ const employeeMixin = {
 
 
         async createSubmit(data, accountType) {
-
+            console.log(data, 'geldi2')
             try {
                 accountType ? await this.callRegister(data) : await this.createEmployee(data)
 

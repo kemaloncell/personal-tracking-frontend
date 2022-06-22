@@ -89,10 +89,10 @@
 
 <script>
 import GlobalForm from '@/components/globalMixins/globalForm'
-import customerMixin from "@/components/customers/mixins/customerMixins";
+import employeeMixin from "@/components/employees/mixins/employeeMixins";
 
 export default {
-  mixins: [GlobalForm, customerMixin],
+  mixins: [GlobalForm, employeeMixin],
   data: () => ({
     submitted: false,
     accountType: true,
@@ -106,17 +106,10 @@ export default {
   }),
 
   methods: {
-    submit() {
-
-      /*  this.$v.$touch()
-           this.submitted = true
-
-         if (this.$v.$invalid) {
-           return
-         }
-   */
+    async submit() {
 
       if (this.type === 'CREATE') {
+        console.log(this.registerForm, 'rtgs')
         this.createSubmit(this.registerForm, this.accountType)
         this.$router.push({name: 'Customer'});
       }
@@ -135,14 +128,6 @@ export default {
       }
     },
   },
-
-  mounted() {
-    if (this.registerForm.name) {
-      this.registerForm.name = this.formData.name
-    }
-    if (this.registerForm.phone) {
-      this.registerForm.phone = this.formData.phone
-    }
-  }
+  
 }
 </script>
