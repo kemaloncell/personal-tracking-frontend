@@ -46,7 +46,7 @@ export default {
 
   methods: {
     goCreatePage() {
-      this.$router.push({name: 'EmployeeCreate', params: {type: 'CREATE'}});
+      this.$router.push({name: 'Document', params: {type: 'CREATE'}});
     },
 
     async onUpdate(val) {

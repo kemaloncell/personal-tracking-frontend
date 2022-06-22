@@ -5,6 +5,30 @@
       <h2 class="text-center text-2xl font-medium ">Çalışan Dökümanları</h2>
       <div class="card">
         <TabView style="margin-left: 15rem; width: 70%">
+          <TabPanel :header="'Çalışan Ekle'">
+
+            <employee-form
+                :loading="submitLoading"
+                :singleLoading="singleLoading"
+                :type="formType"
+                :employeeDetailId="detailId"
+                @onSubmit="accountSubmit"
+                @close="closeModal"
+            />
+
+          </TabPanel>
+          <TabPanel :header="'Hesap Oluştur'">
+
+            <create-employee-form
+                :loading="submitLoading"
+                :singleLoading="singleLoading"
+                :type="formType"
+                :employeeDetailId="detailId"
+                @onSubmit="accountSubmit"
+                @close="closeModal"
+            />
+
+          </TabPanel>
           <TabPanel
               v-for="category in categoryList" :key="category.id" :header="category.name"
               v-if="filteredListData2 ? filteredListData2.id === category.id: true"
@@ -18,8 +42,8 @@
                 @onSubmit="submit"
 
             />
-
           </TabPanel>
+
         </TabView>
 
       </div>
@@ -42,12 +66,16 @@
 import employeeDocumentMixins from "@/components/employees/mixins/employeeDocumentMixins";
 import EmployeeDocumentList from "@/components/employees/EmployeeDocumentList";
 import EmployeeDocumentTabPage from "@/components/employees/EmployeeDocumentTabPage";
+import CreateEmployeeForm from "@/components/employees/CreateEmployeeForm";
+import EmployeeForm from "@/components/employees/EmployeeForm";
 
 export default {
   mixins: [employeeDocumentMixins],
   components: {
     EmployeeDocumentList,
-    EmployeeDocumentTabPage
+    EmployeeDocumentTabPage,
+    CreateEmployeeForm,
+    EmployeeForm
   },
   data() {
     return {
