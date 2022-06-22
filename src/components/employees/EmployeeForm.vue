@@ -2,26 +2,15 @@
   <default-layout>
     <div slot="content">
       <form @submit.prevent="submit">
-        <div class="flex justify-content-between mt-1">
-          <h2 class="text-2xl font-bold" style="margin-bottom: 20px">
-            Çalışan
-          </h2>
+        <h2 class="text-2xl text-center font-bold" style="margin-bottom: 20px">
+          Çalışan
+        </h2>
 
-          <Button
-              v-tooltip.top="'Personala hesap oluşturmak için tıklayın'"
-              v-if="formData.id"
-              :disabled="loading"
-              @click="openModal(formData.id)"
-              label="Hesap Oluştur"
-              icon="pi pi-user"
-              style="height: 2rem; width:6rem; font-size :.7rem; padding:.6rem;"
-              class="p-button-sm p-button-rounded p-button-info p-button-outlined"
-          />
-        </div>
-        <div class="grid mt-5 flex align-items-center">
+        <div class="flex-column justify-content-start mt-5 flex align-items-center">
 
-          <div class="col-2 text-sm">Adı</div>
-          <div class="col-4">
+
+          <div class="col-4 flex pb-4">
+            <div class="col-3 text-sm">Adı</div>
             <j-input-text
                 unmask
                 name="name"
@@ -31,8 +20,9 @@
             />
           </div>
 
-          <div class="col-2 text-sm">Soyadı</div>
-          <div class="col-4">
+
+          <div class="col-4 flex  pb-4">
+            <div class="col-3 text-sm">Soyadı</div>
             <j-input-text
                 unmask
                 name="surname"
@@ -43,10 +33,10 @@
           </div>
 
 
-          <div class="col-2 text-sm pb-0">
-            TC Kimlik No <span class="p-error">*</span>
-          </div>
-          <div class="col-4 pb-0">
+          <div class="col-4 pb-0 flex  pb-4">
+            <div class="col-3 text-sm pb-0">
+              TC Kimlik No <span class="p-error">*</span>
+            </div>
             <InputText
                 name="identityNumber"
                 class="w-full p-inputtext-sm"
@@ -57,8 +47,8 @@
           </div>
 
 
-          <div class="col-2 text-sm">Mobil Tel</div>
-          <div class="col-4">
+          <div class="col-4 flex  pb-4">
+            <div class="col-3 text-sm">Mobil Tel</div>
             <j-input-text
                 unmask
                 name="phoneNumber"
@@ -68,8 +58,9 @@
             />
 
           </div>
-          <div class="col-2 text-sm">Doğum Tarihi</div>
-          <div class="col-4">
+
+          <div class="col-4 flex  pb-4">
+            <div class="col-3 text-sm">Doğum Tarihi</div>
             <j-date
                 class="w-full p-inputtext-sm"
                 v-model="formData.birthDate"
@@ -83,18 +74,18 @@
 
           </div>
 
-          <hr class="w-full"/>
 
-          <div class="col-2 text-sm">Kullanıcı Tipi</div>
-          <div class="col-4 pt-0 pb-0">
+          <div class="col-4 flex pb-4">
+            <div class="col-3 text-sm flex">Kullanıcı Tipi</div>
             <j-employee-type
                 @onEmployeeType="onEmployeeType"
                 :defaultEmployee="formData.EmployeeType"
             />
           </div>
 
-          <div class="col-2 text-sm">Eğitim Durumu</div>
-          <div class="col-4 pt-0 pb-0">
+
+          <div class="col-4 flex">
+            <div class="col-3 text-sm">Eğitim Durumu</div>
             <j-education-level-type
                 @onEducationType="onEducationType"
                 :defaultEducation="formData.EducationLevel"
@@ -218,25 +209,6 @@ export default {
       }
     },
 
-
-    // MODAL PRPOPERTY
-    openModal(id) {
-      this.detailId = id
-      this.displayModal = true;
-    },
-
-    closeModal() {
-      this.displayModal = false
-      this.formType = 'CREATE'
-
-      //this.resetForm()
-    },
-
-    async accountSubmit(data, type) {
-      if (this.formType === 'CREATE') {
-        this.createSubmit(data, type, this.accountType)
-      }
-    },
 
   },
 

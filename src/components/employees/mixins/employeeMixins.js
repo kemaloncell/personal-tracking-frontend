@@ -65,7 +65,6 @@ const employeeMixin = {
         },
 
         async udpateSubmit(data) {
-            console.log(data, 'datas')
             try {
                 await this.updateEmployee({id: data.id, data})
 

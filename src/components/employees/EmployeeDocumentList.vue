@@ -58,7 +58,7 @@ export default {
       type: Array,
       default: () => []
     },
-    
+
 
     loading: {
       type: Boolean,
