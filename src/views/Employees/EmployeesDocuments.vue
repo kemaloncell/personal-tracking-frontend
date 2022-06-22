@@ -11,7 +11,8 @@
             <employee-form
                 :loading="submitLoading"
                 :singleLoading="singleLoading"
-                :type="formType"
+                :defaultEmployee="employeeData"
+                :type="EmployeeformType"
             />
 
           </TabPanel>
@@ -73,8 +74,9 @@ export default {
   },
   data() {
     return {
-
+      employeeData: null,
       displayTab: true,
+      EmployeeformType: null,
       formType: 'CREATE',
       defaultValues: null,
     }
@@ -115,6 +117,11 @@ export default {
     },
   },
 
+  mounted() {
+    this.EmployeeformType = this.$route.params.type
+    this.$route.params.data != null ? this.employeeData = this.$route.params.data : this.employeeData = null
+
+  },
 
   created() {
     const userId = this.$route.params.id

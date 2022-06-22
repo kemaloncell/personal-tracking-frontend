@@ -125,13 +125,24 @@ import employeeMixin from './mixins/employeeMixins'
 export default {
   mixins: [employeeMixin, GlobalForm],
   data: () => ({
-    submitted: false,
-    displayModal: false,
-    formType: 'CREATE',
-    accountType: true,
-    detailId: null,
+    submitted: false
   }),
 
+  props: {
+    defaultEmployee: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
+
+  watch: {
+    defaultEmployee: {
+      handler(val) {
+        this.formData = val
+      },
+      deep: true,
+    },
+  },
 
   validations() {
     const validation = {
@@ -187,36 +198,11 @@ export default {
       }
     },
 
-
-    // MODAL PRPOPERTY
-    openModal(id) {
-      console.log(id, 'i')
-      this.detailId = id
-      console.log(this.detailId, 'i2')
-      this.displayModal = true;
-    },
-    closeModal() {
-      this.displayModal = false
-      this.formType = 'CREATE'
-      //this.resetForm()
-    },
-    async accountSubmit(data, type) {
-      if (this.formType === 'CREATE') {
-        this.createSubmit(data, type, this.accountType)
-      }
-    },
-
   },
-
   mounted() {
-
-    if (this.type === 'CREATE') {
-      this.resetForm()
-    } else {
-      this.type = this.$route.params.type
-      this.formData = this.$route.params.data
-    }
+    console.log(this.type, 'type')
   }
+
 
 }
 </script>

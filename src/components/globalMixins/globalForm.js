@@ -1,7 +1,5 @@
 const globalFormProps = {
     props: {
-
-
         type: {
             type: String,
             default: () => 'CREATE'
@@ -17,7 +15,6 @@ const globalFormProps = {
     watch: {
         defaultValues(val) {
             if (val) {
-                console.log(val)
                 this.formData = val
             }
         }

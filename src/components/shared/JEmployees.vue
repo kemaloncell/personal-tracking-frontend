@@ -55,7 +55,6 @@ export default {
     }
   },
   created() {
-
     if (!this.employeeList.length) {
       this.callEmployee()
     }
