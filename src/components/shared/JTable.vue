@@ -40,7 +40,7 @@
             <i class="pi pi-user-plus" style="color:white"></i>
           </router-link>
 
-          <router-link v-if="documentType" :to="{ name: `Document`, params:{id:data.id, data:data } }"
+          <router-link v-if="documentType" :to="{ name: `Document`, params:{id:data.id, data:data, isShow:true } }"
                        type="button"
                        v-tooltip.top="'Personal dökümanları için tıklayın'"
                        class="p-button-primary p-button-sm table-update-button mr-2" style="border-radius: 4px">
@@ -135,7 +135,7 @@ export default {
       default: () => false,
       type: Boolean
     },
-    
+
     isMessage: {
       default: () => false,
       type: Boolean

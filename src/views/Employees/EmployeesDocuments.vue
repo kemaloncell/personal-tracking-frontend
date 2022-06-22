@@ -118,8 +118,13 @@ export default {
   },
 
   mounted() {
-    this.EmployeeformType = this.$route.params.type
-    this.$route.params.data != null ? this.employeeData = this.$route.params.data : this.employeeData = null
+    if (!this.$route.params.isShow) {
+      this.EmployeeformType = this.$route.params.type
+      this.$route.params.data != null ? this.employeeData = this.$route.params.data : this.employeeData = null
+    } else {
+      this.EmployeeformType = 'CREATE'
+    }
+
 
   },
 
