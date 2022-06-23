@@ -85,10 +85,10 @@
 
 <script>
 import GlobalForm from '@/components/globalMixins/globalForm'
-import employeeMixin from "@/components/employees/mixins/employeeMixins";
+import customerMixin from "@/components/customers/mixins/customerMixins";
 
 export default {
-  mixins: [GlobalForm, employeeMixin],
+  mixins: [GlobalForm, customerMixin],
   data: () => ({
     submitted: false,
     accountType: true,
@@ -105,9 +105,8 @@ export default {
     async submit() {
 
       if (this.type === 'CREATE') {
-        console.log(this.registerForm, 'rtgs')
-        this.createSubmit(this.registerForm, this.accountType)
-        this.$router.push({name: 'Customer'});
+        await this.createSubmit(this.registerForm, this.accountType)
+        await this.$router.push({name: 'Customer'});
       }
 
     },
