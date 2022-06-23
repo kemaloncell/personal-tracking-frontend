@@ -21,7 +21,6 @@ const employeeDocumentMixin = {
         ...mapGetters({
             submitLoading: 'employeeDocument/submitLoading',
             loading: 'employeeDocument/loading',
-            list: 'employeeDocument/list',
             categoryList: 'employeeDocument/categoryList',
             documentList: 'employeeDocument/documentList',
             employeeDocumentList: 'employeeDocument/employeeDocumentList',
@@ -43,7 +42,7 @@ const employeeDocumentMixin = {
         }),
 
 
-        async createSubmit(data, type) {
+        async createSubmit(data) {
             delete data.file
             try {
                 await this.createEmployeeDocument(data)
@@ -62,11 +61,7 @@ const employeeDocumentMixin = {
                     life: 3000
                 })
             } finally {
-                if (type === 0) {
-                    this.closeModal()
-                }
-
-                this.getAllEmployeeDocList(data.employeeId)
+                await this.getAllEmployeeDocList(data.employeeId)
             }
         },
 
@@ -89,8 +84,7 @@ const employeeDocumentMixin = {
                     life: 3000
                 })
             } finally {
-                this.getAllEmployeeDocList(data.employeeId)
-                this.closeModal()
+                await this.getAllEmployeeDocList(data.employeeId)
             }
         },
 
@@ -105,7 +99,6 @@ const employeeDocumentMixin = {
                     life: 3000
                 })
 
-                this.getAllEmployeeDocList(val.employeeId)
             } catch {
                 this.$toast.add({
                     severity: 'error',
@@ -113,6 +106,8 @@ const employeeDocumentMixin = {
                     detail: 'Çalışan silme başarısız !',
                     life: 3000
                 })
+            } finally {
+                this.getAllEmployeeDocList(val.employeeId)
             }
         },
 
@@ -129,13 +124,12 @@ const employeeDocumentMixin = {
 
         async fileSubmit(req, type) {
             if (req.file) {
-                console.log(req.file, 'req mixed')
                 await this.uploadFile(req.file)
             }
-            if (this.formType === 'CREATE') {
-                this.createSubmit(req, type)
+            if (this.type === 'CREATE') {
+                await this.createSubmit(req, type)
             } else {
-                this.udpateSubmit(req)
+                await this.udpateSubmit(req)
             }
         },
 

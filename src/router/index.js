@@ -14,8 +14,6 @@ import VestingList from '@/views/Finances/Vesting.vue'
 
 //Employees
 import EmployeeList from '@/views/Employees/Employees.vue'
-import EmployeeUpdate from '@/components/employees/EmployeeForm.vue'
-import addEmployee from '@/components/employees/CreateEmployeeForm.vue'
 
 //Employees Documents
 import EmployeeDocumentList from '@/views/Employees/EmployeesDocuments.vue'
@@ -25,6 +23,8 @@ import CustomerList from '@/views/Customers/Customers.vue'
 import CustomerCreate from '@/components/customers/CustomerForm.vue'
 import CustomerUpdate from '@/components/customers/CustomerForm.vue'
 import AddCustomer from '@/components/customers/CreateCustomerForm.vue'
+
+import CustomerTabPage from "@/components/customers/CustomerTabPage";
 
 //Demands
 import DemandsList from '@/views/Demands/OffDayDemands.vue'
@@ -173,6 +173,15 @@ const routes = [
         path: '/customer',
         name: 'CustomerCreate',
         component: CustomerCreate,
+        props: true,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/customer-tab',
+        name: 'CustomerTabPage',
+        component: CustomerTabPage,
         props: true,
         meta: {
             requiresAuth: true

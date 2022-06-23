@@ -47,7 +47,7 @@ export default {
 
   methods: {
     goCreatePage() {
-      this.$router.push({name: 'CustomerCreate', params: {type: 'CREATE'}});
+      this.$router.push({name: 'CustomerTabPage', params: {type: 'CREATE'}});
     },
 
     async onUpdate(val) {

@@ -140,14 +140,11 @@ const actions = {
 
     uploadFile: async function ({commit}, fileData) {
         try {
-            console.log(fileData, 'fileData index')
             const config = {headers: {'Content-Type': 'multipart/form-data'}};
             let photoForm = new FormData()
             photoForm.append('file', fileData.file)
             commit('SET_LOADING', false)
-
-            console.log(photoForm, 'photoForm')
-
+            
             return await definitionsService.uploadFileRequest(photoForm, config)
 
         } catch (err) {

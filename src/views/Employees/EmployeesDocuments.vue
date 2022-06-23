@@ -34,8 +34,6 @@
                 :singleLoading="singleLoading"
                 :defaultValues="defaultValues"
                 :type="formType"
-                @onSubmit="submit"
-
             />
           </TabPanel>
 
@@ -94,24 +92,6 @@ export default {
 
   methods: {
 
-    async submit(data, type) {
-      if (this.type === 'CREATE') {
-        if (data.file) {
-          this.fileSubmit(data, type)
-        } else {
-          await this.createSubmit(data, type)
-        }
-      }
-
-      if (this.type === 'UPDATE') {
-        if (data.file) {
-          this.fileSubmit(data)
-        } else {
-          await this.udpateSubmit(data)
-        }
-      }
-    },
-
     goEmployee() {
       this.$router.push({name: 'Employee'})
     },
@@ -128,8 +108,9 @@ export default {
 
   },
 
-  created() {
+  created: function () {
     const userId = this.$route.params.id
+    console.log(this.employeeDocumentList, 'employeeDocumentList')
     this.getAllEmployeeDocList(userId)
     this.getAllCategoryList()
     this.getAllDocTypeList()

@@ -124,7 +124,7 @@ export default {
 
   methods: {
 
-    submit(type) {
+    async submit() {
 
       /*  this.$v.$touch()
            this.submitted = true
@@ -133,8 +133,21 @@ export default {
            return
          }
    */
+      if (this.type === 'CREATE') {
+        if (this.formData.file) {
+          await this.fileSubmit(this.formData)
+        } else {
+          await this.createSubmit(this.formData)
+        }
+      }
 
-      this.$emit('onSubmit', this.formData, type)
+      if (this.type === 'UPDATE') {
+        if (this.formData.file) {
+          await this.fileSubmit(this.formData)
+        } else {
+          await this.udpateSubmit(this.formData)
+        }
+      }
 
     },
 

@@ -26,7 +26,6 @@ class EmployeeDocumentService extends BaseService {
     }
 
     async create(data) {
-        console.log(data)
         return await super.post(`/documents`, data)
 
     }
