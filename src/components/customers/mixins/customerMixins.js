@@ -56,14 +56,14 @@ const customerMixin = {
                 this.$toast.add({
                     severity: 'success',
                     summary: 'Başarılı',
-                    detail: 'Çalışan ekleme başarılı !',
+                    detail: 'Müşteri ekleme başarılı !',
                     life: 3000
                 })
             } catch {
                 this.$toast.add({
                     severity: 'error',
                     summary: 'Başarısız',
-                    detail: 'Çalışan ekleme başarısız !',
+                    detail: 'Müşteri ekleme başarısız !',
                     life: 3000
                 })
             } finally {

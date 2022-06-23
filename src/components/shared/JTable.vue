@@ -123,8 +123,7 @@ export default {
       default: () => false,
       type: Boolean
     },
-
-
+    
     isMessage: {
       default: () => false,
       type: Boolean

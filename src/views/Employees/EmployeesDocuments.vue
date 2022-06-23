@@ -7,7 +7,7 @@
       <p class="font-medium "> {{ getNameSurname }}</p>
       <div class="card">
         <TabView style="margin-left: 15rem; width: 70%">
-          <TabPanel v-if="displayTab" :header="'Çalışan Ekle'">
+          <TabPanel v-if="displayTab" :header="tabName">
 
             <employee-form
                 :loading="submitLoading"
@@ -102,7 +102,14 @@ export default {
       } else {
         return 'Çalışan Bilgileri'
       }
-    }
+    },
+    tabName() {
+      if (this.$route.params.type) {
+        return this.$route.params.type === 'CREATE' ? 'Çalışan Oluştur' : 'Çalışan Düzenle';
+      } else {
+        return 'Çalışan Oluştur';
+      }
+    },
   },
 
   methods: {

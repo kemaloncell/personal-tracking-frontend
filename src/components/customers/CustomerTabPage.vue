@@ -3,10 +3,10 @@
     <div slot="content">
 
       <i @click="goEmployee" class="pi pi-arrow-left font-bold mb-4" style="font-size: 1.3rem"></i>
-
+      <p class="font-medium "> {{ getNameSurname }}</p>
       <div class="card">
         <TabView style="margin-left: 15rem; width: 70%">
-          <TabPanel :header="TabName">
+          <TabPanel :header="tabName">
 
             <CustomerForm
                 :loading="submitLoading"
@@ -58,9 +58,26 @@ export default {
   },
 
   computed: {
-    TabName() {
-      console.log(this.type, 'type')
-      return this.type === 'CREATE' ? 'Hesap Oluştur' : 'Hesap Düzenle';
+    tabName() {
+      if (this.$route.params.type) {
+        return this.$route.params.type === 'CREATE' ? 'Müşteri Oluştur' : 'Müşteri Düzenle';
+      } else {
+        return 'Müşteri Oluştur';
+      }
+    },
+    getNameSurname() {
+      console.log(this.$route.params, 'customerData')
+      if (this.customerData != null) {
+        return 'Seçilen müşteri:' + ' ' + this.customerData.title
+      } else {
+        return 'Müşteri Bilgileri'
+      }
+
+      if (this.$route.params != null) {
+        return 'Seçilen müşteri:' + ' ' + this.$route.params.data.name
+      } else {
+        return 'Müşteri Bilgileri'
+      }
     },
   },
 
