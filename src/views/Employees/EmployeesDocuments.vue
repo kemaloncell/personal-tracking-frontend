@@ -4,6 +4,7 @@
 
       <i @click="goEmployee" class="pi pi-arrow-left font-bold mb-4" style="font-size: 1.3rem"></i>
 
+      <p class="font-medium "> {{ getNameSurname }}</p>
       <div class="card">
         <TabView style="margin-left: 15rem; width: 70%">
           <TabPanel v-if="displayTab" :header="'Çalışan Ekle'">
@@ -88,6 +89,20 @@ export default {
         }
       })
     },
+
+    getNameSurname() {
+      if (this.employeeData != null) {
+        return 'Seçilen çalışan:' + ' ' + this.employeeData.name + ' ' + this.employeeData.surname
+      } else {
+        return 'Çalışan Bilgileri'
+      }
+
+      if (this.$route.params != null) {
+        return 'Seçilen çalışan:' + ' ' + this.$route.params.data.name + ' ' + this.$route.params.data.surname
+      } else {
+        return 'Çalışan Bilgileri'
+      }
+    }
   },
 
   methods: {
@@ -110,7 +125,6 @@ export default {
 
   created: function () {
     const userId = this.$route.params.id
-    console.log(this.employeeDocumentList, 'employeeDocumentList')
     this.getAllEmployeeDocList(userId)
     this.getAllCategoryList()
     this.getAllDocTypeList()
