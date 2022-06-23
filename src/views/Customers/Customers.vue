@@ -55,7 +55,7 @@ export default {
       const item = await this.getSingleCustomer(this.updateId)
       this.formData = item.data
       this.formData.taxOffice = item.data.TaxOffice
-      await this.$router.push({name: 'CustomerUpdate', params: {id: val.id, data: item.data, type: 'UPDATE'}})
+      await this.$router.push({name: 'CustomerTabPage', params: {id: val.id, data: item.data, type: 'UPDATE'}})
     },
 
 

@@ -7,7 +7,6 @@
       :totalRecords="total"
       :lazy="true"
       sortMode="multiple"
-      :addCustomer="true"
       @onPageChange="onPage"
       @onDelete="onDeleteYes"
       @onUpdate="onUpdateClick"

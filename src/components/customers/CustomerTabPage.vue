@@ -6,17 +6,17 @@
 
       <div class="card">
         <TabView style="margin-left: 15rem; width: 70%">
-          <TabPanel v-if="displayTab" :header="'Çalışan Ekle'">
+          <TabPanel :header="TabName">
 
             <CustomerForm
                 :loading="submitLoading"
                 :singleLoading="singleLoading"
-                :defaultEmployee="employeeData"
-                :type="EmployeeformType"
+                :defaultCustomer="customerData"
+                :type="customerFormType"
             />
 
           </TabPanel>
-          <TabPanel v-if="displayTab" :header="'Hesap Oluştur'">
+          <TabPanel :header="'Hesap Oluştur'">
             <CreateCustomerForm
                 :loading="submitLoading"
                 :singleLoading="singleLoading"
@@ -49,12 +49,19 @@ export default {
   },
   data() {
     return {
-      employeeData: null,
+      customerData: null,
       displayTab: true,
-      EmployeeformType: null,
       formType: 'CREATE',
+      customerFormType: null,
       defaultValues: null,
     }
+  },
+
+  computed: {
+    TabName() {
+      console.log(this.type, 'type')
+      return this.type === 'CREATE' ? 'Hesap Oluştur' : 'Hesap Düzenle';
+    },
   },
 
   methods: {
@@ -81,23 +88,9 @@ export default {
       this.$router.push({name: 'Customer'})
     },
   },
-
   mounted() {
-    if (!this.$route.params.isShow) {
-      this.EmployeeformType = this.$route.params.type
-      this.$route.params.data != null ? this.employeeData = this.$route.params.data : this.employeeData = null
-    } else {
-      this.EmployeeformType = 'CREATE'
-    }
-
-
-  },
-
-  created() {
-    const userId = this.$route.params.id
-    this.getAllEmployeeDocList(userId)
-    this.getAllCategoryList()
-    this.getAllDocTypeList()
+    this.customerFormType = this.$route.params.type
+    this.$route.params.data != null ? this.customerData = this.$route.params.data : this.customerData = null
   }
 }
 </script>

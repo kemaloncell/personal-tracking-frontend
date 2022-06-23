@@ -33,13 +33,6 @@
         <div class="flex justify-content-end pr-1">
 
 
-          <router-link v-if="addCustomer" :to="{ name: `AddCustomer`, params:{id:data.id, data:data } }"
-                       type="button"
-                       v-tooltip.top="'Müşteriye Hesap oluşturmak için tıklayın'"
-                       class="p-button-sm table-message-button mr-2" style="border-radius: 4px">
-            <i class="pi pi-user-plus" style="color:white"></i>
-          </router-link>
-
           <router-link v-if="documentType" :to="{ name: `Document`, params:{id:data.id, data:data, isShow:true } }"
                        type="button"
                        v-tooltip.top="'Personal dökümanları için tıklayın'"
@@ -131,10 +124,6 @@ export default {
       type: Boolean
     },
 
-    addCustomer: {
-      default: () => false,
-      type: Boolean
-    },
 
     isMessage: {
       default: () => false,

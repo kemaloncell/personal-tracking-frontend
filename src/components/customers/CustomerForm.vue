@@ -367,8 +367,23 @@ export default {
     submitted: false,
     accountType: true,
     formType: 'CREATE',
-    displayModal: false,
   }),
+
+  props: {
+    defaultCustomer: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
+
+  watch: {
+    defaultCustomer: {
+      handler(val) {
+        this.formData = val
+      },
+      deep: true,
+    },
+  },
 
   validations() {
     const validation = {
@@ -467,16 +482,6 @@ export default {
     },
 
   },
-
-  mounted() {
-
-    if (this.type === 'CREATE') {
-      this.resetForm()
-    } else {
-      this.type = this.$route.params.type
-      this.formData = this.$route.params.data
-    }
-  }
 
 
 }

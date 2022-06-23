@@ -20,9 +20,7 @@ import EmployeeDocumentList from '@/views/Employees/EmployeesDocuments.vue'
 
 //Customers
 import CustomerList from '@/views/Customers/Customers.vue'
-import CustomerCreate from '@/components/customers/CustomerForm.vue'
-import CustomerUpdate from '@/components/customers/CustomerForm.vue'
-import AddCustomer from '@/components/customers/CreateCustomerForm.vue'
+
 
 import CustomerTabPage from "@/components/customers/CustomerTabPage";
 
@@ -170,16 +168,7 @@ const routes = [
     },
 
     {
-        path: '/customer',
-        name: 'CustomerCreate',
-        component: CustomerCreate,
-        props: true,
-        meta: {
-            requiresAuth: true
-        }
-    },
-    {
-        path: '/customer-tab',
+        path: '/customer-detail',
         name: 'CustomerTabPage',
         component: CustomerTabPage,
         props: true,
@@ -188,24 +177,6 @@ const routes = [
         }
     },
 
-    {
-        path: '/customers/:id',
-        name: 'CustomerUpdate',
-        component: CustomerUpdate,
-        props: true,
-        meta: {
-            requiresAuth: true
-        }
-    },
-    {
-        path: '/add-customer/:id',
-        name: 'AddCustomer',
-        component: AddCustomer,
-        props: true,
-        meta: {
-            notRequiresAuth: false
-        }
-    },
     {
         path: '/suppliers',
         name: 'Supplier',

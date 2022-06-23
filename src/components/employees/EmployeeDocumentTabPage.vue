@@ -152,7 +152,7 @@ export default {
     },
 
     onClose() {
-      window.location.reload()
+      window.location.reload('/employees/documents/' + this.employeeId)
     },
 
     onEmployeeDocument(type) {
