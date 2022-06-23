@@ -115,7 +115,7 @@ const routes = [
         }
     },
     {
-        path: '/OffDayDemands/offdays',
+        path: '/demands/off-days',
         name: 'Demands',
         component: DemandsList,
         props: true,
@@ -124,7 +124,7 @@ const routes = [
         }
     },
     {
-        path: '/OffDayDemands/common-offdays',
+        path: '/demands/common-off-days',
         name: 'CommonDemands',
         component: CommonDemandsList,
         props: true,
@@ -133,7 +133,7 @@ const routes = [
         }
     },
     {
-        path: '/OffDayDemands/advance',
+        path: '/demands/advance',
         name: 'AdvanceDemands',
         component: AdvanceDemands,
         props: true,
