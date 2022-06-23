@@ -7,7 +7,7 @@ const offDayDemandsMixins = {
             formData: {
                 beginDate: null,
                 endDate: null,
-                reason: null,
+                reason: 'reason constant',
                 detail: null,
                 requestStatus: null,
                 offDayPeriod: null,
@@ -35,7 +35,7 @@ const offDayDemandsMixins = {
             deleteOffDayDemands: 'offDayDemands/delete',
         }),
 
-        async createSubmit(data, type) {
+        async createSubmit(data) {
             try {
                 await this.createOffDayDemands(data)
 
@@ -53,11 +53,7 @@ const offDayDemandsMixins = {
                     life: 3000
                 })
             } finally {
-                if (type === 0) {
-                    this.closeModal()
-                }
-
-                this.getListOffDayDemands()
+                await this.getListOffDayDemands()
             }
         },
 
@@ -79,8 +75,7 @@ const offDayDemandsMixins = {
                     life: 3000
                 })
             } finally {
-                this.getListOffDayDemands()
-                this.closeModal()
+                await this.getListOffDayDemands()
             }
         },
 
@@ -95,7 +90,7 @@ const offDayDemandsMixins = {
                     life: 3000
                 })
 
-                this.getListOffDayDemands()
+                await this.getListOffDayDemands()
             } catch {
                 this.$toast.add({
                     severity: 'error',

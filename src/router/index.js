@@ -26,7 +26,12 @@ import CustomerTabPage from "@/components/customers/CustomerTabPage";
 
 //Demands
 import DemandsList from '@/views/Demands/OffDayDemands.vue'
+import DemandsCreate from '@/components/demands/offDayDemands/OffDayDemandsForm.vue'
+import DemandsUpdate from '@/components/demands/offDayDemands/OffDayDemandsForm.vue'
+
+// common demands
 import CommonDemandsList from '@/views/Demands/CommonDemands.vue'
+//advance demands
 import AdvanceDemands from '@/views/Demands/AdvanceDemands.vue'
 
 //Suppliers
@@ -118,6 +123,24 @@ const routes = [
         path: '/demands/off-days',
         name: 'Demands',
         component: DemandsList,
+        props: true,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/demands/off-day',
+        name: 'DemandsCreate',
+        component: DemandsCreate,
+        props: true,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/demands/off-day/:id',
+        name: 'DemandsUpdate',
+        component: DemandsUpdate,
         props: true,
         meta: {
             requiresAuth: true

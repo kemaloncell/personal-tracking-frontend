@@ -1,101 +1,163 @@
 <template>
-  <form @submit.prevent="submit">
-    <h2 class="text-2xl font-bold" style="margin-bottom: 50px">
-      Çalışan
-    </h2>
-    <div class="grid mt-5 flex align-items-center">
+  <default-layout>
+    <div slot="content">
+      <div class="card">
+        <div class="card grid col-6 mt-5" style="margin: auto">
+          <form @submit.prevent="submit">
+            <h2 class="text-2xl font-bold" style="margin-bottom: 50px">
+              Çalışan
+            </h2>
+            <div class="grid mt-5 flex align-items-center">
 
-      <div class="col-2 text-sm">Çalışan</div>
-      <div class="col-4 pt-0 pb-0">
-        <j-employees
-            @onEmployee="onEmployee"
-            :defaultEmployee="formData.Employee"
-        />
-      </div>
+              <div class="col-2 text-sm">Çalışan</div>
+              <div class="col-4 pt-0 pb-0">
+                <j-employees
+                    @onEmployee="onEmployee"
+                    :defaultEmployee="formData.Employee"
+                />
+              </div>
 
-      <div class="col-2 text-sm">Başlık</div>
-      <div class="col-4">
-        <j-input-text
-            unmask
-            name="phoneNumber"
-            class="w-full p-inputtext-sm"
-            v-model="formData.title"
-            mask="(999) 999-99-99"
-        />
+              <div class="col-2 text-sm">Başlık</div>
+              <div class="col-4">
+                <j-input-text
+                    unmask
+                    name="phoneNumber"
+                    class="w-full p-inputtext-sm"
+                    v-model="formData.title"
+                    mask="(999) 999-99-99"
+                />
 
-      </div>
+              </div>
 
-      <div class="col-2 text-sm">Açıklama</div>
-      <div class="col-4">
-        <j-input-text
-            unmask
-            name="phoneNumber"
-            class="w-full p-inputtext-sm"
-            v-model="formData.description"
-            mask="(999) 999-99-99"
-        />
+              <div class="col-2 text-sm">Başlangıç Tarihi</div>
+              <div class="col-4">
+                <j-date
+                    class="w-full p-inputtext-sm"
+                    v-model="formData.beginDate"
+                    :defaultValue="formData.beginDate"
+                    @onSelect="
+                (beginDate) => {
+                  formData.beginDate = beginDate
+                }
+              "
+                ></j-date>
 
-      </div>
+              </div>
 
-      <div class="col-2 text-sm">Talep mi?</div>
-      <div class="col-4">
-        <Checkbox
-            v-model="formData.isDemand"
-            :binary="true"
-        ></Checkbox>
-      </div>
+              <div class="col-2 text-sm">Bitiş Tarihi</div>
+              <div class="col-4">
+                <j-date
+                    class="w-full p-inputtext-sm"
+                    v-model="formData.endDate"
+                    :defaultValue="formData.endDate"
+                    @onSelect="
+                (endDate) => {
+                  formData.endDate = endDate
+                }
+              "
+                ></j-date>
+
+              </div>
+
+              <div class="col-2 text-sm">İstek Durumu</div>
+              <div class="col-4">
+                <Dropdown
+                    v-model="formData.requestStatus"
+                    :options="RequestStatus"
+                    optionLabel="name"
+                    :showClear="true"
+                    class="w-full h-full city-search p-inputtext-sm"
+                />
+
+              </div>
+
+              <div class="col-2 text-sm">İzin günü aralığı</div>
+              <div class="col-4">
+                <Dropdown
+                    v-model="formData.offDayPeriod"
+                    :options="OffDayPeriod"
+                    optionLabel="name"
+                    :showClear="true"
+                    class="w-full h-full city-search p-inputtext-sm"
+                />
+
+              </div>
+
+              <div class="col-2 text-sm">Açıklama</div>
+              <div class="col-4">
+                <Textarea
+                    unmask
+                    name="phoneNumber"
+                    class="w-full p-inputtext-sm"
+                    v-model="formData.description"
+                    mask="(999) 999-99-99"
+                />
+
+              </div>
+
+              <div class="col-2 text-sm">Talep mi?</div>
+              <div class="col-4">
+                <Checkbox
+                    v-model="formData.isDemand"
+                    :binary="true"
+                ></Checkbox>
+              </div>
 
 
-      <hr class="w-full"/>
-      <div class="col-12">
-        <VueFileAgent
-            ref="vueFileAgent"
-            :deletable="true"
-            :meta="true"
-            :accept="'image/*'"
-            :maxSize="'30.0MB'"
-            :maxFiles="1"
-            :helpText="'Lütfen bir dosya seçiniz.'"
-            :errorText="{
+              <hr class="w-full"/>
+              <div class="col-12">
+                <VueFileAgent
+                    ref="vueFileAgent"
+                    :deletable="true"
+                    :meta="true"
+                    :accept="'image/*'"
+                    :maxSize="'30.0MB'"
+                    :maxFiles="1"
+                    :helpText="'Lütfen bir dosya seçiniz.'"
+                    :errorText="{
       type: 'Geçersiz dosya türü. Lütfen sadece img,jpeg,png türünde resim dosyalarını seçiniz.',
       size: 'Dosya boyutu 10MB dan büyük olamaz.',
     }"
-            @beforedelete="onBeforeDelete($event)"
-            v-model="formData.documentPath"
-        ></VueFileAgent>
+                    @beforedelete="onBeforeDelete($event)"
+                    v-model="formData.documentPath"
+                ></VueFileAgent>
 
-      </div>
-      <div
-          class="flex justify-content-center w-full mt-5 mb-5 decline-button save-menu-button save-button"
-      >
-        <j-submitbutton
-            v-if="type === 'CREATE'"
-            :loading="loading"
-            @save="submit"
-        />
-        <Button
-            v-else
-            :disabled="loading"
-            label="Güncelle"
-            class="save-primary-button ml-3"
-            :loading="loading"
-            @click="submit"
-        />
-        <Button
-            :disabled="loading"
-            @click="onClose"
-            label="Vazgeç"
-            class="p-button-danger ml-3"
-        />
+              </div>
+              <div
+                  class="flex justify-content-center w-full mt-5 mb-5 decline-button save-menu-button save-button"
+              >
+                <j-submitbutton
+                    v-if="type === 'CREATE'"
+                    :loading="loading"
+                    @save="submit"
+                />
+                <Button
+                    v-else
+                    :disabled="loading"
+                    label="Güncelle"
+                    class="save-primary-button ml-3"
+                    :loading="loading"
+                    @click="submit"
+                />
+                <Button
+                    :disabled="loading"
+                    @click="onClose"
+                    label="Vazgeç"
+                    class="p-button-danger ml-3"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </form>
+  </default-layout>
 </template>
 
 <script>
 import GlobalForm from '@/components/globalMixins/globalForm'
 import offDayDemandsMixins from "./mixins/offDayDemandsMixins";
-
+import {OffDayPeriod, RequestStatus} from "@/constants/enums";
 
 export default {
   mixins: [offDayDemandsMixins, GlobalForm],
@@ -103,24 +165,32 @@ export default {
     submitted: false,
   }),
 
+  computed: {
+    RequestStatus() {
+      return RequestStatus;
+    },
+
+    OffDayPeriod() {
+      return OffDayPeriod;
+    },
+  },
 
   methods: {
-    submit(type) {
+    async submit() {
 
-      /*  this.$v.$touch()
-           this.submitted = true
 
-         if (this.$v.$invalid) {
-           return
-         }
-   */
+      if (this.type === 'CREATE') {
+        await this.createSubmit(this.formData)
+      }
 
-      this.$emit('onSubmit', this.formData, type)
+      if (this.type === 'UPDATE') {
+        await this.udpateSubmit(this.formData)
+      }
 
     },
 
     onClose() {
-      this.$emit('close')
+      this.$router.push({name: 'Demands'})
     },
 
     onEmployee(employee) {
