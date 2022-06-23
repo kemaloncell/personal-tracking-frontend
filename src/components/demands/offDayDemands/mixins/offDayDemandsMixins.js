@@ -53,7 +53,7 @@ const offDayDemandsMixins = {
                     life: 3000
                 })
             } finally {
-                await this.getListOffDayDemands()
+                this.$router.push({name: 'Demands'})
             }
         },
 

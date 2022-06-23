@@ -2,7 +2,7 @@ import {BaseService} from '@/api/baseService'
 
 class OffDayDemandsService extends BaseService {
     constructor() {
-        super('demand')
+        super('demands/off-days')
     }
 
     async getAllList() {

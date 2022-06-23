@@ -9,7 +9,8 @@
             </h2>
             <div class="grid mt-5 flex align-items-center">
 
-              <div class="col-2 text-sm">Çalışan</div>
+
+              <div class="col-2 text-sm pb-0">Çalışan</div>
               <div class="col-4 pt-0 pb-0">
                 <j-employees
                     @onEmployee="onEmployee"
@@ -17,17 +18,6 @@
                 />
               </div>
 
-              <div class="col-2 text-sm">Başlık</div>
-              <div class="col-4">
-                <j-input-text
-                    unmask
-                    name="phoneNumber"
-                    class="w-full p-inputtext-sm"
-                    v-model="formData.title"
-                    mask="(999) 999-99-99"
-                />
-
-              </div>
 
               <div class="col-2 text-sm">Başlangıç Tarihi</div>
               <div class="col-4">
@@ -68,7 +58,7 @@
                     :showClear="true"
                     class="w-full h-full city-search p-inputtext-sm"
                 />
-
+                {{ formData.requestStatus }}
               </div>
 
               <div class="col-2 text-sm">İzin günü aralığı</div>
@@ -80,27 +70,18 @@
                     :showClear="true"
                     class="w-full h-full city-search p-inputtext-sm"
                 />
-
+                {{ formData.offDayPeriod }}
               </div>
 
               <div class="col-2 text-sm">Açıklama</div>
               <div class="col-4">
                 <Textarea
-                    unmask
                     name="phoneNumber"
-                    class="w-full p-inputtext-sm"
-                    v-model="formData.description"
-                    mask="(999) 999-99-99"
+                    class="w-full description-input"
+                    v-model="formData.detail"
+                    maxLength="512"
                 />
 
-              </div>
-
-              <div class="col-2 text-sm">Talep mi?</div>
-              <div class="col-4">
-                <Checkbox
-                    v-model="formData.isDemand"
-                    :binary="true"
-                ></Checkbox>
               </div>
 
 
@@ -167,7 +148,9 @@ export default {
 
   computed: {
     RequestStatus() {
-      return RequestStatus;
+      return RequestStatus.map(item => ({
+        name: item.name,
+      }))
     },
 
     OffDayPeriod() {
@@ -180,6 +163,12 @@ export default {
 
 
       if (this.type === 'CREATE') {
+        {
+          this.formData.requestStatus = this.formData.requestStatus.code;
+        }
+        {
+          this.formData.offDayPeriod = this.formData.offDayPeriod.code;
+        }
         await this.createSubmit(this.formData)
       }
 
