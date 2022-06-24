@@ -33,8 +33,10 @@ const commonDemandsMixins = {
             deleteCommonDemands: 'commonDemands/delete',
         }),
 
-        async createSubmit(data, type) {
+        async createSubmit(data) {
             try {
+                delete data.documentPath
+                delete data.createdAt
                 await this.createCommonDemands(data)
 
                 this.$toast.add({
@@ -51,17 +53,15 @@ const commonDemandsMixins = {
                     life: 3000
                 })
             } finally {
-                if (type === 0) {
-                    this.closeModal()
-                }
-
-                this.getListCommonDemands()
+                await this.$router.push({name: 'CommonDemandsList'})
             }
         },
 
         async udpateSubmit(data) {
             try {
-                await this.updateCommonDemands({id: this.updateId, data})
+                delete data.documentPath
+                delete data.createdAt
+                await this.updateCommonDemands({id: data.id, data})
 
                 this.$toast.add({
                     severity: 'success',
@@ -77,8 +77,7 @@ const commonDemandsMixins = {
                     life: 3000
                 })
             } finally {
-                this.getListCommonDemands()
-                this.closeModal()
+                await this.$router.push({name: 'CommonDemandsList'})
             }
         },
 
@@ -93,7 +92,7 @@ const commonDemandsMixins = {
                     life: 3000
                 })
 
-                this.getListCommonDemands()
+                await this.getListCommonDemands()
             } catch {
                 this.$toast.add({
                     severity: 'error',
@@ -105,12 +104,6 @@ const commonDemandsMixins = {
         },
 
 
-        async onUpdate(val) {
-            this.defaultValues = val
-            this.formType = 'UPDATE'
-            this.displayModal = true
-        },
-
         onSelection(val) {
             this.selectedItems = val.map((item) => item.id)
         },
@@ -120,6 +113,7 @@ const commonDemandsMixins = {
                 description: null,
                 documentPath: null,
                 isDemand: null,
+                status: null,
             }
         },
     },

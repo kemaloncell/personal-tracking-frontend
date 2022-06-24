@@ -30,6 +30,8 @@ import DemandsCreate from '@/components/demands/offDayDemands/OffDayDemandsForm.
 import DemandsUpdate from '@/components/demands/offDayDemands/OffDayDemandsForm.vue'
 // common demands
 import CommonDemandsList from '@/views/Demands/CommonDemands.vue'
+import CommonDemandsCreate from '@/components/demands/commonDemands/CommonDemandsForm.vue'
+import CommonDemandsUpdate from '@/components/demands/commonDemands/CommonDemandsForm.vue'
 //advance demands
 import AdvanceDemandsList from '@/views/Demands/AdvanceDemands.vue'
 import AdvanceDemandsCreate from '@/components/demands/advanceDemands/AdvanceDemandsForm.vue'
@@ -50,7 +52,6 @@ import ShiftList from '@/views/Shifts/Shifts.vue'
 import Login from '@/components/auth/Login.vue'
 import ForgotPassword from '@/components/auth/ForgotPassword.vue'
 import ForgotPasswordSecond from '@/components/auth/ForgotPasswordSecond.vue'
-//import CommonDemandList from "@/components/demands/commonDemands/CommonDemandsList.vue";
 
 
 const routes = [
@@ -149,8 +150,26 @@ const routes = [
     },
     {
         path: '/demands/common-off-days',
-        name: 'CommonDemands',
+        name: 'CommonDemandsList',
         component: CommonDemandsList,
+        props: true,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/demands/common-off-day',
+        name: 'CommonDemandsCreate',
+        component: CommonDemandsCreate,
+        props: true,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/demands/common-off-days/:id',
+        name: 'CommonDemandsUpdate',
+        component: CommonDemandsUpdate,
         props: true,
         meta: {
             requiresAuth: true

@@ -2,7 +2,7 @@
   <default-layout>
     <div slot="content">
       <div class="card">
-        <div class=" grid col-6 mt-5" style="margin: auto">
+        <div class="grid col-6 mt-5" style="margin: auto">
           <form @submit.prevent="submit">
             <h2 class="text-2xl font-bold" style="margin-bottom: 50px">
               Çalışan
