@@ -7,7 +7,6 @@ const commonDemandsMessageMixins = {
                 description: null,
                 demandId: null,
                 documentPath: null,
-                messageId: null
             },
         }
     },
@@ -27,9 +26,11 @@ const commonDemandsMessageMixins = {
             createCommonDemandsMessage: 'commonDemandsMessage/create',
             getListCommonDemandsMessage: 'commonDemandsMessage/getList',
             deleteCommonDemandsMessage: 'commonDemandsMessage/delete',
+            uploadFile: 'employeeDocument/uploadFile',
         }),
 
-        async createSubmit(data, type) {
+        async createSubmit(data) {
+            console.log(data, 'mixsn')
             try {
                 await this.createCommonDemandsMessage(data)
 
@@ -47,11 +48,7 @@ const commonDemandsMessageMixins = {
                     life: 3000
                 })
             } finally {
-                if (type === 0) {
-                    this.closeModal()
-                }
-
-                this.getListCommonDemandsMessage()
+                await this.$router.push({name: 'CommonDemandsList'})
             }
         },
 
@@ -78,12 +75,16 @@ const commonDemandsMessageMixins = {
             }
         },
 
-        async onMessage(val) {
-            this.defaultValues = val
-            this.formType = 'MESSAGE'
-            this.displayModal = true
+        async fileSubmit(req, type) {
+            if (req.file) {
+                await this.uploadFile(req.file)
+            }
+            if (this.type === 'CREATE') {
+                await this.createSubmit(req, type)
+            } else {
+                await this.udpateSubmit(req)
+            }
         },
-
 
     },
 

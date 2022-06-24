@@ -15,7 +15,7 @@
             maxLength="512"
         />
         </div>
-        
+
         <div class="col-12">
           <VueFileAgent
               ref="vueFileAgent"
@@ -51,48 +51,54 @@
         </div>
       </div>
     </form>
-
-    <hr/>
-    <commonDemandsMessageList
-        :data="list"
-        :loading="loading"
-        @onDelete="onDelete"
-    />
   </div>
 </template>
 
 <script>
 import GlobalForm from '@/components/globalMixins/globalForm'
 import commonDemandsMessageMixins from './mixins/commonDemandsMessageMixins'
-import commonDemandsMessageList from "./CommonDemandsMessageList";
 
 export default {
   mixins: [commonDemandsMessageMixins, GlobalForm],
-  components: {
-    commonDemandsMessageList,
-  },
+  components: {},
   data: () => ({
     submitted: false,
+
   }),
 
+  props: {
+    type: {
+      type: String,
+      default: 'CREATE',
+    },
+    defaultDemands: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
+
+  watch: {
+    defaultDemands: {
+      handler(newVal) {
+        this.demandId = newVal.id
+      },
+      deep: true,
+    },
+  },
 
   methods: {
-    submit(type) {
-
-      /*  this.$v.$touch()
-           this.submitted = true
-
-         if (this.$v.$invalid) {
-           return
-         }
-   */
-
-      this.$emit('onSubmit', this.formData, type)
+    async submit() {
+      if (this.formData.documentPath) {
+        console.log(this.formData.demandId, 'demands')
+        await this.fileSubmit(this.formData)
+      } else {
+        await this.createSubmit(this.formData)
+      }
 
     },
 
     onClose() {
-      this.$emit('close')
+      this.$router.push({name: 'CommonDemandsList'})
     },
 
 

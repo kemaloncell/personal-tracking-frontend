@@ -21,14 +21,19 @@
                 :loading="submitLoading"
                 :singleLoading="singleLoading"
                 :type="formType"
+                :defaultDemands="demandsData"
             />
 
           </TabPanel>
 
         </TabView>
-
       </div>
 
+      <commonDemandsMessageList
+          :data="list"
+          :loading="loading"
+          @onDelete="onDelete"
+      />
       <Toast position="top-right"/>
 
     </div>
@@ -36,7 +41,7 @@
 </template>
 
 <script>
-
+import commonDemandsMessageList from "./CommonDemandsMessageList";
 import commonDemandsMessageMixins from "@/components/demands/commonDemands/mixins/commonDemandsMessageMixins";
 import CommonDemandsForm from "@/components/demands/commonDemands/CommonDemandsForm";
 import CommonDemandsMessageForm from "@/components/demands/commonDemands/CommonDemandsMessageForm";
@@ -46,6 +51,7 @@ export default {
   components: {
     CommonDemandsForm,
     CommonDemandsMessageForm,
+    commonDemandsMessageList
   },
   data() {
     return {
@@ -79,24 +85,6 @@ export default {
   },
 
   methods: {
-
-    async submit(data, type) {
-      if (this.type === 'CREATE') {
-        if (data.file) {
-          this.fileSubmit(data, type)
-        } else {
-          await this.createSubmit(data, type)
-        }
-      }
-
-      if (this.type === 'UPDATE') {
-        if (data.file) {
-          this.fileSubmit(data)
-        } else {
-          await this.udpateSubmit(data)
-        }
-      }
-    },
 
     goCommonDemands() {
       this.$router.push({name: 'CommonDemandsList'})
