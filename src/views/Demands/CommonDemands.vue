@@ -47,6 +47,7 @@ export default {
     },
 
     async onUpdate(val) {
+      console.log(val, 'val222')
       val.status = {
         code: val.status
       }

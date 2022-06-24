@@ -16,7 +16,6 @@
         @onHandleSort="onHandleSort"
     >
       <template slot="columns">
-        <Column field="User.name" header="Adı" sortable></Column>
         <Column field="title" header="Başlık" sortable></Column>
         <Column field="description" header="Açıklama" sortable></Column>
         <Column header="Şikayet/Talep" sortable>
@@ -24,6 +23,7 @@
             {{ data.isDemand ? 'Talep' : 'Şikayet' }}
           </template>
         </Column>
+        <Column field="status" header="Durum" sortable></Column>
 
       </template>
       <template slot="action"></template>

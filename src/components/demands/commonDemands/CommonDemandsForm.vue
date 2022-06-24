@@ -124,6 +124,7 @@ export default {
 
       if (this.type === 'CREATE') {
         if (this.formData.documentPath) {
+          console.log(this.formData, 'fpomr')
           await this.fileSubmit(this.formData)
         } else {
           await this.createSubmit(this.formData)
@@ -132,6 +133,7 @@ export default {
 
       if (this.type === 'UPDATE') {
         if (this.formData.documentPath) {
+          console.log(this.formData, 'formData')
           await this.fileSubmit(this.formData)
         } else {
           await this.udpateSubmit(this.formData)
@@ -159,7 +161,7 @@ export default {
       }
     },
   },
-  
+
   mounted() {
     if (this.$route.params.data) {
       this.formData = this.$route.params.data;

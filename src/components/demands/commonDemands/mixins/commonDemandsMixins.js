@@ -31,12 +31,14 @@ const commonDemandsMixins = {
             getListCommonDemands: 'commonDemands/getList',
             getSingleCommonDemands: 'commonDemands/getSingle',
             deleteCommonDemands: 'commonDemands/delete',
+            uploadFile: 'employeeDocument/uploadFile',
         }),
 
         async createSubmit(data) {
             try {
                 delete data.documentPath
                 delete data.createdAt
+                delete data.Employee
                 await this.createCommonDemands(data)
 
                 this.$toast.add({
@@ -61,6 +63,8 @@ const commonDemandsMixins = {
             try {
                 delete data.documentPath
                 delete data.createdAt
+                delete data.Employee
+                console.log(data, 'data')
                 await this.updateCommonDemands({id: data.id, data})
 
                 this.$toast.add({
@@ -103,6 +107,16 @@ const commonDemandsMixins = {
             }
         },
 
+        async fileSubmit(req, type) {
+            if (req.file) {
+                await this.uploadFile(req.file)
+            }
+            if (this.type === 'CREATE') {
+                await this.createSubmit(req, type)
+            } else {
+                await this.udpateSubmit(req)
+            }
+        },
 
         onSelection(val) {
             this.selectedItems = val.map((item) => item.id)
