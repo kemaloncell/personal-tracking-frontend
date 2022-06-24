@@ -30,8 +30,7 @@ import DemandsCreate from '@/components/demands/offDayDemands/OffDayDemandsForm.
 import DemandsUpdate from '@/components/demands/offDayDemands/OffDayDemandsForm.vue'
 // common demands
 import CommonDemandsList from '@/views/Demands/CommonDemands.vue'
-import CommonDemandsCreate from '@/components/demands/commonDemands/CommonDemandsForm.vue'
-import CommonDemandsUpdate from '@/components/demands/commonDemands/CommonDemandsForm.vue'
+import CommonDemandsTabPage from "@/components/demands/commonDemands/CommonDemandsTabPage.vue";
 //advance demands
 import AdvanceDemandsList from '@/views/Demands/AdvanceDemands.vue'
 import AdvanceDemandsCreate from '@/components/demands/advanceDemands/AdvanceDemandsForm.vue'
@@ -158,23 +157,15 @@ const routes = [
         }
     },
     {
-        path: '/demands/common-off-day',
-        name: 'CommonDemandsCreate',
-        component: CommonDemandsCreate,
+        path: '/demands/common-off-day/detail',
+        name: 'CommonDemandsTabPage',
+        component: CommonDemandsTabPage,
         props: true,
         meta: {
             requiresAuth: true
         }
     },
-    {
-        path: '/demands/common-off-days/:id',
-        name: 'CommonDemandsUpdate',
-        component: CommonDemandsUpdate,
-        props: true,
-        meta: {
-            requiresAuth: true
-        }
-    },
+
     {
         path: '/demands/advances',
         name: 'AdvanceDemandsList',

@@ -43,7 +43,7 @@ export default {
 
   methods: {
     goCreateCommondDemands() {
-      this.$router.push({name: 'CommonDemandsCreate', params: {type: 'CREATE'}})
+      this.$router.push({name: 'CommonDemandsTabPage', params: {type: 'CREATE'}})
     },
 
     async onUpdate(val) {
@@ -51,7 +51,7 @@ export default {
       val.status = {
         code: val.status
       }
-      await this.$router.push({name: 'CommonDemandsUpdate', params: {id: val.id, data: val, type: 'UPDATE'}})
+      await this.$router.push({name: 'CommonDemandsTabPage', params: {id: val.id, data: val, type: 'UPDATE'}})
     },
 
 
