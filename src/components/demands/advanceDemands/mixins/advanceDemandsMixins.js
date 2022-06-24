@@ -5,10 +5,12 @@ const advanceDemandsMixins = {
         return {
             selectedItems: [],
             formData: {
-                title: null,
-                description: null,
-                documentPath: null,
-                isDemand: null,
+                demandDate: null,
+                reason: 'reason constant',
+                detail: null,
+                amount: null,
+                requestStatus: null,
+                Employee: null,
             },
         }
     },

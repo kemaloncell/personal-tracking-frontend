@@ -5,58 +5,62 @@
     </h2>
     <div class="grid mt-5 flex align-items-center">
 
-      <div class="col-2 text-sm">Başlık</div>
+      <div class="col-2 text-sm pb-0">Çalışan</div>
+      <div class="col-4 pt-0 pb-0">
+        <j-employees
+            @onEmployee="onEmployee"
+            :defaultEmployee="formData.Employee"
+        />
+      </div>
+
+      <div class="col-2 text-sm">Talep Tarihi</div>
+      <div class="col-4">
+        <j-date
+            class="w-full p-inputtext-sm"
+            v-model="formData.demandDate"
+            :defaultValue="formData.demandDate"
+            @onSelect="
+                (demandDate) => {
+                  formData.demandDate = demandDate
+                }
+              "
+        ></j-date>
+
+      </div>
+
+      <div class="col-2 text-sm">Avans Miktarı</div>
       <div class="col-4">
         <j-input-text
-            unmask
             name="phoneNumber"
             class="w-full p-inputtext-sm"
-            v-model="formData.title"
-            mask="(999) 999-99-99"
+            v-model="formData.amount"
         />
 
+      </div>
+
+      <div class="col-2 text-sm">İstek Durumu</div>
+      <div class="col-4">
+        <Dropdown
+            v-model="formData.requestStatus"
+            :options="RequestStatus"
+            optionLabel="name"
+            :showClear="true"
+            class="w-full h-full city-search p-inputtext-sm"
+        />
       </div>
 
       <div class="col-2 text-sm">Açıklama</div>
-      <div class="col-4">
-        <j-input-text
-            unmask
-            name="phoneNumber"
-            class="w-full p-inputtext-sm"
-            v-model="formData.description"
-            mask="(999) 999-99-99"
-        />
+      <div class="col-10">
+                <Textarea
+                    name="phoneNumber"
+                    class="w-full description-input"
+                    v-model="formData.detail"
+                    maxLength="512"
+                />
 
       </div>
 
-      <div class="col-2 text-sm">Talep mi?</div>
-      <div class="col-4">
-        <Checkbox
-            v-model="formData.isDemand"
-            :binary="true"
-        ></Checkbox>
-      </div>
 
-
-      <hr class="w-full"/>
-      <div class="col-12">
-        <VueFileAgent
-            ref="vueFileAgent"
-            :deletable="true"
-            :meta="true"
-            :accept="'image/*'"
-            :maxSize="'30.0MB'"
-            :maxFiles="1"
-            :helpText="'Lütfen bir dosya seçiniz.'"
-            :errorText="{
-      type: 'Geçersiz dosya türü. Lütfen sadece img,jpeg,png türünde resim dosyalarını seçiniz.',
-      size: 'Dosya boyutu 10MB dan büyük olamaz.',
-    }"
-            @beforedelete="onBeforeDelete($event)"
-            v-model="formData.documentPath"
-        ></VueFileAgent>
-
-      </div>
       <div
           class="flex justify-content-center w-full mt-5 mb-5 decline-button save-menu-button save-button"
       >
@@ -87,7 +91,7 @@
 <script>
 import GlobalForm from '@/components/globalMixins/globalForm'
 import advanceDemandsMixins from "./mixins/advanceDemandsMixins";
-
+import {RequestStatus} from "@/constants/enums";
 
 export default {
   mixins: [advanceDemandsMixins, GlobalForm],
@@ -95,6 +99,11 @@ export default {
     submitted: false,
   }),
 
+  computed: {
+    RequestStatus() {
+      return RequestStatus
+    },
+  },
 
   methods: {
     submit(type) {
@@ -111,24 +120,17 @@ export default {
 
     },
 
+    onEmployee(employee) {
+      if (employee) {
+        this.formData.Employee = employee
+      }
+    },
+
     onClose() {
       this.$emit('close')
     },
 
 
-    onBeforeDelete: function (fileRecord) {
-      var i = this.fileRecordsForUpload.indexOf(fileRecord);
-      if (i !== -1) {
-        // queued file, not yet uploaded. Just remove from the arrays
-        this.fileRecordsForUpload.splice(i, 1);
-        var k = this.fileRecords.indexOf(fileRecord);
-        if (k !== -1) this.fileRecords.splice(k, 1);
-      } else {
-        if (confirm('Are you sure you want to delete?')) {
-          this.$refs.vueFileAgent.deleteFileRecord(fileRecord); // will trigger 'delete' event
-        }
-      }
-    },
   },
 
 }
