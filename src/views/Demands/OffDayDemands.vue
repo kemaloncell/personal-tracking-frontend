@@ -45,7 +45,12 @@ export default {
     },
 
     async onUpdate(val) {
-      this.formData = val
+      val.requestStatus = {
+        code: val.requestStatus
+      }
+      val.offDayPeriod = {
+        code: val.offDayPeriod
+      }
       await this.$router.push({name: 'DemandsUpdate', params: {id: val.id, data: val, type: 'UPDATE'}})
     },
 

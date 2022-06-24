@@ -34,8 +34,10 @@ const advanceDemandsMixins = {
             deleteAdvanceDemands: 'advanceDemands/delete',
         }),
 
-        async createSubmit(data, type) {
+        async createSubmit(data) {
             try {
+                delete this.formData.createdAt
+
                 await this.createAdvanceDemands(data)
 
                 this.$toast.add({
@@ -52,17 +54,14 @@ const advanceDemandsMixins = {
                     life: 3000
                 })
             } finally {
-                if (type === 0) {
-                    this.closeModal()
-                }
-
-                this.getListAdvanceDemands()
+                await this.$router.push({name: 'AdvanceDemandsList'})
             }
         },
 
         async udpateSubmit(data) {
             try {
-                await this.updateAdvanceDemands({id: this.updateId, data})
+                delete this.formData.createdAt
+                await this.updateAdvanceDemands({id: data.id, data})
 
                 this.$toast.add({
                     severity: 'success',
@@ -78,8 +77,8 @@ const advanceDemandsMixins = {
                     life: 3000
                 })
             } finally {
-                this.getListAdvanceDemands()
-                this.closeModal()
+                await this.$router.push({name: 'AdvanceDemandsList'})
+
             }
         },
 
@@ -117,10 +116,12 @@ const advanceDemandsMixins = {
         },
         resetForm() {
             this.formData = {
-                title: null,
-                description: null,
-                documentPath: null,
-                isDemand: null,
+                demandDate: null,
+                reason: 'reason constant',
+                detail: null,
+                amount: null,
+                requestStatus: null,
+                Employee: null,
             }
         },
     },

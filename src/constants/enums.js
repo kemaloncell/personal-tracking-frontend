@@ -1,23 +1,28 @@
 export const RequestStatus = [
     {
-        code: 'Beklemede'
+        code: 'BEKLEMEDE',
+
     },
     {
-        code: 'Onaylandı'
+        code: 'ONAYLANDI',
+
     },
     {
-        code: 'Reddedildi'
+        code: 'REDDEDILDI',
+
     },
 ]
 
 export const OffDayPeriod = [
     {
-        code: 'Saatlik'
+        code: 'SAATLIK',
+
     },
     {
-        code: 'Günlük'
+        code: 'GUNLUK',
+
     },
     {
-        code: 'Yarım Günlük'
+        code: 'YARIM_GUNLUK',
     },
 ]

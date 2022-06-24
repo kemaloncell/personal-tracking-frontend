@@ -45,19 +45,10 @@ export default {
       this.$router.push({name: 'AdvanceDemandsCreate', params: {type: 'CREATE'}})
     },
 
-    async submit(data, type) {
-      if (this.formType === 'CREATE') {
-        console.log(data, type, 'gelid')
-        this.createSubmit(data, type)
-      }
-
-      if (this.formType === 'UPDATE') {
-        this.udpateSubmit(data)
-      }
-    },
-
     async onUpdate(val) {
-      this.formData = val
+      val.requestStatus = {
+        code: val.requestStatus
+      }
       await this.$router.push({name: 'AdvanceDemandsUpdate', params: {id: val.id, data: val, type: 'UPDATE'}})
     },
 

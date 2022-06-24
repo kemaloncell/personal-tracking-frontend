@@ -137,6 +137,7 @@ export default {
 
   mounted() {
     if (this.$route.params.data) {
+
       this.formData = this.$route.params.data;
     }
   },
