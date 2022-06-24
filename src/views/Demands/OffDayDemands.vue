@@ -38,12 +38,6 @@ export default {
   components: {
     DemandsList,
   },
-  data() {
-    return {
-      formType: 'CREATE',
-      defaultValues: null,
-    }
-  },
 
   methods: {
     goCreateDemand() {

@@ -8,7 +8,7 @@
           class="flex mb-3 justify-content-between align-items-center mb-3 filters flex-wrap"
       >
         <div class="flex align-items-center">
-          <Button @click="openModal" class="p-button-primary add-button"
+          <Button @click="goCreateAdvanceDemand" class="p-button-primary add-button"
           >İzin Ekle
           </Button
           >
@@ -24,18 +24,6 @@
           @onDelete="onDelete"
           @onSelection="onSelection"
       />
-      <j-modal :visible.sync="displayModal" width="800px">
-        <template slot="content">
-          <AdvanceDemandsForm
-              :loading="submitLoading"
-              :singleLoading="singleLoading"
-              :defaultValues="defaultValues"
-              :type="formType"
-              @onSubmit="submit"
-              @close="closeModal"
-          />
-        </template>
-      </j-modal>
 
       <Toast position="top-right"/>
     </div>
@@ -43,7 +31,6 @@
 </template>
 
 <script>
-import AdvanceDemandsForm from "@/components/demands/advanceDemands/AdvanceDemandsForm";
 import advanceDemandsMixins from "@/components/demands/advanceDemands/mixins/advanceDemandsMixins";
 import AdvanceDemandsList from "@/components/demands/advanceDemands/AdvanceDemandsList";
 
@@ -51,28 +38,11 @@ export default {
   mixins: [advanceDemandsMixins],
   components: {
     AdvanceDemandsList,
-    AdvanceDemandsForm
-  },
-  data() {
-    return {
-      displayModal: false,
-      formType: 'CREATE',
-      defaultValues: null,
-      updateId: null,
-    }
   },
 
   methods: {
-    openModal() {
-      this.displayModal = true;
-    },
-
-    closeModal() {
-      this.displayModal = false
-      this.defaultValues = null
-      this.formType = 'CREATE'
-
-      this.resetForm()
+    goCreateAdvanceDemand() {
+      this.$router.push({name: 'AdvanceDemandsCreate', params: {type: 'CREATE'}})
     },
 
     async submit(data, type) {
@@ -84,6 +54,11 @@ export default {
       if (this.formType === 'UPDATE') {
         this.udpateSubmit(data)
       }
+    },
+
+    async onUpdate(val) {
+      this.formData = val
+      await this.$router.push({name: 'AdvanceDemandsUpdate', params: {id: val.id, data: val, type: 'UPDATE'}})
     },
 
 

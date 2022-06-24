@@ -158,7 +158,7 @@ const routes = [
     },
     {
         path: '/demands/advances',
-        name: 'AdvanceDemands',
+        name: 'AdvanceDemandsList',
         component: AdvanceDemandsList,
         props: true,
         meta: {
@@ -167,7 +167,7 @@ const routes = [
     },
     {
         path: '/demands/advance',
-        name: 'AdvanceDemands',
+        name: 'AdvanceDemandsCreate',
         component: AdvanceDemandsCreate,
         props: true,
         meta: {
@@ -176,7 +176,7 @@ const routes = [
     },
     {
         path: '/demands/advance/:id',
-        name: 'AdvanceDemands',
+        name: 'AdvanceDemandsUpdate',
         component: AdvanceDemandsUpdate,
         props: true,
         meta: {

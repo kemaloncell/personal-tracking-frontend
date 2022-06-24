@@ -111,11 +111,6 @@ const advanceDemandsMixins = {
             this.displayModal = true
         },
 
-        async onUpdate(val) {
-            this.defaultValues = val
-            this.formType = 'UPDATE'
-            this.displayModal = true
-        },
 
         onSelection(val) {
             this.selectedItems = val.map((item) => item.id)

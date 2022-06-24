@@ -2,7 +2,7 @@
   <default-layout>
     <div slot="content">
       <div class="card">
-        <div class="card grid col-6 mt-5" style="margin: auto">
+        <div class=" grid col-6 mt-5" style="margin: auto">
           <form @submit.prevent="submit">
             <h2 class="text-2xl font-bold" style="margin-bottom: 50px">
               Çalışan
@@ -139,12 +139,6 @@ export default {
     async submit() {
 
       if (this.type === 'CREATE') {
-        {
-          this.formData.requestStatus = this.formData.requestStatus.code;
-        }
-        {
-          this.formData.offDayPeriod = this.formData.offDayPeriod.code;
-        }
         await this.createSubmit(this.formData)
       }
 
@@ -166,7 +160,6 @@ export default {
   },
 
   mounted() {
-    console.log(this.$route.params.data, 'router')
     if (this.$route.params.data) {
       this.formData = this.$route.params.data;
     }

@@ -53,7 +53,7 @@ export default {
           items: [
             {label: 'İzin Günleri', icon: 'pi pi-fw pi-folder', to: '/demands/off-days'},
             {label: 'Ortak İzin Günleri', icon: 'pi pi-fw pi-folder-open', to: '/demands/common-off-days'},
-            {label: 'Avans Talebi', icon: 'pi pi-fw pi-envelope', to: '/demands/advance'},
+            {label: 'Avans Talebi', icon: 'pi pi-fw pi-envelope', to: '/demands/advances'},
           ]
         },
         {label: 'Personal Yönetimi', icon: 'pi pi-fw pi-user-plus', to: '/employees'},
