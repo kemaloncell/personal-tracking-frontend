@@ -28,11 +28,12 @@ import CustomerTabPage from "@/components/customers/CustomerTabPage";
 import DemandsList from '@/views/Demands/OffDayDemands.vue'
 import DemandsCreate from '@/components/demands/offDayDemands/OffDayDemandsForm.vue'
 import DemandsUpdate from '@/components/demands/offDayDemands/OffDayDemandsForm.vue'
-
 // common demands
 import CommonDemandsList from '@/views/Demands/CommonDemands.vue'
 //advance demands
-import AdvanceDemands from '@/views/Demands/AdvanceDemands.vue'
+import AdvanceDemandsList from '@/views/Demands/AdvanceDemands.vue'
+import AdvanceDemandsCreate from '@/components/demands/advanceDemands/AdvanceDemandsForm.vue'
+import AdvanceDemandsUpdate from '@/components/demands/advanceDemands/AdvanceDemandsForm.vue'
 
 //Suppliers
 import SupplierList from '@/views/Suppliers/Supplier.vue'
@@ -156,9 +157,27 @@ const routes = [
         }
     },
     {
+        path: '/demands/advances',
+        name: 'AdvanceDemands',
+        component: AdvanceDemandsList,
+        props: true,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
         path: '/demands/advance',
         name: 'AdvanceDemands',
-        component: AdvanceDemands,
+        component: AdvanceDemandsCreate,
+        props: true,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/demands/advance/:id',
+        name: 'AdvanceDemands',
+        component: AdvanceDemandsUpdate,
         props: true,
         meta: {
             requiresAuth: true

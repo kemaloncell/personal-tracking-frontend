@@ -54,7 +54,7 @@
                 <Dropdown
                     v-model="formData.requestStatus"
                     :options="RequestStatus"
-                    optionLabel="name"
+                    optionLabel="code"
                     :showClear="true"
                     class="w-full h-full city-search p-inputtext-sm"
                 />
@@ -65,7 +65,7 @@
                 <Dropdown
                     v-model="formData.offDayPeriod"
                     :options="OffDayPeriod"
-                    optionLabel="name"
+                    optionLabel="code"
                     :showClear="true"
                     class="w-full h-full city-search p-inputtext-sm"
                 />
