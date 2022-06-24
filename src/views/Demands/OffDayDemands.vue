@@ -42,7 +42,6 @@ export default {
     return {
       formType: 'CREATE',
       defaultValues: null,
-      updateId: null,
     }
   },
 
@@ -52,11 +51,8 @@ export default {
     },
 
     async onUpdate(val) {
-
-      this.updateId = val.id
-      const item = await this.getSingleOffDayDemands(this.updateId)
-      this.formData = item.data
-      await this.$router.push({name: 'DemandsUpdate', params: {id: val.id, data: item.data, type: 'UPDATE'}})
+      this.formData = val
+      await this.$router.push({name: 'DemandsUpdate', params: {id: val.id, data: val, type: 'UPDATE'}})
     },
 
 

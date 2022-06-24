@@ -17,7 +17,7 @@
       <Column header="Adı" sortable>
         <template #body="{ data }">
           {{
-            data.Employee.name ? data.Employee.name : '----------'
+            data.Employee.name ? data.Employee.name : '-'
           }}
         </template>
       </Column>
@@ -58,7 +58,7 @@ export default {
       default: () => 0
     }
   },
-  
+
   methods: {
     onPage(params) {
       const {

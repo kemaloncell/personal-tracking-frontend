@@ -28,10 +28,6 @@
 
 <script>
 export default {
-  data: () => ({
-    displayModal: false
-  }),
-
   props: {
     data: {
       type: Array,
