@@ -58,7 +58,6 @@
                     :showClear="true"
                     class="w-full h-full city-search p-inputtext-sm"
                 />
-                {{ formData.requestStatus }}
               </div>
 
               <div class="col-2 text-sm">İzin günü aralığı</div>
@@ -70,7 +69,6 @@
                     :showClear="true"
                     class="w-full h-full city-search p-inputtext-sm"
                 />
-                {{ formData.offDayPeriod }}
               </div>
 
               <div class="col-2 text-sm">Açıklama</div>
@@ -148,9 +146,7 @@ export default {
 
   computed: {
     RequestStatus() {
-      return RequestStatus.map(item => ({
-        name: item.name,
-      }))
+      return RequestStatus
     },
 
     OffDayPeriod() {

@@ -25,7 +25,6 @@ class OffDayDemandsService extends BaseService {
     }
 
     async delete(id) {
-        console.log("del", id)
         return super.delete(`/${id}`)
 
     }

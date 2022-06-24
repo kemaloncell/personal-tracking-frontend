@@ -44,7 +44,6 @@ export default {
       }
 
       if (typeof val === 'string') {
-        console.log(val, 'val')
         this.selectedEmployee = val
       } else {
         this.selectedEmployee = val
@@ -62,10 +61,8 @@ export default {
   },
   mounted() {
     this.callEmployee()
-    console.log('mounted', this.employeeList)
-
     if (this.defaultEmployee) {
-      this.selectedEmployee = this.defaultEmployee.name
+      this.selectedEmployee = this.defaultEmployee
     }
   }
 }

@@ -23,18 +23,6 @@
           @onDelete="onDelete"
           @onSelection="onSelection"
       />
-      <j-modal :visible.sync="displayModal" width="800px">
-        <template slot="content">
-          <OffDayDemandsForm
-              :loading="submitLoading"
-              :singleLoading="singleLoading"
-              :defaultValues="defaultValues"
-              :type="formType"
-              @onSubmit="submit"
-              @close="closeModal"
-          />
-        </template>
-      </j-modal>
 
       <Toast position="top-right"/>
     </div>
@@ -44,13 +32,11 @@
 <script>
 import offDayDemandsMixins from "@/components/demands/offDayDemands/mixins/offDayDemandsMixins";
 import DemandsList from "@/components/demands/offDayDemands/DemandsList";
-import OffDayDemandsForm from "@/components/demands/offDayDemands/OffDayDemandsForm";
 
 export default {
   mixins: [offDayDemandsMixins],
   components: {
     DemandsList,
-    OffDayDemandsForm
   },
   data() {
     return {
@@ -63,6 +49,14 @@ export default {
   methods: {
     goCreateDemand() {
       this.$router.push({name: 'DemandsCreate', params: {type: 'CREATE'}})
+    },
+
+    async onUpdate(val) {
+
+      this.updateId = val.id
+      const item = await this.getSingleOffDayDemands(this.updateId)
+      this.formData = item.data
+      await this.$router.push({name: 'DemandsUpdate', params: {id: val.id, data: item.data, type: 'UPDATE'}})
     },
 
 

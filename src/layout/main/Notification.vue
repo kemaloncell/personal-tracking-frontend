@@ -138,7 +138,9 @@ export default {
   },
 
   created() {
-    this.getList();
+    if (this.list.length !== 0) {
+      this.getList()
+    }
   }
 }
 </script>

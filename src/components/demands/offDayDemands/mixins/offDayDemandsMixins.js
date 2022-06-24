@@ -53,7 +53,7 @@ const offDayDemandsMixins = {
                     life: 3000
                 })
             } finally {
-                this.$router.push({name: 'Demands'})
+                await this.$router.push({name: 'Demands'})
             }
         },
 
@@ -75,7 +75,7 @@ const offDayDemandsMixins = {
                     life: 3000
                 })
             } finally {
-                await this.getListOffDayDemands()
+                await this.$router.push({name: 'Demands'})
             }
         },
 
@@ -90,7 +90,7 @@ const offDayDemandsMixins = {
                     life: 3000
                 })
 
-                await this.getListOffDayDemands()
+
             } catch {
                 this.$toast.add({
                     severity: 'error',
@@ -98,6 +98,8 @@ const offDayDemandsMixins = {
                     detail: 'Çalışan silme başarısız !',
                     life: 3000
                 })
+            } finally {
+                await this.getListOffDayDemands()
             }
         },
 
@@ -107,21 +109,19 @@ const offDayDemandsMixins = {
             this.displayModal = true
         },
 
-        async onUpdate(val) {
-            this.defaultValues = val
-            this.formType = 'UPDATE'
-            this.displayModal = true
-        },
 
         onSelection(val) {
             this.selectedItems = val.map((item) => item.id)
         },
         resetForm() {
             this.formData = {
-                title: null,
-                description: null,
-                documentPath: null,
-                isDemand: null,
+                beginDate: null,
+                endDate: null,
+                reason: 'reason constant',
+                detail: null,
+                requestStatus: null,
+                offDayPeriod: null,
+                Employee: null,
             }
         },
     },

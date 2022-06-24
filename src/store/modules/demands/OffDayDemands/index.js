@@ -38,7 +38,7 @@ const actions = {
         try {
             commit('SET_LOADING', true)
             const {data} = await offDayDemandsService.getAllList()
-            console.log(data, 'all list')
+            console.log(data.data, 'all list')
             commit('SET_LIST', data.data)
         } catch (error) {
             console.log(error);

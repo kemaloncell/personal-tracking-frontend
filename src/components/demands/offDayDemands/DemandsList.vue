@@ -14,9 +14,25 @@
       @onHandleSort="onHandleSort"
   >
     <template slot="columns">
-      <Column field="User.name" header="Adı" sortable></Column>
-      <Column field="title" header="Başlık" sortable></Column>
-      <Column field="description" header="Açıklama" sortable></Column>
+      <Column header="Adı" sortable>
+        <template #body="{ data }">
+          {{
+            data.Employee.name ? data.Employee.name : '----------'
+          }}
+        </template>
+      </Column>
+      <Column header="Başlangıç Tarihi" sortable>
+        <template #body="{ data }">
+          {{ data.beginDate.split('T')[0] }}
+        </template>
+      </Column>
+      <Column header="Bitiş Tarihi" sortable>
+        <template #body="{ data }">
+          {{ data.endDate.split('T')[0] }}
+        </template>
+      </Column>
+      <Column field="requestStatus" header="Durumu" sortable></Column>
+      <Column field="offDayPeriod" header="İzin Aralığı" sortable></Column>
     </template>
     <template slot="action"></template>
   </j-table>
@@ -25,14 +41,11 @@
 
 <script>
 export default {
-  data: () => ({
-    displayModal: false
-  }),
 
   props: {
     data: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
 
     loading: {
@@ -45,7 +58,7 @@ export default {
       default: () => 0
     }
   },
-
+  
   methods: {
     onPage(params) {
       const {
