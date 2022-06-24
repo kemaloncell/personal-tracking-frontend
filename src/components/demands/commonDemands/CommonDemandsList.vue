@@ -6,7 +6,6 @@
         :loading="loading"
         :totalRecords="total"
         :lazy="true"
-        :isMessage="true"
         sortMode="multiple"
         @onPageChange="onPage"
         @onDelete="onDeleteYes"
@@ -29,34 +28,16 @@
       <template slot="action"></template>
     </j-table>
 
-    <j-modal :visible.sync="displayModal" width="800px">
-      <template slot="content">
-        <commonDemandsMessageForm
-            :loading="submitLoading"
-            :singleLoading="singleLoading"
-            :defaultValues="defaultValues"
-            @onSubmit="commonMessageSubmit"
-            @close="closeModal"
-        />
-      </template>
-    </j-modal>
-
   </div>
 </template>
 
 <script>
 import commonDemandsMessageMixins from './mixins/commonDemandsMessageMixins'
 import GlobalForm from "@/components/globalMixins/globalForm";
-import commonDemandsMessageForm from "./CommonDemandsMessageForm";
 
 export default {
   mixins: [commonDemandsMessageMixins, GlobalForm],
-  components: {
-    commonDemandsMessageForm
-  },
-  data: () => ({
-    displayModal: false,
-  }),
+
 
   props: {
     data: {

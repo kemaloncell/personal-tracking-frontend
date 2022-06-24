@@ -4,7 +4,7 @@
     <div class="grid" style="margin: auto">
       <form @submit.prevent="submit">
         <h2 class="text-2xl font-bold" style="margin-bottom: 50px">
-          Çalışan
+          İzin
         </h2>
 
         <div class="grid mt-5 flex align-items-center">

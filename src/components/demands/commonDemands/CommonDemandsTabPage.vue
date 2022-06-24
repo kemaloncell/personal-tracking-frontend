@@ -11,12 +11,12 @@
             <CommonDemandsForm
                 :loading="submitLoading"
                 :singleLoading="singleLoading"
-                :defaultCustomer="customerData"
-                :type="customerFormType"
+                :defaultDemands="demandsData"
+                :type="demandsFormType"
             />
 
           </TabPanel>
-          <TabPanel :header="'Hesap Oluştur'">
+          <TabPanel :header="'Mesaj Oluştur'">
             <CommonDemandsMessageForm
                 :loading="submitLoading"
                 :singleLoading="singleLoading"
@@ -49,34 +49,31 @@ export default {
   },
   data() {
     return {
-      customerData: null,
-      displayTab: true,
+      demandsData: null,
       formType: 'CREATE',
-      customerFormType: null,
-      defaultValues: null,
+      demandsFormType: null,
     }
   },
 
   computed: {
     tabName() {
       if (this.$route.params.type) {
-        return this.$route.params.type === 'CREATE' ? 'Müşteri Oluştur' : 'Müşteri Düzenle';
+        return this.$route.params.type === 'CREATE' ? 'İzin Oluştur' : 'İzin Düzenle';
       } else {
         return 'Müşteri Oluştur';
       }
     },
     getNameSurname() {
-      console.log(this.$route.params, 'customerData')
-      if (this.customerData != null) {
-        return 'Seçilen müşteri:' + ' ' + this.customerData.title
+      if (this.demandsData != null) {
+        return 'Seçilen İzin:' + ' ' + this.demandsData.title
       } else {
-        return 'Müşteri Bilgileri'
+        return 'İzin Bilgileri'
       }
 
       if (this.$route.params != null) {
-        return 'Seçilen müşteri:' + ' ' + this.$route.params.data.name
+        return 'Seçilen İzin:' + ' ' + this.$route.params.data.name
       } else {
-        return 'Müşteri Bilgileri'
+        return 'İzin Bilgileri'
       }
     },
   },
@@ -106,8 +103,8 @@ export default {
     },
   },
   mounted() {
-    this.customerFormType = this.$route.params.type
-    this.$route.params.data != null ? this.customerData = this.$route.params.data : this.customerData = null
+    this.demandsFormType = this.$route.params.type
+    this.$route.params.data != null ? this.demandsData = this.$route.params.data : this.demandsData = null
   }
 }
 </script>

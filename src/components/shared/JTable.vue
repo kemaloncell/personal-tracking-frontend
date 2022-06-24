@@ -41,16 +41,6 @@
           </router-link>
 
           <Button
-              v-if="isMessage"
-              type="button"
-              class=" p-button-sm table-message-button mr-2"
-              @click="() => onMessageClick(data)"
-          >
-            <i class="pi pi-envelope"></i>
-
-          </Button>
-
-          <Button
               v-if="!isVisibleUpdateButton"
               type="button"
               class="p-button-primary p-button-sm table-update-button mr-2"
@@ -123,11 +113,6 @@ export default {
       default: () => false,
       type: Boolean
     },
-    
-    isMessage: {
-      default: () => false,
-      type: Boolean
-    },
     isVisibleUpdateButton: {
       default: () => false,
       type: Boolean
@@ -159,10 +144,6 @@ export default {
   methods: {
     onPage(page) {
       this.$emit('onPageChange', {page: page, size: 10})
-    },
-
-    onMessageClick(id) {
-      this.$emit('onMessage', id)
     },
 
     onUpdateClick(id) {
