@@ -11,6 +11,10 @@ export const RequestStatus = [
         code: 'REDDEDILDI',
 
     },
+    {
+        code: 'SONUCLANDIRILDI',
+
+    },
 ]
 
 export const OffDayPeriod = [

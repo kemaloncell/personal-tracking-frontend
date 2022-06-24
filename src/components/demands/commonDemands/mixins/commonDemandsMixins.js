@@ -9,6 +9,7 @@ const commonDemandsMixins = {
                 description: null,
                 documentPath: null,
                 isDemand: null,
+                status: null,
             },
         }
     },

@@ -17,18 +17,6 @@
 
       </div>
 
-      <div class="col-2 text-sm">Açıklama</div>
-      <div class="col-4">
-        <j-input-text
-            unmask
-            name="phoneNumber"
-            class="w-full p-inputtext-sm"
-            v-model="formData.description"
-            mask="(999) 999-99-99"
-        />
-
-      </div>
-
       <div class="col-2 text-sm">Talep mi?</div>
       <div class="col-4">
         <Checkbox
@@ -37,6 +25,28 @@
         ></Checkbox>
       </div>
 
+
+      <div class="col-2 text-sm">İstek Durumu</div>
+      <div class="col-4">
+        <Dropdown
+            v-model="formData.status"
+            :options="RequestStatus"
+            optionLabel="code"
+            :showClear="true"
+            class="w-full h-full city-search p-inputtext-sm"
+        />
+      </div>
+
+      <div class="col-2 text-sm">Açıklama</div>
+      <div class="col-4">
+                <Textarea
+                    name="description"
+                    class="w-full description-input"
+                    v-model="formData.description"
+                    maxLength="512"
+                />
+
+      </div>
 
       <hr class="w-full"/>
       <div class="col-12">
@@ -87,7 +97,7 @@
 <script>
 import GlobalForm from '@/components/globalMixins/globalForm'
 import commonDemandsMixins from './mixins/commonDemandsMixins'
-
+import {RequestStatus} from "@/constants/enums";
 
 export default {
   mixins: [commonDemandsMixins, GlobalForm],
@@ -95,7 +105,11 @@ export default {
     submitted: false,
   }),
 
-
+  computed: {
+    RequestStatus() {
+      return RequestStatus
+    },
+  },
   methods: {
     submit(type) {
 
