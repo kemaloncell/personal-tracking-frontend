@@ -6,7 +6,6 @@
       :loading="loading"
       :totalRecords="total"
       :lazy="true"
-      :documentType="true"
       sortMode="multiple"
       @onPageChange="onPage"
       @onDelete="onDeleteYes"

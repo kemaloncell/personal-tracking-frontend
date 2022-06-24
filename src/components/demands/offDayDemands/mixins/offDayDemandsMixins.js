@@ -37,6 +37,7 @@ const offDayDemandsMixins = {
 
         async createSubmit(data) {
             try {
+                delete this.formData.createdAt
                 await this.createOffDayDemands(data)
 
                 this.$toast.add({
@@ -59,19 +60,20 @@ const offDayDemandsMixins = {
 
         async udpateSubmit(data) {
             try {
+                delete this.formData.createdAt
                 await this.updateOffDayDemands({id: this.updateId, data})
 
                 this.$toast.add({
                     severity: 'success',
                     summary: 'Başarılı',
-                    detail: 'Çalışan güncelleme başarılı !',
+                    detail: 'İzin güncelleme başarılı !',
                     life: 3000
                 })
             } catch {
                 this.$toast.add({
                     severity: 'error',
                     summary: 'Başarısız',
-                    detail: 'Çalışan güncelleme başarısız !',
+                    detail: 'İzin güncelleme başarısız !',
                     life: 3000
                 })
             } finally {
@@ -86,7 +88,7 @@ const offDayDemandsMixins = {
                 this.$toast.add({
                     severity: 'success',
                     summary: 'Başarılı',
-                    detail: 'Çalışan silme başarılı !',
+                    detail: 'İzin silme başarılı !',
                     life: 3000
                 })
 
@@ -95,7 +97,7 @@ const offDayDemandsMixins = {
                 this.$toast.add({
                     severity: 'error',
                     summary: 'Başarısız',
-                    detail: 'Çalışan silme başarısız !',
+                    detail: 'İzin silme başarısız !',
                     life: 3000
                 })
             } finally {
