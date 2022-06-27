@@ -42,7 +42,7 @@ import SupplierCreate from '@/components/suppliers/SuppliersForm.vue'
 import SupplierUpdate from '@/components/suppliers/SuppliersForm.vue'
 
 //Fields
-import FieldList from '@/views/Fields/Fields.vue'
+import ZoneList from '@/views/Zones/Zone.vue'
 
 //Shifts
 import ShiftList from '@/views/Shifts/Shifts.vue'
@@ -257,9 +257,10 @@ const routes = [
         }
     },
     {
-        path: '/fields',
-        name: 'Field',
-        component: FieldList,
+        path: '/zones',
+        name: 'ZoneList',
+        component: ZoneList,
+        props: true,
         meta: {
             requiresAuth: true
         }

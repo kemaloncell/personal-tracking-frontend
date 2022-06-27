@@ -59,7 +59,7 @@ export default {
         {label: 'Personal Yönetimi', icon: 'pi pi-fw pi-user-plus', to: '/employees'},
         {label: 'Müşteri Yönetimi', icon: 'pi pi-fw pi-user-plus', to: '/customers'},
         {label: 'Tedarikçiler', icon: 'pi pi-fw pi-users', to: '/suppliers'},
-        {label: 'Saha Yönetimi', icon: 'pi pi-fw pi-external-link', to: '/fields'},
+        {label: 'Saha Yönetimi', icon: 'pi pi-fw pi-external-link', to: '/zones'},
         {label: 'Vardiya Yönetimi', icon: 'pi pi-fw pi-table', to: '/shifts'},
       ]
     }

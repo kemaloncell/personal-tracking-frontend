@@ -28,6 +28,9 @@ import offDayDemands from './modules/demands/OffDayDemands'
 import commonDemands from './modules/demands/commonDemands'
 import commonDemandsMessage from './modules/demands/commonDemands/commonDemandsMessage'
 
+//Zones
+import zones from './modules/zones'
+
 Vue.use(Vuex)
 
 
@@ -46,6 +49,7 @@ export default new Vuex.Store({
         commonDemands,
         commonDemandsMessage,
         offDayDemands,
-        advanceDemands
+        advanceDemands,
+        zones
     }
 })

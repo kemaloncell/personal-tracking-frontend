@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import FieldList from "@/components/fields/FieldList";
-import fieldMixin from "@/components/fields/mixins/fieldMixins";
+import FieldList from "@/components/zones/ZoneList";
+import fieldMixin from "@/components/zones/mixins/zoneMixins";
 
 export default {
   mixins: [fieldMixin],
