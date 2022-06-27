@@ -15,7 +15,6 @@ class CustomerService extends BaseService {
     }
 
     async create(data) {
-        console.log(data)
         return await super.post(`/`, data)
 
     }

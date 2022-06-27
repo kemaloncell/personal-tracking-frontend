@@ -64,7 +64,7 @@ const commonDemandsMessageMixins = {
                     life: 3000
                 })
 
-                this.getListCommonDemandsMessage()
+                await this.getListCommonDemandsMessage()
             } catch {
                 this.$toast.add({
                     severity: 'error',
@@ -75,12 +75,12 @@ const commonDemandsMessageMixins = {
             }
         },
 
-        async fileSubmit(req, type) {
+        async fileSubmit(req) {
             if (req.file) {
                 await this.uploadFile(req.file)
             }
             if (this.type === 'CREATE') {
-                await this.createSubmit(req, type)
+                await this.createSubmit(req)
             } else {
                 await this.udpateSubmit(req)
             }

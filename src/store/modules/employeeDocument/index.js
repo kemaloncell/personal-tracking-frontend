@@ -1,6 +1,5 @@
 import {employeeDocumentService} from '@/api/employeeDocumentService'
 import {definitionsService} from "@/api/definitionsService";
-import employeeDocumentList from "@/components/employees/EmployeeDocumentList";
 
 const state = {
     employeeDocumentList: [],
@@ -144,7 +143,7 @@ const actions = {
             let photoForm = new FormData()
             photoForm.append('file', fileData.file)
             commit('SET_LOADING', false)
-            
+
             return await definitionsService.uploadFileRequest(photoForm, config)
 
         } catch (err) {

@@ -38,10 +38,18 @@
             class="flex justify-content-center w-full mt-5 mb-5 decline-button save-menu-button save-button"
         >
           <j-submitbutton
+              v-if="type === 'CREATE'"
+              :loading="loading"
+              @save="submit"
+          />
+          <Button
+              v-else
+              :disabled="loading"
+              label="Güncelle"
+              class="save-primary-button ml-3"
               :loading="loading"
               @click="submit"
           />
-
           <Button
               :disabled="loading"
               @click="onClose"
@@ -80,7 +88,7 @@ export default {
   watch: {
     defaultDemands: {
       handler(newVal) {
-        this.demandId = newVal.id
+        this.formData.demandId = newVal.id
       },
       deep: true,
     },
@@ -89,8 +97,8 @@ export default {
   methods: {
     async submit() {
       if (this.formData.documentPath) {
-        console.log(this.formData.demandId, 'demands')
-        await this.fileSubmit(this.formData)
+        console.log(this.defaultDemands, 'defaultDemands')
+        await this.fileSubmit(this.formData.file)
       } else {
         await this.createSubmit(this.formData)
       }
@@ -115,7 +123,13 @@ export default {
         }
       }
     },
+
   },
+
+  mounted() {
+    this.formData.demandId = this.$route.params.id
+    console.log(this.demandId, 'this.demandId')
+  }
 
 
 }

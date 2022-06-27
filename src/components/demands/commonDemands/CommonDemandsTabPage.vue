@@ -90,9 +90,15 @@ export default {
       this.$router.push({name: 'CommonDemandsList'})
     },
   },
+
   mounted() {
     this.demandsFormType = this.$route.params.type
     this.$route.params.data != null ? this.demandsData = this.$route.params.data : this.demandsData = null
-  }
+  },
+
+  created() {
+    console.log('created', this.$route.params.data.id)
+    this.getListCommonDemandsMessage(this.$route.params.data.id)
+  },
 }
 </script>

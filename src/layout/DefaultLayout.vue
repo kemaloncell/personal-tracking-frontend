@@ -52,7 +52,7 @@ export default {
           label: 'İzin Talep', icon: 'pi pi-fw pi-th-large',
           items: [
             {label: 'İzin Günleri', icon: 'pi pi-fw pi-folder', to: '/demands/off-days'},
-            {label: 'Ortak İzin Günleri', icon: 'pi pi-fw pi-folder-open', to: '/demands/common-off-days'},
+            {label: 'Talep ve Şikayetler', icon: 'pi pi-fw pi-folder-open', to: '/demands/common-off-days'},
             {label: 'Avans Talebi', icon: 'pi pi-fw pi-envelope', to: '/demands/advances'},
           ]
         },

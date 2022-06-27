@@ -57,24 +57,7 @@ export default {
   },
 
   methods: {
-    async commonMessageSubmit(data, type) {
-      this.createSubmit(data, type)
 
-    },
-
-    async onMessage(val) {
-      this.getListCommonDemandsMessage(val.id)
-      this.formType = 'MESSAGE'
-      this.displayModal = true
-    },
-
-    closeModal() {
-      this.displayModal = false
-      this.defaultValues = null
-      this.formType = 'CREATE'
-
-      // this.resetForm()
-    },
 
     onPage(params) {
       const {
