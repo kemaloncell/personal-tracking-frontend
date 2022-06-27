@@ -43,6 +43,8 @@ import SupplierUpdate from '@/components/suppliers/SuppliersForm.vue'
 
 //Fields
 import ZoneList from '@/views/Zones/Zone.vue'
+import ZoneCreate from '@/components/zones/ZoneForm.vue'
+import ZoneUpdate from '@/components/zones/ZoneForm.vue'
 
 //Shifts
 import ShiftList from '@/views/Shifts/Shifts.vue'
@@ -260,6 +262,24 @@ const routes = [
         path: '/zones',
         name: 'ZoneList',
         component: ZoneList,
+        props: true,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/zone',
+        name: 'ZoneCreate',
+        component: ZoneCreate,
+        props: true,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/zones/:id',
+        name: 'ZoneUpdate',
+        component: ZoneUpdate,
         props: true,
         meta: {
             requiresAuth: true
