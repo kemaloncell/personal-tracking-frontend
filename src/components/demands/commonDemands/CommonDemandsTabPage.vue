@@ -97,7 +97,6 @@ export default {
   },
 
   created() {
-    console.log('created', this.$route.params.data.id)
     this.getListCommonDemandsMessage(this.$route.params.data.id)
   },
 }
