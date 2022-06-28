@@ -42,21 +42,14 @@ export default {
   components: {
     ZoneList,
   },
-
-  data() {
-    return {
-      updateId: null,
-    }
-  },
-
   methods: {
     goCreatePage() {
-      this.$router.push({name: 'SupplierCreate', params: {type: 'CREATE'}});
+      this.$router.push({path: 'zone/', params: {type: 'CREATE'}});
     },
 
     async onUpdate(val) {
       const item = await this.getZonesSingle(val.id)
-      await this.$router.push({name: 'SupplierUpdate', params: {id: val.id, data: item.data, type: 'UPDATE'}})
+      await this.$router.push({name: 'ZoneUpdate', params: {id: val.id, data: item.data, type: 'UPDATE'}})
 
     },
   },

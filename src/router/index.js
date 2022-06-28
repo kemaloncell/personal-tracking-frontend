@@ -41,10 +41,16 @@ import SupplierList from '@/views/Suppliers/Supplier.vue'
 import SupplierCreate from '@/components/suppliers/SuppliersForm.vue'
 import SupplierUpdate from '@/components/suppliers/SuppliersForm.vue'
 
-//Fields
+//Zones
 import ZoneList from '@/views/Zones/Zone.vue'
 import ZoneCreate from '@/components/zones/ZoneForm.vue'
-import ZoneUpdate from '@/components/zones/ZoneForm.vue'
+//import ZoneUpdate from '@/components/zones/ZoneForm.vue'
+
+//zones stpes
+import Confirmation from "@/components/zones/zoneSteps/Confirmation.vue";
+import Payment2 from "@/components/zones/zoneSteps/Payment.vue";
+import Personal2 from "@/components/zones/zoneSteps/Personal.vue";
+import Seat2 from "@/components/zones/zoneSteps/Seat.vue";
 
 //Shifts
 import ShiftList from '@/views/Shifts/Shifts.vue'
@@ -265,7 +271,8 @@ const routes = [
         props: true,
         meta: {
             requiresAuth: true
-        }
+        },
+
     },
     {
         path: '/zone',
@@ -274,17 +281,39 @@ const routes = [
         props: true,
         meta: {
             requiresAuth: true
-        }
+        },
+        children: [
+            {
+                path: 'personal',
+                name: 'personal',
+                component: Personal2,
+
+            },
+            {
+                path: 'seat',
+                component: Seat2,
+            },
+            {
+                path: 'payment',
+                component: Payment2,
+            },
+            {
+                path: 'confirmation',
+                component: Confirmation,
+            }
+        ]
+
     },
-    {
-        path: '/zones/:id',
-        name: 'ZoneUpdate',
-        component: ZoneUpdate,
-        props: true,
-        meta: {
-            requiresAuth: true
-        }
-    },
+
+    /*  {
+          path: '/zones/:id',
+          name: 'ZoneUpdate',
+          component: ZoneUpdate,
+          props: true,
+          meta: {
+              requiresAuth: true
+          }
+      }, */
     {
         path: '/shifts',
         name: 'Shift',
@@ -293,6 +322,7 @@ const routes = [
             requiresAuth: true
         }
     },
+
 
 ]
 
