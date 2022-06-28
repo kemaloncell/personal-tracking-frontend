@@ -48,9 +48,9 @@ import ZoneCreate from '@/components/zones/ZoneForm.vue'
 
 //zones stpes
 import Confirmation from "@/components/zones/zoneSteps/Confirmation.vue";
-import Payment2 from "@/components/zones/zoneSteps/Payment.vue";
-import Personal2 from "@/components/zones/zoneSteps/Personal.vue";
-import Seat2 from "@/components/zones/zoneSteps/Seat.vue";
+import EmployeeCreate from "@/components/zones/zoneSteps/EmployeeCreate.vue";
+import ZoneFormCreate from "@/components/zones/zoneSteps/ZoneCreate.vue";
+import AreaCreate from "@/components/zones/zoneSteps/AreaCreate.vue";
 
 //Shifts
 import ShiftList from '@/views/Shifts/Shifts.vue'
@@ -284,22 +284,37 @@ const routes = [
         },
         children: [
             {
-                path: 'personal',
-                name: 'personal',
-                component: Personal2,
+                path: 'create',
+                component: ZoneFormCreate,
+                props: true,
+                meta: {
+                    requiresAuth: true
+                },
 
             },
             {
-                path: 'seat',
-                component: Seat2,
+                path: 'area-create',
+                component: AreaCreate,
+                props: true,
+                meta: {
+                    requiresAuth: true
+                },
             },
             {
-                path: 'payment',
-                component: Payment2,
+                path: 'employee-create',
+                component: EmployeeCreate,
+                props: true,
+                meta: {
+                    requiresAuth: true
+                },
             },
             {
                 path: 'confirmation',
                 component: Confirmation,
+                props: true,
+                meta: {
+                    requiresAuth: true
+                },
             }
         ]
 

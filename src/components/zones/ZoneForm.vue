@@ -5,6 +5,7 @@
         <div class=" mt-5">
           <Steps :model="items" :readonly="false" style="margin-bottom: 1rem"/>
         </div>
+
         <div class=" col-8" style="margin: auto">
           <keep-alive>
             <router-view :formData="formObject" @prevPage="prevPage($event)" @nextPage="nextPage($event)"
@@ -27,19 +28,19 @@ export default {
     return {
       submitted: false,
       items: [{
-        label: 'Personal',
-        to: 'personal'
+        label: 'Bölge Oluştur',
+        to: 'create'
       },
         {
-          label: 'Seat',
-          to: 'seat'
+          label: 'Alan Oluştur',
+          to: 'area-create'
         },
         {
-          label: 'Payment',
-          to: 'payment'
+          label: 'Çalışan Oluştur',
+          to: 'employee-create'
         },
         {
-          label: 'Confirmation',
+          label: 'Doğrulama',
           to: 'confirmation'
         }],
       formObject: {}

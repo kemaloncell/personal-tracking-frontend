@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     goCreatePage() {
-      this.$router.push({path: 'zone/', params: {type: 'CREATE'}});
+      this.$router.push({path: 'zone/create', params: {type: 'CREATE'}});
     },
 
     async onUpdate(val) {

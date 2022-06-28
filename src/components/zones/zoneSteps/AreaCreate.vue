@@ -38,4 +38,51 @@
 
 </template>
 <script>
+export default {
+  data() {
+    return {
+      selectedClass: '',
+      classes: [
+        {name: 'First Class', code: 'A', factor: 1},
+        {name: 'Second Class', code: 'B', factor: 2},
+        {name: 'Third Class', code: 'C', factor: 3}
+      ],
+      vagons: [],
+      selectedVagon: '',
+      seats: [],
+      selectedSeat: ''
+    }
+  },
+  methods: {
+    setVagons(event) {
+      if (this.selectedClass && event.value) {
+        this.vagons = [];
+        this.seats = [];
+        for (let i = 1; i < 3 * event.value.factor; i++) {
+          this.vagons.push({vagon: i + event.value.code, type: event.value.name, factor: event.value.factor});
+        }
+      }
+    },
+    setSeats(event) {
+      if (this.selectedVagon && event.value) {
+        this.seats = [];
+        for (let i = 1; i < 10 * event.value.factor; i++) {
+          this.seats.push({seat: i, type: event.value.type});
+        }
+      }
+    },
+    nextPage() {
+      this.$emit('nextPage', {
+        formData: {
+          class: this.selectedClass.name,
+          vagon: this.selectedVagon.vagon,
+          seat: this.selectedSeat.seat
+        }, pageIndex: 1
+      });
+    },
+    prevPage() {
+      this.$emit('prevPage', {pageIndex: 1});
+    }
+  }
+}
 </script>
