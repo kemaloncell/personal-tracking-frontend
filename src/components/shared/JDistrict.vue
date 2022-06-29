@@ -4,7 +4,6 @@
         v-model="selectedDistrict"
         :options="districtList"
         optionLabel="name"
-        optionValue="id"
         :filter="true"
         :showClear="true"
         class="w-full h-full city-search p-inputtext-sm"
@@ -58,7 +57,6 @@ export default {
 
   watch: {
     defaultCity: function (val) {
-      console.log(val, 'watch  city id')
       if (!val) {
         this.selectedCity = null
         return

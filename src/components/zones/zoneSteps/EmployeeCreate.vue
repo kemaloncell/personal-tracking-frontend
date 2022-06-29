@@ -2,33 +2,18 @@
   <div class="stepsdemo-content">
     <Card>
       <template #title>
-        Payment Information
+        Çalışan Bilgileri
       </template>
       <template #subtitle>
-        Enter your card details
+        Alana atanacak çalışan seçiniz.
       </template>
       <template #content>
-        <div class="p-fluid formgrid grid">
-          <div class="field col-12">
-            <label for="class">Class</label>
-            <InputText type="text" v-model="cardholderName"/>
-          </div>
-          <div class="field col-8">
-            <label id="number" for="lastname">Number</label>
-            <InputMask id="number" mask="9999-9999-9999-9999" v-model="cardholderNumber"/>
-          </div>
-          <div class="field col-2">
-            <label id="date" for="date">Date</label>
-            <InputMask id="date" mask="99/99" v-model="date"/>
-          </div>
-          <div class="field col-2">
-            <label for="cvv">CVV</label>
-            <InputMask id="cvv" mask="999" v-model="cvv"/>
-          </div>
-          <div class="field-checkbox col-12">
-            <Checkbox id="remember" v-model="remember" :binary="true"/>
-            <label for="remember" class="p-checkbox-label">Save credit card information for future</label>
-          </div>
+        <div class="field col-12">
+          <label for="class">Çalışanlar</label>
+          <j-employees
+              @onEmployee="onEmployee"
+              :defaultEmployee="Employee"
+          />
         </div>
       </template>
       <template #footer>
@@ -44,27 +29,27 @@
 export default {
   data() {
     return {
-      cardholderName: '',
-      cardholderNumber: '',
-      date: '',
-      cvv: '',
-      remember: false
+      Employee: '',
     }
   },
   methods: {
     nextPage() {
       this.$emit('nextPage', {
         formData: {
-          cardholderName: this.cardholderName,
-          cardholderNumber: this.cardholderNumber,
-          date: this.date,
-          cvv: this.cvv
+          employee: this.Employee
         }, pageIndex: 2
       });
     },
     prevPage() {
       this.$emit('prevPage', {pageIndex: 2});
-    }
+    },
+
+    onEmployee(employee) {
+      if (employee) {
+        this.Employee = employee
+      }
+    },
+
   }
 }
 

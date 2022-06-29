@@ -6,40 +6,32 @@
       </template>
       <template #content>
         <div class="field col-12">
-          <label for="class">Bölge yetkili kişi: </label>
+          <label class="mr-1" for="class">Bölge yetkili kişi: </label>
           <b>{{ formData.firstname ? formData.firstname : '-' }}</b>
         </div>
         <div class="field col-12">
-          <label for="Age">Alan Şehir: </label>
+          <label class="mr-1" for="Age">Alan Şehir: </label>
           <b>{{ formData.city ? formData.city.name : '-' }}</b>
         </div>
         <div class="field col-12">
-          <label for="Age">Bölge yetkili kişi: </label>
+          <label class="mr-1" for="Age">Alan yetkili kişi: </label>
           <b>{{ formData.areaAuthName ? formData.areaAuthName : '-' }}</b>
         </div>
         <div class="field col-12">
-          <label for="Age">Bölge İlçe</label>
-          <b>{{ formData.District ? formData.District : '-' }}</b>
+          <label class="mr-1" for="Age">Bölge İlçe:</label>
+          <b>{{ formData.district.name ? formData.district.name : '-' }}</b>
         </div>
         <div class="field col-12">
-          <label for="Age">Bölge enlem: </label>
+          <label class="mr-1" for="Age">Bölge enlem:</label>
           <b>{{ formData.latitude ? formData.latitude : '-' }}</b>
         </div>
         <div class="field col-12">
-          <label for="Age">Bölge Boylam</label>
+          <label class="mr-1" for="Age">Bölge Boylam:</label>
           <b>{{ formData.longitude ? formData.longitude : '-' }}</b>
         </div>
         <div class="field col-12">
-          <label for="Age">Card Number</label>
-          <b>{{ formData.cardholderNumber ? formData.cardholderNumber : '-' }}</b>
-        </div>
-        <div class="field col-12">
-          <label for="Age">Date</label>
-          <b>{{ formData.date ? formData.date : '-' }}</b>
-        </div>
-        <div class="field col-12">
-          <label for="Age">CVV</label>
-          <b>{{ formData.cvv && formData.cvv.length === 3 ? '**' + formData.cvv[2] : '-' }}</b>
+          <label class="mr-1" for="Age">Bölgeye atanan çalışan:</label>
+          <b>{{ formData.employee.name ? formData.employee.name : '-' }}</b>
         </div>
       </template>
       <template #footer>

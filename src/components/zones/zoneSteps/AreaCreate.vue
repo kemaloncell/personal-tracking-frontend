@@ -4,7 +4,6 @@
     <Card>
       <template #title>
         Alan Bilgileri
-        gelen {{ formData.city.id ? formData.city.id : '-' }} gelen
       </template>
       <template #subtitle>
         Alan bilgilerinizi giriniz.
@@ -20,8 +19,8 @@
             <label for="class">İlçe</label>
             <j-district
                 required
-                @onSelectCity="onSelectDistrict"
-                :defaultCity="formData.city.id ? formData.city.id : 1 "
+                @onSelectDistrict="onSelectDistrict"
+                :defaultCity="formData.city.id "
                 :defaultDistrict="District"
                 v-model="District"
             />
@@ -65,14 +64,13 @@ export default {
     formData: Object
   },
 
-
   methods: {
 
     nextPage() {
       this.$emit('nextPage', {
         formData: {
           areaAuthName: this.areaAuthName,
-          District: this.District,
+          district: this.District,
           latitude: this.latitude,
           longitude: this.longitude,
         }, pageIndex: 1
