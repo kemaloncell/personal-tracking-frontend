@@ -1,20 +1,15 @@
 <template>
-  <div class=" flex align-items-center">
-    <div class="col-2 text-sm">
-      İl
-    </div>
-    <div class="col-12 pt-0 pb-0">
-      <Dropdown
-          v-model="selectedCity"
-          :options="cityList"
-          optionLabel="name"
-          :filter="true"
-          :showClear="true"
-          class="w-full h-full city-search p-inputtext-sm"
-          @change="setSelectedCity"
-          filterLocale="tr"
-      />
-    </div>
+  <div class="pt-0 pb-0">
+    <Dropdown
+        v-model="selectedCity"
+        :options="cityList"
+        optionLabel="name"
+        :filter="true"
+        :showClear="true"
+        class="w-full h-full city-search p-inputtext-sm"
+        @change="setSelectedCity"
+        filterLocale="tr"
+    />
   </div>
 </template>
 

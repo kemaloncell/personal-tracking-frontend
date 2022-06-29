@@ -3,12 +3,39 @@
   <div class="stepsdemo-content">
     <Card>
       <template #title>
-        Seat Information
+        Alan Bilgileri
       </template>
       <template #subtitle>
-        Choose your seat
+        Alan bilgilerinizi giriniz.
       </template>
       <template #content>
+        <div class="p-fluid formgrid grid">
+          <div class="field col-12">
+            <label for="class">Yetkili kişi</label>
+            <InputText type="text" v-model="areaAuthName"/>
+          </div>
+
+          <div class="field col-8">
+            <j-city
+                required
+                @onSelectCity="onSelectDistrict"
+                :defaultCity="1"
+                :defaultDistrict="District"
+                v-model="District"
+            />
+          </div>
+
+          <div class="field col-2">
+            <label id="date" for="date">Date</label>
+            <InputMask id="date" mask="99/99" v-model="date"/>
+          </div>
+          <div class="field col-2">
+            <label for="cvv">CVV</label>
+            <InputMask id="cvv" mask="999" v-model="cvv"/>
+          </div>
+        </div>
+
+
         <div class="p-fluid formgrid grid">
           <div class="field col-12 md:col-6">
             <label for="class">Class</label>
@@ -41,36 +68,12 @@
 export default {
   data() {
     return {
-      selectedClass: '',
-      classes: [
-        {name: 'First Class', code: 'A', factor: 1},
-        {name: 'Second Class', code: 'B', factor: 2},
-        {name: 'Third Class', code: 'C', factor: 3}
-      ],
-      vagons: [],
-      selectedVagon: '',
-      seats: [],
-      selectedSeat: ''
+      areaAuthName: '',
+      District: '',
     }
   },
   methods: {
-    setVagons(event) {
-      if (this.selectedClass && event.value) {
-        this.vagons = [];
-        this.seats = [];
-        for (let i = 1; i < 3 * event.value.factor; i++) {
-          this.vagons.push({vagon: i + event.value.code, type: event.value.name, factor: event.value.factor});
-        }
-      }
-    },
-    setSeats(event) {
-      if (this.selectedVagon && event.value) {
-        this.seats = [];
-        for (let i = 1; i < 10 * event.value.factor; i++) {
-          this.seats.push({seat: i, type: event.value.type});
-        }
-      }
-    },
+
     nextPage() {
       this.$emit('nextPage', {
         formData: {
@@ -82,7 +85,13 @@ export default {
     },
     prevPage() {
       this.$emit('prevPage', {pageIndex: 1});
-    }
-  }
+    },
+
+    onSelectDistrict(district) {
+      if (district) {
+        this.District = district
+      }
+    },
+  },
 }
 </script>

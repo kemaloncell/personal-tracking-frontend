@@ -46,10 +46,10 @@ const zoneMixins = {
                 })
             } finally {
                 //  await this.$router.push({name: 'CommonDemandsList'})
-                await this.$emit('nextPage', {
-                    formData: {City: this.City, name: this.name},
-                    pageIndex: 0
-                });
+                /* await this.$emit('nextPage', {
+                     formData: {City: this.City, name: this.name},
+                     pageIndex: 0
+                 }); */
             }
         },
 

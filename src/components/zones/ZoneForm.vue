@@ -3,7 +3,7 @@
     <div slot="content">
       <div class="card">
         <div class=" mt-5">
-          <Steps :model="items" :readonly="false" style="margin-bottom: 1rem"/>
+          <Steps :model="items" :readonly="true" :exact="true" style="margin-bottom: 1rem"/>
         </div>
 
         <div class=" col-8" style="margin: auto">

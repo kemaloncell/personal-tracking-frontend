@@ -6,12 +6,12 @@
       </template>
       <template #content>
         <div class="field col-12">
-          <label for="class">Name</label>
-          <b>{{ formData.firstname ? formData.firstname : '-' }} {{ formData.lastname ? formData.lastname : '-' }}</b>
+          <label for="class">Name: </label>
+          <b>{{ formData.firstname ? formData.firstname : '-' }}</b>
         </div>
         <div class="field col-12">
-          <label for="Age">Age</label>
-          <b>{{ formData.age ? formData.age : '-' }}</b>
+          <label for="Age">Şehir: </label>
+          <b>{{ formData.city ? formData.city.name : '-' }}</b>
         </div>
         <div class="field col-12">
           <label for="Age">Seat Class</label>
