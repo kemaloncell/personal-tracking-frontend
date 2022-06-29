@@ -82,7 +82,6 @@ export default {
 
     onSelectDistrict(district) {
       if (district) {
-        console.log(district, 'areada seçilen ilçe');
         this.District = district
       }
     },

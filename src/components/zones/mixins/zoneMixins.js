@@ -18,6 +18,8 @@ const zoneMixins = {
     methods: {
         ...mapActions({
             createZone: 'zones/create',
+            createZoneEmployee: 'zones/createZoneEmployee',
+            createArea: 'zones/createArea',
             updateZone: 'zones/update',
             getLiseZone: 'zones/getList',
             setPageZone: 'zones/setPage',
@@ -29,7 +31,40 @@ const zoneMixins = {
 
         async createSubmit(data) {
             try {
-                await this.createZone(data)
+                if (data.city) {
+                    const newData = {
+                        name: data.firstname,
+                        City: data.city,
+                    }
+                    await this.createZone(newData).then(res => {
+                        console.log(res, 'response')
+                    })
+                }
+                if (data.district) {
+                    const newData = {
+                        name: data.areaAuthName,
+                        District: data.district,
+                        Zone: {
+                            name: data.firstname,
+                            City: data.city,
+                        },
+                        latitude: data.latitude,
+                        longitude: data.longitude,
+                    }
+                    await this.createArea(newData)
+                }
+                if (data.employee) {
+                    const newData = {
+                        isActive: true,
+                        Employee: data.employee,
+                        Zone: {
+                            name: data.firstname,
+                            City: data.city,
+                        },
+                    }
+                    await this.createZoneEmployee(newData)
+                }
+
 
                 await this.$toast.add({
                     severity: 'success',

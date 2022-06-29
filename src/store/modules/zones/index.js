@@ -1,4 +1,5 @@
 import {zoneService} from '@/api/zoneService'
+import {areaOfZoneService} from '@/api/areaOfZoneService'
 
 const state = {
     list: [],
@@ -64,6 +65,30 @@ const actions = {
         try {
             commit('SET_SUBMIT_LOADING', true)
             await zoneService.create(data)
+        } catch (err) {
+            console.error(err)
+            throw new Error('Create connection failed')
+        } finally {
+            commit('SET_SUBMIT_LOADING', false)
+        }
+    },
+
+    createArea: async function ({commit}, data) {
+        try {
+            commit('SET_SUBMIT_LOADING', true)
+            await areaOfZoneService.createArea(data)
+        } catch (err) {
+            console.error(err)
+            throw new Error('Create connection failed')
+        } finally {
+            commit('SET_SUBMIT_LOADING', false)
+        }
+    },
+
+    createZoneEmployee: async function ({commit}, data) {
+        try {
+            commit('SET_SUBMIT_LOADING', true)
+            await areaOfZoneService.createZoneEmployee(data)
         } catch (err) {
             console.error(err)
             throw new Error('Create connection failed')

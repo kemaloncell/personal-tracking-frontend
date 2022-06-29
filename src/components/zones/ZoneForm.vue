@@ -60,6 +60,7 @@ export default {
       this.$router.push(this.items[event.pageIndex - 1].to);
     },
     complete() {
+      this.createSubmit(this.formObject)
       this.$toast.add({
         severity: 'Başarılı',
         summary: 'Bölge Oluşturuldu',

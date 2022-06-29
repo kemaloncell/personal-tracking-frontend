@@ -46,6 +46,7 @@ export default {
 
 
     setSelectedDistrict() {
+
       this.$emit('onSelectDistrict', this.selectedDistrict)
     }
   },
