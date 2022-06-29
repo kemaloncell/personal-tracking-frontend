@@ -30,6 +30,7 @@
         <div class="grid grid-nogutter justify-content-between">
           <i></i>
           <Button label="Next" @click="nextPage(!$v.$invalid)" icon="pi pi-angle-right" iconPos="right"/>
+
         </div>
       </template>
     </Card>
@@ -78,6 +79,7 @@ export default {
         this.City = city
       }
     },
+
   }
 }
 

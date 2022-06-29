@@ -52,30 +52,13 @@ export default {
   },
 
   mounted() {
-    setTimeout(() => {
-      if (!this.defaultCity) {
-        this.selectedCity = null
-        return
-      }
-
-      if (!this.defaultDistrict) {
-        this.selectedDistrict = null
-        return
-      }
-
-      if (this.defaultCity) {
-        this.selectedCity = this.defaultCity.id
-
-        this.callDistrictList(this.defaultCity.id)
-        this.selectedDistrict = this.defaultDistrict.id
-        this.$emit('onSelectDistrict', this.selectedDistrict)
-      }
-    }, 250)
+    this.callDistrictList(this.defaultCity)
   },
 
 
   watch: {
     defaultCity: function (val) {
+      console.log(val, 'watch  city id')
       if (!val) {
         this.selectedCity = null
         return

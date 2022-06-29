@@ -6,28 +6,28 @@
       </template>
       <template #content>
         <div class="field col-12">
-          <label for="class">Name: </label>
+          <label for="class">Bölge yetkili kişi: </label>
           <b>{{ formData.firstname ? formData.firstname : '-' }}</b>
         </div>
         <div class="field col-12">
-          <label for="Age">Şehir: </label>
+          <label for="Age">Alan Şehir: </label>
           <b>{{ formData.city ? formData.city.name : '-' }}</b>
         </div>
         <div class="field col-12">
-          <label for="Age">Seat Class</label>
-          <b>{{ formData.class ? formData.class : '-' }}</b>
+          <label for="Age">Bölge yetkili kişi: </label>
+          <b>{{ formData.areaAuthName ? formData.areaAuthName : '-' }}</b>
         </div>
         <div class="field col-12">
-          <label for="Age">Wagon Number</label>
-          <b>{{ formData.vagon ? formData.vagon : '-' }}</b>
+          <label for="Age">Bölge İlçe</label>
+          <b>{{ formData.District ? formData.District : '-' }}</b>
         </div>
         <div class="field col-12">
-          <label for="Age">Seat</label>
-          <b>{{ formData.seat ? formData.seat : '-' }}</b>
+          <label for="Age">Bölge enlem: </label>
+          <b>{{ formData.latitude ? formData.latitude : '-' }}</b>
         </div>
         <div class="field col-12">
-          <label for="Age">Cardholder Name</label>
-          <b>{{ formData.cardholderName ? formData.cardholderName : '-' }}</b>
+          <label for="Age">Bölge Boylam</label>
+          <b>{{ formData.longitude ? formData.longitude : '-' }}</b>
         </div>
         <div class="field col-12">
           <label for="Age">Card Number</label>

@@ -4,6 +4,7 @@
     <Card>
       <template #title>
         Alan Bilgileri
+        gelen {{ formData.city.id ? formData.city.id : '-' }} gelen
       </template>
       <template #subtitle>
         Alan bilgilerinizi giriniz.
@@ -12,52 +13,37 @@
         <div class="p-fluid formgrid grid">
           <div class="field col-12">
             <label for="class">Yetkili kişi</label>
-            <InputText type="text" v-model="areaAuthName"/>
+            <InputText type="text" class="p-inputtext-sm" v-model="areaAuthName"/>
           </div>
 
-          <div class="field col-8">
-            <j-city
+          <div class="field  col-8">
+            <label for="class">İlçe</label>
+            <j-district
                 required
                 @onSelectCity="onSelectDistrict"
-                :defaultCity="1"
+                :defaultCity="formData.city.id ? formData.city.id : 1 "
                 :defaultDistrict="District"
                 v-model="District"
             />
           </div>
 
           <div class="field col-2">
-            <label id="date" for="date">Date</label>
-            <InputMask id="date" mask="99/99" v-model="date"/>
+            <label id="date" for="date">Enlem</label>
+            <InputText id="date" placeholder="38.37" class="p-inputtext-sm" v-model="latitude"/>
           </div>
           <div class="field col-2">
-            <label for="cvv">CVV</label>
-            <InputMask id="cvv" mask="999" v-model="cvv"/>
+            <label for="cvv">Boylam</label>
+            <InputText id="cvv" placeholder="30.37" class="p-inputtext-sm" unmask v-model="longitude"/>
+
           </div>
         </div>
 
-
-        <div class="p-fluid formgrid grid">
-          <div class="field col-12 md:col-6">
-            <label for="class">Class</label>
-            <Dropdown inputId="class" v-model="selectedClass" :options="classes" @change="setVagons($event)"
-                      optionLabel="name" placeholder="Select a Class"/>
-          </div>
-          <div class="field col-12 md:col-6">
-            <label for="lastname">Wagon</label>
-            <Dropdown inputId="wagon" v-model="selectedVagon" :options="vagons" @change="setSeats($event)"
-                      optionLabel="vagon" placeholder="Select a Vagon"/>
-          </div>
-          <div class="field col-12">
-            <label for="seat">Seat</label>
-            <Dropdown inputId="seat" v-model="selectedSeat" :options="seats" optionLabel="seat"
-                      placeholder="Select a Seat"/>
-          </div>
-        </div>
       </template>
       <template #footer>
         <div class="grid grid-nogutter justify-content-between">
           <Button label="Back" @click="prevPage()" icon="pi pi-angle-left"/>
           <Button label="Next" @click="nextPage()" icon="pi pi-angle-right" iconPos="right"/>
+
         </div>
       </template>
     </Card>
@@ -70,16 +56,25 @@ export default {
     return {
       areaAuthName: '',
       District: '',
+      latitude: '',
+      longitude: '',
     }
   },
+
+  props: {
+    formData: Object
+  },
+
+
   methods: {
 
     nextPage() {
       this.$emit('nextPage', {
         formData: {
-          class: this.selectedClass.name,
-          vagon: this.selectedVagon.vagon,
-          seat: this.selectedSeat.seat
+          areaAuthName: this.areaAuthName,
+          District: this.District,
+          latitude: this.latitude,
+          longitude: this.longitude,
         }, pageIndex: 1
       });
     },
@@ -89,9 +84,12 @@ export default {
 
     onSelectDistrict(district) {
       if (district) {
+        console.log(district, 'areada seçilen ilçe');
         this.District = district
       }
     },
+
   },
+
 }
 </script>

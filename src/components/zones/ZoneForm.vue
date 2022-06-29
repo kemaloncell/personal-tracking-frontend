@@ -57,14 +57,13 @@ export default {
       this.$router.push(this.items[event.pageIndex + 1].to);
     },
     prevPage(event) {
-      console.log(event, 'prev');
       this.$router.push(this.items[event.pageIndex - 1].to);
     },
     complete() {
       this.$toast.add({
-        severity: 'success',
-        summary: 'Order submitted',
-        detail: 'Dear, ' + this.formObject.firstname + ' ' + this.formObject.lastname + ' your order completed.'
+        severity: 'Başarılı',
+        summary: 'Bölge Oluşturuldu',
+        detail: 'Sayın, ' + this.formObject.firstname + ' ' + 'Bölge oluşturma başarıyla gerçekleştirildi.'
       });
     },
 

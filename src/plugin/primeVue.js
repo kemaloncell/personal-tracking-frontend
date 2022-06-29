@@ -21,6 +21,7 @@ import JDate from "@/components/shared/JDate";
 import JEmployeeDocumentType from "@/components/shared/JEmployeeDocumentType";
 import JCityDistrict from "@/components/shared/JCityDistrict";
 import JCity from "@/components/shared/JCity";
+import JDistrict from "@/components/shared/JDistrict";
 import JRoleType from "@/components/shared/JRoleType";
 import JEmployees from "@/components/shared/JEmployees";
 
@@ -118,6 +119,7 @@ Vue.component('j-input-text', JInputText)
 Vue.component('j-input-mask', JInputMask)
 Vue.component('j-city-district', JCityDistrict)
 Vue.component('j-city', JCity)
+Vue.component('j-district', JDistrict)
 Vue.component('j-submitbutton', JSubmitButton)
 Vue.component('j-taxOffice', JTaxOffice)
 Vue.component('j-image-upload', JImageUpload)
