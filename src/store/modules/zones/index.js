@@ -66,7 +66,7 @@ const actions = {
             commit('SET_SUBMIT_LOADING', true)
             if (data.city) {
                 const zoneData = {
-                    name: data.firstname,
+                    name: data.zoneName,
                     City: data.city,
                 }
                 console.log(zoneData, 'zoneData')
@@ -77,10 +77,9 @@ const actions = {
                             const areaData = {
                                 name: data.areaAuthName,
                                 District: data.district,
-                                // zoneId: response.data.id,
                                 Zone: {
                                     id: response.data.data.id,
-                                    name: data.firstname,
+                                    name: data.zoneName,
                                     City: data.city,
                                 },
                                 latitude: data.latitude,
@@ -95,7 +94,7 @@ const actions = {
                                 Employee: data.employee,
                                 Zone: {
                                     id: response.data.data.id,
-                                    name: data.firstname,
+                                    name: data.zoneName,
                                 },
                             }
                             console.log(employeeData, 'employeeData')

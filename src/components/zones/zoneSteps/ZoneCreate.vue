@@ -8,11 +8,10 @@
         <p class="p-text-secondary">Bölge bilgilerinizi giriniz.</p>
         <div class="p-fluid">
           <div class="field">
-            <label for="firstname">Yetkili Kişi</label>
-            <InputText id="firstname" class="p-inputtext-sm" v-model="$v.firstname.$model"
-                       :class="{'p-invalid':$v.firstname.$invalid && submitted}"/>
-            <small v-show="$v.firstname.$invalid && submitted" class=" p-error">Yetkili kişi
-              gereklidir.</small>
+            <label for="zoneName">Bölge Adı</label>
+            <InputText id="zoneName" class="p-inputtext-sm" v-model="$v.zoneName.$model"
+                       :class="{'p-invalid':$v.zoneName.$invalid && submitted}"/>
+            <small v-show="$v.zoneName.$invalid && submitted" class=" p-error">Bölge adı gereklidir.</small>
           </div>
           <div class="field">
             <label for="Şehir">Şehir</label>
@@ -47,13 +46,13 @@ export default {
   mixins: [zoneMixins],
   data() {
     return {
-      firstname: '',
+      zoneName: '',
       City: '',
       submitted: false
     }
   },
   validations: {
-    firstname: {
+    zoneName: {
       required
     },
     City: {
@@ -69,7 +68,7 @@ export default {
       }
 
       this.$emit('nextPage', {
-        formData: {firstname: this.firstname, city: this.City},
+        formData: {zoneName: this.zoneName, city: this.City},
         pageIndex: 0
       });
     },

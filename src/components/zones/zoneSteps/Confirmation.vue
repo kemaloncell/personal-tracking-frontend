@@ -7,7 +7,7 @@
       <template #content>
         <div class="field col-12">
           <label class="mr-1" for="class">Bölge Adı: </label>
-          <b>{{ formData.firstname ? formData.firstname : '-' }}</b>
+          <b>{{ formData.zoneName ? formData.zoneName : '-' }}</b>
         </div>
         <div class="field col-12">
           <label class="mr-1" for="Age">Alan Şehir: </label>
