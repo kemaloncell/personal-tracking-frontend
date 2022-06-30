@@ -3,12 +3,14 @@
     <div slot="content">
       <div class="card">
         <div class=" mt-5">
-          <Steps :model="items" :readonly="true" :exact="true" style="margin-bottom: 1rem"/>
+          <Steps :model="items" :exact="false"
+                 style="margin-bottom: 1rem"/>
         </div>
 
-        <div class=" col-8" style="margin: auto">
+        <div class="col-8" style="margin: auto">
           <keep-alive>
-            <router-view :formData="formObject" @prevPage="prevPage($event)" @nextPage="nextPage($event)"
+            <router-view :isActive="isActive" :formData="formObject" @prevPage="prevPage($event)"
+                         @nextPage="nextPage($event)"
                          @complete="complete"/>
           </keep-alive>
         </div>
@@ -26,30 +28,42 @@ export default {
   mixins: [zoneMixin, GlobalForm],
   data() {
     return {
+      isActive: true,
       submitted: false,
       items: [{
         label: 'Bölge Oluştur',
-        to: 'create'
+        to: 'create',
+        name: 'zone'
       },
         {
           label: 'Alan Oluştur',
-          to: 'area-create'
+          to: 'area-create',
+          name: 'Area'
         },
         {
           label: 'Çalışan Oluştur',
-          to: 'employee-create'
+          to: 'employee-create',
+          name: 'Employee'
         },
         {
           label: 'Doğrulama',
-          to: 'confirmation'
+          to: 'confirmation',
+          name: 'Confirmation'
         }],
       formObject: {}
     }
   },
 
   methods: {
-
     nextPage(event) {
+      var a = document.querySelectorAll(".p-steps ul li");
+      for (var i = 0, length = a.length; i < length; i++) {
+        console.log(event.pageIndex);
+        if (event.pageIndex == i) {
+          a[i].classList.remove("p-disabled");
+        }
+      }
+
       for (let field in event.formData) {
         this.formObject[field] = event.formData[field];
       }
@@ -67,59 +81,7 @@ export default {
         detail: 'Sayın, ' + this.formObject.firstname + ' ' + 'Bölge oluşturma başarıyla gerçekleştirildi.'
       });
     },
+  },
 
-
-    /*   async submit() {
-        this.$v.$touch()
-        this.submitted = true
-
-        if (this.$v.$invalid) {
-          return
-        }
-
-        if (this.type === 'CREATE') {
-          this.createSubmit(this.formData)
-        }
-
-        if (this.type === 'UPDATE') {
-          this.udpateSubmit(this.formData)
-        }
-      },
-
-      onClose() {
-        this.$router.push({name: 'Supplier'});
-      },
-
-      onSelectCity(city) {
-        if (city) {
-          this.formData.Address.City = city
-        }
-      },
-
-      onSelectDistrict(district) {
-        console.log(district, 'on selecrt dist')
-        if (district) {
-          this.formData.Address.District = district
-        }
-      },
-
-      onTaxOffice(taxOffice) {
-        if (taxOffice) {
-          this.formData.TaxOffice = taxOffice
-        }
-      },
-
-
-    },
-
-     mounted() {
-       if (this.type === 'CREATE') {
-         this.resetForm()
-       } else {
-         this.type = this.$route.params.type
-         this.formData = this.$route.params.data
-       }
-     } */
-  }
 }
 </script>
