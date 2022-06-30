@@ -32,7 +32,6 @@ const zoneMixins = {
 
 
         async createSubmit(data) {
-// ya bu işlemi store'da yapcan yada burada promisei ile yapcan
 
             try {
                 await this.createZone(data)
@@ -69,25 +68,22 @@ const zoneMixins = {
                 } */
 
 
-                await this.$toast.add({
+                this.$toast.add({
                     severity: 'success',
                     summary: 'Başarılı',
-                    detail: 'Tedarikçi ekleme başarılı !',
+                    detail: 'Alan ekleme başarılı !',
                     life: 3000
                 })
             } catch {
                 this.$toast.add({
                     severity: 'error',
                     summary: 'Başarısız',
-                    detail: 'Tedarikçi ekleme başarısız !',
+                    detail: 'Alan ekleme başarısız !',
                     life: 3000
                 })
             } finally {
-                //  await this.$router.push({name: 'CommonDemandsList'})
-                /* await this.$emit('nextPage', {
-                     formData: {City: this.City, name: this.name},
-                     pageIndex: 0
-                 });*/
+                await this.$router.push({name: 'ZoneList'})
+
             }
         },
 

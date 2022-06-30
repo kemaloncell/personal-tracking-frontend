@@ -58,7 +58,6 @@ export default {
     nextPage(event) {
       var a = document.querySelectorAll(".p-steps ul li");
       for (var i = 0, length = a.length; i < length; i++) {
-        console.log(event.pageIndex);
         if (event.pageIndex == i) {
           a[i].classList.remove("p-disabled");
         }
@@ -73,13 +72,27 @@ export default {
     prevPage(event) {
       this.$router.push(this.items[event.pageIndex - 1].to);
     },
-    complete() {
-      this.createSubmit(this.formObject)
-      this.$toast.add({
-        severity: 'Başarılı',
-        summary: 'Bölge Oluşturuldu',
-        detail: 'Sayın, ' + this.formObject.firstname + ' ' + 'Bölge oluşturma başarıyla gerçekleştirildi.'
-      });
+    async complete() {
+
+      try {
+        await this.createSubmit(this.formObject)
+        
+        this.$toast.add({
+          severity: 'success',
+          summary: 'Başarılı',
+          detail: 'Alan ekleme başarılı !',
+          life: 3000
+        })
+      } catch {
+        this.$toast.add({
+          severity: 'error',
+          summary: 'Başarısız',
+          detail: 'Alan ekleme başarısız !',
+          life: 3000
+        })
+      } finally {
+        await this.$router.push({name: 'ZoneList'})
+      }
     },
   },
 
