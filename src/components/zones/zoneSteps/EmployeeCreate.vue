@@ -18,8 +18,8 @@
       </template>
       <template #footer>
         <div class="grid grid-nogutter justify-content-between">
-          <Button label="Back" @click="prevPage()" icon="pi pi-angle-left"/>
-          <Button label="Next" @click="nextPage()" icon="pi pi-angle-right" iconPos="right"/>
+          <Button label="Geri" @click="prevPage()" icon="pi pi-angle-left"/>
+          <Button label="İleri" @click="nextPage()" icon="pi pi-angle-right" iconPos="right"/>
         </div>
       </template>
     </Card>
