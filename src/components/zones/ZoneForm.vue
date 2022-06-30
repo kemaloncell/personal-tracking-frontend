@@ -1,6 +1,7 @@
 <template>
   <default-layout>
     <div slot="content">
+      <i @click="goZoneList" class="pi pi-arrow-left font-bold mb-4" style="font-size: 1.3rem"></i>
       <div class="card">
         <div class=" mt-5">
           <Steps :model="items" :exact="false"
@@ -76,7 +77,7 @@ export default {
 
       try {
         await this.createSubmit(this.formObject)
-        
+
         this.$toast.add({
           severity: 'success',
           summary: 'Başarılı',
@@ -93,6 +94,9 @@ export default {
       } finally {
         await this.$router.push({name: 'ZoneList'})
       }
+    },
+    goZoneList() {
+      this.$router.push({name: 'ZoneList'})
     },
   },
 
