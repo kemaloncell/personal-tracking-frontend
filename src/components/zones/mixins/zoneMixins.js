@@ -2,7 +2,9 @@ import {mapActions, mapGetters} from 'vuex'
 
 const zoneMixins = {
     data() {
-        return {}
+        return {
+            zoneId: null,
+        }
     },
 
     computed: {
@@ -30,15 +32,16 @@ const zoneMixins = {
 
 
         async createSubmit(data) {
+// ya bu işlemi store'da yapcan yada burada promisei ile yapcan
+
             try {
-                if (data.city) {
+                await this.createZone(data)
+                /*if (data.city) {
                     const newData = {
                         name: data.firstname,
                         City: data.city,
                     }
-                    await this.createZone(newData).then(res => {
-                        console.log(res, 'response')
-                    })
+                    await this.createZone(newData)
                 }
                 if (data.district) {
                     const newData = {
@@ -63,7 +66,7 @@ const zoneMixins = {
                         },
                     }
                     await this.createZoneEmployee(newData)
-                }
+                } */
 
 
                 await this.$toast.add({
@@ -84,7 +87,7 @@ const zoneMixins = {
                 /* await this.$emit('nextPage', {
                      formData: {City: this.City, name: this.name},
                      pageIndex: 0
-                 }); */
+                 });*/
             }
         },
 

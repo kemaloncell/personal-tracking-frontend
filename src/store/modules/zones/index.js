@@ -64,7 +64,82 @@ const actions = {
     create: async function ({commit}, data) {
         try {
             commit('SET_SUBMIT_LOADING', true)
-            await zoneService.create(data)
+            if (data.city) {
+                const zoneData = {
+                    name: data.firstname,
+                    City: data.city,
+                }
+                console.log(zoneData, 'zoneData')
+                await zoneService.create(zoneData).then(
+                    (response) => {
+                        console.log(response)
+                        if (data.district) {
+                            const areaData = {
+                                name: data.areaAuthName,
+                                District: data.district,
+                                // zoneId: response.data.id,
+                                Zone: {
+                                    id: response.data.data.id,
+                                    name: data.firstname,
+                                    City: data.city,
+                                },
+                                latitude: data.latitude,
+                                longitude: data.longitude,
+                            }
+                            console.log(areaData, 'areaData')
+                            areaOfZoneService.createArea(areaData)
+                        }
+                        if (data.employee) {
+                            const employeeData = {
+                                isActive: true,
+                                Employee: data.employee,
+                                Zone: {
+                                    id: response.data.data.id,
+                                    name: data.firstname,
+                                },
+                            }
+                            console.log(employeeData, 'employeeData')
+                            areaOfZoneService.createZoneEmployee(employeeData)
+                        }
+                    }
+                ).catch(err => {
+                    console.log(err)
+                })
+            }
+            //    await zoneService.create(data)
+
+            /*  if (data.city) {
+                  const newData = {
+                      name: data.firstname,
+                      City: data.city,
+                  }
+                  await this.createZone(newData)
+              }
+              if (data.district) {
+                  const newData = {
+                      name: data.areaAuthName,
+                      District: data.district,
+                      Zone: {
+                          name: data.firstname,
+                          City: data.city,
+                      },
+                      latitude: data.latitude,
+                      longitude: data.longitude,
+                  }
+                  await this.createArea(newData)
+              }
+              if (data.employee) {
+                  const newData = {
+                      isActive: true,
+                      Employee: data.employee,
+                      Zone: {
+                          name: data.firstname,
+                          City: data.city,
+                      },
+                  }
+                  await this.createZoneEmployee(newData)
+              } */
+
         } catch (err) {
             console.error(err)
             throw new Error('Create connection failed')

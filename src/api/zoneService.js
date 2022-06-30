@@ -2,7 +2,7 @@ import {BaseService} from '@/api/baseService'
 
 class ZoneService extends BaseService {
     constructor() {
-        super('/zone')
+        super('zone')
     }
 
     async getAllList() {
